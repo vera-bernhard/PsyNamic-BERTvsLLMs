@@ -516,7 +516,7 @@ def add_tokens():
 def main():
 
     task = "Study Type"
-    # meta-llama/Llama-2-13b-chat-hf # meta-llama/Llama-2-70b-chat-hf
+    # meta-llama/Llama-2-13b-chat-hf # meta-llama/Llama-2-70b-chat-hf # YBXL/Med-LLaMA3-8B # 
     model = "meta-llama/Llama-2-7b-chat-hf"
     # model = "gpt-4o-mini"
     date = datetime.today().strftime('%d-%m-%d')
