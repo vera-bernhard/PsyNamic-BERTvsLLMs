@@ -25,11 +25,14 @@ python -c 'import tensorflow as tf; print("Built with CUDA:", tf.test.is_built_w
 ```
 
 * Interactive session
-```srun --pty -n 1 -c 2 --time=00:15:00 --gpus=A100:1 bash -l```
+```bash
+srun --pty -n 1 -c 2 --time=00:30:00 --mem=16G --gpus=A100:1 bash -l
+```
 
 * Account
-``` sacctmgr show assoc format=account%30,partition,user,qos%30 user=$USER
-    sacctmgr show user $USER format=defaultaccount%30
+```bash
+sacctmgr show assoc format=account%30,partition,user,qos%30 user=$USER
+sacctmgr show user $USER format=defaultaccount%30
 ```
 
 
