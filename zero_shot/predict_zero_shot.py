@@ -2,11 +2,12 @@
 # -*- coding: utf-8 -*-
 
 """
-Filename: analyse_data.py
+Filename: predic_zero_shot.py
 Description: ...
 Author: Vera Bernhard
 """
 
+from huggingface_hub import login
 import os
 import re
 from bs4 import BeautifulSoup
@@ -29,6 +30,8 @@ logging.set_verbosity_info()
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
 api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=api_key)
+access_token = os.getenv("ACCESS_TOKEN")
+login(access_token)
 
 nlp = spacy.load("en_core_web_sm")
 SEED = 42
@@ -36,92 +39,88 @@ SEED = 42
 
 def set_seed(seed: int = 42):
     """Set all seeds for reproducibility."""
-    # random.seed(seed)
-    # np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
 
 
-def llama_prediction(
-        prompt: str,
-        model: str,
-        use_gpu: bool = False,
-        distributed: bool = False,
-        temperature: float = 0,
-        do_sample: bool = False,
-        top_p: float = 1.0) -> tuple[str, str]:
-    """Make a prediction using the LLaMA model and return the response content and model specification.
+class LlamaModel():
+    def __init__(self, model_name: str, use_gpu: bool = False, distributed: bool = False):
+        self.model_name = model_name
+        self.use_gpu = use_gpu
+        self.distributed = distributed
+        self.model_name_short = model_name.split('/')[-1]
 
-    If distributed=True, uses DeepSpeed for inference.
-    """
-    if distributed and not use_gpu:
-        raise ValueError(
-            "DeepSpeed distributed inference requires GPU (use_gpu=True).")
+        # Set device and dtype
+        if self.distributed and not self.use_gpu:
+            raise ValueError(
+                "DeepSpeed distributed inference requires GPU (use_gpu=True).")
 
-    set_seed(SEED)
-    model_name = model
-
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
-
-    if distributed:
-        model = AutoModelForCausalLM.from_pretrained(model_name)
-
-        model = deepspeed.init_inference(
-            model,
-            mp_size=torch.cuda.device_count(),
-            dtype=torch.float16 if use_gpu else torch.float32,
-            replace_method="auto",
-            replace_with_kernel_inject=True,
-        )
-
-        device = torch.device("cuda")
-        inputs = tokenizer(prompt, return_tensors="pt").to(device)
-
-    else:
-        if use_gpu:
-            device_map = "auto"
-            torch_dtype = torch.float16
+        if self.use_gpu:
+            self.device_map = "auto"
+            self.torch_dtype = torch.float16
+            self.device = torch.device("cuda")
         else:
-            device_map = None
-            torch_dtype = torch.float32
+            self.device_map = None
+            self.torch_dtype = torch.float32
+            self.device = torch.device("cpu")
 
-        model = AutoModelForCausalLM.from_pretrained(
-            model_name,
-            device_map=device_map,
-            torch_dtype=torch_dtype,
-            low_cpu_mem_usage=True
-        )
+        # Load tokenizer
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
 
-        inputs = tokenizer(prompt, return_tensors="pt")
-        device = torch.device("cuda" if use_gpu else "cpu")
-        inputs = {k: v.to(device) for k, v in inputs.items()}
+        # Load model and optionally wrap with DeepSpeed
+        if self.distributed:
+            # Load model first on CPU to avoid OOM
+            model = AutoModelForCausalLM.from_pretrained(self.model_name)
+            self.model = deepspeed.init_inference(
+                model,
+                mp_size=torch.cuda.device_count(),
+                dtype=torch.float16 if self.use_gpu else torch.float32,
+                replace_method="auto",
+                replace_with_kernel_inject=True,
+            )
+            # DeepSpeed models are already on GPU, device for inputs only
+            self.device = torch.device("cuda")
+        else:
+            self.model = AutoModelForCausalLM.from_pretrained(
+                self.model_name,
+                device_map=self.device_map,
+                torch_dtype=self.torch_dtype,
+                low_cpu_mem_usage=True,
 
-    generation_kwargs = {
-        "max_new_tokens": 500,
-        "do_sample": do_sample,
-        "eos_token_id": tokenizer.eos_token_id,
-        "pad_token_id": tokenizer.pad_token_id,
-        "temperature": temperature,
-        "top_p": top_p,
-        
-    }
+            )
+            self.model.to(self.device)
 
-    if do_sample:
-        # Create a generator for reproducibility
-        generator = torch.Generator(device=device).manual_seed(SEED)
-        generation_kwargs.update({
-            "generator": generator,
-        })
+    def predict(self, prompt: str, temperature: float = 0, do_sample: bool = False, top_p: float = 1.0) -> str:
+        # Set seed for reproducibility
+        torch.manual_seed(SEED)
+        torch.cuda.manual_seed_all(SEED)
 
-    with torch.no_grad():
-        generation_output = model.generate(**inputs, **generation_kwargs)
+        # Tokenize inputs and move to device
+        inputs = self.tokenizer(prompt, return_tensors="pt")
+        inputs = {k: v.to(self.device) for k, v in inputs.items()}
 
-    output_text = tokenizer.decode(
-        generation_output[0], skip_special_tokens=True)
+        generation_kwargs = {
+            "max_new_tokens": 500,
+            "do_sample": do_sample,
+            "eos_token_id": self.tokenizer.eos_token_id,
+            "pad_token_id": self.tokenizer.pad_token_id,
+            "temperature": temperature,
+            "top_p": top_p,
+        }
 
-    return output_text, model_name
+        if do_sample:
+            generator = torch.Generator(device=self.device).manual_seed(SEED)
+            generation_kwargs["generator"] = generator
+
+        with torch.no_grad():
+            generation_output = self.model.generate(
+                **inputs, **generation_kwargs)
+
+        output_text = self.tokenizer.decode(
+            generation_output[0], skip_special_tokens=True)
+        return output_text
 
 
 def gpt_prediction(prompt: str, model: str = "gpt-4o-mini", system_role: str = '') -> tuple[str, str]:
@@ -143,7 +142,7 @@ def gpt_prediction(prompt: str, model: str = "gpt-4o-mini", system_role: str = '
     return response_content, model_spec
 
 
-def make_class_predictions(task: str, model: str, outfile: str):
+def make_class_predictions(task: str, model_name: str, outfile: str, limit: int = None):
     task_lower = task.lower().replace(' ', '_')
     file = os.path.join(os.path.dirname(__file__), '..',
                         'data', task_lower, 'test.csv')
@@ -151,8 +150,12 @@ def make_class_predictions(task: str, model: str, outfile: str):
     if not os.path.exists(file):
         raise FileNotFoundError(
             f"The file {file} does not exist. Check the task name.")
-
     df = pd.read_csv(file)
+
+
+    if limit is not None:
+        df = df.iloc[:limit]
+
 
     # Some cleaning up
     # df_pred = pd.read_csv('zero_shot/study_type_gpt-4o-mini_05-06-05_old.csv')
@@ -163,23 +166,25 @@ def make_class_predictions(task: str, model: str, outfile: str):
     prompts = []
     predictions = []
     model_specs = []
+    if 'llama' in model_name.lower():  # and 'chat' not in model:
+        model = LlamaModel(model_name=model_name,
+                           use_gpu=True, distributed=False)
 
     for _, row in df.iterrows():
         prompt = build_class_prompt(task, row['text'])
+    
+        if 'Llama-2' in model_name:
+            prompt = build_llama_prompt(prompt, system_role_class)
 
         # Llama chat
-        if 'Llama' in model and 'chat' in model:
-            prompt = f"""[INST] <<SYS>>
-            {system_role_class}
-            <</SYS>>
-            {prompt}[/INST]"""
+        if 'llama' in model_name.lower():  # and 'chat' in model:
+            # prompt = build_llama_prompt(prompt, system_role_class)
+            model_spec = model.model_name_short
+            prediction = model.predict(prompt, temperature=0, do_sample=False)
 
-            prediction, model_spec = llama_prediction(
-                prompt, model=model)
-
-        elif 'gpt' in model:
+        elif 'gpt' in model_name:
             prediction, model_spec = gpt_prediction(
-                prompt, model=model, system_role=system_role_class)
+                prompt, model=model_name, system_role=system_role_class)
 
         prompts.append(prompt)
         predictions.append(prediction)
@@ -190,36 +195,53 @@ def make_class_predictions(task: str, model: str, outfile: str):
     df['model'] = model_specs
 
     df_out = df[['id', 'text', 'prompt', 'prediction_text',
-                 'model', 'labels',  'pred_labels']]
+                 'model', 'labels']]
     df_out.to_csv(outfile, index=False, encoding='utf-8')
 
 
-def make_ner_prediction(model: str, outfile: str):
-    file = os.path.join(os.path.dirname(__file__), '..',
-                        'data', 'ner_bio', 'test.csv')
+def make_ner_predictions(model_name: str, outfile: str, limit: int = None):
+    task = "ner_bio"
+    file = os.path.join(os.path.dirname(__file__), '..', 'data', task, 'test.csv')
+
     if not os.path.exists(file):
-        raise FileNotFoundError(
-            f"The file {file} does not exist. Check the task name.")
+        raise FileNotFoundError(f"The file {file} does not exist. Check the task name.")
 
     df = pd.read_csv(file)
 
-    predictor_function = None
-    if 'gpt' in model:
-        predictor_function = gpt_prediction
+    if limit is not None:
+        df = df.iloc[:limit]
 
-    for i, row in df.iterrows():
+    prompts = []
+    predictions = []
+    model_specs = []
+
+    if 'llama' in model_name.lower():
+        model = LlamaModel(model_name=model_name, use_gpu=True, distributed=False)
+
+    for _, row in df.iterrows():
         prompt = build_ner_prompt(row['text'])
-        prediction, model_spec = predictor_function(
-            prompt, model=model, system_role=system_role_ner)
-        df.at[i, 'prompt'] = prompt
-        df.at[i, 'prediction_text'] = prediction
-        df.at[i, 'model'] = model_spec
 
-    # df['pred_labels'] = df['prediction_text'].apply(
-    #     lambda x: parse_prediction(x, label2int))
+        if 'Llama-2' in model_name:
+            prompt = build_llama_prompt(prompt, system_role_ner)
 
-    # df_out = df[['id', 'text', 'prompt', 'prediction_text',
-    #              'model', 'labels',  'pred_labels']]
+        if 'llama' in model_name.lower():
+            model_spec = model.model_name_short
+            prediction = model.predict(prompt, temperature=0, do_sample=False)
+
+        elif 'gpt' in model_name:
+            prediction, model_spec = gpt_prediction(prompt, model=model_name, system_role=system_role_ner)
+
+        else:
+            raise ValueError(f"Unsupported model type: {model_name}")
+
+        prompts.append(prompt)
+        predictions.append(prediction)
+        model_specs.append(model_spec)
+
+    df['prompt'] = prompts
+    df['prediction_text'] = predictions
+    df['model'] = model_specs
+
     df_out = df[['id', 'text', 'prompt', 'prediction_text', 'model', 'tokens']]
     df_out.to_csv(outfile, index=False, encoding='utf-8')
 
@@ -276,6 +298,32 @@ def basic_tokenizer(text: str) -> list[str]:
     doc = nlp(text)
     tokenized = [token.text for token in doc]
     return tokenized
+
+
+def build_llama_prompt(prompt: str, system_prompt: str) -> str:
+    """Build the prompt for the Llama model."""
+
+    # Based in: https://www.llama.com/docs/model-cards-and-prompt-formats/meta-llama-2/
+
+    # Base model
+    # <s>{{ user_prompt }}
+
+    # Meta Llama 2 Chat - single message format
+    # <s>[INST] <<SYS>>
+    # {{ system_prompt }}
+    # <</SYS>>
+
+    # {{ user_message }} [/INST]
+
+    # Meta Llama 2 Chat - multi message format
+    # <s>[INST] <<SYS>>
+    # {{ system_prompt }}
+    # <</SYS>>
+
+    # {{ user_message_1 }} [/INST] {{ model_answer_1 }} </s>
+    # <s>[INST] {{ user_message_2 }} [/INST]
+
+    return f"<s>[INST] <<SYS>>\n{system_prompt}\n<</SYS>>\n{prompt}[/INST]"
 
 
 # def parse_ner_prediction(pred: str, tokens: list[str]) -> tuple[str, str]:
@@ -514,18 +562,25 @@ def add_tokens():
 
 
 def main():
-
-    task = "Study Type"
-    # meta-llama/Llama-2-13b-chat-hf # meta-llama/Llama-2-70b-chat-hf # YBXL/Med-LLaMA3-8B # 
-    model = "meta-llama/Llama-2-7b-chat-hf"
-    # model = "gpt-4o-mini"
+    models = [
+        "/scratch/vebern/models/Llama-2-13-chat-hf",
+        # "/scratch/vebern/models/Llama-2-70-chat-hf",
+        # "/data/vebern/ma-models/MeLLaMA-13B-chat",
+        # "/data/vebern/ma-models/MeLLaMA-70B-chat",
+        #"gpt-4o-mini"
+    ]
     date = datetime.today().strftime('%d-%m-%d')
-    outfile_class = f"zero_shot/{task.lower().replace(' ', '_')}_{model}_{date}.csv"
-    make_class_predictions(task, model, outfile_class)
 
-    # outfile_ner = f"zero_shot/ner_{model}_{date}.csv"
-    # make_ner_prediction(model, outfile_ner)
-    # add_tokens()
+    # for model_name in models:
+    #     task = "Study Type"
+    #     outfile_class = f"zero_shot/{task.lower().replace(' ', '_')}_{model_name.split('/')[-1]}_{date}.csv"
+    #     # make path 
+    #     make_class_predictions(task, model_name, outfile_class)
+
+    for model_name in models:
+        outfile_ner = f"zero_shot/ner_{model_name.split('/')[-1]}_{date}.csv"
+        make_ner_predictions(model_name, outfile_ner)
+        # add_tokens()
 
     #     tokens = ['Resting', '-', 'state', 'Network', '-', 'specific', 'Breakdown', 'of', 'Functional', 'Connectivity', 'during', 'Ketamine', 'Alteration', 'of', 'Consciousness', 'in', 'Volunteers.^', '\n', 'BACKGROUND', ':', 'Consciousness', '-', 'altering', 'anesthetic', 'agents', 'disturb', 'connectivity', 'between', 'brain', 'regions', 'composing', 'the', 'resting', '-', 'state', 'consciousness', 'networks', '(', 'RSNs', ')', '.', 'The', 'default', 'mode', 'network', '(', 'DMn', ')', ',', 'executive', 'control', 'network', ',', 'salience', 'network', '(', 'SALn', ')', ',', 'auditory', 'network', ',', 'sensorimotor', 'network', '(', 'SMn', ')', ',', 'and', 'visual', 'network', 'sustain', 'mentation', '.', 'Ketamine', 'modifies', 'consciousness', 'differently', 'from', 'other', 'agents', ',', 'producing', 'psychedelic', 'dreaming', 'and', 'no', 'apparent', 'interaction', 'with', 'the', 'environment', '.', 'The', 'authors', 'used', 'functional', 'magnetic', 'resonance', 'imaging', 'to', 'explore', 'ketamine', '-', 'induced', 'changes', 'in', 'RSNs', 'connectivity', '.', 'METHODS', ':', 'Fourteen', 'healthy', 'volunteers', 'received', 'stepwise', 'intravenous', 'infusions', 'of', 'ketamine', 'up', 'to', 'loss', 'of', 'responsiveness', '.', 'Because', 'of', 'agitation', ',', 'data', 'from', 'six', 'subjects', 'were', 'excluded', 'from', 'analysis', '.', 'RSNs', 'connectivity', 'was', 'compared', 'between', 'absence', 'of', 'ketamine', '(', 'wake', 'state', '[', 'W1', ']', ')', ',', 'light', 'ketamine', 'sedation', ',', 'and', 'ketamine', '-', 'induced', 'unresponsiveness', '(', 'deep', 'sedation', '[', 'S2', ']', ')', '.', 'RESULTS', ':', 'Increasing', 'the', 'depth', 'of', 'ketamine', 'sedation', 'from', 'W1', 'to', 'S2', 'altered', 'DMn', 'and', 'SALn', 'connectivity', 'and', 'suppressed', 'the', 'anticorrelated', 'activity', 'between', 'DMn', 'and', 'other', 'brain', 'regions', '.', 'During', 'S2', ',', 'DMn', 'connectivity', ',', 'particularly', 'between', 'the', 'medial', 'prefrontal', 'cortex', 'and', 'the', 'remaining', 'network', '(', 'effect', 'size', 'β', '[', '95', '%', 'CI', ']', ':', 'W1', '=', '0.20', '[', '0.18', 'to', '0.22', ']', ';', 'S2', '=', '0.07', '[', '0.04', 'to', '0.09', ']', ')', ',', 'and', 'DMn', 'anticorrelated', 'activity', '(', 'e.g.', ',', 'right', 'sensory', 'cortex', ':', 'W1', '=', '-0.07', '[', '-0.09', 'to', '-0.04', ']', ';', 'S2', '=', '0.04', '[', '0.01', 'to', '0.06', ']', ')', 'were', 'broken', 'down', '.', 'SALn', 'connectivity', 'was', 'nonuniformly', 'suppressed', '(', 'e.g.', ',', 'left', 'parietal', 'operculum', ':', 'W1', '=', '0.08', '[', '0.06', 'to', '0.09', ']', ';', 'S2', '=', '0.05', '[', '0.02', 'to', '0.07', ']', ')', '.', 'Executive', 'control', 'networks', ',', 'auditory', 'network', ',', 'SMn', ',', 'and', 'visual', 'network', 'were', 'minimally', 'affected', '.', 'CONCLUSIONS', ':', 'Ketamine', 'induces', 'specific', 'changes', 'in', 'connectivity', 'within', 'and', 'between', 'RSNs', '.', 'Breakdown', 'of', 'frontoparietal', 'DMn', 'connectivity', 'and', 'DMn', 'anticorrelation', 'and', 'sensory', 'and', 'SMn', 'connectivity', 'preservation', 'are', 'common', 'to', 'ketamine', 'and', 'propofol', '-', 'induced', 'alterations', 'of', 'consciousness', '.']
 
