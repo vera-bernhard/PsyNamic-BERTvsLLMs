@@ -11,7 +11,7 @@
             "Case series": "A collection of case reports involving patients who were given similar interventions.",
             "Other": "A study not belonging to one of the above categories or not classifiable based on the provided information. A study pooling different RCTs together belongs to this category."
         },
-        "Is_multilabel": true,
-        "Task_descripton": "The task is to classify the study type based on the title and abstract of a research paper. One or more of study types can be assigned."
+        "Is_multilabel": false,
+        "Task_descripton": "The task is to classify the study type based on the title and abstract of a research paper."
     }
 }

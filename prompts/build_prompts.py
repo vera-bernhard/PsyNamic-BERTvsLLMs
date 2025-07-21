@@ -6,6 +6,10 @@ Author: Vera Bernhard
 """
 # Prompts based on Chen et al. 2025
 
+# How to prompt LLaMa:
+# https://huggingface.co/blog/llama2#how-to-prompt-llama-2
+# https://www.llama.com/docs/model-cards-and-prompt-formats/meta-llama-2/
+
 import json
 import os
 
@@ -111,7 +115,7 @@ def build_ner_prompt(title_abstract: str):
     for entity, det in task_descriptions.items():
         entity_markup_guide += f'<span class="{entity.lower().replace(" ", "-")}"> to denote {entity}, '
 
-        definitions += f'{entity} is defined as: {det['Definition']}\n\n'
+        definitions += f"{entity} is defined as: {det['Definition']}\n\n"
 
         annotation_guidelines += f'{entity} should be annotated according to the following criteria:\n'
         for crit in det['Criteria']:
