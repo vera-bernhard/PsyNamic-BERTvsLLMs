@@ -564,18 +564,18 @@ def add_tokens():
 def main():
     models = [
         "/scratch/vebern/models/Llama-2-13-chat-hf",
-        # "/scratch/vebern/models/Llama-2-70-chat-hf",
-        # "/data/vebern/ma-models/MeLLaMA-13B-chat",
-        # "/data/vebern/ma-models/MeLLaMA-70B-chat",
-        #"gpt-4o-mini"
+        "/scratch/vebern/models/Llama-2-70-chat-hf",
+        "/data/vebern/ma-models/MeLLaMA-13B-chat",
+        "/data/vebern/ma-models/MeLLaMA-70B-chat",
+        "gpt-4o-mini"
     ]
     date = datetime.today().strftime('%d-%m-%d')
 
-    # for model_name in models:
-    #     task = "Study Type"
-    #     outfile_class = f"zero_shot/{task.lower().replace(' ', '_')}_{model_name.split('/')[-1]}_{date}.csv"
-    #     # make path 
-    #     make_class_predictions(task, model_name, outfile_class)
+    for model_name in models:
+        task = "Study Type"
+        outfile_class = f"zero_shot/{task.lower().replace(' ', '_')}_{model_name.split('/')[-1]}_{date}.csv"
+        # make path 
+        make_class_predictions(task, model_name, outfile_class)
 
     for model_name in models:
         outfile_ner = f"zero_shot/ner_{model_name.split('/')[-1]}_{date}.csv"
