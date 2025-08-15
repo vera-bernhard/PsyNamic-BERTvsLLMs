@@ -45,6 +45,12 @@ def set_seed(seed: int = 42):
     torch.backends.cudnn.benchmark = False
 
 
+TASKS = [
+    "Data Collection", "Data Type", "Number of Participants", "Age of Participants", "Application Form",
+    "Clinical Trial Phase", "Condition", "Outcomes", "Regimen", "Setting", "Study Control", "Study Purpose",
+    "Substance Naivety", "Substances", "Sex of Participants", "Study Conclusion", "Study Type", "Relevant"
+]
+
 class LlamaModel():
     def __init__(self, model_name: str, use_gpu: bool = False, distributed: bool = False):
         self.model_name = model_name
@@ -630,16 +636,17 @@ def add_tokens():
 def main():
     models = [
         "/scratch/vebern/models/Llama-2-13-chat-hf",
-        "/scratch/vebern/models/Llama-2-70-chat-hf",
+        #"/scratch/vebern/models/Llama-2-70-chat-hf",
         "/data/vebern/ma-models/MeLLaMA-13B-chat",
-        "/data/vebern/ma-models/MeLLaMA-70B-chat",
-        "gpt-4o-mini"
+        #"/data/vebern/ma-models/MeLLaMA-70B-chat",
+        # "gpt-4o-mini"
     ]
     date = datetime.today().strftime('%d-%m-%d')
 
     for model_name in models:
         task = "Study Type"
-        outfile_class = f"zero_shot/{task.lower().replace(' ', '_')}_{model_name.split('/')[-1]}_{date}.csv"
+        task_lower = task.lower().replace(' ', '_')
+        outfile_class = f"zero_shot/{task_lower}/{task_lower}_{model_name.split('/')[-1]}_{date}.csv"
         # make path
         make_class_predictions(task, model_name, outfile_class)
 
