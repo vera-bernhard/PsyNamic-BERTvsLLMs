@@ -23,6 +23,7 @@ MODEL_COLORS = {
     "biobert": "#d62728", "clinicalbert": "#9467bd", "biolinkbert": "#8c564b"
 }
 
+# TODO: Merge this with other evaluate script
 
 def extract_predictions(test_pred_file: str, is_multilabel: bool, threshold: float = 0.5) -> tuple:
     """ Extracts labels, predicte labels and probability distribution from a test_predicitions.csv
@@ -377,10 +378,12 @@ def plot_performance_per_label(y_true, y_pred, label_mapping, save_path, task: s
             f1 = f1_score(y_true_binary, y_pred_binary, zero_division=0)
             f1s.append(f1)
 
-            prec = precision_score(y_true_binary, y_pred_binary, zero_division=0)
+            prec = precision_score(
+                y_true_binary, y_pred_binary, zero_division=0)
             precisions.append(prec)
 
-            recall = recall_score(y_true_binary, y_pred_binary, zero_division=0)
+            recall = recall_score(
+                y_true_binary, y_pred_binary, zero_division=0)
             recalls.append(recall)
 
             accuracy = accuracy_score(y_true_binary, y_pred_binary)
@@ -434,48 +437,22 @@ def plot_performance_per_label(y_true, y_pred, label_mapping, save_path, task: s
     for i, label in enumerate(metrics_df.index):
         label_index = ax[0, 0].get_xticks()[i]
         sample_count = metrics_df['Sample Count'].iloc[i]
-        ax[0, 0].text(label_index, 1.2, f'#: {int(sample_count)}', ha='center', va='bottom', fontsize=10, color='black')
+        ax[0, 0].text(label_index, 1.2, f'#: {int(sample_count)}',
+                      ha='center', va='bottom', fontsize=10, color='black')
 
-
-    plt.suptitle(f"{task} predicted by {model_name} - Performance per Label", fontsize=16)
+    plt.suptitle(
+        f"{task} predicted by {model_name} - Performance per Label", fontsize=16)
     plt.xticks(rotation=45, ha="right")
     plt.tight_layout(rect=[0, 0, 1, 0.96])
     plt.savefig(save_path)
     plt.close()
 
-
-def plot_best_f1_scores(directory):
-    task_data = []
-
-    # Iterate through CSV files in the directory
-    for filename in os.listdir(directory):
-        if filename.endswith(".csv"):
-            task_name = filename.replace("model_performance_", "").replace(".csv", "").replace("_", " ").title()
-
-            # Load CSV
-            df = pd.read_csv(os.path.join(directory, filename))
-
-            # Find the row with the highest F1 score
-            best_model = df.loc[df['F1'].idxmax()]
-            
-            # Store relevant data
-            task_data.append({
-                "task": task_name,
-                "model": best_model["Model"],
-                "f1_score": best_model["F1"],
-                "ci_lower": best_model["F1 CI Lower"],
-                "ci_upper": best_model["F1 CI Upper"]
-            })
-
-    # Convert to DataFrame
-    df_tasks = pd.DataFrame(task_data)
-
-    # Sort by F1 score for better visualization
-    df_tasks = df_tasks.sort_values(by="f1_score", ascending=False).reset_index(drop=True)
-
+# Written for MA
+def plot_best_scores(directory: str, metric: str = 'F1', best_strategy: str = 'F1') -> None:
+    df_tasks = get_best_scores(directory, metric, best_strategy)
     # Plot
     fig, ax = plt.subplots(figsize=(10, 6))
-    
+
     # Bar plot without built-in error bars
     sns.barplot(
         x="task",
@@ -505,27 +482,76 @@ def plot_best_f1_scores(directory):
 
         ax.text(index, row["ci_upper"] + 0.01,
                 f"{row['ci_upper']:.3f}", ha="center", va="bottom", color="black", fontsize=8)
-        
+
     # Legend for colors
     for model, color in MODEL_COLORS.items():
         ax.bar(0, 0, color=color, label=model)
-    ax.legend(title="Model", loc="upper left", bbox_to_anchor
-              =(1, 1), title_fontsize="small")
-    
+    ax.legend(title="Model", loc="upper left",
+              bbox_to_anchor=(1, 1), title_fontsize="small")
+
     # Add some padding at bottom so labels are not cut off
     plt.gcf().subplots_adjust(bottom=0.2)
 
     # Formatting
-    ax.set_ylabel("Best F1 Score")
-    ax.set_title("Best F1 Score per Task")
+    ax.set_ylabel(f"Best {metric} Score")
+    ax.set_title(f"Best {metric} Score per Task")
     ax.set_xticks(np.arange(len(df_tasks)))
     ax.set_xticklabels(df_tasks["task"], rotation=45, ha="right")
     ax.set_ylim(0, 1)
 
     plt.show()
 
+
+# Written for MA
+def get_best_scores(directory: str, metric: str = 'F1', best_strategy: str = 'F1') -> pd.DataFrame:
+    task_data = []
+
+    # Iterate through CSV files in the directory
+    for filename in os.listdir(directory):
+        if filename.endswith(".csv"):
+            task_name = filename.replace("model_performance_", "").replace(
+                ".csv", "").replace("_", " ").title()
+
+            # Load CSV
+            df = pd.read_csv(os.path.join(directory, filename))
+
+            if best_strategy not in df.columns and best_strategy != 'cur':
+                raise ValueError(
+                    "Available strategies: 'F1, 'Accuracy', 'Precision', 'Recall' or 'cur' (for current metric)")
+            elif best_strategy == 'cur':
+                best_strategy = metric
+            best_model = df.loc[df[best_strategy].idxmax()]
+
+            # Store relevant data
+            task_data.append({
+                "task": task_name,
+                "model": best_model["Model"],
+                f"{metric.lower()}_score": best_model[f"{metric}"],
+                "ci_lower": best_model[f"{metric} CI Lower"],
+                "ci_upper": best_model[f"{metric} CI Upper"]
+            })
+
+    # Convert to DataFrame
+    df_tasks = pd.DataFrame(task_data)
+    # Sort by F1 score for better visualization
+    df_tasks = df_tasks.sort_values(
+        by=f"{metric.lower()}_score", ascending=False).reset_index(drop=True)
+    return df_tasks
+
+
 def main():
-    plot_best_f1_scores('/home/vera/Documents/Arbeit/CRS/PsychNER/model')
+    dir = '/home/vera/Documents/Uni/Master/Master_Thesis2.0/PsyNamic-Scale/bert_baseline/model_performance'
+    get_best_scores(dir, metric='F1').to_csv(
+        os.path.join(os.path.dirname(dir), 'best_f1_scores.csv'), index=False)
+    get_best_scores(dir, metric='Accuracy').to_csv(
+        os.path.join(os.path.dirname(dir), 'best_accuracy_scores.csv'), index=False)
+    get_best_scores(dir, metric='Precision').to_csv(
+        os.path.join(os.path.dirname(dir), 'best_precision_scores.csv'), index=False)
+    get_best_scores(dir, metric='Recall').to_csv(
+        os.path.join(os.path.dirname(dir), 'best_recall_scores.csv'), index=False)
+    
+
+    plot_best_scores('/home/vera/Documents/Arbeit/CRS/PsychNER/model')
     # save_dir = "model/performance_plots"
     # task_model_performance = collect_metrics_all_tasks()
     # plot_model_metric_all_tasks(task_model_performance,
