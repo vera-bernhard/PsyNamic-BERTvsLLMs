@@ -152,10 +152,8 @@ def make_class_predictions(task: str, model_name: str, outfile: str, limit: int 
             f"The file {file} does not exist. Check the task name.")
     df = pd.read_csv(file)
 
-
     if limit is not None:
         df = df.iloc[:limit]
-
 
     # Some cleaning up
     # df_pred = pd.read_csv('zero_shot/study_type_gpt-4o-mini_05-06-05_old.csv')
@@ -172,7 +170,7 @@ def make_class_predictions(task: str, model_name: str, outfile: str, limit: int 
 
     for _, row in df.iterrows():
         prompt = build_class_prompt(task, row['text'])
-    
+
         if 'Llama-2' in model_name:
             prompt = build_llama_prompt(prompt, system_role_class)
 
@@ -201,10 +199,12 @@ def make_class_predictions(task: str, model_name: str, outfile: str, limit: int 
 
 def make_ner_predictions(model_name: str, outfile: str, limit: int = None):
     task = "ner_bio"
-    file = os.path.join(os.path.dirname(__file__), '..', 'data', task, 'test.csv')
+    file = os.path.join(os.path.dirname(__file__),
+                        '..', 'data', task, 'test.csv')
 
     if not os.path.exists(file):
-        raise FileNotFoundError(f"The file {file} does not exist. Check the task name.")
+        raise FileNotFoundError(
+            f"The file {file} does not exist. Check the task name.")
 
     df = pd.read_csv(file)
 
@@ -216,7 +216,8 @@ def make_ner_predictions(model_name: str, outfile: str, limit: int = None):
     model_specs = []
 
     if 'llama' in model_name.lower():
-        model = LlamaModel(model_name=model_name, use_gpu=True, distributed=False)
+        model = LlamaModel(model_name=model_name,
+                           use_gpu=True, distributed=False)
 
     for _, row in df.iterrows():
         prompt = build_ner_prompt(row['text'])
@@ -229,7 +230,8 @@ def make_ner_predictions(model_name: str, outfile: str, limit: int = None):
             prediction = model.predict(prompt, temperature=0, do_sample=False)
 
         elif 'gpt' in model_name:
-            prediction, model_spec = gpt_prediction(prompt, model=model_name, system_role=system_role_ner)
+            prediction, model_spec = gpt_prediction(
+                prompt, model=model_name, system_role=system_role_ner)
 
         else:
             raise ValueError(f"Unsupported model type: {model_name}")
@@ -246,51 +248,115 @@ def make_ner_predictions(model_name: str, outfile: str, limit: int = None):
     df_out.to_csv(outfile, index=False, encoding='utf-8')
 
 
-def parse_class_prediction(pred: str, label2int: dict) -> str:
-    pred = pred.replace('\\n', '\n').replace('""', '"')
+def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> str:
+    """Parse the prediction text from various generative llms into a one-hot encoded list of labels.
+    
+    Hand-crafted for the following models:
+    - Llama-2
+    - MeLLaMA
+    - GPT-4o
+    """
 
-    start = pred.find('{')
-    end = pred.rfind('}') + 1
-    json_str = pred[start:end]
-    try:
-        pred = json.loads(json_str)
-    except json.JSONDecodeError:
-        json_str = pred.replace(': ",', ': "0",')
-        json_str = json_str.replace(': "\n', ': "0"\n')
-        try:
-            pred = json.loads(json_str)
-        except json.JSONDecodeError:
-            print(f"Error decoding JSON: {json_str}")
-            return ""
+    if model.startswith('Llama-2'):
+        # Split at [/INST]
+        parts = pred_text.split('[/INST]')
+        pred_text = parts[-1].strip()
 
-    # convert to string
-    onehot_list = [0] * len(label2int)
-    for label, value in pred.items():
+    elif model.startswith('MeLLaMA'):
+        parts = pred_text.split('OUTPUT:')
+        if len(parts) != 2:
+            raise ValueError(
+                f'Prediction text does not contain "OUTPUT:": {pred_text}')
+        pred_text = parts[-1].strip()
+
+    elif model.startswith('gpt'):
+        pred_text = pred_text.replace('\\n', '\n')
+
+    if '{' in pred_text:
+        # Case 1: There is a prediction in dictionary format
+        start = pred_text.index('{')
+        end = pred_text.index('}')
+        prediction_dict = pred_text[start:end+1]
+        # Clean up the prediction dictionary so that is valid JSON
+        prediction_dict = prediction_dict.replace('""', '"')
+        prediction_dict = re.sub(r':\s*"\s*(?=[,}])', ': ""', prediction_dict)
+        
+        prediction_dict = json.loads(prediction_dict)
+        
+        # Check if there is empty predictions -> "" instead of 0 or 1
+        if "" in prediction_dict.values():
+            # Check if there is at leas one 1
+            if not any(value == '1' for value in prediction_dict.values()):
+                print(f"Not parsable: {pred_text}")
+                return None
+            else:
+                # replace empty predictions with 0
+                for key in prediction_dict.keys():
+                    if prediction_dict[key] == "":
+                        prediction_dict[key] = 0
+
+        # Create one-hot encoding, according to label2int
+        onehot_list = [0] * len(label2int)
+        for label, value in prediction_dict.items():
+            # Sanity check: label exists in label2int
+            if label not in label2int:
+                raise ValueError(
+                    f'Label {label} not found in label2int mapping.')
+            pos = label2int[label]
+            onehot_list[pos] = int(value)
+
+    elif pred_text in label2int.keys():
+        # Case 2: There is a prediction in string format, e.g. 'Randomized-controlled trial (RCT)'
+        onehot_list = [0] * len(label2int)
+        pos = label2int[pred_text]
+        onehot_list[pos] = 1
+        return str(onehot_list)
+
+    elif ':' in pred_text:
+        # Case 3: There is a prediction in string format with a score, e.g. 'Randomized-controlled trial (RCT): 1
+        onehot_list = [0] * len(label2int)
+        label = pred_text.split(':')[0].strip()
         pos = label2int[label]
-        # insert at position
-        onehot_list[pos] = int(value)
+        onehot_list[pos] = 1
+        return str(onehot_list)
+    else:
+        return None
+
     return str(onehot_list)
 
 
-def parse_class_predictions(file: str, task: str) -> None:
+def parse_class_predictions(pred_file: str, task: str) -> None:
+    """Parse the predictions from a file and add a new column with one-hot encoded labels."""
+
     label2int = get_label2int(task)
 
-    # Check if file exists
-    if not os.path.exists(file):
+    # Check if file and column exist
+    if not os.path.exists(pred_file):
         raise FileNotFoundError(
-            f"The file {file} does not exist. Check the task name.")
+            f"The file {pred_file} does not exist. Check the task name.")
 
-    # Check if column 'prediction_text' exists
-    df = pd.read_csv(file)
+    df = pd.read_csv(pred_file)
     if 'prediction_text' not in df.columns:
         raise ValueError(
-            f"The file {file} does not contain the column 'prediction_text'. Check the file format.")
+            f"The file {pred_file} does not contain the column 'prediction_text'. Check the file format.")
 
-    df['pred_labels'] = df['prediction_text'].apply(
-        lambda x: parse_class_prediction(x, label2int))
+    # Parse model name from the file name --> model name before date dd-mm-dd.csv
+    model = os.path.basename(pred_file).split('_')[-2]
 
-    # save the dataframe with the new column
-    df.to_csv(file, index=False, encoding='utf-8')
+    # add new column 'pred_labels' containing the one-hot encoded labels
+    for i, row in df.iterrows():
+        try:
+            if i == 748:
+                pass
+            # write new column 'pred_labels' with parsed prediction
+            df.at[i, 'pred_labels'] = parse_class_prediction(
+                row['prediction_text'], label2int, model)
+        except Exception as e:
+            print(
+                f"Error parsing prediction for row with id {row['id']} : {e}")
+            continue
+
+    df.to_csv(pred_file, index=False, encoding='utf-8')
 
 
 def basic_tokenizer(text: str) -> list[str]:
@@ -574,7 +640,7 @@ def main():
     for model_name in models:
         task = "Study Type"
         outfile_class = f"zero_shot/{task.lower().replace(' ', '_')}_{model_name.split('/')[-1]}_{date}.csv"
-        # make path 
+        # make path
         make_class_predictions(task, model_name, outfile_class)
 
     for model_name in models:
