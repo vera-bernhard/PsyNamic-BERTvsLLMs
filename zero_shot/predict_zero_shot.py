@@ -53,11 +53,12 @@ TASKS = [
 ]
 
 class LlamaModel():
-    def __init__(self, model_name: str, use_gpu: bool = False, distributed: bool = False):
+    def __init__(self, model_name: str, use_gpu: bool = False, distributed: bool = False, is_ner: bool = False):
         self.model_name = model_name
         self.use_gpu = use_gpu
         self.distributed = distributed
         self.model_name_short = model_name.split('/')[-1]
+        self.is_ner = is_ner
 
         # Set device and dtype
         if self.distributed and not self.use_gpu:
@@ -98,6 +99,8 @@ class LlamaModel():
 
             )
             self.model.to(self.device)
+
+        print(self.model.generation_config)
 
     def predict(self, prompt: str, temperature: float = 0, do_sample: bool = False, top_p: float = 1.0) -> str:
         # Set seed for reproducibility
@@ -224,7 +227,7 @@ def make_ner_predictions(model_name: str, outfile: str, limit: int = None):
 
     if 'llama' in model_name.lower():
         model = LlamaModel(model_name=model_name,
-                           use_gpu=True, distributed=False)
+                           use_gpu=True, distributed=False, is_ner=True)
 
     for _, row in df.iterrows():
         prompt = build_ner_prompt(row['text'])
@@ -398,6 +401,9 @@ def build_llama_prompt(prompt: str, system_prompt: str) -> str:
 
     return f"<s>[INST] <<SYS>>\n{system_prompt}\n<</SYS>>\n{prompt}[/INST]"
 
+
+def parse_ner_prediction(pred: str, model: str) -> list[tuple[str, str]]:
+    return []
 
 # def parse_ner_prediction(pred: str, tokens: list[str]) -> tuple[str, str]:
 
