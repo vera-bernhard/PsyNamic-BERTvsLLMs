@@ -106,14 +106,14 @@
             "Healthy Participants": "E.g., includes population studies (e.g., recreational drug use) where most lack major medical conditions."
         },
         "Is_multilabel": true,
-        "Task_description": "The task is to classify the overarching conditions of study participants based on the title and abstract. Only annotate the condition being treated (e.g., not outcomes of recreational use). If no participant info is given, assume healthy."
+        "Task_description": "The task is to classify the overarching conditions of study participants based on the title and abstract. Only annotate the condition being treated (e.g., not outcomes of recreational use). If no participant info is given, assume 'Healthy Participants'."
     },
     "Outcomes": {
         "Options": {
             "The ability to drive a car": "",
             "Suicide": "including suicidal ideation or related questionnaires.",
             "Functional MRI": "Also called fMRI.",
-            "MRI": "E.g., arterial spin labelling. Note: check this and the fMRI box if fMRI has been used.",
+            "MRI": "E.g., arterial spin labelling. If fMRI is used, classify it under both MRI and fMRI.",
             "PET, SPECT": "Or similar imaging approaches.",
             "Physiological Functions": "E.g., heart rate, blood pressure, body temperature, pupillary diameter, BMI.",
             "Electroencephalography (EEG)": "Includes MEG.",
@@ -132,13 +132,13 @@
         "Options": {
             "Efficacy endpoints": "Measures whether a psychedelic improves a disease (e.g., depression, anxiety) or mental health in healthy participants.",
             "Safety endpoints": "Discusses potential adverse events/side effects of a psychedelic substance (excluding adverse events that are not necessarily linked to the psychedelic, like suicide in MDMA polydrug users). Regardless of whether adverse events occurred or were absent. This also includes neurotoxicity studies, like studies looking at memory impairment after long-term MDMA use and studies assessing emergency department visits of individuals consuming, e.g., MDMA, or adverse events related to physiological functions (e.g., increase in body temperature or blood pressure).",
-            "Pharmacokinetics": "Examines how the body absorbs, distributes, metabolizes, and excretes the psychedelic substance. This item should be checked if body substance levels are measured on at least one time point.",
+            "Pharmacokinetics": "How the body absorbs, distributes, metabolizes, and excretes the substance; classify if body levels are measured at least once.",
             "Mechanism of action": "Assesses potential mechanisms of action of the psychedelic substance (mostly on a molecular/mechanistic level). This includes neuroimaging studies (e.g., fMRI or PET scans to see how psychedelics affect brain activity and connectivity), neuropharmacology studies (e.g., how psychedelics interact with specific neurotransmitter systems, such as serotonin 5-HT2A receptors), genetic expression studies (e.g., assessing how psychedelics affect gene expression within the brain), and electrophysiological studies (e.g., measuring changes in the electrical activity of neurons in response to psychedelic substances).",
             "Disease model study": "Uses the psychedelic substance to induce a model psychosis (e.g., ketamine is commonly used for that).",
             "Demographic study": "I.e. epidemiological study, e.g., a study assessing MDMA use among a real-world population. This also includes studies about adverse events of psychedelic substances in a recreational/real-world setting."
         },
         "Is_multilabel": true,
-        "Task_description": "The task is to classify the overall purpose of the study based on the title and abstract of a research paper. Be generous in determining the study purpose (e.g., prevention study, also consider safety endpoints). Rarely, a study may have no clear purpose (e.g., surveys of psychologists’ experiences). Specific effects (e.g., reduced verbal fluency in ecstasy users) count as safety outcomes."
+        "Task_description": "The task is to classify the overall purpose of the study based on the title and abstract of a research paper. Be generous in determining the study purpose (e.g., prevention study, also consider 'Safety endpoints'). Rarely, a study may have no clear purpose (e.g., surveys of psychologists’ experiences). Specific effects (e.g., reduced verbal fluency in ecstasy users) count as 'Safety endpoints'."
     },
     "Study Control": {
         "Options": {
@@ -150,7 +150,7 @@
             "Not applicable": "E.g., for systematic reviews."
         },
         "Is_multilabel": true,
-        "Task_description": "The task is to classify the control type of the study based on the title and abstract of a research paper. Control refers to the condition (e.g., if ketamine is tested in anxious and non-anxious patients without control, this is non-controlled)."
+        "Task_description": "The task is to classify the control type of the study based on the title and abstract of a research paper. Control refers to the condition (e.g., if ketamine is tested in anxious and non-anxious patients without control, this is 'Non-controlled')."
     },
     "Regimen": {
         "Options": {
@@ -173,7 +173,7 @@
             "Palliative Setting": "I.e. end of life."
         },
         "Is_multilabel": true,
-        "Task_description": "The task is to classify the setting in which the psychedelic substance is applied based on the title and abstract of a research paper. Select clinical if no particular setting is mentioned and the study has likely been conducted in a clinical setting. Select unknown only if it is unclear from the context in which setting the substance was applied."
+        "Task_description": "The task is to classify the setting in which the psychedelic substance is applied based on the title and abstract of a research paper. Select 'Clinical' if no particular setting is mentioned and the study has likely been conducted in a clinical setting. Select 'Unknown' only if it is unclear from the context in which setting the substance was applied."
     },
     "Substance Naivety": {
         "Options": {
@@ -183,7 +183,7 @@
             "Not applicable": "E.g., for systematic reviews."
         },
         "Is_multilabel": true,
-        "Task_description": "The task is to classify whether the study participants (including controls) are naive to psychedelic substances based on the title and abstract of a research paper. A study could involve both naive and experienced users. Make a judgment call if not reported. Non-naive refers to any prior psychedelic use."
+        "Task_description": "The task is to classify whether the study participants (including controls) are naive to psychedelic substances based on the title and abstract of a research paper. A study could involve both naive and experienced users. Non-naive refers to any prior psychedelic use."
     },
     "Substances": {
         "Options": {
@@ -213,10 +213,10 @@
             "Female": "",
             "Male": "",
             "Not applicable": "e.g., for most systematic reviews",
-            "Unknown": "Check this if neither the number of participants nor their sex is reported."
+            "Unknown": "Neither the number of participants nor their sex is reported."
         },
         "Is_multilabel": false,
-        "Task_description": "The task is to classify the sex of the participants studies based on the title and abstract of a research paper. If pregnant women are the study participants, select both if > 5 pregnant women. In case a systematic review specifies the sex of included subjects and/or the number > 5, select the respective option."
+        "Task_description": "The task is to classify the sex of the participants studies based on the title and abstract of a research paper. If pregnant women are the study participants, select 'Both sexes' if > 5 pregnant women. In case a systematic review specifies the sex of included subjects and/or the number > 5, select the respective option."
     },
     "Study Conclusion": {
         "Options": {
