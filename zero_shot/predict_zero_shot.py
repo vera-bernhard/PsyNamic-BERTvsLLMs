@@ -48,7 +48,8 @@ def set_seed(seed: int = 42):
 TASKS = [
     "Data Collection", "Data Type", "Number of Participants", "Age of Participants", "Application Form",
     "Clinical Trial Phase", "Condition", "Outcomes", "Regimen", "Setting", "Study Control", "Study Purpose",
-    "Substance Naivety", "Substances", "Sex of Participants", "Study Conclusion", "Study Type", "Relevant"
+    "Substance Naivety", "Substances", "Sex of Participants", "Study Conclusion",  "Relevant",
+    # "Study Type",
 ]
 
 class LlamaModel():
@@ -643,12 +644,12 @@ def main():
     ]
     date = datetime.today().strftime('%d-%m-%d')
 
-    for model_name in models:
-        task = "Study Type"
-        task_lower = task.lower().replace(' ', '_')
-        outfile_class = f"zero_shot/{task_lower}/{task_lower}_{model_name.split('/')[-1]}_{date}.csv"
-        # make path
-        make_class_predictions(task, model_name, outfile_class)
+    for task in TASKS:
+        for model_name in models:
+            task_lower = task.lower().replace(' ', '_')
+            outfile_class = f"zero_shot/{task_lower}/{task_lower}_{model_name.split('/')[-1]}_{date}.csv"
+            # make path
+            make_class_predictions(task, model_name, outfile_class)
 
     for model_name in models:
         outfile_ner = f"zero_shot/ner_{model_name.split('/')[-1]}_{date}.csv"
