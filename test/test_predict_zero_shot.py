@@ -1,5 +1,5 @@
 import unittest
-from zero_shot.predict_zero_shot import parse_class_prediction, get_label2int
+from zero_shot.predict_zero_shot import parse_class_prediction, get_label2int, parse_ner_prediction
 
 
 class TestPredictZeroShot(unittest.TestCase):
@@ -238,13 +238,13 @@ OUTPUT: 1'''
 
     def test_parse_class_gpt(self):
         model = 'gpt-4o-mini-2024-07-18'
-        input_data= '"{\n    ""Randomized-controlled trial (RCT)"": ""1"",\n    ""Cohort study"": ""0"",\n    ""Real-world study"": ""0"",\n    ""Study protocol"": ""0"",\n    ""Systematic review/meta-analysis"": ""0"",\n    ""Qualitative Study"": ""0"",\n    ""Case report"": ""0"",\n    ""Case series"": ""0"",\n    ""Other"": ""0""\n}'
+        input_data = '"{\n    ""Randomized-controlled trial (RCT)"": ""1"",\n    ""Cohort study"": ""0"",\n    ""Real-world study"": ""0"",\n    ""Study protocol"": ""0"",\n    ""Systematic review/meta-analysis"": ""0"",\n    ""Qualitative Study"": ""0"",\n    ""Case report"": ""0"",\n    ""Case series"": ""0"",\n    ""Other"": ""0""\n}'
         excepted = "[1, 0, 0, 0, 0, 0, 0, 0, 0]"
         results = parse_class_prediction(input_data, self.label2int, model)
 
     def test_parse_class_gpt_faulty(self):
         model = 'gpt-4o-mini-2024-07-18'
-        input_data= '''"{
+        input_data = '''"{
     ""Randomized-controlled trial (RCT)"": """",
     ""Cohort study"": """",
     ""Real-world study"": """",
@@ -261,7 +261,213 @@ OUTPUT: 1'''
 
     def test_parse_class_gpt_faulty2(self):
         model = 'gpt-4o-mini-2024-07-18'
-        input_data= '{\\n    "Randomized-controlled trial (RCT)": ",\\n    "Cohort study": ",\\n    "Real-world study": ",\\n    "Study protocol": ",\\n    "Systematic review/meta-analysis": "1",\\n    "Qualitative Study": ",\\n    "Case report": ",\\n    "Case series": ",\\n    "Other": "\\n}'
+        input_data = '{\\n    "Randomized-controlled trial (RCT)": ",\\n    "Cohort study": ",\\n    "Real-world study": ",\\n    "Study protocol": ",\\n    "Systematic review/meta-analysis": "1",\\n    "Qualitative Study": ",\\n    "Case report": ",\\n    "Case series": ",\\n    "Other": "\\n}'
         excepted = "[0, 0, 0, 0, 1, 0, 0, 0, 0]"
         results = parse_class_prediction(input_data, self.label2int, model)
         self.assertEqual(excepted, results)
+
+    def test_ner_parse_gpt(self):
+        model = 'gpt-40-2024-08-06'
+        input_data = '''"```html
+            Default Mode Connectivity in <span class=""application-area"">Major Depressive Disorder</span> Measured Up to 10 Days After Ketamine Administration.^
+            BACKGROUND: The symptoms of <span class=""application-area"">major depressive disorder (MDD)</span> are rapidly alleviated by administration of a single dose of the glutamatergic modulator ketamine. However, few studies have investigated the potential sustained neural effects of this agent beyond immediate infusion. This study used functional magnetic resonance imaging to examine the effect of a single ketamine infusion on the resting state default mode network (DMN) at 2 and 10 days after a single ketamine infusion in unmedicated subjects with <span class=""application-area"">MDD</span> as well as healthy control subjects (HCs). METHODS: Data were drawn from a double-blind, placebo-controlled crossover study of 58 participants (33 with <span class=""application-area"">MDD</span> and 25 HCs) who received an intravenous infusion of either ketamine hydrochloride (<span class=""dosage"">0.5 mg/kg</span>) or placebo on 2 separate test days spaced 2 weeks apart. Eight minutes of functional magnetic resonance imaging resting state data was acquired at baseline and at about 2 and 10 days after both infusions. The DMN was defined using seed-based correlation and was compared across groups and scans. RESULTS: In subjects with <span class=""application-area"">MDD</span>, connectivity between the insula and the DMN was normalized compared with HCs 2 days postketamine infusion. This change was reversed after 10 days and did not appear in either of the placebo scans. Group-specific connectivity differences in drug response were observed, most notably in the insula in subjects with <span class=""application-area"">MDD</span> and in the thalamus in HCs. CONCLUSIONS: Connectivity changes in the insula in subjects with <span class=""application-area"">MDD</span> suggest that ketamine may normalize the interaction between the DMN and salience networks, supporting the triple network dysfunction model of <span class=""application-area"">MDD</span>.
+            ```"'''
+        expected = [('Major Depressive Disorder', 'application-area'),
+                    ('major depressive disorder (MDD)', 'application-area'),
+                    ('MDD', 'application-area'),
+                    ('MDD', 'application-area'),
+                    ('0.5 mg/kg', 'dosage'),
+                    ('MDD', 'application-area'),
+                    ('MDD', 'application-area'),
+                    ('MDD', 'application-area'),
+                    ('MDD', 'application-area')]
+        result = parse_ner_prediction(input_data, model)
+        self.assertEqual(result, expected)
+
+    def test_ner_parse_gpt_mini(self):
+        model = 'gpt-4o-mini-06-06-06'
+        input_data = '''```html
+<h1>Default Mode Connectivity in <span class=""application-area"">Major Depressive Disorder</span> Measured Up to <span class=""dosage"">10 Days</span> After <span class=""dosage"">Ketamine Administration</span>.</h1>
+<p>BACKGROUND: The symptoms of <span class=""application-area"">major depressive disorder</span> (MDD) are rapidly alleviated by administration of a single dose of the glutamatergic modulator ketamine. However, few studies have investigated the potential sustained neural effects of this agent beyond immediate infusion. This study used functional magnetic resonance imaging to examine the effect of a single ketamine infusion on the resting state default mode network (DMN) at <span class=""dosage"">2</span> and <span class=""dosage"">10</span> days after a single ketamine infusion in unmedicated subjects with <span class=""application-area"">MDD</span> as well as healthy control subjects (HCs). METHODS: Data were drawn from a double-blind, placebo-controlled crossover study of <span class=""dosage"">58</span> participants (<span class=""dosage"">33</span> with <span class=""application-area"">MDD</span> and <span class=""dosage"">25</span> HCs) who received an intravenous infusion of either ketamine hydrochloride (<span class=""dosage"">0.5 mg/kg</span>) or placebo on <span class=""dosage"">2</span> separate test days spaced <span class=""dosage"">2</span> weeks apart. Eight minutes of functional magnetic resonance imaging resting state data was acquired at baseline and at about <span class=""dosage"">2</span> and <span class=""dosage"">10</span> days after both infusions. The DMN was defined using seed-based correlation and was compared across groups and scans. RESULTS: In subjects with <span class=""application-area"">MDD</span>, connectivity between the insula and the DMN was normalized compared with HCs <span class=""dosage"">2</span> days postketamine infusion. This change was reversed after <span class=""dosage"">10</span> days and did not appear in either of the placebo scans. Group-specific connectivity differences in drug response were observed, most notably in the insula in subjects with <span class=""application-area"">MDD</span> and in the thalamus in HCs. CONCLUSIONS: Connectivity changes in the insula in subjects with <span class=""application-area"">MDD</span> suggest that ketamine may normalize the interaction between the DMN and salience networks, supporting the triple network dysfunction model of <span class=""application-area"">MDD</span>.</p>
+```'''
+        expected = [('Major Depressive Disorder', 'application-area'),
+                    ('10 Days', 'dosage'),
+                    ('Ketamine Administration', 'dosage'),
+                    ('major depressive disorder', 'application-area'),
+                    ('2', 'dosage'),
+                    ('10', 'dosage'),
+                    ('MDD', 'application-area'),
+                    ('58', 'dosage'),
+                    ('33', 'dosage'),
+                    ('MDD', 'application-area'),
+                    ('25', 'dosage'),
+                    ('0.5 mg/kg', 'dosage'),
+                    ('2', 'dosage'),
+                    ('2', 'dosage'),
+                    ('2', 'dosage'),
+                    ('10', 'dosage'),
+                    ('MDD', 'application-area'),
+                    ('2', 'dosage'),
+                    ('10', 'dosage'),
+                    ('MDD', 'application-area'),
+                    ('MDD', 'application-area'),
+                    ('MDD', 'application-area')]
+        result = parse_ner_prediction(input_data, model)
+        self.assertEqual(result, expected)
+
+    def test_ner_parse_llama2(self):
+        model = 'ner_Llama-2-13-chat-hf'
+        input_data = '''"[INST] <<SYS>>
+            You are a helpful medical expert who is helping to extract named entities from medical abstracts.
+            <</SYS>>
+            ###Task
+
+            Your task is to generate an HTML version of an input text, marking up specific entities. The entities to be identified are: Application area, Dosage. Use HTML <span> tags to highlight these entities. Each <span> should have a class attribute indicating the type of entity.
+
+            ###Entity Markup Guide
+            Use <span class=""application-area""> to denote Application area, <span class=""dosage""> to denote Dosage.
+
+            ###Entity Definitions
+            Application area is defined as: The condition or disease studied in the paper, defined as a medically recognized state with identifiable diagnostic features, progression, and treatment response, typically having an ICD-10/11 code.
+
+            Dosage is defined as: The applied dosage(s) of the psychedelic substance(s) in the present study.
+
+            ###Annotation Guidelines
+            Application area should be annotated according to the following criteria:
+            * Can be empty, i.e., no annotation per abstract.
+            * Annotate only in title and/or introductory abstract parts discussing the problem or objective (including abbreviations).
+            * Annotate sweeping statements like ""major depressive and bipolar disorder"" as one entity.
+            * Annotate full descriptive phrases (e.g., ""active suicidal ideation""); annotate adjectives like ""Depressed"" but not generic words like ""patients"".
+            * Include defining features such as Acute/Chronic, Mild/Severe, Drug-resistant, Post-stroke, etc.
+            * Annotate abbreviations separately, e.g., ""Huntington disease"" and ""HD"" in ""Huntington disease (HD)"".
+            * Exclude study targets not treatment targets (e.g., ""dissociative symptoms"" in some contexts).
+            * Annotate disorders like ""cigarette addiction"" but not concepts like ""smoking cessation"".
+            * Exclude targets of study that are not treatment targets (e.g., ""dissociative symptoms"" in some contexts).
+            * Do NOT annotate generic concepts like ""psychiatric condition"".
+            * Do NOT annotate outcomes or measures like ""Hamilton Depression Scale"", ""antisuicidal response"", or phrases like ""depression was reduced"".
+            * Do NOT annotate treatments like ""antidepressant"".
+
+            Dosage should be annotated according to the following criteria:
+            * Annotate the number and the corresponding unit (e.g., 2mg/kg).
+            * Can be empty, i.e, no annotation per abstract.
+            * Annotate only doses of the psychedelic substance in the current study (e.g., exclude doses mentioned from other studies).
+            * Annotate all reported doses for the respective psychedelic substance.
+            * Annotate also the term ""between"" if pertinent, similarly ""or"" and ""and"" should be annotated. Do not annotate ""per device"".
+            * Annotate also relative dosages (e.g., 1 mg/kg), do NOT annotate the terms ""bw"" or ""body weight"" or similar if pertinent
+            * Do NOT annotate concentrations of solutions (e.g., 500mg/10ml) or doses measured in plasma (4 mg/ml).
+
+            INPUT: Resting-state Network-specific Breakdown of Functional Connectivity during Ketamine Alteration of Consciousness in Volunteers.^
+            BACKGROUND: Consciousness-altering anesthetic agents disturb connectivity between brain regions composing the resting-state consciousness networks (RSNs). The default mode network (DMn), executive control network, salience network (SALn), auditory network, sensorimotor network (SMn), and visual network sustain mentation. Ketamine modifies consciousness differently from other agents, producing psychedelic dreaming and no apparent interaction with the environment. The authors used functional magnetic resonance imaging to explore ketamine-induced changes in RSNs connectivity. METHODS: Fourteen healthy volunteers received stepwise intravenous infusions of ketamine up to loss of responsiveness. Because of agitation, data from six subjects were excluded from analysis. RSNs connectivity was compared between absence of ketamine (wake state [W1]), light ketamine sedation, and ketamine-induced unresponsiveness (deep sedation [S2]). RESULTS: Increasing the depth of ketamine sedation from W1 to S2 altered DMn and SALn connectivity and suppressed the anticorrelated activity between DMn and other brain regions. During S2, DMn connectivity, particularly between the medial prefrontal cortex and the remaining network (effect size β [95% CI]: W1 = 0.20 [0.18 to 0.22]; S2 = 0.07 [0.04 to 0.09]), and DMn anticorrelated activity (e.g., right sensory cortex: W1 = -0.07 [-0.09 to -0.04]; S2 = 0.04 [0.01 to 0.06]) were broken down. SALn connectivity was nonuniformly suppressed (e.g., left parietal operculum: W1 = 0.08 [0.06 to 0.09]; S2 = 0.05 [0.02 to 0.07]). Executive control networks, auditory network, SMn, and visual network were minimally affected. CONCLUSIONS: Ketamine induces specific changes in connectivity within and between RSNs. Breakdown of frontoparietal DMn connectivity and DMn anticorrelation and sensory and SMn connectivity preservation are common to ketamine and propofol-induced alterations of consciousness.
+
+            OUTPUT: [/INST]  Sure, I'd be happy to help! Here's the input text with the named entities annotated using HTML <span> tags and the appropriate class attributes:
+
+            Resting-state Network-specific Breakdown of Functional Connectivity during Ketamine Alteration of Consciousness in Volunteers.^
+
+            <span class=""application-area"">Consciousness-altering anesthetic agents</span> disturb connectivity between brain regions composing the resting-state consciousness networks (RSNs). The default mode network (DMn), executive control network, salience network (SALn), auditory network, sensorimotor network (SMn), and visual network sustain mentation. Ketamine modifies consciousness differently from other agents, producing psychedelic dreaming and no apparent interaction with the environment. The authors used functional magnetic resonance imaging to explore ketamine-induced changes in RSNs connectivity.
+
+            <span class=""dosage"">Fourteen healthy volunteers received stepwise intravenous infusions of ketamine up to loss of responsiveness.</span> Because of agitation, data from six subjects were excluded from analysis. RSNs connectivity was compared between absence of ketamine (wake state [W1]), light ketamine sedation, and ketamine-induced unresponsiveness (deep sedation [S2]).
+
+            <span class=""application-area"">Increasing the depth of ketamine sedation from W1 to S2 altered DMn and SALn connectivity and suppressed the anticorrelated activity between DMn and other brain regions.</span> During S2, DMn connectivity, particularly between the medial prefrontal cortex and the remaining network (effect size β [95% CI]: W1 = 0.20 [0.18 to 0.22]; S2 = 0.07 [0.04 to 0.09]), and DMn anticorrelated activity (e.g., right sensory cortex: W1 = -0.07 [-0.09 to -0.04]; S2 = 0.04 [0.01 to 0"'''
+
+        expected = [('Consciousness-altering anesthetic agents', 'application-area'),
+                    ('Fourteen healthy volunteers received stepwise intravenous infusions of ketamine up to loss of responsiveness.', 'dosage'),
+                    ('Increasing the depth of ketamine sedation from W1 to S2 altered DMn and SALn connectivity and suppressed the anticorrelated activity between DMn and other brain regions.', 'application-area')]
+
+        result = parse_ner_prediction(input_data, model)
+        self.assertEqual(result, expected)
+
+    def test_parse_ner_mellama(self):
+        model = 'ner_MeLLaMA-13B-chat'
+        input_data = '''"###Task
+        Your task is to generate an HTML version of an input text, marking up specific entities. The entities to be identified are: Application area, Dosage. Use HTML <span> tags to highlight these entities. Each <span> should have a class attribute indicating the type of entity.
+
+        ###Entity Markup Guide
+        Use <span class=""application-area""> to denote Application area, <span class=""dosage""> to denote Dosage.
+
+        ###Entity Definitions
+        Application area is defined as: The condition or disease studied in the paper, defined as a medically recognized state with identifiable diagnostic features, progression, and treatment response, typically having an ICD-10/11 code.
+
+        Dosage is defined as: The applied dosage(s) of the psychedelic substance(s) in the present study.
+
+        ###Annotation Guidelines
+        Application area should be annotated according to the following criteria:
+        * Can be empty, i.e., no annotation per abstract.
+        * Annotate only in title and/or introductory abstract parts discussing the problem or objective (including abbreviations).
+        * Annotate sweeping statements like ""major depressive and bipolar disorder"" as one entity.
+        * Annotate full descriptive phrases (e.g., ""active suicidal ideation""); annotate adjectives like ""Depressed"" but not generic words like ""patients"".
+        * Include defining features such as Acute/Chronic, Mild/Severe, Drug-resistant, Post-stroke, etc.
+        * Annotate abbreviations separately, e.g., ""Huntington disease"" and ""HD"" in ""Huntington disease (HD)"".
+        * Exclude study targets not treatment targets (e.g., ""dissociative symptoms"" in some contexts).
+        * Annotate disorders like ""cigarette addiction"" but not concepts like ""smoking cessation"".
+        * Exclude targets of study that are not treatment targets (e.g., ""dissociative symptoms"" in some contexts).
+        * Do NOT annotate generic concepts like ""psychiatric condition"".
+        * Do NOT annotate outcomes or measures like ""Hamilton Depression Scale"", ""antisuicidal response"", or phrases like ""depression was reduced"".
+        * Do NOT annotate treatments like ""antidepressant"".
+
+        Dosage should be annotated according to the following criteria:
+        * Annotate the number and the corresponding unit (e.g., 2mg/kg).
+        * Can be empty, i.e, no annotation per abstract.
+        * Annotate only doses of the psychedelic substance in the current study (e.g., exclude doses mentioned from other studies).
+        * Annotate all reported doses for the respective psychedelic substance.
+        * Annotate also the term ""between"" if pertinent, similarly ""or"" and ""and"" should be annotated. Do not annotate ""per device"".
+        * Annotate also relative dosages (e.g., 1 mg/kg), do NOT annotate the terms ""bw"" or ""body weight"" or similar if pertinent
+        * Do NOT annotate concentrations of solutions (e.g., 500mg/10ml) or doses measured in plasma (4 mg/ml).
+
+        INPUT: Default Mode Connectivity in Major Depressive Disorder Measured Up to 10 Days After Ketamine Administration.^
+        BACKGROUND: The symptoms of major depressive disorder (MDD) are rapidly alleviated by administration of a single dose of the glutamatergic modulator ketamine. However, few studies have investigated the potential sustained neural effects of this agent beyond immediate infusion. This study used functional magnetic resonance imaging to examine the effect of a single ketamine infusion on the resting state default mode network (DMN) at 2 and 10 days after a single ketamine infusion in unmedicated subjects with MDD as well as healthy control subjects (HCs). METHODS: Data were drawn from a double-blind, placebo-controlled crossover study of 58 participants (33 with MDD and 25 HCs) who received an intravenous infusion of either ketamine hydrochloride (0.5 mg/kg) or placebo on 2 separate test days spaced 2 weeks apart. Eight minutes of functional magnetic resonance imaging resting state data was acquired at baseline and at about 2 and 10 days after both infusions. The DMN was defined using seed-based correlation and was compared across groups and scans. RESULTS: In subjects with MDD, connectivity between the insula and the DMN was normalized compared with HCs 2 days postketamine infusion. This change was reversed after 10 days and did not appear in either of the placebo scans. Group-specific connectivity differences in drug response were observed, most notably in the insula in subjects with MDD and in the thalamus in HCs. CONCLUSIONS: Connectivity changes in the insula in subjects with MDD suggest that ketamine may normalize the interaction between the DMN and salience networks, supporting the triple network dysfunction model of MDD.
+
+        OUTPUT: 
+        <span class=""application-area""> Major Depressive Disorder </span> <span class=""dosage""> 0.5 mg/kg </span>".'''
+
+        expected = [('Major Depressive Disorder', 'application-area'),
+                    ('0.5 mg/kg', 'dosage')]
+        result = parse_ner_prediction(input_data, model)
+        self.assertEqual(result, expected)
+
+    def test_ner_parse_mellama_2(self):
+        model = 'ner_MeLLaMA-13B-chat'
+        input_data = '''"###Task
+
+            Your task is to generate an HTML version of an input text, marking up specific entities. The entities to be identified are: Application area, Dosage. Use HTML <span> tags to highlight these entities. Each <span> should have a class attribute indicating the type of entity.
+
+            ###Entity Markup Guide
+            Use <span class=""application-area""> to denote Application area, <span class=""dosage""> to denote Dosage.
+
+            ###Entity Definitions
+            Application area is defined as: The condition or disease studied in the paper, defined as a medically recognized state with identifiable diagnostic features, progression, and treatment response, typically having an ICD-10/11 code.
+
+            Dosage is defined as: The applied dosage(s) of the psychedelic substance(s) in the present study.
+
+            ###Annotation Guidelines
+            Application area should be annotated according to the following criteria:
+            * Can be empty, i.e., no annotation per abstract.
+            * Annotate only in title and/or introductory abstract parts discussing the problem or objective (including abbreviations).
+            * Annotate sweeping statements like ""major depressive and bipolar disorder"" as one entity.
+            * Annotate full descriptive phrases (e.g., ""active suicidal ideation""); annotate adjectives like ""Depressed"" but not generic words like ""patients"".
+            * Include defining features such as Acute/Chronic, Mild/Severe, Drug-resistant, Post-stroke, etc.
+            * Annotate abbreviations separately, e.g., ""Huntington disease"" and ""HD"" in ""Huntington disease (HD)"".
+            * Exclude study targets not treatment targets (e.g., ""dissociative symptoms"" in some contexts).
+            * Annotate disorders like ""cigarette addiction"" but not concepts like ""smoking cessation"".
+            * Exclude targets of study that are not treatment targets (e.g., ""dissociative symptoms"" in some contexts).
+            * Do NOT annotate generic concepts like ""psychiatric condition"".
+            * Do NOT annotate outcomes or measures like ""Hamilton Depression Scale"", ""antisuicidal response"", or phrases like ""depression was reduced"".
+            * Do NOT annotate treatments like ""antidepressant"".
+
+            Dosage should be annotated according to the following criteria:
+            * Annotate the number and the corresponding unit (e.g., 2mg/kg).
+            * Can be empty, i.e, no annotation per abstract.
+            * Annotate only doses of the psychedelic substance in the current study (e.g., exclude doses mentioned from other studies).
+            * Annotate all reported doses for the respective psychedelic substance.
+            * Annotate also the term ""between"" if pertinent, similarly ""or"" and ""and"" should be annotated. Do not annotate ""per device"".
+            * Annotate also relative dosages (e.g., 1 mg/kg), do NOT annotate the terms ""bw"" or ""body weight"" or similar if pertinent
+            * Do NOT annotate concentrations of solutions (e.g., 500mg/10ml) or doses measured in plasma (4 mg/ml).
+
+            INPUT: Resting-state Network-specific Breakdown of Functional Connectivity during Ketamine Alteration of Consciousness in Volunteers.^
+            BACKGROUND: Consciousness-altering anesthetic agents disturb connectivity between brain regions composing the resting-state consciousness networks (RSNs). The default mode network (DMn), executive control network, salience network (SALn), auditory network, sensorimotor network (SMn), and visual network sustain mentation. Ketamine modifies consciousness differently from other agents, producing psychedelic dreaming and no apparent interaction with the environment. The authors used functional magnetic resonance imaging to explore ketamine-induced changes in RSNs connectivity. METHODS: Fourteen healthy volunteers received stepwise intravenous infusions of ketamine up to loss of responsiveness. Because of agitation, data from six subjects were excluded from analysis. RSNs connectivity was compared between absence of ketamine (wake state [W1]), light ketamine sedation, and ketamine-induced unresponsiveness (deep sedation [S2]). RESULTS: Increasing the depth of ketamine sedation from W1 to S2 altered DMn and SALn connectivity and suppressed the anticorrelated activity between DMn and other brain regions. During S2, DMn connectivity, particularly between the medial prefrontal cortex and the remaining network (effect size β [95% CI]: W1 = 0.20 [0.18 to 0.22]; S2 = 0.07 [0.04 to 0.09]), and DMn anticorrelated activity (e.g., right sensory cortex: W1 = -0.07 [-0.09 to -0.04]; S2 = 0.04 [0.01 to 0.06]) were broken down. SALn connectivity was nonuniformly suppressed (e.g., left parietal operculum: W1 = 0.08 [0.06 to 0.09]; S2 = 0.05 [0.02 to 0.07]). Executive control networks, auditory network, SMn, and visual network were minimally affected. CONCLUSIONS: Ketamine induces specific changes in connectivity within and between RSNs. Breakdown of frontoparietal DMn connectivity and DMn anticorrelation and sensory and SMn connectivity preservation are common to ketamine and propofol-induced alterations of consciousness.
+
+            OUTPUT: 
+            <span class=""application-area"">Consciousness-altering anesthetic agents disturb connectivity between brain regions composing the resting-state consciousness networks (RSNs). The default mode network (DMn), executive control network, salience network (SALn), auditory network, sensorimotor network (SMn), and visual network sustain mentation. Ketamine modifies consciousness differently from other agents, producing psychedelic dreaming and no apparent interaction with the environment. The authors used functional magnetic resonance imaging to explore ketamine-induced changes in RSNs connectivity.</span>"'''
+        
+        expected = [('Consciousness-altering anesthetic agents disturb connectivity between brain regions composing the resting-state consciousness networks (RSNs). The default mode network (DMn), executive control network, salience network (SALn), auditory network, sensorimotor network (SMn), and visual network sustain mentation. Ketamine modifies consciousness differently from other agents, producing psychedelic dreaming and no apparent interaction with the environment. The authors used functional magnetic resonance imaging to explore ketamine-induced changes in RSNs connectivity.', 'application-area')]
+        result = parse_ner_prediction(input_data, model)
+        self.assertEqual(result, expected)

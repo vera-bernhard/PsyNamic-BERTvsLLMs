@@ -15,6 +15,7 @@ from dotenv import load_dotenv
 from datetime import datetime
 from prompts.build_prompts import build_class_prompt, system_role_class, system_role_ner, build_ner_prompt
 from openai import OpenAI
+from typing import Literal
 import pandas as pd
 import json
 import spacy
@@ -402,8 +403,33 @@ def build_llama_prompt(prompt: str, system_prompt: str) -> str:
     return f"<s>[INST] <<SYS>>\n{system_prompt}\n<</SYS>>\n{prompt}[/INST]"
 
 
-def parse_ner_prediction(pred: str, model: str) -> list[tuple[str, str]]:
-    return []
+def parse_ner_prediction_entities(pred: str, model: str) -> list[tuple[str, str]]:
+    ner_labels = ['application-area','dosage' ]
+
+    # TODO: Deduplicate with class parse predictions
+    if model.startswith('Llama-2'):
+        parts = pred.split('[/INST]')
+        pred = parts[-1].strip()
+    
+    elif model.startswith('MeLLaMA'):
+        parts = pred.split('OUTPUT:')
+        if len(parts) != 2:
+            raise ValueError(
+                f'Prediction text does not contain "OUTPUT:": {pred}')
+        pred = parts[-1].strip()
+
+    # get <span> tags and their content
+    spans = re.findall(r'<span class="(.*?)">(.*?)</span>', pred)
+    spans = [(e,t) for t,e in spans]
+    spans = [(e.strip(), t.strip('"') ) for e, t in spans]
+    # check if all tags are in ner_labels
+    for span in spans:
+        if span[1] not in ner_labels:
+            # remove the span from the list
+            spans.remove(span)
+    return spans
+
+    
 
 # def parse_ner_prediction(pred: str, tokens: list[str]) -> tuple[str, str]:
 
@@ -526,7 +552,7 @@ def parse_ner_prediction(pred: str, model: str) -> list[tuple[str, str]]:
 #     return token_labels, aligned_tokens
 
 
-def parse_ner_predictions(file: str) -> None:
+def parse_ner_predictions(file: str, output: Literal['entities', 'tokens']) -> None:
     # Check if file exists
     if not os.path.exists(file):
         raise FileNotFoundError(
@@ -537,38 +563,57 @@ def parse_ner_predictions(file: str) -> None:
     if 'prediction_text' not in df.columns:
         raise ValueError(
             f"The file {file} does not contain the column 'prediction_text'. Check the file format.")
-    # create new folder, with same name as file but without .csv
-    name = os.path.splitext(os.path.basename(file))[0]
-    output_dir = os.path.join(os.path.dirname(file), name)
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
 
-    for i, row in df.iterrows():
-        tokens = ast.literal_eval(row['tokens'])
-        if row['id'] == 3638:
-            pass
-        token_labels, aligned_tokens = parse_ner_prediction(
-            row['prediction_text'], tokens)
+    # Parse model name from the file name --> model name before date dd-mm-dd.csv
+    model = os.path.basename(file).split('_')[-2]
 
-        aligned_df = pd.DataFrame({
-            'tokens': tokens,
-            'pred_labels': token_labels,
-            'aligned_tokens': aligned_tokens
-        })
+    if output == 'entities':
+        # # Parse entities from the prediction text
+        # df['entities'] = str(df['prediction_text'].apply(
+        #     lambda x: json.dumps(parse_ner_prediction_entities(x, model))))
+        for i, row in df.iterrows():
+            spans = parse_ner_prediction_entities(row['prediction_text'], model)
+            df.at[i, 'entities'] = json.dumps(spans)
 
-        # safe with file id.csv in the output directory
-        aligned_df.to_csv(os.path.join(
-            output_dir, f"{row['id']}.csv"), index=False, encoding='utf-8')
-
-        # save pred_labels
-        df.at[i, 'pred_labels'] = str(token_labels)
-
-        # if there is two columns named tokens, remove the second one
-        if 'tokens' in df.columns and df.columns.duplicated().any():
-            df = df.loc[:, ~df.columns.duplicated()]
-
-        # save the dataframe with the new column
+        # Save the entities to a new column
         df.to_csv(file, index=False, encoding='utf-8')
+    
+    elif output == 'tokens':
+        pass
+
+    
+    # # create new folder, with same name as file but without .csv
+    # name = os.path.splitext(os.path.basename(file))[0]
+    # output_dir = os.path.join(os.path.dirname(file), name)
+    # if not os.path.exists(output_dir):
+    #     os.makedirs(output_dir)
+
+    # for i, row in df.iterrows():
+    #     tokens = ast.literal_eval(row['tokens'])
+    #     if row['id'] == 3638:
+    #         pass
+    #     token_labels, aligned_tokens = parse_ner_prediction(
+    #         row['prediction_text'], tokens)
+
+    #     aligned_df = pd.DataFrame({
+    #         'tokens': tokens,
+    #         'pred_labels': token_labels,
+    #         'aligned_tokens': aligned_tokens
+    #     })
+
+    #     # safe with file id.csv in the output directory
+    #     aligned_df.to_csv(os.path.join(
+    #         output_dir, f"{row['id']}.csv"), index=False, encoding='utf-8')
+
+    #     # save pred_labels
+    #     df.at[i, 'pred_labels'] = str(token_labels)
+
+    #     # if there is two columns named tokens, remove the second one
+    #     if 'tokens' in df.columns and df.columns.duplicated().any():
+    #         df = df.loc[:, ~df.columns.duplicated()]
+
+    #     # save the dataframe with the new column
+    #     df.to_csv(file, index=False, encoding='utf-8')
 
 
 def extract_labeled_chunks(html: str) -> list[tuple[str, str]]:
