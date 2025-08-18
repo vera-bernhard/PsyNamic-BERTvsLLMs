@@ -27,17 +27,6 @@ from transformers.utils import logging
 logging.set_verbosity_info()
 
 
-# Load environment variables from .env file
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
-api_key = os.getenv("OPENAI_API_KEY")
-client = OpenAI(api_key=api_key)
-access_token = os.getenv("ACCESS_TOKEN")
-login(access_token)
-
-nlp = spacy.load("en_core_web_sm")
-SEED = 42
-
-
 def set_seed(seed: int = 42):
     """Set all seeds for reproducibility."""
     torch.manual_seed(seed)
@@ -52,6 +41,18 @@ TASKS = [
     "Substance Naivety", "Substances", "Sex of Participants", "Study Conclusion",  "Relevant",
     # "Study Type",
 ]
+
+# TODO: Move it somewhere else so that it is not always called
+# Load environment variables from .env file
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
+api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=api_key)
+access_token = os.getenv("ACCESS_TOKEN")
+login(access_token)
+
+nlp = spacy.load("en_core_web_sm")
+SEED = 42
+
 
 class LlamaModel():
     def __init__(self, model_name: str, use_gpu: bool = False, distributed: bool = False, is_ner: bool = False):
@@ -261,7 +262,7 @@ def make_ner_predictions(model_name: str, outfile: str, limit: int = None):
 
 def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> str:
     """Parse the prediction text from various generative llms into a one-hot encoded list of labels.
-    
+
     Hand-crafted for the following models:
     - Llama-2
     - MeLLaMA
@@ -291,9 +292,9 @@ def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> str:
         # Clean up the prediction dictionary so that is valid JSON
         prediction_dict = prediction_dict.replace('""', '"')
         prediction_dict = re.sub(r':\s*"\s*(?=[,}])', ': ""', prediction_dict)
-        
+
         prediction_dict = json.loads(prediction_dict)
-        
+
         # Check if there is empty predictions -> "" instead of 0 or 1
         if "" in prediction_dict.values():
             # Check if there is at leas one 1
@@ -370,6 +371,151 @@ def parse_class_predictions(pred_file: str, task: str) -> None:
     df.to_csv(pred_file, index=False, encoding='utf-8')
 
 
+def parse_ner_prediction(pred: str, tokens: list[str], model: str) -> list[str]:
+    """ Convert model prediction text with <span> tags into a BIO sequence.
+
+    The prediction contains entities like:
+        <span class="application-area">depression</span>
+        <span class="dosage">50 mg</span>
+
+    Steps:
+    1. Clean the prediction text depending on the model (Llama-2 / MeLLaMA).
+    2. Extract spans via regex: (entity text, entity type).
+    3. Align each span with tokens:
+       - First token → B-<EntityLabel>, rest → I-<EntityLabel>.
+       - Restore from backup if partial match fails.
+       - Fallback: search span text directly in tokens.
+    4. Warn if number of B- labels doesn’t match number of spans.
+    """
+
+    ner_labels = {
+        'application-area': 'Application area',
+        'dosage': 'Dosage',
+    }
+
+    # TODO: Deduplicate with class parse predictions
+    if 'Llama-2' in model:
+        parts = pred.split('[/INST]')
+        pred = parts[-1].strip()
+
+    elif 'MeLLaMA' in model:
+        parts = pred.split('OUTPUT:')
+        if len(parts) != 2:
+            raise ValueError(
+                f'Prediction text does not contain "OUTPUT:": {pred}')
+        pred = parts[-1].strip()
+
+    bio_tokens = ['O'] * len(tokens)
+    token_pointer = 0
+
+    # Extract spans from the prediction text
+    spans = re.findall(r'<span class="(.*?)">(.*?)</span>', pred)
+    spans = [(e, t) for t, e in spans]
+    spans = [(e.strip(), t.strip('"')) for e, t in spans]
+
+    # Iterate through the spans and in parallel through the tokens to find matches
+    # - assuming that the spans are in the same order as the tokens
+    # - assuming that the spans are not overlapping (which is the case for the PsyNamic Scale)
+    for e, t in spans:
+        if t not in ner_labels:
+            print(
+                f'Warning: Entity {t} not found in ner_labels mapping. Available labels: {ner_labels.keys()}')
+            continue
+        e_in_bio = False  # Keep track if entity is matched
+        temp_e = e.lower()  # Keep track what of the entity is still to be matched
+        token_start = False  # Keep track of whether B- or I- token need to be set
+        # Backup bio_tokens to reset if the beginning of the entity seemed a match but later turned out not to be
+        backup_bio_tokens = bio_tokens.copy()
+
+        # Iterate through the tokens to find matches
+        for i in range(token_pointer, len(tokens)):
+            if tokens[i] == '\n':
+                continue
+            token = tokens[i].strip().lower()
+            if not token_start:
+                if temp_e.startswith(token):
+                    bio_tokens[i] = f'B-{ner_labels[t]}'
+                    token_start = True
+                    temp_e = temp_e.lstrip(token).strip()
+                    e_in_bio = True
+            else:
+                if temp_e.startswith(token):
+                    bio_tokens[i] = f'I-{ner_labels[t]}'
+                    temp_e = temp_e.lstrip(token).strip()
+
+                elif temp_e.startswith(clean_token(token)):
+                    bio_tokens[i] = f'I-{ner_labels[t]}'
+                    temp_e = temp_e.lstrip(clean_token(token)).strip()
+
+                else:
+                    # Case 1: all of the entity is matched and only then save in bio_tokens
+                    if temp_e == '':
+                        token_start = False
+                        token_pointer = i + 1
+                        break  # Move to next entity
+
+                    # Case 2: Only part of the entity is matched --> entity must be later in the text or be faulty
+                    else:
+                        e_in_bio = False
+                        bio_tokens = backup_bio_tokens.copy()
+                        token_start = False
+                        temp_e = e.lower()
+
+        # In cases, of very messy prediction, where
+        # - the order of spans in predictions is not the same as they appear in tokens
+        # - the prediction text is not the same as the tokens but spans are still in text
+        if not e_in_bio:
+            if e in ' '.join(tokens):
+                ids = find_phrase_indices(tokens, e)
+                # set first token to B- and the rest to I-
+                # Check that bio_token at ids are still 'O'
+                if ids:
+                    # Only set Bio if nothing previously set
+                    if all(bio_tokens[i] == 'O' for i in ids):
+                        bio_tokens[ids[0]] = f'B-{ner_labels[t]}'
+                        for j in ids[1:]:
+                            bio_tokens[j] = f'I-{ner_labels[t]}'
+
+    # Check if there is as many entities in bio_token as in spans
+    num_entities = sum(1 for label in bio_tokens if label.startswith('B-'))
+    if num_entities > len(spans):
+        print(
+            f"Warning: Number of entities in bio_token ({num_entities}) is greater than number of spans ({len(spans)}).")
+
+    if num_entities != len(spans):
+        print(
+            f"Warning: Number of entities in bio_token ({num_entities}) does not match number of spans ({len(spans)}).")
+
+    return bio_tokens
+
+
+def parse_ner_predictions(file: str, output: Literal['entities', 'tokens']) -> None:
+    # Check if file exists
+    if not os.path.exists(file):
+        raise FileNotFoundError(
+            f"The file {file} does not exist. Check the task name.")
+
+    # Check if column 'prediction_text' exists
+    df = pd.read_csv(file)
+    if 'prediction_text' not in df.columns:
+        raise ValueError(
+            f"The file {file} does not contain the column 'prediction_text'. Check the file format.")
+
+    # Parse model name from the file name --> model name before date dd-mm-dd.csv
+    model = os.path.basename(file).split('_')[-2]
+
+    for i, row in df.iterrows():
+        bio = parse_ner_prediction(
+            row['prediction_text'], ast.literal_eval(row['tokens']), model)
+        df.at[i, 'pred_labels'] = str(bio)
+
+    # Remove entities column if it exists
+    if 'entities' in df.columns:
+        df = df.drop(columns=['entities'])
+
+    df.to_csv(file, index=False, encoding='utf-8')
+
+
 def basic_tokenizer(text: str) -> list[str]:
     text = text.strip()
     doc = nlp(text)
@@ -403,257 +549,24 @@ def build_llama_prompt(prompt: str, system_prompt: str) -> str:
     return f"<s>[INST] <<SYS>>\n{system_prompt}\n<</SYS>>\n{prompt}[/INST]"
 
 
-def parse_ner_prediction_entities(pred: str, model: str) -> list[tuple[str, str]]:
-    ner_labels = ['application-area','dosage' ]
+def find_phrase_indices(tokens: list[str], phrase: str) -> list[int]:
+    tokens_lower = [t.lower() for t in tokens]
+    phrase_tokens = [t.lower() for t in phrase.split()]
+    phrase_len = len(phrase_tokens)
 
-    # TODO: Deduplicate with class parse predictions
-    if model.startswith('Llama-2'):
-        parts = pred.split('[/INST]')
-        pred = parts[-1].strip()
-    
-    elif model.startswith('MeLLaMA'):
-        parts = pred.split('OUTPUT:')
-        if len(parts) != 2:
-            raise ValueError(
-                f'Prediction text does not contain "OUTPUT:": {pred}')
-        pred = parts[-1].strip()
+    for i in range(len(tokens_lower) - phrase_len + 1):
+        if tokens_lower[i:i + phrase_len] == phrase_tokens:
+            return list(range(i, i + phrase_len))
 
-    # get <span> tags and their content
-    spans = re.findall(r'<span class="(.*?)">(.*?)</span>', pred)
-    spans = [(e,t) for t,e in spans]
-    spans = [(e.strip(), t.strip('"') ) for e, t in spans]
-    # check if all tags are in ner_labels
-    for span in spans:
-        if span[1] not in ner_labels:
-            # remove the span from the list
-            spans.remove(span)
-    return spans
-
-    
-
-# def parse_ner_prediction(pred: str, tokens: list[str]) -> tuple[str, str]:
-
-#     ner_labels = {
-#         'application-area': 'Application Area',
-#         'dosage': 'Dosage',
-#     }
-
-#     labeled_chuncks = extract_labeled_chunks(pred)
-
-#     token_labels = []
-#     aligned_tokens = []
-#     token_id = 0
-
-#     for i, (chunk, label) in enumerate(labeled_chuncks):
-#         pseudo_tokens = basic_tokenizer(chunk)
-#         # Case 1: Chunk is not an NER label
-#         if label is None:
-#             for ptok in pseudo_tokens:
-#                 # Prediction token matches exactly
-#                 if ptok == tokens[token_id]:
-#                     token_id += 1
-#                     token_labels.append('O')
-#                     aligned_tokens.append(ptok)
-#                 # Prediction token does not match exactly
-#                 else:
-#                     if tokens[token_id] == '\n':
-#                         # If the token is a newline, we can skip it
-#                         token_id += 1
-#                         token_labels.append('O')
-#                         aligned_tokens.append("")
-
-#                     # Case 1.2: Prediction token is a substring of the previous token
-#                     # --> consider it as a match but don't add an additinal label
-#                     if ptok in tokens[token_id - 1]:
-#                         aligned_tokens[-1] += ' ' + ptok
-#                     # Case 1.3: Prediction token is a substring of the next token
-#                     # --> skip the next token and add the label 'O' for the current token
-#                     elif ptok in tokens[token_id + 1]:
-#                         # If the ptok is in the next token, we can skip it
-#                         token_id += 2
-#                         aligned_tokens.append('')
-#                         token_labels.append('O')
-#                         aligned_tokens.append(ptok)
-#                         token_labels.append('O')
-
-#                     elif ptok in tokens[token_id + 2]:
-#                         # If the ptok is in the next token, we can skip it
-#                         token_id += 3
-#                         for i in range(2):
-#                             aligned_tokens.append('')
-#                             token_labels.append('O')
-#                         aligned_tokens.append(ptok)
-#                         token_labels.append('O')
-
-#                     # Case 1.1: Prediction token is a substring of the token, e.g. "application" & "application-area"
-#                     # --> consider it as a match and continue
-#                     elif ptok in tokens[token_id] or tokens[token_id] in ptok:
-#                         token_labels.append('O')
-#                         token_id += 1
-#                         aligned_tokens.append(ptok)
-#                     # Case 1.4: Prediction token is a newline
-#                     # --> skip the newline and add the label 'O' for the current token
-
-#                     else:
-#                         aligned_tokens[-1] += ' ' + ptok
-
-#         # Case 2: Chunk is an NER
-#         else:
-#             # first = True
-#             # for ptok in pseudo_tokens:
-#             #     if ptok == tokens[token_id]:
-#             #         if first:
-#             #             token_labels.append(f'B-{ner_labels[label]}')
-#             #             aligned_tokens.append(ptok)
-#             #             first = False
-#             #         else:
-#             #             token_labels.append(f'I-{ner_labels[label]}')
-#             #             aligned_tokens.append(ptok)
-#             #         token_id += 1
-#             #     else:
-#             #         if tokens[token_id] == '\n':
-#             #             # If the token is a newline, we can skip it
-#             #             token_id += 1
-#             #             token_labels.append('O')
-#             #             aligned_tokens.append("")
-
-#             #         if ptok in tokens[token_id - 1]:
-#             #             aligned_tokens[-1] += ' ' + ptok
-#             #         elif ptok in tokens[token_id + 1]:
-#             #             token_id += 2
-#             #             aligned_tokens.append('')
-#             #             if first:
-#             #                 token_labels.append(f'B-{ner_labels[label]}')
-#             #                 first = False
-#             #             else:
-#             #                 token_labels.append(f'I-{ner_labels[label]}')
-
-#             #             token_labels.append(f'I-{ner_labels[label]}')
-#             #             aligned_tokens.append(ptok)
-
-#             #         elif ptok in tokens[token_id] or tokens[token_id] in ptok:
-#             #             if first:
-#             #                 token_labels.append(f'B-{ner_labels[label]}')
-#             #                 aligned_tokens.append(ptok)
-#             #                 first = False
-#             #             else:
-#             #                 token_labels.append(f'I-{ner_labels[label]}')
-#             #                 aligned_tokens.append(ptok)
-#             #             token_id += 1
-
-#             #         else:
-#             #             aligned_tokens[-1] += ' ' + ptok
-
-#             # check if token_labels is the same length as token
-#     if len(token_labels) != len(tokens):
-#         raise ValueError(
-#             f"Token labels length {len(token_labels)} does not match token length {len(tokens)}. Check the prediction: {pred}")
-
-#     return token_labels, aligned_tokens
+    return []
 
 
-def parse_ner_predictions(file: str, output: Literal['entities', 'tokens']) -> None:
-    # Check if file exists
-    if not os.path.exists(file):
-        raise FileNotFoundError(
-            f"The file {file} does not exist. Check the task name.")
-
-    # Check if column 'prediction_text' exists
-    df = pd.read_csv(file)
-    if 'prediction_text' not in df.columns:
-        raise ValueError(
-            f"The file {file} does not contain the column 'prediction_text'. Check the file format.")
-
-    # Parse model name from the file name --> model name before date dd-mm-dd.csv
-    model = os.path.basename(file).split('_')[-2]
-
-    if output == 'entities':
-        # # Parse entities from the prediction text
-        # df['entities'] = str(df['prediction_text'].apply(
-        #     lambda x: json.dumps(parse_ner_prediction_entities(x, model))))
-        for i, row in df.iterrows():
-            spans = parse_ner_prediction_entities(row['prediction_text'], model)
-            df.at[i, 'entities'] = json.dumps(spans)
-
-        # Save the entities to a new column
-        df.to_csv(file, index=False, encoding='utf-8')
-    
-    elif output == 'tokens':
-        pass
-
-    
-    # # create new folder, with same name as file but without .csv
-    # name = os.path.splitext(os.path.basename(file))[0]
-    # output_dir = os.path.join(os.path.dirname(file), name)
-    # if not os.path.exists(output_dir):
-    #     os.makedirs(output_dir)
-
-    # for i, row in df.iterrows():
-    #     tokens = ast.literal_eval(row['tokens'])
-    #     if row['id'] == 3638:
-    #         pass
-    #     token_labels, aligned_tokens = parse_ner_prediction(
-    #         row['prediction_text'], tokens)
-
-    #     aligned_df = pd.DataFrame({
-    #         'tokens': tokens,
-    #         'pred_labels': token_labels,
-    #         'aligned_tokens': aligned_tokens
-    #     })
-
-    #     # safe with file id.csv in the output directory
-    #     aligned_df.to_csv(os.path.join(
-    #         output_dir, f"{row['id']}.csv"), index=False, encoding='utf-8')
-
-    #     # save pred_labels
-    #     df.at[i, 'pred_labels'] = str(token_labels)
-
-    #     # if there is two columns named tokens, remove the second one
-    #     if 'tokens' in df.columns and df.columns.duplicated().any():
-    #         df = df.loc[:, ~df.columns.duplicated()]
-
-    #     # save the dataframe with the new column
-    #     df.to_csv(file, index=False, encoding='utf-8')
-
-
-def extract_labeled_chunks(html: str) -> list[tuple[str, str]]:
-    # remove ````html` and ` ``` ` from the beginning and end
-    html = html.strip().replace('```html', '').replace('```', '')
-    if 'h1' in html:
-        # strip left from the header tag <h1>
-        html = re.sub(r'^.*?<h1>', '<h1>', html, flags=re.DOTALL)
-
-    # replace doupble quotes with single quotes
-    html = html.replace('""', '"')
-    html = html.strip('"')
-    html = html.strip()
-
-    soup = BeautifulSoup(html, "html.parser")
-    result = []
-
-    def walk(element, current_label=None):
-        for child in element.children:
-
-            if isinstance(child, str):
-                result.append((str(child), current_label))
-            elif child.name == "span":
-                # Get label from class
-                label = child.get("class")[0] if child.has_attr(
-                    "class") else None
-                # Recurse into children with this label
-                walk(child, current_label=label)
-            else:
-                # Recurse into non-span elements
-                walk(child, current_label)
-
-    walk(soup)
-    return result
-
-
-def strip_html_tags(text: str) -> str:
-    """Strip tags from html text, apart from <span> tags, using regex."""
-    text = re.sub(r'<(?!/?span).*?>', '', text)
-    return text.strip()
+def clean_token(token: str) -> str:
+    """Clean the token by removing newlines and trailing punctuation."""
+    token = token.strip().replace('\n', '')
+    if token.endswith('.^'):
+        token = token[:-2].strip()
+    return token
 
 
 def get_label2int(task: str) -> dict:
@@ -686,11 +599,12 @@ def add_tokens():
 
 
 def main():
+
     models = [
         "/scratch/vebern/models/Llama-2-13-chat-hf",
-        #"/scratch/vebern/models/Llama-2-70-chat-hf",
+        # "/scratch/vebern/models/Llama-2-70-chat-hf",
         "/data/vebern/ma-models/MeLLaMA-13B-chat",
-        #"/data/vebern/ma-models/MeLLaMA-70B-chat",
+        # "/data/vebern/ma-models/MeLLaMA-70B-chat",
         # "gpt-4o-mini"
     ]
     date = datetime.today().strftime('%d-%m-%d')
@@ -705,25 +619,6 @@ def main():
     for model_name in models:
         outfile_ner = f"zero_shot/ner_{model_name.split('/')[-1]}_{date}.csv"
         make_ner_predictions(model_name, outfile_ner)
-        # add_tokens()
-
-    #     tokens = ['Resting', '-', 'state', 'Network', '-', 'specific', 'Breakdown', 'of', 'Functional', 'Connectivity', 'during', 'Ketamine', 'Alteration', 'of', 'Consciousness', 'in', 'Volunteers.^', '\n', 'BACKGROUND', ':', 'Consciousness', '-', 'altering', 'anesthetic', 'agents', 'disturb', 'connectivity', 'between', 'brain', 'regions', 'composing', 'the', 'resting', '-', 'state', 'consciousness', 'networks', '(', 'RSNs', ')', '.', 'The', 'default', 'mode', 'network', '(', 'DMn', ')', ',', 'executive', 'control', 'network', ',', 'salience', 'network', '(', 'SALn', ')', ',', 'auditory', 'network', ',', 'sensorimotor', 'network', '(', 'SMn', ')', ',', 'and', 'visual', 'network', 'sustain', 'mentation', '.', 'Ketamine', 'modifies', 'consciousness', 'differently', 'from', 'other', 'agents', ',', 'producing', 'psychedelic', 'dreaming', 'and', 'no', 'apparent', 'interaction', 'with', 'the', 'environment', '.', 'The', 'authors', 'used', 'functional', 'magnetic', 'resonance', 'imaging', 'to', 'explore', 'ketamine', '-', 'induced', 'changes', 'in', 'RSNs', 'connectivity', '.', 'METHODS', ':', 'Fourteen', 'healthy', 'volunteers', 'received', 'stepwise', 'intravenous', 'infusions', 'of', 'ketamine', 'up', 'to', 'loss', 'of', 'responsiveness', '.', 'Because', 'of', 'agitation', ',', 'data', 'from', 'six', 'subjects', 'were', 'excluded', 'from', 'analysis', '.', 'RSNs', 'connectivity', 'was', 'compared', 'between', 'absence', 'of', 'ketamine', '(', 'wake', 'state', '[', 'W1', ']', ')', ',', 'light', 'ketamine', 'sedation', ',', 'and', 'ketamine', '-', 'induced', 'unresponsiveness', '(', 'deep', 'sedation', '[', 'S2', ']', ')', '.', 'RESULTS', ':', 'Increasing', 'the', 'depth', 'of', 'ketamine', 'sedation', 'from', 'W1', 'to', 'S2', 'altered', 'DMn', 'and', 'SALn', 'connectivity', 'and', 'suppressed', 'the', 'anticorrelated', 'activity', 'between', 'DMn', 'and', 'other', 'brain', 'regions', '.', 'During', 'S2', ',', 'DMn', 'connectivity', ',', 'particularly', 'between', 'the', 'medial', 'prefrontal', 'cortex', 'and', 'the', 'remaining', 'network', '(', 'effect', 'size', 'β', '[', '95', '%', 'CI', ']', ':', 'W1', '=', '0.20', '[', '0.18', 'to', '0.22', ']', ';', 'S2', '=', '0.07', '[', '0.04', 'to', '0.09', ']', ')', ',', 'and', 'DMn', 'anticorrelated', 'activity', '(', 'e.g.', ',', 'right', 'sensory', 'cortex', ':', 'W1', '=', '-0.07', '[', '-0.09', 'to', '-0.04', ']', ';', 'S2', '=', '0.04', '[', '0.01', 'to', '0.06', ']', ')', 'were', 'broken', 'down', '.', 'SALn', 'connectivity', 'was', 'nonuniformly', 'suppressed', '(', 'e.g.', ',', 'left', 'parietal', 'operculum', ':', 'W1', '=', '0.08', '[', '0.06', 'to', '0.09', ']', ';', 'S2', '=', '0.05', '[', '0.02', 'to', '0.07', ']', ')', '.', 'Executive', 'control', 'networks', ',', 'auditory', 'network', ',', 'SMn', ',', 'and', 'visual', 'network', 'were', 'minimally', 'affected', '.', 'CONCLUSIONS', ':', 'Ketamine', 'induces', 'specific', 'changes', 'in', 'connectivity', 'within', 'and', 'between', 'RSNs', '.', 'Breakdown', 'of', 'frontoparietal', 'DMn', 'connectivity', 'and', 'DMn', 'anticorrelation', 'and', 'sensory', 'and', 'SMn', 'connectivity', 'preservation', 'are', 'common', 'to', 'ketamine', 'and', 'propofol', '-', 'induced', 'alterations', 'of', 'consciousness', '.']
-
-    #     pred = '''"```html
-    # <h1>Resting-state Network-specific Breakdown of Functional Connectivity during <span class=""application-area"">Ketamine</span> Alteration of Consciousness in Volunteers.^</h1>
-    # <p>BACKGROUND: Consciousness-altering anesthetic agents disturb connectivity between brain regions composing the resting-state consciousness networks (RSNs). The default mode network (DMn), executive control network, salience network (SALn), auditory network, sensorimotor network (SMn), and visual network sustain mentation. <span class=""application-area"">Ketamine</span> modifies consciousness differently from other agents, producing psychedelic dreaming and no apparent interaction with the environment. The authors used functional magnetic resonance imaging to explore <span class=""application-area"">ketamine</span>-induced changes in RSNs connectivity. METHODS: Fourteen healthy volunteers received <span class=""dosage"">stepwise intravenous infusions of ketamine up to loss of responsiveness</span>. Because of agitation, data from six subjects were excluded from analysis. RSNs connectivity was compared between absence of <span class=""application-area"">ketamine</span> (wake state [W1]), light <span class=""application-area"">ketamine</span> sedation, and <span class=""application-area"">ketamine</span>-induced unresponsiveness (deep sedation [S2]). RESULTS: Increasing the depth of <span class=""application-area"">ketamine</span> sedation from W1 to S2 altered DMn and SALn connectivity and suppressed the anticorrelated activity between DMn and other brain regions. During S2, DMn connectivity, particularly between the medial prefrontal cortex and the remaining network (effect size β [95% CI]: W1 = 0.20 [0.18 to 0.22]; S2 = 0.07 [0.04 to 0.09]), and DMn anticorrelated activity (e.g., right sensory cortex: W1 = -0.07 [-0.09 to -0.04]; S2 = 0.04 [0.01 to 0.06]) were broken down. SALn connectivity was nonuniformly suppressed (e.g., left parietal operculum: W1 = 0.08 [0.06 to 0.09]; S2 = 0.05 [0.02 to 0.07]). Executive control networks, auditory network, SMn, and visual network were minimally affected. CONCLUSIONS: <span class=""application-area"">Ketamine</span> induces specific changes in connectivity within and between RSNs. Breakdown of frontoparietal DMn connectivity and DMn anticorrelation and sensory and SMn connectivity preservation are common to <span class=""application-area"">ketamine</span> and propofol-induced alterations of consciousness.</p>
-    # ```"'''
-
-    #     token_labels, aligned_tokens = parse_ner_prediction(pred, tokens)
-
-    #     # write into csv file
-    #     df = pd.DataFrame({
-    #         'tokens': tokens,
-    #         'pred_labels': token_labels,
-    #         'aligned_tokens': aligned_tokens
-    #     })
-    #     df.to_csv('aligned_test_sample.csv', index=False, encoding='utf-8')
-    # parse_ner_predictions('zero_shot/ner_gpt-4o-mini_06-06-06.csv')
 
 
 if __name__ == "__main__":
