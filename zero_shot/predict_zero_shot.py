@@ -585,16 +585,17 @@ def get_label2int(task: str) -> dict:
     return label2int
 
 
-def add_tokens():
+def add_tokens_nertags(bioner_path: str):
     test_path = '/home/vera/Documents/Uni/Master/Master_Thesis2.0/PsyNamic-Scale/data/ner_bio/test.csv'
-    bioner_path = '/home/vera/Documents/Uni/Master/Master_Thesis2.0/PsyNamic-Scale/zero_shot/ner_gpt-4o-mini_06-06-06.csv'
     df_full = pd.read_csv(test_path)
     df_bioner = pd.read_csv(bioner_path)
-    df_bioner = df_bioner.merge(
-        df_full[['id', 'tokens', 'ner_tags']], on='id', how='left')
-    # save bioner columns and new 'tokens' column
-    df_bioner_columns = df_bioner.columns.tolist()
-    df_bioner = df_bioner[df_bioner_columns]
+    # add ner_tags if id matches
+    for i, row in df_bioner.iterrows():
+        id = row['id']
+        if id in df_full['id'].values:
+            matching_row = df_full[df_full['id'] == id]
+            if not matching_row.empty:
+                df_bioner.at[i, 'ner_tags'] = matching_row['ner_tags'].values[0]
     df_bioner.to_csv(bioner_path, index=False, encoding='utf-8')
 
 
@@ -609,17 +610,23 @@ def main():
     ]
     date = datetime.today().strftime('%d-%m-%d')
 
-    for task in TASKS:
-        for model_name in models:
-            task_lower = task.lower().replace(' ', '_')
-            outfile_class = f"zero_shot/{task_lower}/{task_lower}_{model_name.split('/')[-1]}_{date}.csv"
-            # make path
-            make_class_predictions(task, model_name, outfile_class)
+    # for task in TASKS:
+    #     for model_name in models:
+    #         task_lower = task.lower().replace(' ', '_')
+    #         outfile_class = f"zero_shot/{task_lower}/{task_lower}_{model_name.split('/')[-1]}_{date}.csv"
+    #         # make path
+    #         make_class_predictions(task, model_name, outfile_class)
 
-    for model_name in models:
-        outfile_ner = f"zero_shot/ner_{model_name.split('/')[-1]}_{date}.csv"
-        make_ner_predictions(model_name, outfile_ner)
+    # for model_name in models:
+    #     outfile_ner = f"zero_shot/ner_{model_name.split('/')[-1]}_{date}.csv"
+    #     make_ner_predictions(model_name, outfile_ner)
 
+    for file in os.listdir('zero_shot/ner'):
+        if not file.endswith('.csv'):
+            continue
+        print(f"Processing file: {file}")
+        file_path = os.path.join('zero_shot/ner', file)
+        add_tokens_nertags(file_path)
 
 if __name__ == "__main__":
     main()
