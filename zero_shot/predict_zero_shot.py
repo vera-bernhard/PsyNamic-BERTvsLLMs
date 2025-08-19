@@ -36,8 +36,8 @@ def set_seed(seed: int = 42):
 
 
 TASKS = [
-    "Data Collection", "Data Type", "Number of Participants", "Age of Participants", "Application Form",
-    "Clinical Trial Phase", "Condition", "Outcomes", "Regimen", "Setting", "Study Control", "Study Purpose",
+    "Condition", "Data Collection", "Data Type", "Number of Participants", "Age of Participants", "Application Form",
+    "Clinical Trial Phase",  "Outcomes", "Regimen", "Setting", "Study Control", "Study Purpose",
     "Substance Naivety", "Substances", "Sex of Participants", "Study Conclusion",  "Relevant",
     # "Study Type",
 ]
@@ -154,7 +154,7 @@ def gpt_prediction(prompt: str, model: str = "gpt-4o-mini", system_role: str = '
     return response_content, model_spec
 
 
-def make_class_predictions(task: str, model_name: str, outfile: str, limit: int = None):
+def make_class_predictions(task: str, model_name: str, outfile: str, limit: int = None, few_shot: int = 0):
     task_lower = task.lower().replace(' ', '_')
     file = os.path.join(os.path.dirname(__file__), '..',
                         'data', task_lower, 'test.csv')
@@ -181,7 +181,7 @@ def make_class_predictions(task: str, model_name: str, outfile: str, limit: int 
                            use_gpu=True, distributed=False)
 
     for _, row in df.iterrows():
-        prompt = build_class_prompt(task, row['text'])
+        prompt = build_class_prompt(row['id'],task, row['text'], few_shot)
 
         if 'Llama-2' in model_name:
             prompt = build_llama_prompt(prompt, system_role_class)
@@ -209,7 +209,7 @@ def make_class_predictions(task: str, model_name: str, outfile: str, limit: int 
     df_out.to_csv(outfile, index=False, encoding='utf-8')
 
 
-def make_ner_predictions(model_name: str, outfile: str, limit: int = None):
+def make_ner_predictions(model_name: str, outfile: str, limit: int = None, few_shot: int = 0):
     task = "ner_bio"
     file = os.path.join(os.path.dirname(__file__),
                         '..', 'data', task, 'test.csv')
@@ -232,7 +232,7 @@ def make_ner_predictions(model_name: str, outfile: str, limit: int = None):
                            use_gpu=True, distributed=False, is_ner=True)
 
     for _, row in df.iterrows():
-        prompt = build_ner_prompt(row['text'])
+        prompt = build_ner_prompt(row['id'], row['text'], few_shot=few_shot)
 
         if 'Llama-2' in model_name:
             prompt = build_llama_prompt(prompt, system_role_ner)
@@ -615,18 +615,18 @@ def main():
     #         task_lower = task.lower().replace(' ', '_')
     #         outfile_class = f"zero_shot/{task_lower}/{task_lower}_{model_name.split('/')[-1]}_{date}.csv"
     #         # make path
-    #         make_class_predictions(task, model_name, outfile_class)
+    #         make_class_predictions(task, model_name, outfile_class, few_shot=3)
 
     # for model_name in models:
     #     outfile_ner = f"zero_shot/ner_{model_name.split('/')[-1]}_{date}.csv"
     #     make_ner_predictions(model_name, outfile_ner)
 
-    for file in os.listdir('zero_shot/ner'):
-        if not file.endswith('.csv'):
-            continue
-        print(f"Processing file: {file}")
-        file_path = os.path.join('zero_shot/ner', file)
-        add_tokens_nertags(file_path)
+    # for file in os.listdir('zero_shot/ner'):
+    #     if not file.endswith('.csv'):
+    #         continue
+    #     print(f"Processing file: {file}")
+    #     file_path = os.path.join('zero_shot/ner', file)
+    #     add_tokens_nertags(file_path)
 
 if __name__ == "__main__":
     main()

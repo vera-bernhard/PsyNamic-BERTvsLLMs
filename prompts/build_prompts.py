@@ -12,10 +12,15 @@ Author: Vera Bernhard
 
 import json
 import os
+import random
+import pandas as pd
+import numpy as np
+import ast
 
+random.seed(42)
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-
+data_dir = os.path.join(SCRIPT_DIR, '..', 'data')
 
 system_role_class = "You are a helpful medical expert who is helping to classify medical abstracts."
 user_prompt_class = '''***TASK***
@@ -40,19 +45,14 @@ Put value 1 if the option applies to the research paper, 0 if it does not apply.
 
 Please note again that {IS_MULTIPLE} can be selected for each research paper.
 
-Example output format:
-{OUPUT_EXAMPLE}
+{OUTPUT_EXAMPLE}
 
-    
 INPUT: {TITLE_ABBSTRACT}
-
 
 OUTPUT: '''
 
 
 # based on Hu et al. 2024
-
-
 system_role_ner = "You are a helpful medical expert who is helping to extract named entities from medical abstracts."
 
 user_prompt_ner = '''###Task
@@ -68,12 +68,12 @@ Your task is to generate an HTML version of an input text, marking up specific e
 ###Annotation Guidelines
 {ANNOTATION_GUIDELINES}
 
-INPUT: {TITLE_ABSTRACT}
+{EXAMPLES}INPUT: {TITLE_ABSTRACT}
 
 OUTPUT: '''
 
 
-def build_class_prompt(task: str, title_abstract: str):
+def build_class_prompt(id: int, task: str, title_abstract: str, few_shot: int = 0):
 
     file_path = os.path.join(SCRIPT_DIR, 'classification_description.json')
 
@@ -83,8 +83,18 @@ def build_class_prompt(task: str, title_abstract: str):
     if task not in task_descriptions:
         raise ValueError(f"Task '{task}' not found in the task descriptions.")
 
+    if few_shot > 0:
+        output = build_class_examples(
+            id, task, nr=few_shot, task_options=task_descriptions[task]['Options'])
+
+    else:
+        output = "Example output format:\n" + json.dumps(
+            {key: "" for key in task_descriptions[task]['Options'].keys()},
+            indent=4
+        )
+
     task_user_prompt = user_prompt_class.format(
-        TASK_DESCRIPTION=task_descriptions[task]['Task_descripton'],
+        TASK_DESCRIPTION=task_descriptions[task]['Task_description'],
         NUMBER_OF_TASKS=len(task_descriptions[task]['Options']),
         TASK=task,
         TASK_OPTIONS='\n\n'.join(
@@ -92,17 +102,14 @@ def build_class_prompt(task: str, title_abstract: str):
         VALUES=', '.join(task_descriptions[task]['Options'].keys()),
         IS_MULTIPLE='multiple options' if task_descriptions[
             task]['Is_multilabel'] else 'a single option',
-        OUPUT_EXAMPLE=json.dumps(
-            {key: "" for key in task_descriptions[task]['Options'].keys()},
-            indent=4
-        ),
+        OUTPUT_EXAMPLE=output,
         TITLE_ABBSTRACT=title_abstract
     )
 
     return task_user_prompt
 
 
-def build_ner_prompt(title_abstract: str):
+def build_ner_prompt(id: int, title_abstract: str, few_shot: int = 0):
     file_path = os.path.join(SCRIPT_DIR, 'ner_description.json')
 
     with open(file_path, 'r', encoding='utf-8') as f:
@@ -128,10 +135,144 @@ def build_ner_prompt(title_abstract: str):
     entities.rstrip(', ')
     annotation_guidelines = annotation_guidelines.rstrip('\n')
 
+    if few_shot > 0:
+        examples = build_ner_examples(id, nr=few_shot)
+    else:
+        examples = ''
+
     return user_prompt_ner.format(
         ENTITIES=entities,
         ENTITY_MARKUP_GUIDE=entity_markup_guide,
         ENTITY_DEFINITIONS=definitions,
         ANNOTATION_GUIDELINES=annotation_guidelines,
-        TITLE_ABSTRACT=title_abstract
+        TITLE_ABSTRACT=title_abstract,
+        EXAMPLES=examples
     )
+
+
+def markup_entities(tokens, text, labels):
+    """
+    Mark up named entities in text using <span class="...">...</span> tags.
+    tokens: list of tokens
+    text: raw string text
+    labels: BIO labels for each token
+    """
+    assert len(tokens) == len(
+        labels), "Tokens and labels must have the same length"
+
+    result = []
+    current_entity = []
+    current_type = None
+
+    for token, label in zip(tokens, labels):
+        if label.startswith("B-"):
+            # close previous entity if open
+            if current_entity:
+                result.append(
+                    f'<span class="{current_type}">' + " ".join(current_entity) + "</span>")
+                current_entity = []
+
+            # start new entity
+            # e.g. Application area → application-area
+            current_type = label[2:].lower().replace(" ", "-")
+            current_entity.append(token)
+
+        elif label.startswith("I-") and current_entity:
+            # continue entity
+            current_entity.append(token)
+
+        else:  # Outside entity
+            if current_entity:
+                result.append(
+                    f'<span class="{current_type}">' + " ".join(current_entity) + "</span>")
+                current_entity = []
+            result.append(token)
+
+    # join back into text-like string
+    marked_text = " ".join(result)
+
+    # fix spacing before punctuation
+    marked_text = (
+        marked_text.replace(" ,", ",")
+        .replace(" .", ".")
+        .replace(" :", ":")
+        .replace(" ;", ";")
+        .replace(" )", ")")
+        .replace("( ", "(")
+    )
+
+    return marked_text
+
+
+def build_ner_examples(id: str, nr: int = 3):
+    output = '###EXAMPLES\n'
+
+    data_file = os.path.join(data_dir, 'ner_bio', 'test.csv')
+    df = pd.read_csv(data_file)
+    # check if there is any nan in the 'text' column
+    ids = df['id'].tolist()
+    ids.remove(id)
+    # get nr of random ids
+    random_ids = random.sample(ids, nr)
+    examples = df[df['id'].isin(random_ids)]
+
+    for i in random_ids:
+        text = examples[examples['id'] == i]['text'].values[0]
+        output += "INPUT: "
+        output += text
+        output += "\nOUTPUT: "
+
+        tokens = ast.literal_eval(examples[examples['id'] == i]['tokens'].values[0])
+        labels = ast.literal_eval(examples[examples['id'] == i]['ner_tags'].values[0])
+
+        output += markup_entities(tokens, text, labels)
+        output += '\n\n'
+
+    return output
+
+
+def build_class_examples(id: str, task: str, nr: int = 3, task_options: dict = None):
+    output = '***EXAMPLES***\n'
+
+    task_lower = task.lower().replace(' ', '_')
+    data_file = os.path.join(data_dir, task_lower, 'test.csv')
+    meta_file = os.path.join(data_dir, task_lower, 'meta.json')
+    meta_data = json.load(open(meta_file, 'r'))
+    label2int = meta_data['Int_to_label']
+    # make sure keys are int
+    label2int = {int(k): v for k, v in label2int.items()}
+    df = pd.read_csv(data_file)
+    ids = df['id'].tolist()
+    ids.remove(id)
+    # get nr of random ids
+    random_ids = random.sample(ids, nr)
+    examples = df[df['id'].isin(random_ids)]
+
+    for i in random_ids:
+        output += "INPUT: "
+        output += examples[examples['id'] == i]['text'].values[0]
+        output += "\nOUTPUT: "
+
+        labels = examples[examples['id'] == i]['labels'].values[0]
+        # Check if it is onehot encoded or just int
+        if isinstance(labels, np.int64) or isinstance(labels, int):
+            labels_int = int(labels)
+            label = label2int[labels_int]
+            # set everything in options to 0 apart from the label
+            labels_dict = {key: 0 for key in task_options.keys()}
+            labels_dict[label] = 1
+            output += json.dumps(labels_dict, indent=4)
+        else:
+            labels_one_hot = json.loads(labels)
+            labels = [label2int[i] for i in range(
+                len(labels_one_hot)) if labels_one_hot[i] == 1]
+            labels_dict = {key: 0 for key in task_options.keys()}
+            for label in labels:
+                labels_dict[label] = 1
+            output += json.dumps(labels_dict, indent=4)
+
+        output += '\n\n'
+
+    output = output.strip()  # Remove trailing whitespace
+    return output
+
