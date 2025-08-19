@@ -16,9 +16,9 @@
     },
     "Data Collection": {
         "Options": {
-            "Not applicable": "E.g., for systematic reviews.",
             "Prospective": "Data has been gathered prospectively (always select prospective for study protocols).",
             "Retrospective": "Data has been collected retrospectively (case series and reports are always retrospective).",
+            "Not applicable": "E.g., for systematic reviews.",
             "Unknown": "Data collection unknown."
         },
         "Is_multilabel": false,
@@ -38,16 +38,16 @@
     "Number of Participants": {
         "Options": {
             "1-20": "",
-            "100-199": "",
-            "200-499": "",
             "21-40": "",
             "41-60": "",
-            "500-999": "",
             "61-80": "",
             "81-100": "",
+            "100-199": "",
+            "200-499": "",
+            "500-999": "",
+            "≥1000": "",
             "Not applicable": "E.g., for most systematic reviews.",
-            "Unknown": "",
-            "≥1000": ""
+            "Unknown": ""
         },
         "Is_multilabel": false,
         "Task_descripton": "The task is to classify the number of participants based on the title and abstract of a research paper, including all study participants (including the ones not receiving psychedelics). For systematic reviews with numbers, use given count. For pregnant participants, double count (mother+child). For protocols with range, use 'Not applicable'."
