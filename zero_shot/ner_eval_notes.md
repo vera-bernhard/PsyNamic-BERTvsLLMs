@@ -15,3 +15,7 @@ Wu et al. 2025
 Lu et al. 2024
 * Code: https://github.com/qiuhaolu/tner/blob/main/rd_ner_ft.py
 * Seqeval metrics
+
+
+Resources:
+https://www.davidsbatista.net/blog/2018/05/09/Named_Entity_Evaluation/
