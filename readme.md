@@ -58,25 +58,6 @@ python -m zero_shot.predict_zero_shot
     mamba install -r requirements.txt
     python -c 'import tensorflow as tf; print("Built with CUDA:", tf.test.is_built_with_cuda()); print("Num GPUs Available:", len(tf.config.list_physical_devices("GPU"))); print("TF version:", tf.__version__)'
     ```
-    ```
-    When trying now, following error occurs:
-      Looking for: ['pytorch', 'pytorch-cuda=12.6', 'transformers', 'deepspeed']
-
-      pytorch/linux-64                                            Using cache
-      pytorch/noarch                                              Using cache
-      nvidia/linux-64                                             Using cache
-      nvidia/noarch                                               Using cache
-      conda-forge/linux-64                                        Using cache
-      conda-forge/noarch                                          Using cache
-
-      Pinned packages:
-        - python 3.13.*
-
-
-      Could not solve for environment specs
-      The following package could not be installed
-      └─ pytorch-cuda 12.6**  does not exist (perhaps a typo or a missing channel).
-    ```
 
   * New idea: 
       Checkout versions here: https://pytorch.org/get-started/previous-versions/
@@ -85,3 +66,16 @@ python -m zero_shot.predict_zero_shot
       ```
       pip install torch==2.7.1 torchvision==0.22.1 torchaudio==2.7.1 --index-url https://download.pytorch.org/whl/cu12
       ```
+
+# Uebelix
+  ```
+  sbatch code-tunnel.sbatch
+  salloc --partition=gpu-invest --qos=job_gpu_preemptable --gres=gpu:a100:1 --mem-per-gpu=80G --time=01:30:00
+  srun --pty -n 1 -c 2 --partition=gpu-invest --qos=job_gpu_preemptable --gres=gpu:a100:1 --mem-per-gpu=80G --time=01:30:00 bash -l
+
+  module load Anaconda3
+  nvidia-smi
+  module load CUDA/12.3.0
+  conda install pytorch::pytorch torchvision torchaudio -c pytorch
+  python -c 'import torch as t; print("is available: ", t.cuda.is_available()); print("device count: ", t.cuda.device_count()); print("current device: ", t.cuda.current_device()); print("cuda device: ", t.cuda.device(0)); print("cuda device name: ", t.cuda.get_device_name(0)); print("cuda version: ", t.version.cuda)'
+  ```

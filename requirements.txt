@@ -14,5 +14,5 @@ bs4
 dotenv
 transformers # Dont forget to get access to the models and log in via `huggingface-cli login`
 torch
-deepspeeds
+deepspeed
 sentencepiece
