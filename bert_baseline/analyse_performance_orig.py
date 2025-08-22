@@ -354,13 +354,6 @@ def collect_metrics_all_tasks() -> dict:
     return task_model_performance
 
 
-def load_label_mapping(config_path):
-    """Loads the id2label mapping from a model's config.json."""
-    with open(config_path, "r", encoding="utf-8") as f:
-        config = json.load(f)
-    return {int(k): v for k, v in config.get("id2label", {}).items()}
-
-
 def plot_performance_per_label(y_true, y_pred, label_mapping, save_path, task: str, model_name: str):
     """Plots F1, Precision, Recall, and Accuracy per label with multiple rows for each metric and consistent colors."""
 
