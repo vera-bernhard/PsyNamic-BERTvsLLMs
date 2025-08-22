@@ -16,13 +16,6 @@ module unload a100
 module list 
 ```
 
-* Install GPU stuff:
-```bash
-nvidia-smi #to check cuda version
-mamba install pytorch pytorch-cuda=<required-version> transformers deepspeed -c pytorch -c nvidia
-mamba install -r requirements.txt
-python -c 'import tensorflow as tf; print("Built with CUDA:", tf.test.is_built_with_cuda()); print("Num GPUs Available:", len(tf.config.list_physical_devices("GPU"))); print("TF version:", tf.__version__)'
-```
 
 * Interactive session
 ```bash
@@ -50,3 +43,45 @@ Available GPUs: H100, A100, V100, T4.
 ```
 python -m zero_shot.predict_zero_shot
 ```
+
+* Pytorch / Cuda Virtual Environment Issues
+
+   * Instructions from Science Cluster Documentation:
+    ```
+    mamba create -n torch -c pytorch -c nvidia pytorch torchvision torchaudio pytorch-cuda
+    ```
+
+  * What has previously worked 
+    ```bash
+    nvidia-smi #to check cuda version
+    mamba install pytorch pytorch-cuda=<required-version> transformers deepspeed -c pytorch -c nvidia
+    mamba install -r requirements.txt
+    python -c 'import tensorflow as tf; print("Built with CUDA:", tf.test.is_built_with_cuda()); print("Num GPUs Available:", len(tf.config.list_physical_devices("GPU"))); print("TF version:", tf.__version__)'
+    ```
+    ```
+    When trying now, following error occurs:
+      Looking for: ['pytorch', 'pytorch-cuda=12.6', 'transformers', 'deepspeed']
+
+      pytorch/linux-64                                            Using cache
+      pytorch/noarch                                              Using cache
+      nvidia/linux-64                                             Using cache
+      nvidia/noarch                                               Using cache
+      conda-forge/linux-64                                        Using cache
+      conda-forge/noarch                                          Using cache
+
+      Pinned packages:
+        - python 3.13.*
+
+
+      Could not solve for environment specs
+      The following package could not be installed
+      └─ pytorch-cuda 12.6**  does not exist (perhaps a typo or a missing channel).
+    ```
+
+  * New idea: 
+      Checkout versions here: https://pytorch.org/get-started/previous-versions/
+
+      for CUDA 12.6
+      ```
+      pip install torch==2.7.1 torchvision==0.22.1 torchaudio==2.7.1 --index-url https://download.pytorch.org/whl/cu12
+      ```
