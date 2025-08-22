@@ -12,7 +12,7 @@
             "Other": "A study not belonging to one of the above categories or not classifiable based on the provided information. A study pooling different RCTs together belongs to this category."
         },
         "Is_multilabel": false,
-        "Task_descripton": "The task is to classify the study type based on the title and abstract of a research paper."
+        "Task_description": "The task is to classify the study type based on the title and abstract of a research paper."
     },
     "Data Collection": {
         "Options": {
@@ -22,7 +22,7 @@
             "Unknown": "Data collection unknown."
         },
         "Is_multilabel": false,
-        "Task_descripton": "The task is to classify how the data are collected based on the title and abstract of a research paper. Important: Focus on when the outcome was measured. Explicitly state if retrospective or prospective; otherwise = unknown. Always select 'Prospective' for study protocols."
+        "Task_description": "The task is to classify how the data are collected based on the title and abstract of a research paper. Important: Focus on when the outcome was measured. Explicitly state if retrospective or prospective; otherwise = unknown. Always select 'Prospective' for study protocols."
     },
     "Data Type": {
         "Options": {
@@ -33,7 +33,7 @@
             "Unknown": "Data type is unknown."
         },
         "Is_multilabel": false,
-        "Task_descripton": "The task is to classify whether the data are collected longitudinally or cross-sectionally. If no information is provided about the study length (or only very indirectly like cross-over study), select 'Unknown'."
+        "Task_description": "The task is to classify whether the data are collected longitudinally or cross-sectionally. If no information is provided about the study length (or only very indirectly like cross-over study), select 'Unknown'."
     },
     "Number of Participants": {
         "Options": {
@@ -50,7 +50,7 @@
             "Unknown": ""
         },
         "Is_multilabel": false,
-        "Task_descripton": "The task is to classify the number of participants based on the title and abstract of a research paper, including all study participants (including the ones not receiving psychedelics). For systematic reviews with numbers, use given count. For pregnant participants, double count (mother+child). For protocols with range, use 'Not applicable'."
+        "Task_description": "The task is to classify the number of participants based on the title and abstract of a research paper, including all study participants (including the ones not receiving psychedelics). For systematic reviews with numbers, use given count. For pregnant participants, double count (mother+child). For protocols with range, use 'Not applicable'."
     },
     "Age of Participants": {
         "Options": {
@@ -60,7 +60,7 @@
             "Not applicable": ""
         },
         "Is_multilabel": true,
-        "Task_descripton": "The task is to classify the age of participants studied based on the title and abstract of a research paper. If only 'adolescents' stated, use 'Pediatric'."
+        "Task_description": "The task is to classify the age of participants studied based on the title and abstract of a research paper. If only 'adolescents' stated, use 'Pediatric'."
     },
     "Application Form": {
         "Options": {
