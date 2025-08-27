@@ -1,6 +1,5 @@
 
-
-# Science Cluster Stuff
+# UZH Science Cluster Stuff
 
 * Make virtual environment
 ```bash
@@ -16,7 +15,6 @@ module unload a100
 module list 
 ```
 
-
 * Interactive session
 ```bash
 srun --pty -n 1 -c 2 --time=00:30:00 --mem=16G --gpus=A100:1 bash -l
@@ -28,7 +26,6 @@ sacctmgr show assoc format=account%30,partition,user,qos%30 user=$USER
 sacctmgr show user $USER format=defaultaccount%30
 ```
 
-
 * Resources:
 Available GPUs: H100, A100, V100, T4.
 
@@ -36,6 +33,26 @@ Available GPUs: H100, A100, V100, T4.
 - **A100**: High performance, versatile for training and inference.
 - **V100**: Solid for general-purpose deep learning workloads.
 - **T4**: Optimized for inference and light training tasks.
+
+
+# Unibe Uebelix stuff
+* Connect to Server and make tunnel for VSCode
+```
+ssh -i ~/.ssh/id_ed25519.pub vb25l522@submit01.unibe.ch
+sbatch code-tunnel.sbatch
+```
+
+* Uplaod Llama model
+```
+rsync -avz me-llama/ vb25l522@submit01.unibe.ch:/storage/homefs/vb25l522/me-llama/
+```
+
+* Befor running script 
+```
+module load Anaconda3
+module load CUDA/12.3.0
+conda activate ma_env
+```
 
 # Other notes
 
@@ -51,37 +68,15 @@ python -m zero_shot.predict_zero_shot
     mamba create -n torch -c pytorch -c nvidia pytorch torchvision torchaudio pytorch-cuda
     ```
 
-  * What has previously worked 
-    ```bash
-    nvidia-smi #to check cuda version
-    mamba install pytorch pytorch-cuda=<required-version> transformers deepspeed -c pytorch -c nvidia
-    mamba install -r requirements.txt
-    python -c 'import tensorflow as tf; print("Built with CUDA:", tf.test.is_built_with_cuda()); print("Num GPUs Available:", len(tf.config.list_physical_devices("GPU"))); print("TF version:", tf.__version__)'
+  * What has worked this time round 
+    To check required CUDA version (shows highest supported CUDA version from GPU)
     ```
-    ```
-    When trying now, following error occurs:
-      Looking for: ['pytorch', 'pytorch-cuda=12.6', 'transformers', 'deepspeed']
-
-      pytorch/linux-64                                            Using cache
-      pytorch/noarch                                              Using cache
-      nvidia/linux-64                                             Using cache
-      nvidia/noarch                                               Using cache
-      conda-forge/linux-64                                        Using cache
-      conda-forge/noarch                                          Using cache
-
-      Pinned packages:
-        - python 3.13.*
-
-
-      Could not solve for environment specs
-      The following package could not be installed
-      └─ pytorch-cuda 12.6**  does not exist (perhaps a typo or a missing channel).
+    nvidia-smi
     ```
 
-  * New idea: 
-      Checkout versions here: https://pytorch.org/get-started/previous-versions/
+    Checkout versions here: https://pytorch.org/get-started/previous-versions/
 
-      for CUDA 12.6
-      ```
-      pip install torch==2.7.1 torchvision==0.22.1 torchaudio==2.7.1 --index-url https://download.pytorch.org/whl/cu12
-      ```
+    e.g. for CUDA 12.6
+    ```
+    pip install torch==2.7.1 torchvision==0.22.1 torchaudio==2.7.1 --index-url https://download.pytorch.org/whl/cu12
+    ```
