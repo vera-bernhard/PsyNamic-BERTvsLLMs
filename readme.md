@@ -59,6 +59,10 @@ squeue --me --states=R
 squeue --me --partition=gpu --states=R
 ```
 
+* Cancel job
+```
+scancel <jobid>
+```
 
 * Befor running script 
 ```
