@@ -276,3 +276,32 @@ def build_class_examples(id: str, task: str, nr: int = 3, task_options: dict = N
     output = output.strip()  # Remove trailing whitespace
     return output
 
+
+def build_llama2_prompt(prompt: str, system_prompt: str) -> str:
+    """Build the prompt for the Llama model."""
+
+    # Based in: https://www.llama.com/docs/model-cards-and-prompt-formats/meta-llama-2/
+
+    # Base model
+    # <s>{{ user_prompt }}
+
+    # Meta Llama 2 Chat - single message format
+    # <s>[INST] <<SYS>>
+    # {{ system_prompt }}
+    # <</SYS>>
+
+    # {{ user_message }} [/INST]
+
+    # Meta Llama 2 Chat - multi message format
+    # <s>[INST] <<SYS>>
+    # {{ system_prompt }}
+    # <</SYS>>
+
+    # {{ user_message_1 }} [/INST] {{ model_answer_1 }} </s>
+    # <s>[INST] {{ user_message_2 }} [/INST]
+
+    return f"<s>[INST] <<SYS>>\n{system_prompt}\n<</SYS>>\n{prompt}[/INST]"
+
+
+def build_llama3_prompt(prompt: str, system_prompt: str) -> str:
+    pass    
