@@ -40,6 +40,7 @@ Date: 27-05-2025
 # - (Label entropy over entity types)
 # - Check if split is stratified by entity types
 # - Check for malformed BIO sequences (e.g., I-* without preceding B-*)
+
 this_file = os.path.abspath(__file__)
 
 
@@ -59,6 +60,17 @@ def load_id2label(task: str):
     if isinstance(int2label, dict):
         int2label = {int(k): v for k, v in int2label.items()}
     return int2label
+
+
+def find_rows_with_2labels(file_path: str) -> pd.DataFrame:
+    df = pd.read_csv(file_path, encoding='utf-8')
+    # Assuming labels are stored as lists in a column named 'labels'
+    df['labels'] = df['labels'].apply(lambda x: eval(x))
+    # Filter rows where there is two 1 in the list
+    filtered_df = df[df['labels'].apply(
+        lambda x: isinstance(x, list) and x.count(1) == 2)]
+    return filtered_df
+
 
 
 def get_labels_from_file(file_path: str) -> Union[list, list[list]]:
@@ -127,13 +139,24 @@ def abstract_length_distribution(task: str):
 
 
 if __name__ == "__main__":
-    task = "Study Type"
-    (test, train, val), id2label = get_labels_per_task(task)
-    print(f"Task: {task}")
-    print(f"ID to Label Mapping: {id2label}")
-    print(f"Train Labels: {train[:5]}")
-    print(f"Test Labels: {test[:5]}")
-    print(f"Validation Labels: {val[:5]}")
+    task = "Substances"
+    # (test, train, val), id2label = get_labels_per_task(task)
+    # print(f"Task: {task}")
+    # print(f"ID to Label Mapping: {id2label}")
+    # print(f"Train Labels: {train[:5]}")
+    # print(f"Test Labels: {test[:5]}")
+    # print(f"Validation Labels: {val[:5]}")
 
-    # plot_task_label_distribution(task)
-    abstract_length_distribution(task)
+    plot_task_label_distribution(task)
+    # abstract_length_distribution(task)
+
+    # df = find_rows_with_2labels('data/study_type/train.csv')
+    # print(df['text'])
+
+    # print(find_rows_with_2labels('data/study_conclusion/train.csv'))
+    # print(find_rows_with_2labels('data/study_conclusion/test.csv'))
+    # print(find_rows_with_2labels('data/study_conclusion/val.csv'))
+
+
+    
+

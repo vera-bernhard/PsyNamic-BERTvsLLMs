@@ -206,6 +206,8 @@ def make_class_predictions(task: str, model_name: str, outfile: str, limit: int 
 
     df_out = df[['id', 'text', 'prompt', 'prediction_text',
                  'model', 'labels']]
+    # make sure the output directory exists
+    os.makedirs(os.path.dirname(outfile), exist_ok=True)
     df_out.to_csv(outfile, index=False, encoding='utf-8')
 
 
@@ -257,6 +259,8 @@ def make_ner_predictions(model_name: str, outfile: str, limit: int = None, few_s
     df['model'] = model_specs
 
     df_out = df[['id', 'text', 'prompt', 'prediction_text', 'model', 'tokens']]
+    # make sure the output directory exists
+    os.makedirs(os.path.dirname(outfile), exist_ok=True)
     df_out.to_csv(outfile, index=False, encoding='utf-8')
 
 
