@@ -139,11 +139,12 @@ class LlamaModel():
             "do_sample": do_sample,
             "eos_token_id": self.tokenizer.eos_token_id,
             "pad_token_id": self.tokenizer.pad_token_id,
-            "temperature": temperature,
             "top_p": top_p,
+            "temperature": None, # unset temperature if do_sample is False, cause the argument is not considered
         }
 
         if do_sample:
+            generation_kwargs["temperature"] = temperature
             generator = torch.Generator(device=self.device).manual_seed(SEED)
             generation_kwargs["generator"] = generator
 
@@ -613,7 +614,12 @@ def main():
 
     # Zero-Shot: Classification
     for model_name in models:
-        make_class_predictions(tasks=TASKS, model_name=model_name, few_shot=0)
+        if model_name == 'meta-llama/Llama-2-13b-chat-hf':
+            make_class_predictions(tasks=TASKS[8:-1], model_name=model_name, few_shot=0)
+        elif model_name == '/storage/homefs/vb25l522/me-llama/MeLLaMA-13B-chat':
+            make_class_predictions(tasks=TASKS[:-1], model_name=model_name, few_shot=0)
+        else:
+            make_class_predictions(tasks=TASKS, model_name=model_name, few_shot=0)
 
     # Zero-Shot: NER
     # for model_name in models:
