@@ -170,7 +170,7 @@
             "Single Dose": "Substance is only applied once. Also counts as single dose if substance is applied more than once over up to 1 hour.",
             "Unknown": "E.g., in a cross-sectional study on psychedelic use among the general population and it is not clear how many times the participants consumed psychedelic substances."
         },
-        "Is multilabel": true,
+        "Is_multilabel": true,
         "Task_description": "The task is to classify which therapeutic regimen did the study use based on the title and abstract of a research paper. Only annotate groups actually receiving the substance (not healthy controls). If 'Microdosing' is selected, do not also select 'Multiple Applications'. Apply per substance (i.e. once DMT and once ketamine in the same study is single dose). For systematic reviews, select 'Unknown' unless a specific regimen is assessed. Very low placebo doses do not count as one application.",
         "Shots": [1441, 692, 8052, 3192, 5154, 5901]
     },

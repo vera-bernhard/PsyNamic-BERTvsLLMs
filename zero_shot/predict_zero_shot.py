@@ -13,7 +13,7 @@ import re
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from datetime import datetime
-from prompts.build_prompts import build_class_prompt, system_role_class, system_role_ner, build_ner_prompt
+from prompts.build_prompts import build_class_prompt, system_role_class, system_role_ner, build_ner_prompt, build_llama2_prompt
 from openai import OpenAI
 from typing import Literal
 import pandas as pd
@@ -23,7 +23,11 @@ import ast
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 import deepspeed
+import bitsandbytes as bnb
+from transformers import BitsAndBytesConfig
 from transformers.utils import logging
+from tqdm import tqdm
+from typing import Union
 logging.set_verbosity_info()
 
 
@@ -38,8 +42,8 @@ def set_seed(seed: int = 42):
 TASKS = [
     "Condition", "Data Collection", "Data Type", "Number of Participants", "Age of Participants", "Application Form",
     "Clinical Trial Phase",  "Outcomes", "Regimen", "Setting", "Study Control", "Study Purpose",
-    "Substance Naivety", "Substances", "Sex of Participants", "Study Conclusion",  "Relevant",
-    # "Study Type",
+    "Substance Naivety", "Substances", "Sex of Participants", "Relevant", "Study Conclusion",
+    "Study Type"
 ]
 
 # TODO: Move it somewhere else so that it is not always called
@@ -55,17 +59,12 @@ SEED = 42
 
 
 class LlamaModel():
-    def __init__(self, model_name: str, use_gpu: bool = False, distributed: bool = False, is_ner: bool = False):
+    def __init__(self, model_name: str, use_gpu: bool = True, is_ner: bool = False, system_prompt: str = ''):
         self.model_name = model_name
         self.use_gpu = use_gpu
-        self.distributed = distributed
         self.model_name_short = model_name.split('/')[-1]
         self.is_ner = is_ner
-
-        # Set device and dtype
-        if self.distributed and not self.use_gpu:
-            raise ValueError(
-                "DeepSpeed distributed inference requires GPU (use_gpu=True).")
+        self.system_prompt = system_prompt
 
         if self.use_gpu:
             self.device_map = "auto"
@@ -78,39 +77,61 @@ class LlamaModel():
 
         # Load tokenizer
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
+        if self.tokenizer.pad_token is None:
+            self.tokenizer.pad_token = self.tokenizer.eos_token
 
-        # Load model and optionally wrap with DeepSpeed
-        if self.distributed:
-            # Load model first on CPU to avoid OOM
-            model = AutoModelForCausalLM.from_pretrained(self.model_name)
-            self.model = deepspeed.init_inference(
-                model,
-                mp_size=torch.cuda.device_count(),
-                dtype=torch.float16 if self.use_gpu else torch.float32,
-                replace_method="auto",
-                replace_with_kernel_inject=True,
+        if "70b" in self.model_name.lower():
+            # 4-bit quantization
+            print("Loading a 70B model with 4-bit quantization")
+            bnb_config = BitsAndBytesConfig(
+                load_in_4bit=True,
+                bnb_4bit_compute_dtype=torch.float16,
+                bnb_4bit_use_double_quant=True,
+                bnb_4bit_quant_type="nf4"
             )
-            # DeepSpeed models are already on GPU, device for inputs only
-            self.device = torch.device("cuda")
+            self.model = AutoModelForCausalLM.from_pretrained(
+                self.model_name,
+                device_map=self.device_map,
+                torch_dtype=self.torch_dtype,
+                quantization_config=bnb_config,
+                low_cpu_mem_usage=True,
+                trust_remote_code=True,
+            )
+
         else:
             self.model = AutoModelForCausalLM.from_pretrained(
                 self.model_name,
                 device_map=self.device_map,
                 torch_dtype=self.torch_dtype,
                 low_cpu_mem_usage=True,
-
             )
             self.model.to(self.device)
 
-        print(self.model.generation_config)
 
-    def predict(self, prompt: str, temperature: float = 0, do_sample: bool = False, top_p: float = 1.0) -> str:
+    def build_prompt(self, prompt: str):
+        try: 
+            message = [
+                {"role": "system", "content": self.system_prompt},
+                {"role": "user", "content": prompt}
+            ]
+            prompt_with_template = self.tokenizer.apply_chat_template(message, tokenize=False)
+        except ValueError:
+            if 'llama2' in self.model_name.lower():
+                prompt_with_template = build_llama2_prompt(prompt, self.system_prompt)
+            elif 'mellama' in self.model_name.lower():
+                prompt_with_template = prompt
+            else:
+                raise ValueError("Prompting not supported for this model.")
+
+        return prompt_with_template
+
+    def predict(self, prompt_with_template: str, temperature: float = 0, do_sample: bool = False, top_p: float = 1.0) -> str:
         # Set seed for reproducibility
         torch.manual_seed(SEED)
-        torch.cuda.manual_seed_all(SEED)
+        if torch.cuda.is_available():
+            torch.cuda.manual_seed_all(SEED)
 
-        # Tokenize inputs and move to device
-        inputs = self.tokenizer(prompt, return_tensors="pt")
+        inputs = self.tokenizer(prompt_with_template, return_tensors="pt")
         inputs = {k: v.to(self.device) for k, v in inputs.items()}
 
         generation_kwargs = {
@@ -118,11 +139,12 @@ class LlamaModel():
             "do_sample": do_sample,
             "eos_token_id": self.tokenizer.eos_token_id,
             "pad_token_id": self.tokenizer.pad_token_id,
-            "temperature": temperature,
             "top_p": top_p,
+            "temperature": None, # unset temperature if do_sample is False, cause the argument is not considered
         }
 
         if do_sample:
+            generation_kwargs["temperature"] = temperature
             generator = torch.Generator(device=self.device).manual_seed(SEED)
             generation_kwargs["generator"] = generator
 
@@ -131,9 +153,12 @@ class LlamaModel():
                 **inputs, **generation_kwargs)
 
         output_text = self.tokenizer.decode(
-            generation_output[0], skip_special_tokens=True)
-        return output_text
+            generation_output[0][inputs["input_ids"].shape[-1]:],  # skip prompt
+            skip_special_tokens=True)
 
+        # print(output_text)
+        
+        return output_text
 
 def gpt_prediction(prompt: str, model: str = "gpt-4o-mini", system_role: str = '') -> tuple[str, str]:
     try:
@@ -154,61 +179,60 @@ def gpt_prediction(prompt: str, model: str = "gpt-4o-mini", system_role: str = '
     return response_content, model_spec
 
 
-def make_class_predictions(task: str, model_name: str, outfile: str, limit: int = None, few_shot: int = 0):
-    task_lower = task.lower().replace(' ', '_')
-    file = os.path.join(os.path.dirname(__file__), '..',
-                        'data', task_lower, 'test.csv')
 
-    if not os.path.exists(file):
-        raise FileNotFoundError(
-            f"The file {file} does not exist. Check the task name.")
-    df = pd.read_csv(file)
+def make_class_predictions(tasks: [str], model_name: str, limit: int = None, few_shot: int = 0):
+    if 'llama' in model_name.lower():
+        model = LlamaModel(model_name=model_name, system_prompt=system_role_class)
 
-    if limit is not None:
-        df = df.iloc[:limit]
+    for task in tasks:
+        task_lower = task.lower().replace(' ', '_')
+        date = datetime.today().strftime('%d-%m-%d')
+        outfile = f"zero_shot/{task_lower}/{task_lower}_{model_name.split('/')[-1]}_{date}.csv"
+        os.makedirs(os.path.dirname(outfile), exist_ok=True)
 
-    # Some cleaning up
-    # df_pred = pd.read_csv('zero_shot/study_type_gpt-4o-mini_05-06-05_old.csv')
-    # df['prompt'] = df['text'].apply(lambda text: build_prompt(task, text))
-    # df['prediction_text'] = df_pred['prediction_text']
-    # df['model'] = df_pred['model']
+        print(f"Processing task: {task}")
+        task_lower = task.lower().replace(' ', '_')
+        file = os.path.join(os.path.dirname(__file__), '..',
+                            'data', task_lower, 'test.csv')
 
-    prompts = []
-    predictions = []
-    model_specs = []
-    if 'llama' in model_name.lower():  # and 'chat' not in model:
-        model = LlamaModel(model_name=model_name,
-                           use_gpu=True, distributed=False)
+        if not os.path.exists(file):
+            raise FileNotFoundError(
+                f"The file {file} does not exist. Check the task name.")
+        df = pd.read_csv(file)
 
-    for _, row in df.iterrows():
-        prompt = build_class_prompt(row['id'],task, row['text'], few_shot)
+        if limit is not None:
+            df = df.iloc[:limit]
 
-        if 'Llama-2' in model_name:
-            prompt = build_llama_prompt(prompt, system_role_class)
+        prompts = []
+        predictions = []
+        model_specs = []
 
-        # Llama chat
-        if 'llama' in model_name.lower():  # and 'chat' in model:
-            # prompt = build_llama_prompt(prompt, system_role_class)
-            model_spec = model.model_name_short
-            prediction = model.predict(prompt, temperature=0, do_sample=False)
+        for _, row in tqdm(df.iterrows(), total=len(df), desc=f"Predicting {task}"):
+            prompt = build_class_prompt(row['id'],task, row['text'], few_shot)
 
-        elif 'gpt' in model_name:
-            prediction, model_spec = gpt_prediction(
-                prompt, model=model_name, system_role=system_role_class)
+            # Llama chat
+            if 'llama' in model_name.lower():
+                prompt_with_template = model.build_prompt(prompt)
+                model_spec = model.model_name_short
+                prediction = model.predict(prompt_with_template, temperature=0, do_sample=False)
 
-        prompts.append(prompt)
-        predictions.append(prediction)
-        model_specs.append(model_spec)
+            elif 'gpt' in model_name:
+                prediction, model_spec = gpt_prediction(
+                    prompt, model=model_name, system_role=system_role_class)
 
-    df['prompt'] = prompts
-    df['prediction_text'] = predictions
-    df['model'] = model_specs
+            prompts.append(prompt)
+            predictions.append(prediction)
+            model_specs.append(model_spec)
 
-    df_out = df[['id', 'text', 'prompt', 'prediction_text',
-                 'model', 'labels']]
-    # make sure the output directory exists
-    os.makedirs(os.path.dirname(outfile), exist_ok=True)
-    df_out.to_csv(outfile, index=False, encoding='utf-8')
+        df['prompt'] = prompts
+        df['prediction_text'] = predictions
+        df['model'] = model_specs
+
+        df_out = df[['id', 'text', 'prompt', 'prediction_text',
+                    'model', 'labels']]
+        print(f"Saving predictions to {outfile}")
+        os.makedirs(os.path.dirname(outfile), exist_ok=True)
+        df_out.to_csv(outfile, index=False, encoding='utf-8')
 
 
 def make_ner_predictions(model_name: str, outfile: str, limit: int = None, few_shot: int = 0):
@@ -230,14 +254,13 @@ def make_ner_predictions(model_name: str, outfile: str, limit: int = None, few_s
     model_specs = []
 
     if 'llama' in model_name.lower():
-        model = LlamaModel(model_name=model_name,
-                           use_gpu=True, distributed=False, is_ner=True)
+        model = LlamaModel(model_name=model_name, is_ner=True)
 
-    for _, row in df.iterrows():
+    for _, row in tqdm(df.iterrows(), total=len(df), desc="Predicting (NER)"):
         prompt = build_ner_prompt(row['id'], row['text'], few_shot=few_shot)
 
-        if 'Llama-2' in model_name:
-            prompt = build_llama_prompt(prompt, system_role_ner)
+        if 'llama-2' in model_name.lower():
+            prompt = build_llama2_prompt(prompt, system_role_ner)
 
         if 'llama' in model_name.lower():
             model_spec = model.model_name_short
@@ -527,32 +550,6 @@ def basic_tokenizer(text: str) -> list[str]:
     return tokenized
 
 
-def build_llama_prompt(prompt: str, system_prompt: str) -> str:
-    """Build the prompt for the Llama model."""
-
-    # Based in: https://www.llama.com/docs/model-cards-and-prompt-formats/meta-llama-2/
-
-    # Base model
-    # <s>{{ user_prompt }}
-
-    # Meta Llama 2 Chat - single message format
-    # <s>[INST] <<SYS>>
-    # {{ system_prompt }}
-    # <</SYS>>
-
-    # {{ user_message }} [/INST]
-
-    # Meta Llama 2 Chat - multi message format
-    # <s>[INST] <<SYS>>
-    # {{ system_prompt }}
-    # <</SYS>>
-
-    # {{ user_message_1 }} [/INST] {{ model_answer_1 }} </s>
-    # <s>[INST] {{ user_message_2 }} [/INST]
-
-    return f"<s>[INST] <<SYS>>\n{system_prompt}\n<</SYS>>\n{prompt}[/INST]"
-
-
 def find_phrase_indices(tokens: list[str], phrase: str) -> list[int]:
     tokens_lower = [t.lower() for t in tokens]
     phrase_tokens = [t.lower() for t in phrase.split()]
@@ -606,21 +603,28 @@ def add_tokens_nertags(bioner_path: str):
 def main():
 
     models = [
-        "/scratch/vebern/models/Llama-2-13-chat-hf",
+        # "/scratch/vebern/models/Llama-2-13-chat-hf",
         # "/scratch/vebern/models/Llama-2-70-chat-hf",
-        "/data/vebern/ma-models/MeLLaMA-13B-chat",
+        # "/data/vebern/ma-models/MeLLaMA-13B-chat",
         # "/data/vebern/ma-models/MeLLaMA-70B-chat",
         # "gpt-4o-mini"
+        'meta-llama/Llama-2-13b-chat-hf',
+        '/storage/homefs/vb25l522/me-llama/MeLLaMA-13B-chat',
+        'meta-llama/Llama-2-70b-chat-hf',
+        '/storage/homefs/vb25l522/me-llama/MeLLaMA-70B-chat',
+        # "YBXL/Med-LLaMA3-8B"
     ]
-    date = datetime.today().strftime('%d-%m-%d')
 
-    # for task in TASKS:
-    #     for model_name in models:
-    #         task_lower = task.lower().replace(' ', '_')
-    #         outfile_class = f"zero_shot/{task_lower}/{task_lower}_{model_name.split('/')[-1]}_{date}.csv"
-    #         # make path
-    #         make_class_predictions(task, model_name, outfile_class, few_shot=3)
+    # Zero-Shot: Classification
+    for model_name in models:
+        if model_name == 'meta-llama/Llama-2-13b-chat-hf':
+            make_class_predictions(tasks=TASKS[8:-1], model_name=model_name, few_shot=0)
+        elif model_name == '/storage/homefs/vb25l522/me-llama/MeLLaMA-13B-chat':
+            make_class_predictions(tasks=TASKS[:-1], model_name=model_name, few_shot=0)
+        else:
+            make_class_predictions(tasks=TASKS, model_name=model_name, few_shot=0)
 
+    # Zero-Shot: NER
     # for model_name in models:
     #     outfile_ner = f"zero_shot/ner_{model_name.split('/')[-1]}_{date}.csv"
     #     make_ner_predictions(model_name, outfile_ner)

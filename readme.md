@@ -47,6 +47,23 @@ sbatch code-tunnel.sbatch
 rsync -avz me-llama/ vb25l522@submit01.unibe.ch:/storage/homefs/vb25l522/me-llama/
 ```
 
+* Make interactive GPU session
+```
+salloc --partition=gpu-invest --qos=job_gpu_preemptable --gres=gpu:a100:1 --mem-per-gpu=80G --time=01:30:00
+srun --pty -n 1 -c 2 --partition=gpu-invest --qos=job_gpu_preemptable --gres=gpu:a100:1 --mem-per-gpu=80G --time=01:30:00 bash -l
+```
+
+* List all jobs
+```
+squeue --me --states=R
+squeue --me --partition=gpu --states=R
+```
+
+* Cancel job
+```
+scancel <jobid>
+```
+
 * Befor running script 
 ```
 module load Anaconda3
