@@ -146,7 +146,8 @@ class LlamaModel():
         inputs = {k: v.to(self.device) for k, v in inputs.items()}
 
         generation_kwargs = {
-            "max_new_tokens": 500,
+            # allow twice as many tokens as in the prompt --> to not cut off NER predictions
+            "max_new_tokens": len(prompt_with_template.split()) * 2,
             "do_sample": do_sample,
             "eos_token_id": self.tokenizer.eos_token_id,
             "pad_token_id": self.tokenizer.pad_token_id,
@@ -259,17 +260,31 @@ def make_class_predictions(
         df_out.to_csv(outfile, index=False, encoding='utf-8')
 
 
-def make_ner_predictions(model_name: str, outfile: str, limit: int = None, few_shot: int = 0):
+def make_ner_predictions(
+    model_name: str,
+    limit: int = None,
+    few_shot: int = 0,
+    few_shot_strategy: Literal['selected', 'random'] = 'selected'
+):
     task = "ner_bio"
     file = os.path.join(os.path.dirname(__file__),
                         '..', 'data', task, 'test.csv')
-
     if not os.path.exists(file):
         raise FileNotFoundError(
             f"The file {file} does not exist. Check the task name.")
 
-    df = pd.read_csv(file)
+    date = datetime.today().strftime('%d-%m-%d')
+    if few_shot > 0:
+        outfile = f"few_shot/ner/{task}_{few_shot}shot_{few_shot_strategy}_{model_name.split('/')[-1]}_{date}.csv"
+    else:
+        outfile = f"zero_shot/ner/{task}_{model_name.split('/')[-1]}_{date}.csv"
+    os.makedirs(os.path.dirname(outfile), exist_ok=True)
 
+    if 'llama' in model_name.lower():
+        model = LlamaModel(model_name=model_name,
+                           system_prompt=system_role_ner, is_ner=True)
+
+    df = pd.read_csv(file)
     if limit is not None:
         df = df.iloc[:limit]
 
@@ -277,17 +292,13 @@ def make_ner_predictions(model_name: str, outfile: str, limit: int = None, few_s
     predictions = []
     model_specs = []
 
-    if 'llama' in model_name.lower():
-        model = LlamaModel(model_name=model_name, is_ner=True)
-
     for _, row in tqdm(df.iterrows(), total=len(df), desc="Predicting (NER)"):
-        prompt = build_ner_prompt(row['id'], row['text'], few_shot=few_shot)
-
-        if 'llama-2' in model_name.lower():
-            prompt = build_llama2_prompt(prompt, system_role_ner)
+        prompt = build_ner_prompt(
+            row['id'], row['text'], few_shot=few_shot, few_shot_strategy=few_shot_strategy)
 
         if 'llama' in model_name.lower():
             model_spec = model.model_name_short
+            prompt = model.build_prompt(prompt)
             prediction = model.predict(prompt, temperature=0, do_sample=False)
 
         elif 'gpt' in model_name:
@@ -653,11 +664,14 @@ def main():
     #     outfile_ner = f"zero_shot/ner_{model_name.split('/')[-1]}_{date}.csv"
     #     make_ner_predictions(model_name, outfile_ner)
 
-    # Few-Shot: Classification
+    # Few-Shot: Classification & NER
     for i in [1, 3, 5]:
         for model_name in models:
             make_class_predictions(
                 tasks=TASKS, model_name=model_name, few_shot=i, few_shot_strategy='selected')
+
+            make_ner_predictions(
+                model_name=model_name, few_shot=i, few_shot_strategy='selected')
 
     # for file in os.listdir('zero_shot/ner'):
     #     if not file.endswith('.csv'):

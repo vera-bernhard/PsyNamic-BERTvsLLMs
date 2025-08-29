@@ -116,7 +116,7 @@ def build_class_prompt(
     return task_user_prompt
 
 
-def build_ner_prompt(id: int, title_abstract: str, few_shot: int = 0):
+def build_ner_prompt(id: int, title_abstract: str, few_shot: int = 0, few_shot_strategy: Literal['selected', 'random'] = 'selected'):
     file_path = os.path.join(SCRIPT_DIR, 'ner_description.json')
 
     with open(file_path, 'r', encoding='utf-8') as f:
@@ -127,6 +127,8 @@ def build_ner_prompt(id: int, title_abstract: str, few_shot: int = 0):
     definitions = ''
 
     for entity, det in task_descriptions.items():
+        if entity == 'Shots':
+            continue
         entity_markup_guide += f'<span class="{entity.lower().replace(" ", "-")}"> to denote {entity}, '
 
         definitions += f"{entity} is defined as: {det['Definition']}\n\n"
@@ -142,8 +144,10 @@ def build_ner_prompt(id: int, title_abstract: str, few_shot: int = 0):
     entities.rstrip(', ')
     annotation_guidelines = annotation_guidelines.rstrip('\n')
 
+    shots = task_descriptions['Shots']
+
     if few_shot > 0:
-        examples = build_ner_examples(id, nr=few_shot)
+        examples = build_ner_examples(id, nr=few_shot, few_shot_strategy=few_shot_strategy, shots=shots)
     else:
         examples = ''
 
@@ -211,19 +215,36 @@ def markup_entities(tokens, text, labels):
     return marked_text
 
 
-def build_ner_examples(id: str, nr: int = 3):
+def build_ner_examples(id: str, nr: int = 3, few_shot_strategy: Literal['selected', 'random'] = 'selected', shots: list[int] = None):
+    if few_shot_strategy == 'selected' and shots is None:
+        raise ValueError("If few_shot_strategy is 'selected', shots must be provided.")
     output = '###EXAMPLES\n'
 
     data_file = os.path.join(data_dir, 'ner_bio', 'test.csv')
     df = pd.read_csv(data_file)
-    # check if there is any nan in the 'text' column
-    ids = df['id'].tolist()
-    ids.remove(id)
-    # get nr of random ids
-    random_ids = random.sample(ids, nr)
-    examples = df[df['id'].isin(random_ids)]
+    df['id'] = df['id'].astype(int)
 
-    for i in random_ids:
+    if few_shot_strategy == 'selected':
+        # Check if shots are unique
+        if len(shots) != len(set(shots)):
+            raise ValueError("Shots must be unique.")
+        # Check if id is in shots
+        if id in shots:
+            # remove id from shots
+            shots.remove(id)
+            breakpoint()
+        ids = shots[:nr]
+        
+    elif few_shot_strategy == 'random':
+        # check if there is any nan in the 'text' column
+        ids = df['id'].tolist()
+        ids.remove(id)
+        # get nr of random ids
+        ids = random.sample(ids, nr)
+
+    examples = df[df['id'].isin(ids)]
+
+    for i in ids:
         text = examples[examples['id'] == i]['text'].values[0]
         output += "INPUT: "
         output += text

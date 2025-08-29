@@ -27,5 +27,6 @@
             "Annotate also relative dosages (e.g., 1 mg/kg), do NOT annotate the terms \"bw\" or \"body weight\" or similar if pertinent",
             "Do NOT annotate concentrations of solutions (e.g., 500mg/10ml) or doses measured in plasma (4 mg/ml)."
         ]
-    }
+    },
+    "Shots": [2538, 8987, 1799, 1867, 7903, 6228]
 }
