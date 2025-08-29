@@ -232,7 +232,7 @@
         },
         "Is_multilabel": false,
         "Task_description": "The task is to classify the sex of the participants studies based on the title and abstract of a research paper. If pregnant women are the study participants, select 'Both sexes' if > 5 pregnant women. In case a systematic review specifies the sex of included subjects and/or the number > 5, select the respective option.",
-        "Shots": []
+        "Shots": [5346, 1385, 7035, 1879, 9446, 6496]
     },
     "Study Conclusion": {
         "Options": {
@@ -245,7 +245,7 @@
         },
         "Is_multilabel": false,
         "Task_description": "The task is to classify the overarching finding of the study based on the title and abstract of a research paper. Only applies to studies testing a therapeutic impact of psychedelic substances on medical conditions (e.g., psychiatric conditions, headache). The information is mostly found in the last 2-3 sentences of the abstract.",
-        "Shots": []
+        "Shots": [8606, 3537, 6035, 1439, 7897, 9419]
     },
     "Relevant": {
         "Options": {
@@ -254,6 +254,6 @@
         },
         "Is_multilabel": false,
         "Task_description": "The task is to classify whether the following study is relevant based on the title and abstract of a research paper. A study is relevant if it reports on the use of psychedelic substances in humans, including healthy volunteers (recreational users) or individuals with medical conditions. A study is irrelevant if it investigates non-classical psychedelics (e.g., THC, CBD, cocaine, heroin), consists of animal-only studies or non-systematic reviews (comments, editorials), is a corrigendum, or focuses solely on operative pain/anesthesia with ketamine (unless it also assesses outcomes such as postoperative depression).",
-        "Shots": []
+        "Shots": [3189, 4703, 8480, 8269, 3048, 1911]
     }
 }
