@@ -6,28 +6,38 @@ Filename: predic_zero_shot.py
 Description: ...
 Author: Vera Bernhard
 """
-
-from huggingface_hub import login
 import os
 import re
-from bs4 import BeautifulSoup
-from dotenv import load_dotenv
-from datetime import datetime
-from prompts.build_prompts import build_class_prompt, system_role_class, system_role_ner, build_ner_prompt, build_llama2_prompt
-from openai import OpenAI
-from typing import Literal
-import pandas as pd
 import json
-import spacy
 import ast
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from datetime import datetime
+
+import pandas as pd
+import spacy
 import torch
-import deepspeed
-import bitsandbytes as bnb
-from transformers import BitsAndBytesConfig
-from transformers.utils import logging
 from tqdm import tqdm
-from typing import Union
+
+from dotenv import load_dotenv
+from huggingface_hub import login
+from openai import OpenAI
+
+from transformers import (
+    AutoModelForCausalLM,
+    AutoTokenizer,
+    BitsAndBytesConfig,
+)
+from transformers.utils import logging
+
+from typing import Literal
+
+from prompts.build_prompts import (
+    build_class_prompt,
+    system_role_class,
+    system_role_ner,
+    build_ner_prompt,
+    build_llama2_prompt,
+)
+
 logging.set_verbosity_info()
 
 
@@ -107,17 +117,18 @@ class LlamaModel():
             )
             self.model.to(self.device)
 
-
     def build_prompt(self, prompt: str):
-        try: 
+        try:
             message = [
                 {"role": "system", "content": self.system_prompt},
                 {"role": "user", "content": prompt}
             ]
-            prompt_with_template = self.tokenizer.apply_chat_template(message, tokenize=False)
+            prompt_with_template = self.tokenizer.apply_chat_template(
+                message, tokenize=False)
         except ValueError:
             if 'llama2' in self.model_name.lower():
-                prompt_with_template = build_llama2_prompt(prompt, self.system_prompt)
+                prompt_with_template = build_llama2_prompt(
+                    prompt, self.system_prompt)
             elif 'mellama' in self.model_name.lower():
                 prompt_with_template = prompt
             else:
@@ -140,7 +151,8 @@ class LlamaModel():
             "eos_token_id": self.tokenizer.eos_token_id,
             "pad_token_id": self.tokenizer.pad_token_id,
             "top_p": top_p,
-            "temperature": None, # unset temperature if do_sample is False, cause the argument is not considered
+            # unset temperature if do_sample is False, cause the argument is not considered
+            "temperature": None,
         }
 
         if do_sample:
@@ -153,12 +165,14 @@ class LlamaModel():
                 **inputs, **generation_kwargs)
 
         output_text = self.tokenizer.decode(
-            generation_output[0][inputs["input_ids"].shape[-1]:],  # skip prompt
+            # skip prompt
+            generation_output[0][inputs["input_ids"].shape[-1]:],
             skip_special_tokens=True)
 
         # print(output_text)
-        
+
         return output_text
+
 
 def gpt_prediction(prompt: str, model: str = "gpt-4o-mini", system_role: str = '') -> tuple[str, str]:
     try:
@@ -179,15 +193,24 @@ def gpt_prediction(prompt: str, model: str = "gpt-4o-mini", system_role: str = '
     return response_content, model_spec
 
 
-
-def make_class_predictions(tasks: [str], model_name: str, limit: int = None, few_shot: int = 0):
+def make_class_predictions(
+    tasks: str,
+    model_name: str,
+    limit: int = None,
+    few_shot: int = 0,
+    few_shot_strategy: Literal['selected', 'random'] = 'selected'
+):
     if 'llama' in model_name.lower():
-        model = LlamaModel(model_name=model_name, system_prompt=system_role_class)
+        model = LlamaModel(model_name=model_name,
+                           system_prompt=system_role_class)
 
     for task in tasks:
         task_lower = task.lower().replace(' ', '_')
         date = datetime.today().strftime('%d-%m-%d')
-        outfile = f"zero_shot/{task_lower}/{task_lower}_{model_name.split('/')[-1]}_{date}.csv"
+        if few_shot > 0:
+            outfile = f"few_shot/{task_lower}/{task_lower}_{few_shot}shot_{few_shot_strategy}_{model_name.split('/')[-1]}_{date}.csv"
+        else:
+            outfile = f"zero_shot/{task_lower}/{task_lower}_{model_name.split('/')[-1]}_{date}.csv"
         os.makedirs(os.path.dirname(outfile), exist_ok=True)
 
         print(f"Processing task: {task}")
@@ -208,13 +231,14 @@ def make_class_predictions(tasks: [str], model_name: str, limit: int = None, few
         model_specs = []
 
         for _, row in tqdm(df.iterrows(), total=len(df), desc=f"Predicting {task}"):
-            prompt = build_class_prompt(row['id'],task, row['text'], few_shot)
-
+            prompt = build_class_prompt(
+                row['id'], task, row['text'], few_shot=few_shot, few_shot_strategy=few_shot_strategy)
             # Llama chat
             if 'llama' in model_name.lower():
-                prompt_with_template = model.build_prompt(prompt)
+                prompt = model.build_prompt(prompt)
                 model_spec = model.model_name_short
-                prediction = model.predict(prompt_with_template, temperature=0, do_sample=False)
+                prediction = model.predict(
+                    prompt, temperature=0, do_sample=False)
 
             elif 'gpt' in model_name:
                 prediction, model_spec = gpt_prediction(
@@ -616,18 +640,24 @@ def main():
     ]
 
     # Zero-Shot: Classification
-    for model_name in models:
-        if model_name == 'meta-llama/Llama-2-13b-chat-hf':
-            make_class_predictions(tasks=TASKS[8:-1], model_name=model_name, few_shot=0)
-        elif model_name == '/storage/homefs/vb25l522/me-llama/MeLLaMA-13B-chat':
-            make_class_predictions(tasks=TASKS[:-1], model_name=model_name, few_shot=0)
-        else:
-            make_class_predictions(tasks=TASKS, model_name=model_name, few_shot=0)
+    # for model_name in models:
+    #     if model_name == 'meta-llama/Llama-2-13b-chat-hf':
+    #         make_class_predictions(tasks=TASKS[8:-1], model_name=model_name, few_shot=0)
+    #     elif model_name == '/storage/homefs/vb25l522/me-llama/MeLLaMA-13B-chat':
+    #         make_class_predictions(tasks=TASKS[:-1], model_name=model_name, few_shot=0)
+    #     else:
+    #         make_class_predictions(tasks=TASKS, model_name=model_name, few_shot=0)
 
     # Zero-Shot: NER
     # for model_name in models:
     #     outfile_ner = f"zero_shot/ner_{model_name.split('/')[-1]}_{date}.csv"
     #     make_ner_predictions(model_name, outfile_ner)
+
+    # Few-Shot: Classification
+    for i in [1, 3, 5]:
+        for model_name in models:
+            make_class_predictions(
+                tasks=TASKS, model_name=model_name, few_shot=i, few_shot_strategy='selected')
 
     # for file in os.listdir('zero_shot/ner'):
     #     if not file.endswith('.csv'):
@@ -635,6 +665,7 @@ def main():
     #     print(f"Processing file: {file}")
     #     file_path = os.path.join('zero_shot/ner', file)
     #     add_tokens_nertags(file_path)
+
 
 if __name__ == "__main__":
     main()
