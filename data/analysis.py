@@ -6,6 +6,7 @@ from plots.plots import plot_label_distribution, plot_length_histogram
 import numpy as np
 import pandas as pd
 from typing import Union
+import seaborn as sns
 import matplotlib.pyplot as plt
 
 """
@@ -70,7 +71,6 @@ def find_rows_with_2labels(file_path: str) -> pd.DataFrame:
     filtered_df = df[df['labels'].apply(
         lambda x: isinstance(x, list) and x.count(1) == 2)]
     return filtered_df
-
 
 
 def get_labels_from_file(file_path: str) -> Union[list, list[list]]:
@@ -138,6 +138,92 @@ def abstract_length_distribution(task: str):
     plt.show()
 
 
+def get_ner_data(split: str) -> list[list[str]]:
+    """Load NER data from a CSV file."""
+    file_path = os.path.join(os.path.dirname(
+        this_file), 'ner_bio', f'{split}.csv')
+    df = pd.read_csv(file_path, encoding='utf-8')
+    ner_tags = df['ner_tags'].apply(
+        lambda x: eval(x))
+    return ner_tags.tolist()
+
+def get_ner_stats(ner_bio_tags: list[list[str]]) -> dict:
+    """
+    Compute NER statistics for BIO-tagged data.
+    Input: list of lists of BIO tags (e.g., ['B-Application area', 'I-Application area', 'O', ...])
+    Returns: dict with statistics.
+    """
+    total_entities = 0
+    total_dosage = 0
+    total_application = 0
+    samples_with_dosage = 0
+    samples_with_application = 0
+    samples_with_entities = 0
+    nr_without_dosage = 0
+    nr_without_application = 0
+    nr_without_entities = 0
+
+    for tags in ner_bio_tags:
+        entities = 0
+        dosage = 0
+        application = 0
+        prev_tag = 'O'
+        for tag in tags:
+            if tag.startswith('B-'):
+                entities += 1
+                if tag == 'B-Dosage':
+                    dosage += 1
+                elif tag == 'B-Application area':
+                    application += 1
+            prev_tag = tag
+        total_entities += entities
+        total_dosage += dosage
+        total_application += application
+
+        if dosage > 0:
+            samples_with_dosage += 1
+        else:
+            nr_without_dosage += 1
+
+        if application > 0:
+            samples_with_application += 1
+        else:
+            nr_without_application += 1
+
+        if entities > 0:
+            samples_with_entities += 1
+        else:
+            nr_without_entities += 1
+
+    n_samples = len(ner_bio_tags)
+    avg_entities_per_sample = total_entities / n_samples if n_samples else 0
+    avg_entities_dosage = total_dosage / n_samples if n_samples else 0
+    avg_entities_application = total_application / n_samples if n_samples else 0
+
+    return {
+        'total_entities': total_entities,
+        'avg_entities_per_sample': avg_entities_per_sample,
+        'avg_entities_dosage': avg_entities_dosage,
+        'avg_entities_application': avg_entities_application,
+        'nr_without_dosage': nr_without_dosage,
+        'nr_without_application': nr_without_application,
+        'nr_without_entities': nr_without_entities
+    }
+
+
+def plot_ner_tag_distribution(ner_bio_tags: list[list[str]], title: str) -> None:
+    """Plot a distribution plot of how many entities per sample there are. It should not distinguish between entity types."""
+    entity_counts = [sum(1 for tag in tags if tag.startswith('B-')) for tags in ner_bio_tags]
+
+    plt.figure(figsize=(10, 6))
+    sns.histplot(entity_counts, bins=range(max(entity_counts) + 2), color='skyblue', edgecolor='black', discrete=True)
+    plt.xlabel('Number of Entities per Sample')
+    plt.ylabel('Frequency')
+    plt.title(title)
+    plt.xticks(range(max(entity_counts) + 1))
+    plt.grid(axis='y')
+    plt.show()
+    
 if __name__ == "__main__":
     task = "Substances"
     # (test, train, val), id2label = get_labels_per_task(task)
@@ -147,7 +233,7 @@ if __name__ == "__main__":
     # print(f"Test Labels: {test[:5]}")
     # print(f"Validation Labels: {val[:5]}")
 
-    plot_task_label_distribution(task)
+    # plot_task_label_distribution(task)
     # abstract_length_distribution(task)
 
     # df = find_rows_with_2labels('data/study_type/train.csv')
@@ -156,6 +242,11 @@ if __name__ == "__main__":
     # print(find_rows_with_2labels('data/study_conclusion/train.csv'))
     # print(find_rows_with_2labels('data/study_conclusion/test.csv'))
     # print(find_rows_with_2labels('data/study_conclusion/val.csv'))
+
+    ner_bio_data = get_ner_data('test')
+    ner_stats = get_ner_stats(ner_bio_data)
+    print(ner_stats)
+    plot_ner_tag_distribution(ner_bio_data, "NER BIO Tag Distribution in Test Set")
 
 
     
