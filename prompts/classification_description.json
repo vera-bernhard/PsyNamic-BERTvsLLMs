@@ -12,7 +12,8 @@
             "Other": "A study not belonging to one of the above categories or not classifiable based on the provided information. A study pooling different RCTs together belongs to this category."
         },
         "Is_multilabel": false,
-        "Task_description": "The task is to classify the study type based on the title and abstract of a research paper."
+        "Task_description": "The task is to classify the study type based on the title and abstract of a research paper.",
+        "Shots": [8889, 135, 691, 1037, 748, 1511]
     },
     "Data Collection": {
         "Options": {
@@ -22,7 +23,8 @@
             "Unknown": "Data collection unknown."
         },
         "Is_multilabel": false,
-        "Task_description": "The task is to classify how the data are collected based on the title and abstract of a research paper. Important: Focus on when the outcome was measured. Explicitly state if retrospective or prospective; otherwise = unknown. Always select 'Prospective' for study protocols."
+        "Task_description": "The task is to classify how the data are collected based on the title and abstract of a research paper. Important: Focus on when the outcome was measured. Explicitly state if retrospective or prospective; otherwise = unknown. Always select 'Prospective' for study protocols.",
+        "Shots": [1787, 1874, 3592, 1939, 5628, 3719]
     },
     "Data Type": {
         "Options": {
@@ -33,7 +35,8 @@
             "Unknown": "Data type is unknown."
         },
         "Is_multilabel": false,
-        "Task_description": "The task is to classify whether the data are collected longitudinally or cross-sectionally. If no information is provided about the study length (or only very indirectly like cross-over study), select 'Unknown'."
+        "Task_description": "The task is to classify whether the data are collected longitudinally or cross-sectionally. If no information is provided about the study length (or only very indirectly like cross-over study), select 'Unknown'.",
+        "Shots": [6558, 6239, 6027, 5697, 221, 5794] 
     },
     "Number of Participants": {
         "Options": {
@@ -50,7 +53,8 @@
             "Unknown": ""
         },
         "Is_multilabel": false,
-        "Task_description": "The task is to classify the number of participants based on the title and abstract of a research paper, including all study participants (including the ones not receiving psychedelics). For systematic reviews with numbers, use given count. For pregnant participants, double count (mother+child). For protocols with range, use 'Not applicable'."
+        "Task_description": "The task is to classify the number of participants based on the title and abstract of a research paper, including all study participants (including the ones not receiving psychedelics). For systematic reviews with numbers, use given count. For pregnant participants, double count (mother+child). For protocols with range, use 'Not applicable'.",
+        "Shots": [2439, 8372, 6158, 6362, 1710, 180]
     },
     "Age of Participants": {
         "Options": {
@@ -60,7 +64,8 @@
             "Not applicable": ""
         },
         "Is_multilabel": true,
-        "Task_description": "The task is to classify the age of participants studied based on the title and abstract of a research paper. If only 'adolescents' stated, use 'Pediatric'."
+        "Task_description": "The task is to classify the age of participants studied based on the title and abstract of a research paper. If only 'adolescents' stated, use 'Pediatric'.",
+        "Shots": [777, 7113, 5213, 8972, 6158, 1054]
     },
     "Application Form": {
         "Options": {
@@ -74,7 +79,8 @@
             "Not applicable": "E.g., for systematic reviews."
         },
         "Is_multilabel": true,
-        "Task_description": "The task is to classify the form of substance application based on the title and abstract of a research paper."
+        "Task_description": "The task is to classify the form of substance application based on the title and abstract of a research paper.",
+        "Shots": [1441, 5380, 9612, 1418, 1891, 9339]
     },
     "Clinical Trial Phase": {
         "Options": {
@@ -86,7 +92,8 @@
             "Not Applicable": "Not fulfilling the above definition, e.g., an fMRI study assessing the changes upon lsd or a survey among MDMA users or a systematic review."
         },
         "Is_multilabel": true,
-        "Task_description": "The task is to classify the clinical trial phase based on the title and abstract of a research paper. Clinical trial phases are stages in which scientists conduct experiments with a therapeutic intervention to obtain sufficient evidence for a process considered effective as a medical treatment, i.e., considering efficacy and/or safety of the therapeutic intervention. The exact phase is rarely being reported, i.e., most studies will either be 'Unknown' or 'Not Applicable'."
+        "Task_description": "The task is to classify the clinical trial phase based on the title and abstract of a research paper. Clinical trial phases are stages in which scientists conduct experiments with a therapeutic intervention to obtain sufficient evidence for a process considered effective as a medical treatment, i.e., considering efficacy and/or safety of the therapeutic intervention. The exact phase is rarely being reported, i.e., most studies will either be 'Unknown' or 'Not Applicable'.",
+        "Shots": [6035, 6450, 777, 218, 9452, 594]
     },
     "Condition": {
         "Options": {
@@ -106,7 +113,8 @@
             "Healthy Participants": "E.g., includes population studies (e.g., recreational drug use) where most lack major medical conditions."
         },
         "Is_multilabel": true,
-        "Task_description": "The task is to classify the overarching conditions of study participants based on the title and abstract. Only annotate the condition being treated (e.g., not outcomes of recreational use). If no participant info is given, assume 'Healthy Participants'."
+        "Task_description": "The task is to classify the overarching conditions of study participants based on the title and abstract. Only annotate the condition being treated (e.g., not outcomes of recreational use). If no participant info is given, assume 'Healthy Participants'.",
+        "Shots": [1441, 1281, 1829, 6103, 6446, 1958]
     },
     "Outcomes": {
         "Options": {
@@ -126,7 +134,8 @@
             "Emergency department visits": "E.g., studies assessing reasons for emergency department visits of users of psychedelic substances."
         },
         "Is_multilabel": true,
-        "Task_description": "The task is to classify whether the study measures, uses, or reports certain specified outcomes based on the title and abstract of a research paper."
+        "Task_description": "The task is to classify whether the study measures, uses, or reports certain specified outcomes based on the title and abstract of a research paper.",
+        "Shots": [3371, 8345, 5919, 7050, 558, 2431]
     },
     "Study Purpose": {
         "Options": {
@@ -138,7 +147,8 @@
             "Demographic study": "I.e. epidemiological study, e.g., a study assessing MDMA use among a real-world population. This also includes studies about adverse events of psychedelic substances in a recreational/real-world setting."
         },
         "Is_multilabel": true,
-        "Task_description": "The task is to classify the overall purpose of the study based on the title and abstract of a research paper. Be generous in determining the study purpose (e.g., prevention study, also consider 'Safety endpoints'). Rarely, a study may have no clear purpose (e.g., surveys of psychologists’ experiences). Specific effects (e.g., reduced verbal fluency in ecstasy users) count as 'Safety endpoints'."
+        "Task_description": "The task is to classify the overall purpose of the study based on the title and abstract of a research paper. Be generous in determining the study purpose (e.g., prevention study, also consider 'Safety endpoints'). Rarely, a study may have no clear purpose (e.g., surveys of psychologists’ experiences). Specific effects (e.g., reduced verbal fluency in ecstasy users) count as 'Safety endpoints'.",
+        "Shots": [8596, 1441, 2874, 3493, 4893, 3100]
     },
     "Study Control": {
         "Options": {
@@ -150,7 +160,8 @@
             "Not applicable": "E.g., for systematic reviews."
         },
         "Is_multilabel": true,
-        "Task_description": "The task is to classify the control type of the study based on the title and abstract of a research paper. Control refers to the condition (e.g., if ketamine is tested in anxious and non-anxious patients without control, this is 'Non-controlled')."
+        "Task_description": "The task is to classify the control type of the study based on the title and abstract of a research paper. Control refers to the condition (e.g., if ketamine is tested in anxious and non-anxious patients without control, this is 'Non-controlled').",
+        "Shots": [777, 3537, 5705, 6439, 128, 5213]
     },
     "Regimen": {
         "Options": {
@@ -160,7 +171,8 @@
             "Unknown": "E.g., in a cross-sectional study on psychedelic use among the general population and it is not clear how many times the participants consumed psychedelic substances."
         },
         "Is_multilabel": true,
-        "Task_description": "The task is to classify which therapeutic regimen did the study use based on the title and abstract of a research paper. Only annotate groups actually receiving the substance (not healthy controls). If 'Microdosing' is selected, do not also select 'Multiple Applications'. Apply per substance (i.e. once DMT and once ketamine in the same study is single dose). For systematic reviews, select 'Unknown' unless a specific regimen is assessed. Very low placebo doses do not count as one application."
+        "Task_description": "The task is to classify which therapeutic regimen did the study use based on the title and abstract of a research paper. Only annotate groups actually receiving the substance (not healthy controls). If 'Microdosing' is selected, do not also select 'Multiple Applications'. Apply per substance (i.e. once DMT and once ketamine in the same study is single dose). For systematic reviews, select 'Unknown' unless a specific regimen is assessed. Very low placebo doses do not count as one application.",
+        "Shots": [1441, 692, 8052, 3192, 5154, 5901]
     },
     "Setting": {
         "Options": {
@@ -173,7 +185,8 @@
             "Palliative Setting": "I.e. end of life."
         },
         "Is_multilabel": true,
-        "Task_description": "The task is to classify the setting in which the psychedelic substance is applied based on the title and abstract of a research paper. Select 'Clinical' if no particular setting is mentioned and the study has likely been conducted in a clinical setting. Select 'Unknown' only if it is unclear from the context in which setting the substance was applied."
+        "Task_description": "The task is to classify the setting in which the psychedelic substance is applied based on the title and abstract of a research paper. Select 'Clinical' if no particular setting is mentioned and the study has likely been conducted in a clinical setting. Select 'Unknown' only if it is unclear from the context in which setting the substance was applied.",
+        "Shots": [9084, 8810, 4916, 763, 8100, 1990]
     },
     "Substance Naivety": {
         "Options": {
@@ -183,7 +196,8 @@
             "Not applicable": "E.g., for systematic reviews."
         },
         "Is_multilabel": true,
-        "Task_description": "The task is to classify whether the study participants (including controls) are naive to psychedelic substances based on the title and abstract of a research paper. A study could involve both naive and experienced users. Non-naive refers to any prior psychedelic use."
+        "Task_description": "The task is to classify whether the study participants (including controls) are naive to psychedelic substances based on the title and abstract of a research paper. A study could involve both naive and experienced users. Non-naive refers to any prior psychedelic use.",
+        "Shots": [4653, 1554, 2539, 4530, 5812, 5738]
     },
     "Substances": {
         "Options": {
@@ -205,7 +219,8 @@
             "Unknown": "E.g., when just mentioning psychedelics without further specification."
         },
         "Is_multilabel": true,
-        "Task_description": "The task is to classify the psychedelic substance(s) studied based on the title and abstract of a research paper. If examples for psychedelics are provided (e.g., such as psilocybin and lsd) but the study includes other non-reported substance, classify all substances mentioned plus 'Unknown'."
+        "Task_description": "The task is to classify the psychedelic substance(s) studied based on the title and abstract of a research paper. If examples for psychedelics are provided (e.g., such as psilocybin and lsd) but the study includes other non-reported substance, classify all substances mentioned plus 'Unknown'.",
+        "Shots": [8836, 8221, 6035, 166, 4152, 2482, 4424]
     },
     "Sex of Participants": {
         "Options": {
@@ -216,7 +231,8 @@
             "Unknown": "Neither the number of participants nor their sex is reported."
         },
         "Is_multilabel": false,
-        "Task_description": "The task is to classify the sex of the participants studies based on the title and abstract of a research paper. If pregnant women are the study participants, select 'Both sexes' if > 5 pregnant women. In case a systematic review specifies the sex of included subjects and/or the number > 5, select the respective option."
+        "Task_description": "The task is to classify the sex of the participants studies based on the title and abstract of a research paper. If pregnant women are the study participants, select 'Both sexes' if > 5 pregnant women. In case a systematic review specifies the sex of included subjects and/or the number > 5, select the respective option.",
+        "Shots": []
     },
     "Study Conclusion": {
         "Options": {
@@ -228,7 +244,8 @@
             "Not Applicable": "E.g., for a study assessing fMRI changes of lsd or for a study protocol."
         },
         "Is_multilabel": false,
-        "Task_description": "The task is to classify the overarching finding of the study based on the title and abstract of a research paper. Only applies to studies testing a therapeutic impact of psychedelic substances on medical conditions (e.g., psychiatric conditions, headache). The information is mostly found in the last 2-3 sentences of the abstract."
+        "Task_description": "The task is to classify the overarching finding of the study based on the title and abstract of a research paper. Only applies to studies testing a therapeutic impact of psychedelic substances on medical conditions (e.g., psychiatric conditions, headache). The information is mostly found in the last 2-3 sentences of the abstract.",
+        "Shots": []
     },
     "Relevant": {
         "Options": {
@@ -236,6 +253,7 @@
             "relevant": ""
         },
         "Is_multilabel": false,
-        "Task_description": "The task is to classify whether the following study is relevant based on the title and abstract of a research paper. A study is relevant if it reports on the use of psychedelic substances in humans, including healthy volunteers (recreational users) or individuals with medical conditions. A study is irrelevant if it investigates non-classical psychedelics (e.g., THC, CBD, cocaine, heroin), consists of animal-only studies or non-systematic reviews (comments, editorials), is a corrigendum, or focuses solely on operative pain/anesthesia with ketamine (unless it also assesses outcomes such as postoperative depression)."
+        "Task_description": "The task is to classify whether the following study is relevant based on the title and abstract of a research paper. A study is relevant if it reports on the use of psychedelic substances in humans, including healthy volunteers (recreational users) or individuals with medical conditions. A study is irrelevant if it investigates non-classical psychedelics (e.g., THC, CBD, cocaine, heroin), consists of animal-only studies or non-systematic reviews (comments, editorials), is a corrigendum, or focuses solely on operative pain/anesthesia with ketamine (unless it also assesses outcomes such as postoperative depression).",
+        "Shots": []
     }
 }
