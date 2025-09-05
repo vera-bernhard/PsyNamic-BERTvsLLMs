@@ -228,13 +228,14 @@ class LlamaModel():
             ]
             self.max_new_tokens = max(max_tokens_per_prompt)
             print(f"Max new tokens for NER batch: {self.max_new_tokens}")
-
+        
         # Tokenize all prompts together (padding to max length in batch)
         inputs = self.tokenizer(
             prompts_with_template,
             return_tensors="pt",
             padding=True,
             truncation=True,
+            max_length=self.model.config.max_position_embeddings,
             padding_side="left",
         ).to(self.device)
 
