@@ -58,7 +58,7 @@ system_role_ner = "You are a helpful medical expert who is helping to extract na
 
 user_prompt_ner = '''###Task
 
-Your task is to generate an HTML version of an input text, marking up specific entities. The entities to be identified are: {ENTITIES}. Use HTML <span> tags to highlight these entities. Each <span> should have a class attribute indicating the type of entity. Return only the HTML output and wrap the entire annotated text in a single outer tag <div>...</div>. Do not include any additional text, explanations, or formatting outside of the outer <div> tag.
+Your task is to generate an HTML version of an input text, marking up specific entities. The entities to be identified are: {ENTITIES}. Use HTML <span> tags to highlight these entities. Each <span> should have a class attribute indicating the type of entity. Return only the HTML output. Do not include any additional text, explanations, or formatting before or after the HTML.
 
 ###Entity Markup Guide
 {ENTITY_MARKUP_GUIDE}
@@ -212,7 +212,7 @@ def markup_entities(tokens, text, labels):
         .replace("( ", "(")
     )
 
-    return f'<div>{marked_text}</div>'
+    return marked_text
 
 
 def build_ner_examples(id: str, nr: int = 3, few_shot_strategy: Literal['selected', 'random'] = 'selected', shots: list[int] = None):
