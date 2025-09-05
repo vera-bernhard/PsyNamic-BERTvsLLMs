@@ -131,6 +131,9 @@ class LlamaModel():
                     prompt, self.system_prompt)
             elif 'mellama' in self.model_name.lower():
                 prompt_with_template = prompt
+            elif 'med-llama' in self.model_name.lower():
+                # TODO: Unsure if this is the case, check hugginface forum
+                prompt_with_template = prompt
             else:
                 raise ValueError("Prompting not supported for this model.")
 
@@ -200,7 +203,7 @@ def make_class_predictions(
     limit: int = None,
     few_shot: int = 0,
     few_shot_strategy: Literal['selected', 'random'] = 'selected'
-):
+) -> None:
     if 'llama' in model_name.lower():
         model = LlamaModel(model_name=model_name,
                            system_prompt=system_role_class)
@@ -213,6 +216,18 @@ def make_class_predictions(
         else:
             outfile = f"zero_shot/{task_lower}/{task_lower}_{model_name.split('/')[-1]}_{date}.csv"
         os.makedirs(os.path.dirname(outfile), exist_ok=True)
+
+        skip_task = False
+        # if outfile already exists skip
+        outfile_without_date = '_'.join(outfile.rstrip('.csv').split('_')[:-1]).split('/')[-1]
+        for existing_file in os.listdir(os.path.dirname(outfile)):
+            if existing_file.startswith(outfile_without_date):
+                print(f"Found existing prediction with this model: {existing_file}. Skipping...")
+                skip_task = True
+                break
+
+        if skip_task:
+            continue
 
         print(f"Processing task: {task}")
         task_lower = task.lower().replace(' ', '_')
@@ -265,7 +280,7 @@ def make_ner_predictions(
     limit: int = None,
     few_shot: int = 0,
     few_shot_strategy: Literal['selected', 'random'] = 'selected'
-):
+) -> None:
     task = "ner_bio"
     file = os.path.join(os.path.dirname(__file__),
                         '..', 'data', task, 'test.csv')
@@ -275,10 +290,17 @@ def make_ner_predictions(
 
     date = datetime.today().strftime('%d-%m-%d')
     if few_shot > 0:
-        outfile = f"few_shot/ner/{task}_{few_shot}shot_{few_shot_strategy}_{model_name.split('/')[-1]}_{date}.csv"
+        outfile = f"few_shot/ner/ner_{few_shot}shot_{few_shot_strategy}_{model_name.split('/')[-1]}_{date}.csv"
     else:
-        outfile = f"zero_shot/ner/{task}_{model_name.split('/')[-1]}_{date}.csv"
+        outfile = f"zero_shot/ner/ner_{model_name.split('/')[-1]}_{date}.csv"
     os.makedirs(os.path.dirname(outfile), exist_ok=True)
+
+    # Skip prediction if a prediction file from another date already exists
+    outfile_without_date = '_'.join(outfile.rstrip('.csv').split('_')[:-1]).split('/')[-1]
+    for existing_file in os.listdir(os.path.dirname(outfile)):
+        if existing_file.startswith(outfile_without_date):
+            print(f"Found existing prediction with this model: {existing_file}. Skipping...")
+            return
 
     if 'llama' in model_name.lower():
         model = LlamaModel(model_name=model_name,
@@ -637,33 +659,29 @@ def add_tokens_nertags(bioner_path: str):
 
 def main():
 
-    models = [
+    uzh_models = [
         # "/scratch/vebern/models/Llama-2-13-chat-hf",
         # "/scratch/vebern/models/Llama-2-70-chat-hf",
         # "/data/vebern/ma-models/MeLLaMA-13B-chat",
         # "/data/vebern/ma-models/MeLLaMA-70B-chat",
+    ]
+    models = [
         # "gpt-4o-mini"
         'meta-llama/Llama-2-13b-chat-hf',
         '/storage/homefs/vb25l522/me-llama/MeLLaMA-13B-chat',
-        'meta-llama/Llama-2-70b-chat-hf',
-        '/storage/homefs/vb25l522/me-llama/MeLLaMA-70B-chat',
-        # "YBXL/Med-LLaMA3-8B"
+        # 'meta-llama/Llama-2-70b-chat-hf',
+        #'/storage/homefs/vb25l522/me-llama/MeLLaMA-70B-chat',
+        'meta-llama/Meta-Llama-3-8B-Instruct',
+        'YBXL/Med-LLaMA3-8B',
+        "meta-llama/Llama-3.1-8B-Instruct"
     ]
 
     # Zero-Shot: Classification
-    # for model_name in models:
-    #     if model_name == 'meta-llama/Llama-2-13b-chat-hf':
-    #         make_class_predictions(tasks=TASKS[8:-1], model_name=model_name, few_shot=0)
-    #     elif model_name == '/storage/homefs/vb25l522/me-llama/MeLLaMA-13B-chat':
-    #         make_class_predictions(tasks=TASKS[:-1], model_name=model_name, few_shot=0)
-    #     else:
-    #         make_class_predictions(tasks=TASKS, model_name=model_name, few_shot=0)
+    for model_name in models:
+        make_class_predictions(tasks=TASKS, model_name=model_name, few_shot=0)
+        make_ner_predictions(model_name=model_name, few_shot=0)
 
-    # Zero-Shot: NER
-    # for model_name in models:
-    #     outfile_ner = f"zero_shot/ner_{model_name.split('/')[-1]}_{date}.csv"
-    #     make_ner_predictions(model_name, outfile_ner)
-
+        
     # Few-Shot: Classification & NER
     for i in [1, 3, 5]:
         for model_name in models:
@@ -673,12 +691,6 @@ def main():
             make_ner_predictions(
                 model_name=model_name, few_shot=i, few_shot_strategy='selected')
 
-    # for file in os.listdir('zero_shot/ner'):
-    #     if not file.endswith('.csv'):
-    #         continue
-    #     print(f"Processing file: {file}")
-    #     file_path = os.path.join('zero_shot/ner', file)
-    #     add_tokens_nertags(file_path)
 
 
 if __name__ == "__main__":
