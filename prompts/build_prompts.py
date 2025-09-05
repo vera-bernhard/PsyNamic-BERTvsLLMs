@@ -40,7 +40,7 @@ There are {NUMBER_OF_TASKS} {TASK} options. The followings are the options and t
 
 ***OUTPUT***
 
-The output should be in a json format, with relevant value for each option: {VALUES}
+The output must be exactly one JSON object, and nothing else. Do not include reasoning, the input or multiple JSONs. The JSON should have relevant values for each option: {VALUES}
 
 Put value 1 if the option applies to the research paper, 0 if it does not apply.
 
@@ -58,7 +58,7 @@ system_role_ner = "You are a helpful medical expert who is helping to extract na
 
 user_prompt_ner = '''###Task
 
-Your task is to generate an HTML version of an input text, marking up specific entities. The entities to be identified are: {ENTITIES}. Use HTML <span> tags to highlight these entities. Each <span> should have a class attribute indicating the type of entity.
+Your task is to generate an HTML version of an input text, marking up specific entities. The entities to be identified are: {ENTITIES}. Use HTML <span> tags to highlight these entities. Each <span> should have a class attribute indicating the type of entity. Return only the HTML output and wrap the entire annotated text in a single outer tag <div>...</div>. Do not include any additional text, explanations, or formatting outside of the outer <div> tag.
 
 ###Entity Markup Guide
 {ENTITY_MARKUP_GUIDE}
@@ -212,7 +212,7 @@ def markup_entities(tokens, text, labels):
         .replace("( ", "(")
     )
 
-    return marked_text
+    return f'<div>{marked_text}</div>'
 
 
 def build_ner_examples(id: str, nr: int = 3, few_shot_strategy: Literal['selected', 'random'] = 'selected', shots: list[int] = None):
@@ -256,6 +256,7 @@ def build_ner_examples(id: str, nr: int = 3, few_shot_strategy: Literal['selecte
         output += markup_entities(tokens, text, labels)
         output += '\n\n'
 
+    output += '###FINAL INPUT TO ANNOTATE\n'
     return output
 
 
@@ -319,7 +320,7 @@ def build_class_examples(id: str, task: str, task_options: dict = None, few_shot
 
         output += '\n\n'
 
-    output = output.strip()  # Remove trailing whitespace
+    output += '***FINAL INPUT TO CLASSIFY***\n'
     return output
 
 
