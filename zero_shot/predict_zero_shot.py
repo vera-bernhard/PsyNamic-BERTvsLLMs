@@ -67,15 +67,15 @@ login(access_token)
 nlp = spacy.load("en_core_web_sm")
 SEED = 42
 
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+
 
 class LlamaModel():
-    def __init__(self, model_name: str, use_gpu: bool = True, is_ner: bool = False, system_prompt: str = ''):
+    def __init__(self, model_name: str, use_gpu: bool = True, system_prompt: str = ''):
         self.model_name = model_name
         self.use_gpu = use_gpu
         self.model_name_short = model_name.split('/')[-1]
-        self.is_ner = is_ner
         self.system_prompt = system_prompt
-
         if self.use_gpu:
             self.device_map = "auto"
             self.torch_dtype = torch.float16
@@ -136,6 +136,29 @@ class LlamaModel():
 
         return prompt_with_template
 
+    def set_task(self, task: str):
+        self.task = task
+        if not 'ner' in task.lower():
+            prompt_dir = os.path.join(SCRIPT_DIR, '..', 'prompts')
+            file_path = os.path.join(
+                prompt_dir, 'classification_description.json')
+
+            with open(file_path, 'r', encoding='utf-8') as f:
+                task_descriptions = json.load(f)
+                output_format = json.dumps(
+                    {key: 0 for key in task_descriptions[task]['Options'].keys(
+                    )},
+                    indent=4
+                )
+                # check how many tokens the output format has
+                output_format_tokens = self.tokenizer(
+                    output_format, return_tensors="pt").input_ids.shape[1]
+                print(f"Output format has {output_format_tokens} tokens.")
+                self.max_new_tokens = output_format_tokens + 50
+
+        else:
+            self.max_new_tokens = None
+
     def predict(self, prompt_with_template: str, temperature: float = 0, do_sample: bool = False, top_p: float = 1.0) -> str:
         # Set seed for reproducibility
         torch.manual_seed(SEED)
@@ -145,9 +168,15 @@ class LlamaModel():
         inputs = self.tokenizer(prompt_with_template, return_tensors="pt")
         inputs = {k: v.to(self.device) for k, v in inputs.items()}
 
+        if 'ner' in self.task.lower():
+            input_text = prompt_with_template.split('INPUT:')[-1]
+            # remove OUPUT: and newlines
+            input_text = input_text.rstrip().rstrip('OUTPUT:').strip()
+            self.max_new_tokens = len(input_text.split()) * 2
+
         generation_kwargs = {
             # allow twice as many tokens as in the prompt --> to not cut off NER predictions
-            "max_new_tokens": len(prompt_with_template.split()) * 2,
+            "max_new_tokens": self.max_new_tokens,
             "do_sample": do_sample,
             "eos_token_id": self.tokenizer.eos_token_id,
             "pad_token_id": self.tokenizer.pad_token_id,
@@ -174,6 +203,67 @@ class LlamaModel():
 
         return output_text
 
+    def batch_predict(
+        self,
+        prompts_with_template: list[str],
+        temperature: float = 0,
+        do_sample: bool = False,
+        top_p: float = 1.0,
+    ) -> list[str]:
+        # Set seed for reproducibility
+        torch.manual_seed(SEED)
+        if torch.cuda.is_available():
+            torch.cuda.manual_seed_all(SEED)
+
+        if 'ner' in self.task.lower():
+            max_tokens_per_prompt = [
+                len(p.split('INPUT:')
+                    [-1].rstrip().rstrip('OUTPUT:').strip().split()) * 2
+                for p in prompts_with_template
+            ]
+            # take the max to avoid truncating any prompt
+        self.max_new_tokens = max(max_tokens_per_prompt)
+
+        # Tokenize all prompts together (padding to max length in batch)
+        inputs = self.tokenizer(
+            prompts_with_template,
+            return_tensors="pt",
+            padding=True,
+            truncation=True,
+        ).to(self.device)
+
+        generation_kwargs = {
+            "max_new_tokens": self.max_new_tokens,
+            "do_sample": do_sample,
+            "eos_token_id": self.tokenizer.eos_token_id,
+            "pad_token_id": self.tokenizer.pad_token_id,
+            "top_p": top_p,
+            "temperature": None,
+        }
+
+        if do_sample:
+            generation_kwargs["temperature"] = temperature
+            generator = torch.Generator(device=self.device).manual_seed(SEED)
+            generation_kwargs["generator"] = generator
+
+        with torch.no_grad():
+            generation_output = self.model.generate(
+                **inputs,
+                **generation_kwargs
+            )
+
+        # Decode outputs, skipping padding/prompt tokens
+        results = []
+        for i, generated in enumerate(generation_output):
+            # slice off the input part to only keep new tokens
+            gen_text = self.tokenizer.decode(
+                generated[inputs["input_ids"].shape[1]:],
+                skip_special_tokens=True
+            )
+            results.append(gen_text.strip())
+
+        return results
+
 
 def gpt_prediction(prompt: str, model: str = "gpt-4o-mini", system_role: str = '') -> tuple[str, str]:
     try:
@@ -195,19 +285,23 @@ def gpt_prediction(prompt: str, model: str = "gpt-4o-mini", system_role: str = '
 
 
 def make_class_predictions(
-    tasks: str,
-    model_name: str,
-    limit: int = None,
-    few_shot: int = 0,
-    few_shot_strategy: Literal['selected', 'random'] = 'selected'
-):
+        tasks: list[str],
+        model_name: str,
+        limit: int = None,
+        few_shot: int = 0,
+        few_shot_strategy: Literal['selected', 'random'] = 'selected',
+        batch_size: int = 8
+    ):
     if 'llama' in model_name.lower():
         model = LlamaModel(model_name=model_name,
                            system_prompt=system_role_class)
+    else:
+        model = None
 
     for task in tasks:
         task_lower = task.lower().replace(' ', '_')
         date = datetime.today().strftime('%d-%m-%d')
+
         if few_shot > 0:
             outfile = f"few_shot/{task_lower}/{task_lower}_{few_shot}shot_{few_shot_strategy}_{model_name.split('/')[-1]}_{date}.csv"
         else:
@@ -215,7 +309,6 @@ def make_class_predictions(
         os.makedirs(os.path.dirname(outfile), exist_ok=True)
 
         print(f"Processing task: {task}")
-        task_lower = task.lower().replace(' ', '_')
         file = os.path.join(os.path.dirname(__file__), '..',
                             'data', task_lower, 'test.csv')
 
@@ -231,30 +324,51 @@ def make_class_predictions(
         predictions = []
         model_specs = []
 
-        for _, row in tqdm(df.iterrows(), total=len(df), desc=f"Predicting {task}"):
+        # Build all prompts first
+        built_prompts = []
+        for _, row in df.iterrows():
             prompt = build_class_prompt(
-                row['id'], task, row['text'], few_shot=few_shot, few_shot_strategy=few_shot_strategy)
-            # Llama chat
+                row['id'], task, row['text'], few_shot=few_shot, few_shot_strategy=few_shot_strategy
+            )
             if 'llama' in model_name.lower():
-                prompt = model.build_prompt(prompt)
-                model_spec = model.model_name_short
-                prediction = model.predict(
-                    prompt, temperature=0, do_sample=False)
+                model.set_task(task)
+                built_prompts.append(model.build_prompt(prompt))
+            else:
+                built_prompts.append(prompt)
 
-            elif 'gpt' in model_name:
+        # Predict in batches
+        if 'llama' in model_name.lower():
+            model_spec = model.model_name_short
+
+            for i in tqdm(range(0, len(built_prompts), batch_size), desc=f"Predicting {task}"):
+                batch = built_prompts[i:i + batch_size]
+                if batch_size == 1:
+                    prediction = model.predict(
+                        batch[0], temperature=0, do_sample=False)
+                    preds = [prediction]
+                else:
+                    preds = model.batch_predict(
+                        batch, temperature=0, do_sample=False)
+                prompts.extend(batch)
+                predictions.extend(preds)
+                model_specs.extend([model_spec] * len(batch))
+
+        elif 'gpt' in model_name:
+            for prompt in tqdm(built_prompts, desc=f"Predicting {task}"):
                 prediction, model_spec = gpt_prediction(
-                    prompt, model=model_name, system_role=system_role_class)
+                    prompt, model=model_name, system_role=system_role_class
+                )
+                prompts.append(prompt)
+                predictions.append(prediction)
+                model_specs.append(model_spec)
 
-            prompts.append(prompt)
-            predictions.append(prediction)
-            model_specs.append(model_spec)
-
+        # attach predictions back to df
         df['prompt'] = prompts
         df['prediction_text'] = predictions
         df['model'] = model_specs
 
-        df_out = df[['id', 'text', 'prompt', 'prediction_text',
-                    'model', 'labels']]
+        df_out = df[['id', 'text', 'prompt',
+                     'prediction_text', 'model', 'labels']]
         print(f"Saving predictions to {outfile}")
         os.makedirs(os.path.dirname(outfile), exist_ok=True)
         df_out.to_csv(outfile, index=False, encoding='utf-8')
@@ -264,7 +378,8 @@ def make_ner_predictions(
     model_name: str,
     limit: int = None,
     few_shot: int = 0,
-    few_shot_strategy: Literal['selected', 'random'] = 'selected'
+    few_shot_strategy: Literal['selected', 'random'] = 'selected',
+    batch_size: int = 8
 ):
     task = "ner_bio"
     file = os.path.join(os.path.dirname(__file__),
@@ -282,7 +397,8 @@ def make_ner_predictions(
 
     if 'llama' in model_name.lower():
         model = LlamaModel(model_name=model_name,
-                           system_prompt=system_role_ner, is_ner=True)
+                           system_prompt=system_role_ner)
+        model.set_task(task)
 
     df = pd.read_csv(file)
     if limit is not None:
@@ -292,32 +408,47 @@ def make_ner_predictions(
     predictions = []
     model_specs = []
 
-    for _, row in tqdm(df.iterrows(), total=len(df), desc="Predicting (NER)"):
+    # Build all prompts first
+    built_prompts = []
+    for _, row in df.iterrows():
         prompt = build_ner_prompt(
             row['id'], row['text'], few_shot=few_shot, few_shot_strategy=few_shot_strategy)
-
         if 'llama' in model_name.lower():
-            model_spec = model.model_name_short
-            prompt = model.build_prompt(prompt)
-            prediction = model.predict(prompt, temperature=0, do_sample=False)
+            built_prompts.append(model.build_prompt(prompt))
+        else:
+            built_prompts.append(prompt)
 
-        elif 'gpt' in model_name:
+    if 'llama' in model_name.lower():
+        model_spec = model.model_name_short
+        for i in tqdm(range(0, len(built_prompts), batch_size), desc="Predicting (NER)"):
+            batch = built_prompts[i:i + batch_size]
+            if batch_size == 1:
+                prediction = model.predict(
+                    batch[0], temperature=0, do_sample=False)
+                preds = [prediction]
+            else:
+                preds = model.batch_predict(
+                    batch, temperature=0, do_sample=False)
+            prompts.extend(batch)
+            predictions.extend(preds)
+            model_specs.extend([model_spec] * len(batch))
+
+    elif 'gpt' in model_name:
+        for prompt in tqdm(built_prompts, desc="Predicting (NER)"):
             prediction, model_spec = gpt_prediction(
                 prompt, model=model_name, system_role=system_role_ner)
+            prompts.append(prompt)
+            predictions.append(prediction)
+            model_specs.append(model_spec)
 
-        else:
-            raise ValueError(f"Unsupported model type: {model_name}")
-
-        prompts.append(prompt)
-        predictions.append(prediction)
-        model_specs.append(model_spec)
+    else:
+        raise ValueError(f"Unsupported model type: {model_name}")
 
     df['prompt'] = prompts
     df['prediction_text'] = predictions
     df['model'] = model_specs
 
     df_out = df[['id', 'text', 'prompt', 'prediction_text', 'model', 'tokens']]
-    # make sure the output directory exists
     os.makedirs(os.path.dirname(outfile), exist_ok=True)
     df_out.to_csv(outfile, index=False, encoding='utf-8')
 
@@ -651,13 +782,15 @@ def main():
     ]
 
     # Zero-Shot: Classification
-    # for model_name in models:
-    #     if model_name == 'meta-llama/Llama-2-13b-chat-hf':
-    #         make_class_predictions(tasks=TASKS[8:-1], model_name=model_name, few_shot=0)
-    #     elif model_name == '/storage/homefs/vb25l522/me-llama/MeLLaMA-13B-chat':
-    #         make_class_predictions(tasks=TASKS[:-1], model_name=model_name, few_shot=0)
-    #     else:
-    #         make_class_predictions(tasks=TASKS, model_name=model_name, few_shot=0)
+    for model_name in models:
+        if '70b' in model_name.lower():
+            batch_size = 1
+        else:
+            batch_size = 8
+        make_class_predictions(
+            tasks=TASKS, model_name=model_name, batch_size=batch_size, limit=8)
+        make_ner_predictions(model_name=model_name,
+                             batch_size=batch_size, limit=8)
 
     # Zero-Shot: NER
     # for model_name in models:
@@ -665,13 +798,13 @@ def main():
     #     make_ner_predictions(model_name, outfile_ner)
 
     # Few-Shot: Classification & NER
-    for i in [1, 3, 5]:
-        for model_name in models:
-            make_class_predictions(
-                tasks=TASKS, model_name=model_name, few_shot=i, few_shot_strategy='selected')
+    # for i in [1, 3, 5]:
+    #     for model_name in models:
+    #         make_class_predictions(
+    #             tasks=TASKS, model_name=model_name, few_shot=i, few_shot_strategy='selected')
 
-            make_ner_predictions(
-                model_name=model_name, few_shot=i, few_shot_strategy='selected')
+    #         make_ner_predictions(
+    #             model_name=model_name, few_shot=i, few_shot_strategy='selected')
 
     # for file in os.listdir('zero_shot/ner'):
     #     if not file.endswith('.csv'):
