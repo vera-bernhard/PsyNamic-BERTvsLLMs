@@ -232,7 +232,6 @@ def build_ner_examples(id: str, nr: int = 3, few_shot_strategy: Literal['selecte
         if id in shots:
             # remove id from shots
             shots.remove(id)
-            breakpoint()
         ids = shots[:nr]
         
     elif few_shot_strategy == 'random':
