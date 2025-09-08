@@ -814,18 +814,19 @@ def main():
     ]
 
     # Zero-Shot: Classification
-    for model_name in models:
-        make_class_predictions(
-            tasks=TASKS, model_name=model_name, batch_size=8, few_shot=0, skip_with_other_date=False)
-        make_ner_predictions(model_name=model_name,
-                             batch_size=8, few_shot=0, skip_with_other_date=False)
+    # for model_name in models:
+    #     make_class_predictions(
+    #         tasks=TASKS, model_name=model_name, batch_size=8, few_shot=0, skip_with_other_date=False)
+    #     make_ner_predictions(model_name=model_name,
+    #                          batch_size=8, few_shot=0, skip_with_other_date=False)
 
         
     # Few-Shot: Classification & NER
     for i in [1, 3, 5]:
         for model_name in models:
-            make_class_predictions(
-                tasks=TASKS, model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=False)
+            if i!=1:
+                make_class_predictions(
+                    tasks=TASKS, model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=False)
 
             make_ner_predictions(
                 model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=False)
