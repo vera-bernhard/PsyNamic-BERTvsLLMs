@@ -1,6 +1,6 @@
 import unittest
-from zero_shot.predict_zero_shot import parse_class_prediction, get_label2int, parse_ner_prediction
-
+from zero_shot.predict_zero_shot import parse_class_prediction, parse_ner_prediction
+from prompts.build_prompts import get_label2int
 
 class TestPredictZeroShot(unittest.TestCase):
 

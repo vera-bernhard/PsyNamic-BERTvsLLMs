@@ -36,6 +36,7 @@ from prompts.build_prompts import (
     system_role_ner,
     build_ner_prompt,
     build_llama2_prompt,
+    get_label2int
 )
 
 logging.set_verbosity_info()
@@ -228,7 +229,7 @@ class LlamaModel():
             ]
             self.max_new_tokens = max(max_tokens_per_prompt)
             print(f"Max new tokens for NER batch: {self.max_new_tokens}")
-        
+
         # Tokenize all prompts together (padding to max length in batch)
         inputs = self.tokenizer(
             prompts_with_template,
@@ -317,12 +318,14 @@ def make_class_predictions(
         os.makedirs(os.path.dirname(outfile), exist_ok=True)
 
         if skip_with_other_date:
-            outfile_without_date = '_'.join(outfile.rstrip('.csv').split('_')[:-1]).split('/')[-1]
+            outfile_without_date = '_'.join(outfile.rstrip(
+                '.csv').split('_')[:-1]).split('/')[-1]
             skip_task = False
             # if outfile already exists skip
             for existing_file in os.listdir(os.path.dirname(outfile)):
                 if existing_file.startswith(outfile_without_date):
-                    print(f"Found existing prediction with this model: {existing_file}. Skipping...")
+                    print(
+                        f"Found existing prediction with this model: {existing_file}. Skipping...")
                     skip_task = True
                     break
 
@@ -419,10 +422,12 @@ def make_ner_predictions(
 
     # Skip prediction if a prediction file from another date already exists
     if skip_with_other_date:
-        outfile_without_date = '_'.join(outfile.rstrip('.csv').split('_')[:-1]).split('/')[-1]
+        outfile_without_date = '_'.join(outfile.rstrip(
+            '.csv').split('_')[:-1]).split('/')[-1]
         for existing_file in os.listdir(os.path.dirname(outfile)):
             if existing_file.startswith(outfile_without_date):
-                print(f"Found existing prediction with this model: {existing_file}. Skipping...")
+                print(
+                    f"Found existing prediction with this model: {existing_file}. Skipping...")
                 return
 
     if 'llama' in model_name.lower():
@@ -766,20 +771,7 @@ def clean_token(token: str) -> str:
     return token
 
 
-def get_label2int(task: str) -> dict:
-    task_lower = task.lower().replace(' ', '_')
-    file = os.path.join(os.path.dirname(__file__), '..',
-                        'data', task_lower, 'meta.json')
 
-    if not os.path.exists(file):
-        raise FileNotFoundError(
-            f"The file {file} does not exist. Check the task name.")
-
-    with open(file, 'r', encoding='utf-8') as f:
-        meta = json.load(f)
-    int2label = meta.get('Int_to_label', {})
-    label2int = {v: int(k) for k, v in int2label.items()}
-    return label2int
 
 
 def add_tokens_nertags(bioner_path: str):
@@ -805,54 +797,52 @@ def main():
         # "/data/vebern/ma-models/MeLLaMA-70B-chat",
     ]
     models = [
-        # "gpt-4o-mini"
-        'meta-llama/Llama-2-13b-chat-hf',
-        '/storage/homefs/vb25l522/me-llama/MeLLaMA-13B-chat',
-        'meta-llama/Meta-Llama-3-8B-Instruct',
-        'YBXL/Med-LLaMA3-8B',
-        "meta-llama/Llama-3.1-8B-Instruct",
-    ]
-
-    # Zero-Shot: Classification
-    # for model_name in models:
-    #     make_class_predictions(
-    #         tasks=TASKS, model_name=model_name, batch_size=8, few_shot=0, skip_with_other_date=False)
-    #     make_ner_predictions(model_name=model_name,
-    #                          batch_size=8, few_shot=0, skip_with_other_date=False)
-
-        
-    # Few-Shot: Classification & NER
-    for i in [1, 3, 5]:
-        for model_name in models:
-            if i!=1:
-                make_class_predictions(
-                    tasks=TASKS, model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=False)
-
-            make_ner_predictions(
-                model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=False)
-
-    models = [
-        'meta-llama/Llama-2-70b-chat-hf',
-        '/storage/homefs/vb25l522/me-llama/MeLLaMA-70B-chat',
+        "gpt-4o-mini",
+        "gpt-4o-2024-08-06",
+        # 'meta-llama/Llama-2-13b-chat-hf',
+        # '/storage/homefs/vb25l522/me-llama/MeLLaMA-13B-chat',
+        # 'meta-llama/Meta-Llama-3-8B-Instruct',
+        # 'YBXL/Med-LLaMA3-8B',
+        # "meta-llama/Llama-3.1-8B-Instruct",
     ]
 
     # Zero-Shot: Classification
     for model_name in models:
         make_class_predictions(
-            tasks=TASKS, model_name=model_name, batch_size=1, few_shot=0, skip_with_other_date=False)
+            tasks=TASKS, model_name=model_name, batch_size=8, few_shot=0, skip_with_other_date=True)
         make_ner_predictions(model_name=model_name,
-                             batch_size=1, few_shot=0, skip_with_other_date=False)
+                             batch_size=8, few_shot=0, skip_with_other_date=True)
 
-        
     # Few-Shot: Classification & NER
     for i in [1, 3, 5]:
         for model_name in models:
+
             make_class_predictions(
-                tasks=TASKS, model_name=model_name, batch_size=1, few_shot=i, few_shot_strategy='selected',  skip_with_other_date=False)
+                tasks=TASKS, model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
 
             make_ner_predictions(
-                model_name=model_name, batch_size=1, few_shot=i, few_shot_strategy='selected',  skip_with_other_date=False)
+                model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
 
+    # models = [
+    #     'meta-llama/Llama-2-70b-chat-hf',
+    #     '/storage/homefs/vb25l522/me-llama/MeLLaMA-70B-chat',
+    # ]
+
+    # # Zero-Shot: Classification
+    # for model_name in models:
+    #     make_class_predictions(
+    #         tasks=TASKS, model_name=model_name, batch_size=1, few_shot=0, skip_with_other_date=False)
+    #     make_ner_predictions(model_name=model_name,
+    #                          batch_size=1, few_shot=0, skip_with_other_date=False)
+
+    # # Few-Shot: Classification & NER
+    # for i in [1, 3, 5]:
+    #     for model_name in models:
+    #         make_class_predictions(
+    #             tasks=TASKS, model_name=model_name, batch_size=1, few_shot=i, few_shot_strategy='selected',  skip_with_other_date=False)
+
+    #         make_ner_predictions(
+    #             model_name=model_name, batch_size=1, few_shot=i, few_shot_strategy='selected',  skip_with_other_date=False)
 
 
 if __name__ == "__main__":
