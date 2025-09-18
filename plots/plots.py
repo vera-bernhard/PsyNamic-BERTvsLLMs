@@ -14,10 +14,10 @@ BERT_PRED = '/home/vera/Documents/Uni/Master/Master_Thesis2.0/PsyNamic-Scale/ber
 sns.set(style="whitegrid")
 
 
-def make_performance_plot(data: dict):
+def make_performance_plot(data: dict, save_path: str = None, metrics_col: str = 'metrics') -> None:
     rows = []
     for model, values in data.items():
-        metrics = values['metrics']
+        metrics = values[metrics_col]
         for metric, (mean, (ci_low, ci_high)) in metrics.items():
             rows.append({
                 'model': model,
@@ -85,7 +85,11 @@ def make_performance_plot(data: dict):
                bbox_to_anchor=(0.8, 0.9), title_fontsize="small")
 
     plt.subplots_adjust(right=0.8, bottom=0.2)
-    plt.show()
+    if save_path:
+        plt.savefig(save_path, bbox_inches='tight')
+        plt.close()
+    else:
+        plt.show()
 
 
 def plot_label_distribution(

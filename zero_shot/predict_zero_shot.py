@@ -488,7 +488,26 @@ def make_ner_predictions(
     df_out.to_csv(outfile, index=False, encoding='utf-8')
 
 
-def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> str:
+def is_one_hot(string: str, length: int) -> bool:
+    # Accept both comma-separated and space-separated one-hot encodings
+    if ',' in string:
+        parts = [x.strip() for x in string.split(",")]
+    else:
+        parts = [x.strip() for x in string.split()]
+    if len(parts) != length:
+        return False
+    for part in parts:
+        if part not in ['0', '1']:
+            return False
+    return True
+
+def is_first_line_one_hot(string: str, length: int) -> bool:
+    """Check if the first line of a string is a one-hot encoded list of given length."""
+    first_line = string.split('\n')[0].strip()
+    return is_one_hot(first_line, length)
+
+
+def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> tuple[str, bool]:
     """Parse the prediction text from various generative llms into a one-hot encoded list of labels.
 
     Hand-crafted for the following models:
@@ -504,14 +523,21 @@ def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> str:
 
     elif model.startswith('MeLLaMA'):
         parts = pred_text.split('OUTPUT:')
-        if len(parts) != 2:
-            raise ValueError(
-                f'Prediction text does not contain "OUTPUT:": {pred_text}')
+        # if len(parts) != 2:
+        #     breakpoint()
+        #     raise ValueError(
+        #         f'Prediction text does not contain "OUTPUT:": {pred_text}')
         pred_text = parts[-1].strip()
 
     elif model.startswith('gpt'):
         pred_text = pred_text.replace('\\n', '\n')
 
+    elif model.startswith('Med-LLaMA3'):
+        # remove INPUT and following text
+        parts = pred_text.split('INPUT:')
+        pred_text = parts[0].strip()
+
+    faulty_but_parsable = False
     if '{' in pred_text:
         # Case 1: There is a prediction in dictionary format
         start = pred_text.index('{')
@@ -520,15 +546,16 @@ def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> str:
         # Clean up the prediction dictionary so that is valid JSON
         prediction_dict = prediction_dict.replace('""', '"')
         prediction_dict = re.sub(r':\s*"\s*(?=[,}])', ': ""', prediction_dict)
-
         prediction_dict = json.loads(prediction_dict)
 
         # Check if there is empty predictions -> "" instead of 0 or 1
         if "" in prediction_dict.values():
+            faulty_but_parsable = True
             # Check if there is at leas one 1
             if not any(value == '1' for value in prediction_dict.values()):
                 print(f"Not parsable: {pred_text}")
-                return None
+                faulty_but_parsable = False
+                raise ValueError(f'Could not parse prediction: {pred_text}')
             else:
                 # replace empty predictions with 0
                 for key in prediction_dict.keys():
@@ -544,28 +571,49 @@ def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> str:
                     f'Label {label} not found in label2int mapping.')
             pos = label2int[label]
             onehot_list[pos] = int(value)
+        return str(onehot_list), faulty_but_parsable
 
     elif pred_text in label2int.keys():
+        faulty_but_parsable = True
         # Case 2: There is a prediction in string format, e.g. 'Randomized-controlled trial (RCT)'
         onehot_list = [0] * len(label2int)
         pos = label2int[pred_text]
         onehot_list[pos] = 1
-        return str(onehot_list)
+        return str(onehot_list), faulty_but_parsable
+
+    elif is_one_hot(pred_text, len(label2int)):
+        faulty_but_parsable = True
+        # Case 4: There is a prediction in one-hot format with valid length, e.g. '0, 1, 0, 0, 0, 0, 0, 0, 0'
+        if ',' in pred_text:
+            onehot_list = [int(x.strip()) for x in pred_text.split(",")]
+        else:
+            onehot_list = [int(x.strip()) for x in pred_text.split()]
+        return str(onehot_list), faulty_but_parsable
+
+    elif is_first_line_one_hot(pred_text, len(label2int)):
+        faulty_but_parsable = True
+        # Case 5: There is a prediction in one-hot format with valid length in the first line, e.g. '0, 1, 0, 0, 0, 0, 0, 0, 0\nSome explanation'
+        first_line = pred_text.split('\n')[0].strip()
+        if ',' in first_line:
+            onehot_list = [int(x.strip()) for x in first_line.split(",")]
+        else:
+            onehot_list = [int(x.strip()) for x in first_line.split()]
+        return str(onehot_list), faulty_but_parsable
 
     elif ':' in pred_text:
+        faulty_but_parsable = True
         # Case 3: There is a prediction in string format with a score, e.g. 'Randomized-controlled trial (RCT): 1
         onehot_list = [0] * len(label2int)
         label = pred_text.split(':')[0].strip()
         pos = label2int[label]
         onehot_list[pos] = 1
-        return str(onehot_list)
+        return str(onehot_list), faulty_but_parsable
+    
     else:
-        return None
-
-    return str(onehot_list)
+        raise ValueError(f'Could not parse prediction: {pred_text}')
 
 
-def parse_class_predictions(pred_file: str, task: str) -> None:
+def parse_class_predictions(pred_file: str, task: str) -> dict:
     """Parse the predictions from a file and add a new column with one-hot encoded labels."""
 
     label2int = get_label2int(task)
@@ -584,19 +632,27 @@ def parse_class_predictions(pred_file: str, task: str) -> None:
     model = os.path.basename(pred_file).split('_')[-2]
 
     # add new column 'pred_labels' containing the one-hot encoded labels
+    nr_non_parsable = 0
+    nr_faulty_parsable = 0
     for i, row in df.iterrows():
         try:
-            if i == 748:
-                pass
-            # write new column 'pred_labels' with parsed prediction
-            df.at[i, 'pred_labels'] = parse_class_prediction(
+            pred_labels, faulty_but_parsable = parse_class_prediction(
                 row['prediction_text'], label2int, model)
+            df.at[i, 'pred_labels'] = pred_labels
+            if faulty_but_parsable:
+                nr_faulty_parsable += 1
         except Exception as e:
             print(
                 f"Error parsing prediction for row with id {row['id']} : {e}")
+            nr_non_parsable += 1
             continue
 
     df.to_csv(pred_file, index=False, encoding='utf-8')
+    stats = {
+        'nr_faulty_parsable': 0,
+        'nr_non_parsable': nr_non_parsable,
+    }
+    return stats
 
 
 def parse_ner_prediction(pred: str, tokens: list[str], model: str) -> list[str]:
@@ -771,9 +827,6 @@ def clean_token(token: str) -> str:
     return token
 
 
-
-
-
 def add_tokens_nertags(bioner_path: str):
     test_path = '/home/vera/Documents/Uni/Master/Master_Thesis2.0/PsyNamic-Scale/data/ner_bio/test.csv'
     df_full = pd.read_csv(test_path)
@@ -807,21 +860,21 @@ def main():
     ]
 
     # Zero-Shot: Classification
-    for model_name in models:
-        make_class_predictions(
-            tasks=TASKS, model_name=model_name, batch_size=8, few_shot=0, skip_with_other_date=True)
-        make_ner_predictions(model_name=model_name,
-                             batch_size=8, few_shot=0, skip_with_other_date=True)
+    # for model_name in models:
+    #     make_class_predictions(
+    #         tasks=TASKS, model_name=model_name, batch_size=8, few_shot=0, skip_with_other_date=True)
+    #     make_ner_predictions(model_name=model_name,
+    #                          batch_size=8, few_shot=0, skip_with_other_date=True)
 
-    # Few-Shot: Classification & NER
-    for i in [1, 3, 5]:
-        for model_name in models:
+    # # Few-Shot: Classification & NER
+    # for i in [1, 3, 5]:
+    #     for model_name in models:
 
-            make_class_predictions(
-                tasks=TASKS, model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
+    #         make_class_predictions(
+    #             tasks=TASKS, model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
 
-            make_ner_predictions(
-                model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
+    #         make_ner_predictions(
+    #             model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
 
     # models = [
     #     'meta-llama/Llama-2-70b-chat-hf',
