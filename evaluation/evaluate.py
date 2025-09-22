@@ -11,6 +11,8 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, confusion_matrix
 from confidenceinterval.bootstrap import bootstrap_ci
+from joblib import Parallel, delayed
+
 
 # STRIDE-Lab
 def bootstrap(metric: callable, y_true: np.ndarray, y_pred: np.ndarray) -> tuple:
@@ -50,22 +52,26 @@ def custom_recall(true_labels: np.ndarray, pred_labels: np.ndarray):
 
 # STRIDE-Lab
 def get_metrics_ci(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
-    """Computes evaluation metrics with confidence intervals."""
-    print("Computing F1 score and confidence interval...")
-    f1_score, f1_ci = bootstrap(custom_f1, y_true, y_pred)
-    print("Computing accuracy and confidence interval...")
-    accuracy, acc_ci = bootstrap(custom_accuracy, y_true, y_pred)
-    print("Computing precision and confidence interval...")
-    precision, prec_ci = bootstrap(custom_precision, y_true, y_pred)
-    print("Computing recall and confidence interval...")
-    recall, recall_ci = bootstrap(custom_recall, y_true, y_pred)
+    """Computes evaluation metrics with confidence intervals in parallel."""
+    from joblib import Parallel, delayed
 
-    metric_dict = {
-        "f1-weighted": (f1_score, f1_ci),
-        "accuracy": (accuracy, acc_ci),
-        "precision": (precision, prec_ci),
-        "recall": (recall, recall_ci),
-    }
+    metric_funcs = [
+        ("f1-weighted", custom_f1),
+        ("accuracy", custom_accuracy),
+        ("precision", custom_precision),
+        ("recall", custom_recall),
+    ]
+
+    def run_bootstrap(name, func):
+        print(f"Computing {name} score and confidence interval...")
+        score, ci = bootstrap(func, y_true, y_pred)
+        return name, (score, ci)
+
+    results = Parallel(n_jobs=4)(
+        delayed(run_bootstrap)(name, func) for name, func in metric_funcs
+    )
+
+    metric_dict = dict(results)
     return metric_dict
 
 
@@ -96,11 +102,9 @@ def get_performance_report(col_tru: str, col_pred: str, df: pd.DataFrame) -> dic
 
     report = {
         "metrics": metrics,
-        #"confusion_matrix": conf_matrix.tolist(),
-        "nr_empty_tru": nr_empty_tru,
+        # "confusion_matrix": conf_matrix.tolist(),
+        # "nr_empty_tru": nr_empty_tru,
     }
 
     return report
-
-
 
