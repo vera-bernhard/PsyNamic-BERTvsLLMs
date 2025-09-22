@@ -1,0 +1,334 @@
+Parsing predictions in file few_shot/data_collection/data_collection_5shot_selected_MeLLaMA-13B-chat_08-09-08.csv for task Data Collection
+	Error parsing prediction for row with id 1939 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1787 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5628 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1316 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3719 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1874 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1286 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1871 : Could not parse prediction: 0
+	Error parsing prediction for row with id 497 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4579 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3480 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8711 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5317 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8087 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1683 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3649 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2929 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7370 : Could not parse prediction: 1
+	Error parsing prediction for row with id 892 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6679 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2031 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1351 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5688 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7945 : ', 177(1), 34‐41. 4. Dakwar E. et al. (2020). Ketamine augmentation of cognitive behavioral therapy for obsessive‐compulsive disorder'
+	Error parsing prediction for row with id 8470 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6085 : Could not parse prediction: 0
+	Error parsing prediction for row with id 176 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3632 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2301 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1770 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3340 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2490 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2408 : Could not parse prediction: trial is the primary outcome. The primary outcome of this trial is the change in score of the objectively‐rated 24‐item Hamilton Rating Scale for Depression (HRSD‐24). The HRSD‐24 is a validated instrument for measuring depression severity. The HRSD‐24 is a validated instrument for measuring depression severity. The HRSD‐2
+	Error parsing prediction for row with id 6234 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6214 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8945 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8345 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1647 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1829 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4971 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2396 : '003 given with psychological support to participants with TRD. Secondary Objectives'
+	Error parsing prediction for row with id 4826 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8101 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9452 : Could not parse prediction: 0
+Parsing predictions in file few_shot/data_collection/data_collection_1shot_selected_Llama-3.1-8B-Instruct_01-09-01.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv for task Data Collection
+	Error parsing prediction for row with id 719 : substring not found
+	Error parsing prediction for row with id 2419 : substring not found
+	Error parsing prediction for row with id 892 : substring not found
+	Error parsing prediction for row with id 2031 : substring not found
+	Error parsing prediction for row with id 7945 : substring not found
+	Error parsing prediction for row with id 3632 : substring not found
+	Error parsing prediction for row with id 2301 : substring not found
+	Error parsing prediction for row with id 4982 : substring not found
+	Error parsing prediction for row with id 2408 : substring not found
+Parsing predictions in file few_shot/data_collection/data_collection_1shot_selected_Med-LLaMA3-8B_01-09-01.csv for task Data Collection
+	Error parsing prediction for row with id 5628 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3492 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1286 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8029 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5812 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7083 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2408 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2913 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1647 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1829 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2396 : Could not parse prediction: 0.3 mg of BPL‐003; 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TRD; 0.3 mg, 8 mg, or 12 mg of BPL‐003 given with psychological support to participants with TR
+Parsing predictions in file few_shot/data_collection/data_collection_5shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_5shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Data Collection
+	Error parsing prediction for row with id 5628 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3492 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1316 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3719 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6200 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4848 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4292 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1286 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3592 : Could not parse prediction: 1
+	Error parsing prediction for row with id 497 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4579 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8711 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5317 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4165 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5901 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8087 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2861 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2419 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8029 : Could not parse prediction: 1
+	Error parsing prediction for row with id 814 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5139 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6292 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2929 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5047 : Could not parse prediction: 1
+	Error parsing prediction for row with id 892 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6679 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6173 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2117 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2031 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3635 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7970 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1351 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7588 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5688 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7077 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7945 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3597 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6160 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4988 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5556 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7083 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8470 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6085 : Could not parse prediction: 1
+	Error parsing prediction for row with id 793 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3631 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3632 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3662 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2301 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1770 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3340 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2490 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4982 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9419 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2408 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5525 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6021 : Could not parse prediction: 1
+	Error parsing prediction for row with id 394 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8945 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8868 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8345 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1647 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7210 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3175 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1829 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8870 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6855 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2396 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8101 : Could not parse prediction: 1
+Parsing predictions in file few_shot/data_collection/data_collection_1shot_selected_Llama-2-13b-chat-hf_06-09-06.csv for task Data Collection
+	Error parsing prediction for row with id 3631 : "Sure, I'd be happy to help! Based on the information provided in the input, I would classify the data collection method as follows"
+	Error parsing prediction for row with id 2396 : 'Based on the information provided, I would classify the study as follows'
+Parsing predictions in file few_shot/data_collection/data_collection_3shot_selected_gpt-4o-mini_09-09-09.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_1shot_selected_Meta-Llama-3-8B-Instruct_01-09-01.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_1shot_selected_MeLLaMA-13B-chat_31-08-31.csv for task Data Collection
+	Error parsing prediction for row with id 8810 : substring not found
+	Error parsing prediction for row with id 1874 : substring not found
+	Error parsing prediction for row with id 1871 : substring not found
+	Error parsing prediction for row with id 8711 : substring not found
+	Error parsing prediction for row with id 2117 : substring not found
+	Error parsing prediction for row with id 7083 : substring not found
+	Error parsing prediction for row with id 9419 : substring not found
+	Error parsing prediction for row with id 2408 : substring not found
+	Error parsing prediction for row with id 2396 : Could not parse prediction: 0
+Parsing predictions in file few_shot/data_collection/data_collection_3shot_selected_MeLLaMA-13B-chat_07-09-07.csv for task Data Collection
+	Error parsing prediction for row with id 1787 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4971 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2396 : Could not parse prediction: al administration of BPL‐003; 5. Change in MADRS compared to OLE and CORE baseline; 6. Percentage of responders (defined as 50% reduction in MADRS total score) compared to OLE and CORE baseline; 7. Percentage of participants in remission (defined as MADRS total score = 10) compared to OLE
+Parsing predictions in file few_shot/data_collection/data_collection_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv for task Data Collection
+	Error parsing prediction for row with id 1939 : substring not found
+	Error parsing prediction for row with id 1787 : substring not found
+	Error parsing prediction for row with id 5628 : substring not found
+	Error parsing prediction for row with id 3492 : substring not found
+	Error parsing prediction for row with id 1316 : substring not found
+	Error parsing prediction for row with id 3719 : substring not found
+	Error parsing prediction for row with id 8810 : substring not found
+	Error parsing prediction for row with id 1874 : substring not found
+	Error parsing prediction for row with id 6200 : substring not found
+	Error parsing prediction for row with id 4848 : substring not found
+	Error parsing prediction for row with id 4292 : substring not found
+	Error parsing prediction for row with id 1286 : substring not found
+	Error parsing prediction for row with id 1871 : substring not found
+	Error parsing prediction for row with id 3592 : substring not found
+	Error parsing prediction for row with id 497 : substring not found
+	Error parsing prediction for row with id 4579 : substring not found
+	Error parsing prediction for row with id 3480 : substring not found
+	Error parsing prediction for row with id 8711 : substring not found
+	Error parsing prediction for row with id 5317 : substring not found
+	Error parsing prediction for row with id 4165 : substring not found
+	Error parsing prediction for row with id 5901 : substring not found
+	Error parsing prediction for row with id 8087 : substring not found
+	Error parsing prediction for row with id 1683 : substring not found
+	Error parsing prediction for row with id 2419 : substring not found
+	Error parsing prediction for row with id 3649 : substring not found
+	Error parsing prediction for row with id 8029 : substring not found
+	Error parsing prediction for row with id 814 : substring not found
+	Error parsing prediction for row with id 5139 : substring not found
+	Error parsing prediction for row with id 6292 : substring not found
+	Error parsing prediction for row with id 2929 : substring not found
+	Error parsing prediction for row with id 9566 : substring not found
+	Error parsing prediction for row with id 5047 : substring not found
+	Error parsing prediction for row with id 7370 : substring not found
+	Error parsing prediction for row with id 892 : substring not found
+	Error parsing prediction for row with id 6679 : substring not found
+	Error parsing prediction for row with id 6173 : substring not found
+	Error parsing prediction for row with id 2117 : substring not found
+	Error parsing prediction for row with id 2031 : substring not found
+	Error parsing prediction for row with id 3635 : substring not found
+	Error parsing prediction for row with id 7970 : substring not found
+	Error parsing prediction for row with id 5812 : substring not found
+	Error parsing prediction for row with id 1351 : substring not found
+	Error parsing prediction for row with id 7588 : substring not found
+	Error parsing prediction for row with id 5688 : substring not found
+	Error parsing prediction for row with id 7077 : substring not found
+	Error parsing prediction for row with id 7945 : substring not found
+	Error parsing prediction for row with id 3147 : substring not found
+	Error parsing prediction for row with id 3597 : substring not found
+	Error parsing prediction for row with id 6160 : substring not found
+	Error parsing prediction for row with id 1631 : substring not found
+	Error parsing prediction for row with id 4988 : substring not found
+	Error parsing prediction for row with id 5556 : substring not found
+	Error parsing prediction for row with id 7083 : substring not found
+	Error parsing prediction for row with id 8470 : substring not found
+	Error parsing prediction for row with id 6085 : substring not found
+	Error parsing prediction for row with id 793 : substring not found
+	Error parsing prediction for row with id 953 : substring not found
+	Error parsing prediction for row with id 3533 : substring not found
+	Error parsing prediction for row with id 3631 : substring not found
+	Error parsing prediction for row with id 176 : substring not found
+	Error parsing prediction for row with id 3662 : substring not found
+	Error parsing prediction for row with id 2301 : substring not found
+	Error parsing prediction for row with id 1770 : substring not found
+	Error parsing prediction for row with id 3340 : substring not found
+	Error parsing prediction for row with id 2490 : substring not found
+	Error parsing prediction for row with id 4982 : substring not found
+	Error parsing prediction for row with id 9419 : substring not found
+	Error parsing prediction for row with id 1958 : substring not found
+	Error parsing prediction for row with id 5525 : substring not found
+	Error parsing prediction for row with id 8613 : substring not found
+	Error parsing prediction for row with id 6021 : substring not found
+	Error parsing prediction for row with id 394 : substring not found
+	Error parsing prediction for row with id 2913 : substring not found
+	Error parsing prediction for row with id 8868 : substring not found
+	Error parsing prediction for row with id 8345 : substring not found
+	Error parsing prediction for row with id 1647 : substring not found
+	Error parsing prediction for row with id 7210 : substring not found
+	Error parsing prediction for row with id 3175 : substring not found
+	Error parsing prediction for row with id 1829 : substring not found
+	Error parsing prediction for row with id 8870 : substring not found
+	Error parsing prediction for row with id 4971 : substring not found
+	Error parsing prediction for row with id 9340 : substring not found
+	Error parsing prediction for row with id 6855 : substring not found
+	Error parsing prediction for row with id 4826 : substring not found
+	Error parsing prediction for row with id 8101 : substring not found
+	Error parsing prediction for row with id 9452 : substring not found
+Parsing predictions in file few_shot/data_collection/data_collection_3shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Data Collection
+	Error parsing prediction for row with id 1787 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5628 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3492 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1316 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3719 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8810 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1874 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6200 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4292 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3592 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4579 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4165 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5901 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8087 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2861 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2419 : '1. Prospective'
+	Error parsing prediction for row with id 6292 : Could not parse prediction: 1
+	Error parsing prediction for row with id 892 : '1. Prospective'
+	Error parsing prediction for row with id 6679 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6173 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2031 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3635 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7970 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1351 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7588 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7945 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3597 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4988 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5556 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8470 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6085 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3631 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3632 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3662 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2301 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2490 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4982 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9419 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2408 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5525 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6021 : '1. Prospective'
+	Error parsing prediction for row with id 8945 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8868 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3175 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2396 : '1. Prospective'
+Parsing predictions in file few_shot/data_collection/data_collection_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Data Collection
+	Error parsing prediction for row with id 8810 : substring not found
+	Error parsing prediction for row with id 1871 : substring not found
+	Error parsing prediction for row with id 814 : substring not found
+	Error parsing prediction for row with id 7970 : substring not found
+	Error parsing prediction for row with id 5812 : substring not found
+	Error parsing prediction for row with id 3597 : substring not found
+	Error parsing prediction for row with id 176 : substring not found
+	Error parsing prediction for row with id 8613 : substring not found
+Parsing predictions in file few_shot/data_collection/data_collection_3shot_selected_Llama-2-13b-chat-hf_07-09-07.csv for task Data Collection
+	Error parsing prediction for row with id 2396 : Could not parse prediction: CORE baseline; 4. Change in QIDS‐SR‐16 score compared to OLE and CORE baseline; 5. Change in QLDS score compared to OLE and CORE baseline; 6. Change in SDS total score compared to OLE and CORE baseline; 7. Change in CGI‐S score compared to OLE and CORE baseline; 8.
+Parsing predictions in file few_shot/data_collection/data_collection_3shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_1shot_selected_gpt-4o-mini_09-09-09.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_5shot_selected_gpt-4o-mini_09-09-09.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_5shot_selected_Llama-2-13b-chat-hf_08-09-08.csv for task Data Collection
+	Error parsing prediction for row with id 5628 : Could not parse prediction: Based on the input, I classify the data collection method as prospective. The input describes a study that involves collecting data from participants during and after they use DMT, with the intention of analyzing the content of their experiences. The study design is prospective because it involves collecting data in real-time as the participants experience the drug, rather than relying on retrospective reports of past experiences. Therefore, the output should
+	Error parsing prediction for row with id 3480 : 'Sure! Here is the output for the given input'
+	Error parsing prediction for row with id 5317 : 'Sure! Here is the output for the given input'
+	Error parsing prediction for row with id 6268 : 'Based on the input provided, I would classify the study as follows'
+	Error parsing prediction for row with id 2419 : 'Based on the input provided, I would classify the study as follows'
+	Error parsing prediction for row with id 6173 : Could not parse prediction: Based on the input, I classify the data collection method as Retrospective. The study is a Phase 1, open-label, randomized sequence, multi-dose, 2-period crossover pharmacokinetic (PK) study assessing the effect of food on the relative bioavailability of MDMA. The study involves administering MDMA to healthy volunteers under controlled
+	Error parsing prediction for row with id 2117 : 'Sure! Here is the output for the given input'
+	Error parsing prediction for row with id 2031 : Could not parse prediction: Based on the input provided, I classify the data collection method as Retrospective. The study examines the effects of MDMA use on serotonin levels in the cerebral cortex of female users, and the participants are abstinent from MDMA use for at least 90 days. The study uses positron emission tomography with radioligand fluorine 18-labeled setoper
+	Error parsing prediction for row with id 1351 : Could not parse prediction: Based on the input provided, I would classify the data collection method as Retrospective. The study is analyzing the efficacy and safety of esketamine nasal spray in patients with treatment-resistant depression who completed a second induction period. The study is looking at the results of the patients who had previously relapsed after receiving esketamine and oral antidepressants, and are now receiving a
+	Error parsing prediction for row with id 7588 : 'Sure! Here is the output for the given input'
+	Error parsing prediction for row with id 5688 : Could not parse prediction: Based on the input, I would classify the data collection method as "Prospective." The study is a randomized, double-blind, placebo-controlled phase 3 clinical trial, which is a prospective design. The participants were randomly assigned to receive either MDMA-assisted therapy or a placebo, and the outcomes were measured at baseline and after treatment. This design allows for the evaluation
+	Error parsing prediction for row with id 7077 : 'Sure! Here is the output for the given input'
+	Error parsing prediction for row with id 7945 : 'with a brief behavioral intervention for treatment of depression in a real-world clinical setting'
+	Error parsing prediction for row with id 6160 : 'Based on the input, I classify the data collection method as follows'
+	Error parsing prediction for row with id 4988 : 'Sure! Here is the output for the given input'
+	Error parsing prediction for row with id 6085 : Could not parse prediction: Based on the input, I would classify the data collection method as Retrospective. The study is a randomized, double-blind, placebo-controlled trial, and the participants are receiving increasing doses of ibogaine. The study is evaluating the safety, tolerability, and efficacy of ibogaine in treating alcoholism, and the participants are being monitored for 12 months
+	Error parsing prediction for row with id 3632 : 'Based on the input provided, I would classify the study as follows'
+	Error parsing prediction for row with id 2490 : Could not parse prediction: Based on the input, I would classify the data collection method as Retrospective. The study describes the real-world effectiveness of repeated ketamine infusions for treatment-resistant bipolar depression, and the data is collected over a two-week period. The study is observational in nature, and the data is collected after the treatment has been administered, which makes it retrospective.
+	Error parsing prediction for row with id 2408 : 'ine will be effective in improving depressive symptoms in patients who have not responded to standard treatments. Secondary objectives are to assess the safety and tolerability of ketamine infusions, and to explore the effects of ketamine on cognitive function and brain activity. DURATION'
+	Error parsing prediction for row with id 5525 : 'Sure! Here is the output for the given input'
+	Error parsing prediction for row with id 8613 : 'Sure! Here is the classification of the input text based on the title and abstract'
+	Error parsing prediction for row with id 6234 : Could not parse prediction: Based on the input, I would classify the data collection method as prospective. The study is designed to evaluate the efficacy and psychological mechanisms of psilocybin-assisted psychotherapy in outpatients with late-stage cancer, using a double-blind, parallel-design, placebo-controlled, two-center RCT. The study will assess the strength and durability of therapeut
+	Error parsing prediction for row with id 6021 : Could not parse prediction: Based on the input, I classify the data collection method as Retrospective. The study is a randomized double-blind placebo-controlled cross-over design, and the participants are healthy volunteers. The study is examining the effects of clonidine pretreatment on the pharmacodynamics and pharmacokinetics of MDMA. The study is retrospective because it
+	Error parsing prediction for row with id 6214 : 'Based on the input, I would classify the study as follows'
+	Error parsing prediction for row with id 8945 : Could not parse prediction: Based on the input, I would classify the data collection method as Retrospective. The study is describing the effects of psilocybin on time interval reproduction in human subjects, and the data is being reported after the fact. The study is not ongoing, and the data has already been collected. Therefore, the data collection method is Retrospective.
+	Error parsing prediction for row with id 2913 : 'Sure! Here is the output for the given input'
+	Error parsing prediction for row with id 2396 : 'treatment resistant depression (TRD) as measured by change from baseline in the MADRS total score at 24 hours post dose (Day 1) SECONDARY OUTCOMES'
+Parsing predictions in file few_shot/data_collection/data_collection_1shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Data Collection

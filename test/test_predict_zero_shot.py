@@ -1,6 +1,9 @@
 import unittest
-from zero_shot.predict_zero_shot import parse_class_prediction, get_label2int, parse_ner_prediction
+from zero_shot.predict_zero_shot import parse_class_prediction, parse_ner_prediction
+from prompts.build_prompts import get_label2int
 
+
+#TODO: not sure if I considered here that the order of the labels in the prompt and the labels int2label differs when creating the expecteed
 
 class TestPredictZeroShot(unittest.TestCase):
 
@@ -97,8 +100,10 @@ Explanation:
 * Other: The study does not belong to any of the other categories, so the value for this option is 0.'''
         expected = "[1, 0, 0, 0, 0, 0, 0, 0, 0]"
 
-        result = parse_class_prediction(input_data, self.label2int, model)
+        result, faulty_parsable = parse_class_prediction(
+            input_data, self.label2int, model)
         self.assertEqual(result, expected)
+        self.assertEqual(faulty_parsable, False)
 
     def test_parse_class_mellama2(self):
         model = "MeLLaMA-13B-chat,"
@@ -171,7 +176,10 @@ OUTPUT:
 }
 '''
         expected = "[0, 0, 0, 0, 0, 0, 0, 0, 1]"
-        results = parse_class_prediction(input_data, self.label2int, model)
+        results, faulty_parsable = parse_class_prediction(
+            input_data, self.label2int, model)
+        self.assertEqual(results, expected)
+        self.assertEqual(faulty_parsable, False)
 
     def test_parse_class_mellama2_faulty(self):
         model = "MeLLaMA-13B-chat,"
@@ -231,16 +239,26 @@ INPUT: A Multi-Site Study of MDMA-Assisted Psychotherapy for PTSD.^\nPTSD is a s
 
 
 OUTPUT: 1'''
+        with self.assertRaises(ValueError):
+            parse_class_prediction(input_data, self.label2int, model)
 
-        expected = None
-        results = parse_class_prediction(input_data, self.label2int, model)
-        self.assertEqual(expected, None)
+    def test_parse_class_mellama13_faulty(self):
+        model = 'MeLLaMA-13B-chat'
+        input = '''Systematic review/meta-analysis'''
+        excepted = "[0, 0, 0, 0, 1, 0, 0, 0, 0]"
+        results, faulty_parsable = parse_class_prediction(
+            input, self.label2int, model)
+        self.assertEqual(excepted, results)
+        self.assertEqual(faulty_parsable, True)
 
     def test_parse_class_gpt(self):
         model = 'gpt-4o-mini-2024-07-18'
         input_data = '"{\n    ""Randomized-controlled trial (RCT)"": ""1"",\n    ""Cohort study"": ""0"",\n    ""Real-world study"": ""0"",\n    ""Study protocol"": ""0"",\n    ""Systematic review/meta-analysis"": ""0"",\n    ""Qualitative Study"": ""0"",\n    ""Case report"": ""0"",\n    ""Case series"": ""0"",\n    ""Other"": ""0""\n}'
         excepted = "[1, 0, 0, 0, 0, 0, 0, 0, 0]"
-        results = parse_class_prediction(input_data, self.label2int, model)
+        results, faulty_parsable = parse_class_prediction(
+            input_data, self.label2int, model)
+        self.assertEqual(excepted, results)
+        self.assertEqual(faulty_parsable, False)
 
     def test_parse_class_gpt_faulty(self):
         model = 'gpt-4o-mini-2024-07-18'
@@ -256,15 +274,71 @@ OUTPUT: 1'''
     ""Other"": """"
 }"'''
         excepted = "[0, 0, 0, 0, 1, 0, 0, 0, 0]"
-        results = parse_class_prediction(input_data, self.label2int, model)
+        results, faulty_parsable = parse_class_prediction(
+            input_data, self.label2int, model)
         self.assertEqual(excepted, results)
+        self.assertEqual(faulty_parsable, True)
 
     def test_parse_class_gpt_faulty2(self):
         model = 'gpt-4o-mini-2024-07-18'
         input_data = '{\\n    "Randomized-controlled trial (RCT)": ",\\n    "Cohort study": ",\\n    "Real-world study": ",\\n    "Study protocol": ",\\n    "Systematic review/meta-analysis": "1",\\n    "Qualitative Study": ",\\n    "Case report": ",\\n    "Case series": ",\\n    "Other": "\\n}'
         excepted = "[0, 0, 0, 0, 1, 0, 0, 0, 0]"
-        results = parse_class_prediction(input_data, self.label2int, model)
+        results, faulty_parsable = parse_class_prediction(
+            input_data, self.label2int, model)
         self.assertEqual(excepted, results)
+        self.assertEqual(faulty_parsable, True)
+
+    def test_parse_class_mellama70(self):
+        model = "Llama-2-70b-chat-hf"
+        input_data = ''' {
+""Randomized-controlled trial (RCT)"": 0,
+""Cohort study"": 0,
+""Real-world study"": 0,
+""Study protocol"": 0,
+""Systematic review/meta-analysis"": 0,
+""Qualitative Study"": 0,
+""Case report"": 0,
+""Case series"": 0,
+""Other"": 1
+}
+
+Explanation:
+
+This study is not a randomized-controlled trial (RCT) as it does not involve random assignment of participants to different groups. It is also not a cohort study, real-world study, study protocol, systematic review/meta-'''
+        expected = "[0, 0, 0, 0, 0, 0, 0, 0, 1]"
+        results, faulty_parsable = parse_class_prediction(
+            input_data, self.label2int, model)
+        self.assertEqual(results, expected)
+        self.assertEqual(faulty_parsable, False)
+
+    def test_parse_medllama_faulty(self):
+        model = "Med-LLaMA3-8B"
+        input_data = '''1, 1, 1, 0, 0, 0, 0, 0, 0
+
+INPUT: The effects of ketamine on the brain: a systematic review.^\nBACKGROUND: Ketamine is a non-competitive N-methyl-D-aspartate (NMDA) receptor antagonist that has been used as an anaesthetic for over 50 years. It is also a potent analgesic and has been used in the treatment of chronic pain. In recent years, ketamine has been used as a treatment for depression and other psychiatric disorders. OBJECTIVES: To review the effects of ketamine on the brain. METHODS: A'''
+        excepted = "[1, 1, 1, 0, 0, 0, 0, 0, 0]"
+        results, faulty_parsable = parse_class_prediction(
+            input_data, self.label2int, model)
+        self.assertEqual(excepted, results)
+        self.assertEqual(faulty_parsable, True)
+
+    def test_parse_medllama_faulty2(self):
+        model = "Med-LLaMA3-8B"
+        input_data = '''0, 0, 0, 0, 0, 0, 0, 0, 1
+
+***DATA***
+
+The data is available at: <>
+
+***SUBMISSION***
+
+Please submit your code as a single file. The file should be named as ""task1.py"" and should be placed in the root directory of the zip file. The file should contain the code for the task and the code for the evaluation. The file should be named as ""task1.py"" and should be placed in the root directory of the zip file. The file should contain the code for the task and the code for the evaluation. The file should be named",'''
+
+        excepted = "[0, 0, 0, 0, 0, 0, 0, 0, 1]"
+        results, faulty_parsable = parse_class_prediction(
+            input_data, self.label2int, model)
+        self.assertEqual(excepted, results)
+        self.assertEqual(faulty_parsable, True)
 
     def test_ner_parse_gpt(self):
         model = 'gpt-40-2024-08-06'

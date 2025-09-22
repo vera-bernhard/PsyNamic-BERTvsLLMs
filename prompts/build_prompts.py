@@ -17,6 +17,7 @@ import pandas as pd
 import numpy as np
 import ast
 from typing import Literal
+from collections import OrderedDict
 
 random.seed(42)
 
@@ -74,12 +75,20 @@ Your task is to generate an HTML version of an input text, marking up specific e
 OUTPUT: '''
 
 
+def get_class_options(task: str) -> OrderedDict:
+    file_path = os.path.join(SCRIPT_DIR, 'classification_description.json')
+
+    with open(file_path, 'r', encoding='utf-8') as f:
+        task_descriptions = json.load(f)
+    return OrderedDict(task_descriptions[task]['Options'])
+
+
 def build_class_prompt(
-    id: int, 
-    task: str, 
-    title_abstract: str, 
-    few_shot: int = 0, 
-    few_shot_strategy: Literal['selected', 'random'] = 'selected'):
+        id: int,
+        task: str,
+        title_abstract: str,
+        few_shot: int = 0,
+        few_shot_strategy: Literal['selected', 'random'] = 'selected'):
 
     file_path = os.path.join(SCRIPT_DIR, 'classification_description.json')
 
@@ -89,24 +98,27 @@ def build_class_prompt(
     if task not in task_descriptions:
         raise ValueError(f"Task '{task}' not found in the task descriptions.")
 
+    options = get_class_options(task)
     if few_shot > 0:
+        # Ensure options are always in a fixed order using OrderedDict
+        options = OrderedDict(options)
         output = build_class_examples(
-            id, task=task, task_options=task_descriptions[task]['Options'], 
+            id, task=task, task_options=options,
             few_shot_nr=few_shot, few_shot_strategy=few_shot_strategy, shots=task_descriptions[task]['Shots'])
 
     else:
         output = "Example output format:\n" + json.dumps(
-            {key: "" for key in task_descriptions[task]['Options'].keys()},
+            {key: "" for key in options.keys()},
             indent=4
         )
 
     task_user_prompt = user_prompt_class.format(
         TASK_DESCRIPTION=task_descriptions[task]['Task_description'],
-        NUMBER_OF_TASKS=len(task_descriptions[task]['Options']),
+        NUMBER_OF_TASKS=len(options),
         TASK=task,
         TASK_OPTIONS='\n\n'.join(
-            [f"{option}: {desc}" for option, desc in task_descriptions[task]['Options'].items()]),
-        VALUES=', '.join(task_descriptions[task]['Options'].keys()),
+            [f"{option}: {desc}" for option, desc in options.items()]),
+        VALUES=', '.join(options.keys()),
         IS_MULTIPLE='multiple options' if task_descriptions[
             task]['Is_multilabel'] else 'a single option',
         OUTPUT_EXAMPLE=output,
@@ -147,7 +159,8 @@ def build_ner_prompt(id: int, title_abstract: str, few_shot: int = 0, few_shot_s
     shots = task_descriptions['Shots']
 
     if few_shot > 0:
-        examples = build_ner_examples(id, nr=few_shot, few_shot_strategy=few_shot_strategy, shots=shots)
+        examples = build_ner_examples(
+            id, nr=few_shot, few_shot_strategy=few_shot_strategy, shots=shots)
     else:
         examples = ''
 
@@ -162,12 +175,7 @@ def build_ner_prompt(id: int, title_abstract: str, few_shot: int = 0, few_shot_s
 
 
 def markup_entities(tokens, text, labels):
-    """
-    Mark up named entities in text using <span class="...">...</span> tags.
-    tokens: list of tokens
-    text: raw string text
-    labels: BIO labels for each token
-    """
+    # TODO: currently text not used at all, tokens are merged
     assert len(tokens) == len(
         labels), "Tokens and labels must have the same length"
 
@@ -217,7 +225,8 @@ def markup_entities(tokens, text, labels):
 
 def build_ner_examples(id: str, nr: int = 3, few_shot_strategy: Literal['selected', 'random'] = 'selected', shots: list[int] = None):
     if few_shot_strategy == 'selected' and shots is None:
-        raise ValueError("If few_shot_strategy is 'selected', shots must be provided.")
+        raise ValueError(
+            "If few_shot_strategy is 'selected', shots must be provided.")
     output = '###EXAMPLES\n'
 
     data_file = os.path.join(data_dir, 'ner_bio', 'test.csv')
@@ -233,7 +242,7 @@ def build_ner_examples(id: str, nr: int = 3, few_shot_strategy: Literal['selecte
             # remove id from shots
             shots.remove(id)
         ids = shots[:nr]
-        
+
     elif few_shot_strategy == 'random':
         # check if there is any nan in the 'text' column
         ids = df['id'].tolist()
@@ -249,8 +258,10 @@ def build_ner_examples(id: str, nr: int = 3, few_shot_strategy: Literal['selecte
         output += text
         output += "\nOUTPUT: "
 
-        tokens = ast.literal_eval(examples[examples['id'] == i]['tokens'].values[0])
-        labels = ast.literal_eval(examples[examples['id'] == i]['ner_tags'].values[0])
+        tokens = ast.literal_eval(
+            examples[examples['id'] == i]['tokens'].values[0])
+        labels = ast.literal_eval(
+            examples[examples['id'] == i]['ner_tags'].values[0])
 
         output += markup_entities(tokens, text, labels)
         output += '\n\n'
@@ -259,19 +270,54 @@ def build_ner_examples(id: str, nr: int = 3, few_shot_strategy: Literal['selecte
     return output
 
 
-def build_class_examples(id: str, task: str, task_options: dict = None, few_shot_nr: int = 3, few_shot_strategy: Literal['selected', 'random'] = 'selected', shots: list[int] = None):
+def get_label2int(task: str) -> dict:
+    task_lower = task.lower().replace(' ', '_')
+    file = os.path.join(os.path.dirname(__file__), '..',
+                        'data', task_lower, 'meta.json')
+    if not os.path.exists(file):
+        raise FileNotFoundError(
+            f"The file {file} does not exist. Check the task name.")
+    with open(file, 'r', encoding='utf-8') as f:
+        meta = json.load(f)
+    int2label = meta.get('Int_to_label', {})
+    label2int = {v: int(k) for k, v in int2label.items()}
+    return label2int
+
+def get_int2label(task: str) -> dict:
+    task_lower = task.lower().replace(' ', '_')
+    file = os.path.join(os.path.dirname(__file__), '..',
+                        'data', task_lower, 'meta.json')
+    if not os.path.exists(file):
+        raise FileNotFoundError(
+            f"The file {file} does not exist. Check the task name.")
+    with open(file, 'r', encoding='utf-8') as f:
+        meta = json.load(f)
+    int2label = meta.get('Int_to_label', {})
+    int2label = {int(k): v for k, v in int2label.items()}
+    return int2label
+
+def is_multilabel(task: str) -> bool:
+    task_lower = task.lower().replace(' ', '_')
+    file = os.path.join(os.path.dirname(__file__), '..',
+                        'data', task_lower, 'meta.json')
+    if not os.path.exists(file):
+        raise FileNotFoundError(
+            f"The file {file} does not exist. Check the task name.")
+    with open(file, 'r', encoding='utf-8') as f:
+        meta = json.load(f)
+    return meta.get('Is_multilabel', False)
+
+
+def build_class_examples(id: str, task: str, task_options: OrderedDict = None, few_shot_nr: int = 3, few_shot_strategy: Literal['selected', 'random'] = 'selected', shots: list[int] = None):
     if few_shot_strategy == 'selected' and shots is None:
-        raise ValueError("If few_shot_strategy is 'selected', shots must be provided.")
+        raise ValueError(
+            "If few_shot_strategy is 'selected', shots must be provided.")
 
     output = '***EXAMPLES***\n'
 
     task_lower = task.lower().replace(' ', '_')
     data_file = os.path.join(data_dir, task_lower, 'test.csv')
-    meta_file = os.path.join(data_dir, task_lower, 'meta.json')
-    meta_data = json.load(open(meta_file, 'r'))
-    label2int = meta_data['Int_to_label']
-    # make sure keys are int
-    label2int = {int(k): v for k, v in label2int.items()}
+    int2label = get_int2label(task)
     df = pd.read_csv(data_file)
     # convert all ids to int
     df['id'] = df['id'].astype(int)
@@ -294,29 +340,18 @@ def build_class_examples(id: str, task: str, task_options: dict = None, few_shot
 
     examples = df[df['id'].isin(ids)]
 
+    # sanity check if keys of task_options match int2label values
+    if set(task_options.keys()) != set(int2label.values()):
+        raise ValueError(
+            "Keys of task_options do not match values of int2label.")
+
     for i in ids:
         output += "INPUT: "
         output += examples[examples['id'] == i]['text'].values[0]
         output += "\nOUTPUT: "
 
         labels = examples[examples['id'] == i]['labels'].values[0]
-        # Check if it is onehot encoded or just int
-        if isinstance(labels, np.int64) or isinstance(labels, int):
-            labels_int = int(labels)
-            label = label2int[labels_int]
-            # set everything in options to 0 apart from the label
-            labels_dict = {key: 0 for key in task_options.keys()}
-            labels_dict[label] = 1
-            output += json.dumps(labels_dict, indent=4)
-        else:
-            labels_one_hot = json.loads(labels)
-            labels = [label2int[i] for i in range(
-                len(labels_one_hot)) if labels_one_hot[i] == 1]
-            labels_dict = {key: 0 for key in task_options.keys()}
-            for label in labels:
-                labels_dict[label] = 1
-            output += json.dumps(labels_dict, indent=4)
-
+        output += build_json_labels(labels, int2label, task_options)
         output += '\n\n'
 
     output += '***FINAL INPUT TO CLASSIFY***\n'
@@ -350,4 +385,21 @@ def build_llama2_prompt(prompt: str, system_prompt: str) -> str:
 
 
 def build_llama3_prompt(prompt: str, system_prompt: str) -> str:
-    pass    
+    pass
+
+
+def build_json_labels(labels: str, int2label: dict, task_options: OrderedDict) -> str:
+    # task_options is setting the order of the output json whereas int2label is mapping the int to the label name
+    if isinstance(labels, np.int64) or isinstance(labels, int):
+        labels_int = int(labels)
+        label = int2label[labels_int] # get label strings from int2label
+        labels_dict = {key: 0 for key in task_options.keys()}
+        labels_dict[label] = 1
+    else:
+        labels_one_hot = json.loads(labels)
+        labels = [int2label[i] for i in range(
+            len(labels_one_hot)) if labels_one_hot[i] == 1]
+        labels_dict = {key: 0 for key in task_options.keys()}
+        for label in labels:
+            labels_dict[label] = 1
+    return json.dumps(labels_dict, indent=4)
