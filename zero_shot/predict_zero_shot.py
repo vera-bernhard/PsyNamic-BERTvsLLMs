@@ -36,7 +36,8 @@ from prompts.build_prompts import (
     system_role_ner,
     build_ner_prompt,
     build_llama2_prompt,
-    get_label2int
+    get_label2int,
+    is_multilabel,
 )
 
 logging.set_verbosity_info()
@@ -489,17 +490,21 @@ def make_ner_predictions(
 
 
 def is_one_hot(string: str, length: int) -> bool:
-    # Accept both comma-separated and space-separated one-hot encodings
-    if ',' in string:
+    """Check if a string is a one-hot encoded list of given length.
+    It recognizes cases like "0 0 1 0", "0,0,1,0", "[0, 0, 1, 0]", etc.
+    """
+    string = string.strip().lstrip("[").rstrip("]")
+
+    if "," in string:
         parts = [x.strip() for x in string.split(",")]
     else:
         parts = [x.strip() for x in string.split()]
+
     if len(parts) != length:
         return False
-    for part in parts:
-        if part not in ['0', '1']:
-            return False
-    return True
+
+    return all(part in {"0", "1"} for part in parts)
+
 
 def is_first_line_one_hot(string: str, length: int) -> bool:
     """Check if the first line of a string is a one-hot encoded list of given length."""
@@ -617,6 +622,7 @@ def parse_class_predictions(pred_file: str, task: str) -> dict:
     """Parse the predictions from a file and add a new column with one-hot encoded labels."""
 
     label2int = get_label2int(task)
+    multilabel = is_multilabel(task)
 
     # Check if file and column exist
     if not os.path.exists(pred_file):
@@ -634,7 +640,18 @@ def parse_class_predictions(pred_file: str, task: str) -> dict:
     # add new column 'pred_labels' containing the one-hot encoded labels
     nr_non_parsable = 0
     nr_faulty_parsable = 0
+    # change dtype of labels column to string
+    df['labels'] = df['labels'].astype(str)
     for i, row in df.iterrows():
+        if not multilabel:
+            # Check if it is one-hot encoded already
+            if is_one_hot(row['labels'], len(label2int)):
+                continue
+            # Convert the true label to one-hot encoding
+            true_label = int(row['labels'])
+            true_onehot = [0] * len(label2int)
+            true_onehot[true_label] = 1
+            df.at[i, 'labels'] = str(true_onehot)
         try:
             pred_labels, faulty_but_parsable = parse_class_prediction(
                 row['prediction_text'], label2int, model)
