@@ -1,0 +1,117 @@
+Parsing predictions in file zero_shot/substances/substances_Llama-2-70b-chat-hf_08-09-08.csv for task Substances
+	Error parsing prediction for row with id 9452 : Label TAK-063 not found in label2int mapping.
+	Error parsing prediction for row with id 1770 : Label GlyT1 inhibitor not found in label2int mapping.
+	Error parsing prediction for row with id 2669 : Label Midazolam not found in label2int mapping.
+	Error parsing prediction for row with id 5723 : Label Dexmedetomidine not found in label2int mapping.
+Parsing predictions in file zero_shot/substances/substances_gpt-4o-2024-08-06_09-09-09.csv for task Substances
+Parsing predictions in file zero_shot/substances/substances_Llama-3.1-8B-Instruct_06-09-06.csv for task Substances
+Parsing predictions in file zero_shot/substances/substances_Meta-Llama-3-8B-Instruct_06-09-06.csv for task Substances
+Parsing predictions in file zero_shot/substances/substances_MeLLaMA-13B-chat_06-09-06.csv for task Substances
+	Error parsing prediction for row with id 5968 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4428 : '0\n\n**BACKGROUND**'
+	Error parsing prediction for row with id 5901 : Could not parse prediction: Ayahuasca, 1
+	Error parsing prediction for row with id 166 : Could not parse prediction: 1
+	Error parsing prediction for row with id 518 : Could not parse prediction: 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	Error parsing prediction for row with id 1963 : Could not parse prediction: Ketamine = 0, S-Ketamine = 0, R-Ketamine = 0, MDMA = 0, LSD = 0, Psilocybin = 0, Psychedelic mushrooms = 0, Ayahuasca = 0, DMT = 0, 5-MeO-DMT = 0, Mescaline = 0, Ibogaine = 0, Salvinorin A = 0, Combination Therapy = 0, Analogue = 0, Unknown = 1
+	Error parsing prediction for row with id 2913 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3277 : Could not parse prediction: 1, MDMA
+	Error parsing prediction for row with id 4152 : Could not parse prediction: Psilocybin, Ayahuasca, DMT, 5-MeO-DMT, Mescaline, Unknown
+	Error parsing prediction for row with id 4943 : Could not parse prediction: 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	Error parsing prediction for row with id 5227 : Expecting property name enclosed in double quotes: line 11 column 5 (char 183)
+	Error parsing prediction for row with id 6035 : Could not parse prediction: 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0
+	Error parsing prediction for row with id 6121 : Could not parse prediction: 1, MDMA
+Parsing predictions in file zero_shot/substances/substances_MeLLaMA-70B-chat_28-08-28.csv for task Substances
+	Error parsing prediction for row with id 2483 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3371 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5968 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 748 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1825 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2482 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2830 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5738 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7097 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7368 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8611 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8706 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 135 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 691 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 933 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1451 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2048 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2106 : substring not found
+	Error parsing prediction for row with id 2227 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2395 : substring not found
+	Error parsing prediction for row with id 2673 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4428 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4473 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5082 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5221 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5901 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6162 : substring not found
+	Error parsing prediction for row with id 7268 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7608 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8634 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9452 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9484 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 166 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 518 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 640 : substring not found
+	Error parsing prediction for row with id 718 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 764 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1097 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1216 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1237 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1649 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1770 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1799 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1886 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1963 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2105 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2244 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2477 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2669 : substring not found
+	Error parsing prediction for row with id 2822 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2913 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2998 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3060 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3149 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3277 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3285 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3452 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4152 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4424 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4635 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4678 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4884 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4943 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5215 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5227 : substring not found
+	Error parsing prediction for row with id 5646 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5723 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6021 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6028 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6070 : substring not found
+	Error parsing prediction for row with id 6115 : substring not found
+	Error parsing prediction for row with id 6123 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6191 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6235 : substring not found
+	Error parsing prediction for row with id 6321 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6366 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6451 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6496 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7278 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7318 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8089 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8221 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8307 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8636 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8749 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8836 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8910 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8923 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9039 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9163 : Prediction text is empty or NaN.
+Parsing predictions in file zero_shot/substances/substances_Llama-2-13b-chat-hf_06-09-06.csv for task Substances
+	Error parsing prediction for row with id 5968 : substring not found
+Parsing predictions in file zero_shot/substances/substances_gpt-4o-mini_09-09-09.csv for task Substances
+Parsing predictions in file zero_shot/substances/substances_Med-LLaMA3-8B_06-09-06.csv for task Substances

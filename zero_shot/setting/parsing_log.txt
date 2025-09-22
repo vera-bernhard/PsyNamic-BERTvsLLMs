@@ -119,3 +119,7 @@ Parsing predictions in file zero_shot/setting/setting_MeLLaMA-70B-chat_28-08-28.
 	Error parsing prediction for row with id 9084 : Prediction text is empty or NaN.
 	Error parsing prediction for row with id 9140 : Prediction text is empty or NaN.
 	Error parsing prediction for row with id 9151 : Prediction text is empty or NaN.
+Parsing predictions in file zero_shot/setting/setting_gpt-4o-2024-08-06_09-09-09.csv for task Setting
+Parsing predictions in file zero_shot/setting/setting_Llama-2-70b-chat-hf_08-09-08.csv for task Setting
+Parsing predictions in file zero_shot/setting/setting_Llama-2-13b-chat-hf_06-09-06.csv for task Setting
+	Error parsing prediction for row with id 2396 : 'Based on the provided title and abstract, the setting of the research paper is likely to be a clinical setting, as the study is conducted in a controlled environment with participants receiving nasal powder doses of the investigational drug BPL-003 under medical supervision. Therefore, the output should be'
