@@ -46,83 +46,83 @@ torch.backends.cudnn.deterministic = True
 def build_instruction_finetune_dataset(
     data_dir: str,
     tasks: list[str],
-    split='train'
+    tokenizer,
+    split: str = "train",
 ) -> list[dict[str, str]]:
     """
-    Aggregate all splits of all classification tasks into a single shuffled instruction tuning dataset.
-    Each example is a dict with 'prompt' and 'completion' keys.
+    Aggregate all splits of all classification tasks into a single shuffled
+    instruction tuning dataset.
+    Each example is a dict with a single 'text' field containing the flattened chat conversation.
     """
     random.seed(SEED)
     dataset = []
 
     for task in tasks:
-        task_lower = task.lower().replace(' ', '_')
-        split_path = os.path.join(data_dir, task_lower, f'{split}.csv')
+        task_lower = task.lower().replace(" ", "_")
+        split_path = os.path.join(data_dir, task_lower, f"{split}.csv")
         if not os.path.exists(split_path):
             print(f"Warning: {split_path} does not exist, skipping.")
             continue
+
         df = pd.read_csv(split_path)
-        if 'ner' in task_lower:
+
+        if "ner" in task_lower:
             for _, row in df.iterrows():
                 prompt = build_ner_prompt(
-                    row['id'],
-                    row['text'],
+                    row["id"],
+                    row["text"],
                     few_shot=0,
                     few_shot_strategy="selected",
                 )
                 system_prompt = system_role_ner
 
-                # Split at last OUTPUT
-                message = [
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": prompt}
-                ]
-                tokens = ast.literal_eval(row['tokens'])
-                labels = ast.literal_eval(row['ner_tags'])
-                text = row['text']
-
+                tokens = ast.literal_eval(row["tokens"])
+                labels = ast.literal_eval(row["ner_tags"])
+                text = row["text"]
                 output = markup_entities(tokens, text, labels)
 
-                dataset.append({
-                    "prompt": message,
-                    "completion": [{"role": "assistant", "content": output}]
-                })
+                # Construct chat
+                messages = [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": prompt},
+                    {"role": "assistant", "content": output},
+                ]
+                flattened = tokenizer.apply_chat_template(messages, tokenize=False)
+                dataset.append({"text": flattened})
 
         else:
             int2label = get_int2label(task)
             for _, row in df.iterrows():
                 prompt = build_class_prompt(
-                    row['id'],
+                    row["id"],
                     task,
-                    row['text'],
+                    row["text"],
                     few_shot=0,
                     few_shot_strategy="selected",
                 )
-                if 'ner' in task_lower:
+                if "ner" in task_lower:
                     system_prompt = system_role_ner
                 else:
                     system_prompt = system_role_class
 
-                # Split at last OUTPUT
-                message = [
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": prompt}
-                ]
-
                 options = get_class_options(task)
-                output_json = build_json_labels(
-                    row['labels'], int2label, options)
+                output_json = build_json_labels(row["labels"], int2label, options)
 
-                dataset.append({
-                    "prompt": message,
-                    "completion": [{"role": "assistant", "content": output_json}]
-                })
+                messages = [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": prompt},
+                    {"role": "assistant", "content": output_json},
+                ]
+                flattened = tokenizer.apply_chat_template(messages, tokenize=False)
+                dataset.append({"text": flattened})
 
     random.shuffle(dataset)
     return dataset
 
 
-def sft_peft(model_name: str, data_file: str, output_dir: str, resume_from_checkpoint: Optional[str] = None,):
+
+def sft_peft(model_name: str, data_file: str, output_dir: str, resume_from_checkpoint: Optional[str] = None):
+    os.makedirs(output_dir, exist_ok=True)
     tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
@@ -133,15 +133,14 @@ def sft_peft(model_name: str, data_file: str, output_dir: str, resume_from_check
     bnb_kwargs = {}
 
     # Use 4-bit quantization for large models
-    if '70b' in model_name:
-        bnb_kwargs.update(
-            dict(
-                load_in_4bit=True,
-                bnb_4bit_quant_type="nf4",
-                bnb_4bit_use_double_quant=True,
-                bnb_4bit_compute_dtype=torch.float16,
-            )
+    bnb_kwargs.update(
+        dict(
+            load_in_4bit=True,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_use_double_quant=True,
+            bnb_4bit_compute_dtype=torch.float16,
         )
+    )
 
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
@@ -164,28 +163,27 @@ def sft_peft(model_name: str, data_file: str, output_dir: str, resume_from_check
 
     training_args = SFTConfig(
         output_dir=output_dir,
-        dataset_text_field=None,
-        max_seq_length=tokenizer.model_max_length,
-        per_device_train_batch_size=1,
+        dataset_text_field="text",
+        per_device_train_batch_size=8,
         gradient_accumulation_steps=4,
         learning_rate=1e-4,
         num_train_epochs=3,
-        logging_steps=20,
-        save_strategy="steps",
-        eval_steps=20,
+        logging_steps=100,        
+        save_strategy="epoch",
+        eval_steps=100,
         seed=SEED,
         report_to=["wandb"],
-        fp16=not '70b' in model_name,
+        fp16=True,
         bf16=False,
         remove_unused_columns=False,
-        assistant_only_loss=True,
+        assistant_only_loss=False,
         completion_only_loss=True,
     )
 
     trainer = SFTTrainer(
         model=model,
         train_dataset=train_dataset,
-        tokenizer=tokenizer,
+        #tokenizer=tokenizer,
         peft_config=lora_config,
         args=training_args,
     )
@@ -200,14 +198,22 @@ def sft_peft(model_name: str, data_file: str, output_dir: str, resume_from_check
     wandb.finish()
 
 if __name__ == "__main__":
+    model = "meta-llama/Llama-3.1-8B-Instruct"
+
+    tokenizer = AutoTokenizer.from_pretrained(model, use_fast=True)
     dataset = build_instruction_finetune_dataset(
-        data_dir='data',
-        tasks=TASKS + ['ner_bio'],
-        split='train'
+        data_dir="data",
+        tasks=TASKS + ["ner_bio"],
+        tokenizer=tokenizer,
+        split="train",
     )
 
-    # Save dataset to jsonl file
-    output_path = './finetuning/instruction_tune_dataset_train.jsonl'
-    with open(output_path, 'w') as f:
-        for example in dataset:
-            f.write(json.dumps(example) + '\n')
+    # # Save dataset to jsonl file
+    # output_path = './finetuning/instruction_tune_dataset_train.jsonl'
+    # with open(output_path, 'w') as f:
+    #     for example in dataset:
+    #         f.write(json.dumps(example) + '\n')
+
+    output_dir = './finetuning/sft_llama3_8b_instruction_tuned'
+    data_file = './finetuning/instruction_tune_dataset_train.jsonl'
+    sft_peft(model, data_file, output_dir)
