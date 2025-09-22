@@ -1,16 +1,14 @@
 #!/bin/bash
-#SBATCH --job-name="Zero Shot Experiments"
-#SBATCH --time=06:00:00
-#SBATCH --partition=gpu-invest
-#SBATCH --qos=job_gpu_preemptable
-#SBATCH --gres=gpu:a100:1
-#SBATCH --mem-per-gpu=80G
-#SBATCH --cpus-per-task=2
+#SBATCH --job-name="Instruction Tuning Experiments"
+#SBATCH --time=01:00:00
+#SBATCH --gpus=A100:2
+#SBATCH --mem=16G
 #SBATCH --ntasks=1
-#SBATCH --output=logs/zero_shot.log
-#SBATCH --error=logs/zero_shot.log
+#SBATCH --output=logs/zero_shot_mellama70B.log
+#SBATCH --error=logs/zero_shot_mellama70B.log
 
 module load mamba
+module load multigpu
 module load cuda/12.6.2
 source activate final_env
 
