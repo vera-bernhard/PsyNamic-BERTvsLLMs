@@ -163,7 +163,8 @@ def parse_file_name(pred_path: str, info: Literal["model", "condition", "date", 
     if 'shot' in filename:
         date = parts[-1]
         model = parts[-2]
-        condition = parts[-3]
+        # parts -3 and -4
+        condition = parts[-3] + '_' + parts[-4]
         if info == "date":
             return date
         elif info == "model":
@@ -189,11 +190,21 @@ def parse_file_name(pred_path: str, info: Literal["model", "condition", "date", 
     raise ValueError(f"Filename does not match expected patterns: {filename}")
 
 
+def plot_performance_report(task: str, performance_report: str):
+    # Load performance report
+    with open(performance_report, "r") as f:
+        performance_data = json.load(f)
+    plot_path = os.path.join(
+        PREDICTION_DIR, task.lower().replace(' ', '_'), "performance_plot.png")
+    # Make performance plot
+    make_performance_plot(performance_data, plot_path,
+                          metrics_col='metrics')
+
+
 def main():
     TASKS = [
-        # "Study Type",  
-        "Data Collection", "Data Type",
-        "Number of Participants", "Age of Participants", "Application Form",
+        # "Study Type", "Data Collection", "Data Type", "Number of Participants", "Age of Participants",
+        "Application Form",
         "Clinical Trial Phase", "Condition", "Outcomes", "Regimen", "Setting", "Study Control", "Study Purpose",
         "Substance Naivety", "Substances", "Sex of Participants", "Study Conclusion", "Relevant"
     ]
@@ -234,6 +245,9 @@ def main():
 
     # averaged_performance = overall_class_performance(TASKS, PREDICTION_DIR)
     # make_simple_performance_plot(averaged_performance, 'zero_shot/overall_performance.png')
+
+    plot_performance_report(
+        'Study Type', 'zero_shot/study_type/performance_report.json')
 
 
 if __name__ == "__main__":
