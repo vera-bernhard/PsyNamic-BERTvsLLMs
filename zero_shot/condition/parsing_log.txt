@@ -1,0 +1,409 @@
+Parsing predictions in file zero_shot/condition/condition_gpt-4o-2024-08-06_19-08-19.csv for task Condition
+Parsing predictions in file zero_shot/condition/condition_Llama-2-13b-chat-hf_06-09-06.csv for task Condition
+	Error parsing prediction for row with id 1964 : invalid literal for int() with base 10: 'bipolar disorder'
+Parsing predictions in file zero_shot/condition/condition_MeLLaMA-13B-chat_06-09-06.csv for task Condition
+	Error parsing prediction for row with id 5380 : invalid literal for int() with base 10: 'Healthy Participants'
+	Error parsing prediction for row with id 6103 : Could not parse prediction: {
+    "Psychiatric condition": "PTSD",
+    "Depression": "",
+    "Anxiety": "",
+    "Post-traumatic stress disorder (PTSD)": "PTSD",
+    "Alcoholism": "",
+    "Other addictions (e.g. smoking)": "",
+    "Anorexia": "",
+    "Alzheimer\u2019s disease": "",
+    "Non-Alzheimer dementia": "",
+    "Substance abuse": "",
+    "(Chronic) Pain": "",
+    "Palliative Setting": "",
+    "Recreational Drug Use": "",
+    "Healthy Participants": ""
+}
+	Error parsing prediction for row with id 1829 : invalid literal for int() with base 10: 'Autism'
+	Error parsing prediction for row with id 1958 : invalid literal for int() with base 10: 'Healthy Participants'
+	Error parsing prediction for row with id 2358 : invalid literal for int() with base 10: 'MDMA'
+	Error parsing prediction for row with id 6954 : invalid literal for int() with base 10: 'Alcoholism'
+	Error parsing prediction for row with id 7097 : invalid literal for int() with base 10: 'Depression'
+	Error parsing prediction for row with id 691 : invalid literal for int() with base 10: 'Depression'
+	Error parsing prediction for row with id 692 : invalid literal for int() with base 10: 'Depression'
+	Error parsing prediction for row with id 1264 : invalid literal for int() with base 10: 'Depression'
+	Error parsing prediction for row with id 1451 : invalid literal for int() with base 10: 'Depression'
+	Error parsing prediction for row with id 1879 : Could not parse prediction: Substance abuse, Healthy Participants
+	Error parsing prediction for row with id 2398 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2915 : invalid literal for int() with base 10: 'Depression'
+	Error parsing prediction for row with id 3592 : invalid literal for int() with base 10: 'Depression'
+	Error parsing prediction for row with id 4049 : invalid literal for int() with base 10: 'Healthy Participants'
+	Error parsing prediction for row with id 4558 : Could not parse prediction: Alcoholism, Other addictions (e.g. smoking), Substance abuse
+	Error parsing prediction for row with id 7890 : invalid literal for int() with base 10: 'Palliative Setting'
+	Error parsing prediction for row with id 165 : Could not parse prediction: 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 170 : invalid literal for int() with base 10: 'Other addictions (e.g. smoking)'
+	Error parsing prediction for row with id 319 : invalid literal for int() with base 10: 'Alcoholism'
+	Error parsing prediction for row with id 1255 : invalid literal for int() with base 10: 'Healthy Participants'
+	Error parsing prediction for row with id 1439 : invalid literal for int() with base 10: 'Depression'
+	Error parsing prediction for row with id 1537 : invalid literal for int() with base 10: 'Depression'
+	Error parsing prediction for row with id 1649 : invalid literal for int() with base 10: 'Depression'
+	Error parsing prediction for row with id 1866 : invalid literal for int() with base 10: 'Depression'
+	Error parsing prediction for row with id 1964 : invalid literal for int() with base 10: 'Bipolar disorder'
+	Error parsing prediction for row with id 3175 : invalid literal for int() with base 10: 'Healthy Participants'
+	Error parsing prediction for row with id 4567 : invalid literal for int() with base 10: 'Schizophrenia'
+	Error parsing prediction for row with id 4884 : invalid literal for int() with base 10: 'Depression'
+	Error parsing prediction for row with id 5173 : invalid literal for int() with base 10: 'Depression'
+	Error parsing prediction for row with id 5469 : invalid literal for int() with base 10: 'Other addictions (e.g. smoking)'
+	Error parsing prediction for row with id 5928 : invalid literal for int() with base 10: 'Depression'
+	Error parsing prediction for row with id 6060 : invalid literal for int() with base 10: 'Psychiatric condition'
+	Error parsing prediction for row with id 6093 : invalid literal for int() with base 10: 'Depression'
+	Error parsing prediction for row with id 6196 : invalid literal for int() with base 10: 'Depression'
+	Error parsing prediction for row with id 6427 : invalid literal for int() with base 10: 'Schizophrenia'
+	Error parsing prediction for row with id 6446 : invalid literal for int() with base 10: 'Healthy Participants'
+	Error parsing prediction for row with id 6488 : invalid literal for int() with base 10: 'Other addictions (e.g. smoking)'
+	Error parsing prediction for row with id 6602 : invalid literal for int() with base 10: 'Healthy Participants'
+	Error parsing prediction for row with id 6644 : invalid literal for int() with base 10: 'Healthy Participants'
+	Error parsing prediction for row with id 6979 : invalid literal for int() with base 10: 'Healthy Participants'
+	Error parsing prediction for row with id 7074 : invalid literal for int() with base 10: 'Depression'
+	Error parsing prediction for row with id 7077 : invalid literal for int() with base 10: 'Depression'
+	Error parsing prediction for row with id 7158 : invalid literal for int() with base 10: 'Other addictions (e.g. smoking)'
+	Error parsing prediction for row with id 7313 : invalid literal for int() with base 10: 'Healthy Participants'
+	Error parsing prediction for row with id 7414 : invalid literal for int() with base 10: 'Depression'
+	Error parsing prediction for row with id 7816 : invalid literal for int() with base 10: 'Psychiatric condition'
+	Error parsing prediction for row with id 7980 : invalid literal for int() with base 10: 'Depression'
+	Error parsing prediction for row with id 8138 : invalid literal for int() with base 10: 'Other addictions (e.g. smoking)'
+	Error parsing prediction for row with id 8295 : invalid literal for int() with base 10: 'Healthy Participants'
+	Error parsing prediction for row with id 8970 : invalid literal for int() with base 10: 'Healthy Participants'
+	Error parsing prediction for row with id 9140 : invalid literal for int() with base 10: 'Recreational Drug Use'
+	Error parsing prediction for row with id 9578 : Could not parse prediction: {
+    "Psychiatric condition": "Substance abuse",
+    "Depression": "",
+    "Anxiety": "",
+    "Post-traumatic stress disorder (PTSD)": "",
+    "Alcoholism": "",
+    "Other addictions (e.g. smoking)": "",
+    "Anorexia": "",
+    "Alzheimer\u2019s disease": "",
+    "Non-Alzheimer dementia": "",
+    "Substance abuse": "",
+    "(Chronic) Pain": "",
+    "Palliative Setting": "",
+    "Recreational Drug Use": "",
+    "Healthy Participants": ""
+}
+Parsing predictions in file zero_shot/condition/condition_Meta-Llama-3-8B-Instruct_06-09-06.csv for task Condition
+	Error parsing prediction for row with id 6103 : Label Alzheimer's disease not found in label2int mapping.
+	Error parsing prediction for row with id 56 : Label Alzheimer's disease not found in label2int mapping.
+	Error parsing prediction for row with id 135 : Label Alzheimer's disease not found in label2int mapping.
+	Error parsing prediction for row with id 687 : Label Alzheimer's disease not found in label2int mapping.
+	Error parsing prediction for row with id 1264 : Label Alzheimer's disease not found in label2int mapping.
+	Error parsing prediction for row with id 6058 : Label Alzheimer's disease not found in label2int mapping.
+	Error parsing prediction for row with id 8271 : Label Alzheimer's disease not found in label2int mapping.
+	Error parsing prediction for row with id 319 : Label Alzheimer's disease not found in label2int mapping.
+	Error parsing prediction for row with id 1513 : Label Alzheimer's disease not found in label2int mapping.
+	Error parsing prediction for row with id 1964 : Label Alzheimer's disease not found in label2int mapping.
+	Error parsing prediction for row with id 2225 : Label Alzheimer's disease not found in label2int mapping.
+	Error parsing prediction for row with id 2301 : Label Alzheimer's disease not found in label2int mapping.
+	Error parsing prediction for row with id 3152 : Label Alzheimer's disease not found in label2int mapping.
+	Error parsing prediction for row with id 3175 : Label Chronic Pain not found in label2int mapping.
+	Error parsing prediction for row with id 3257 : Label Alzheimer's disease not found in label2int mapping.
+	Error parsing prediction for row with id 6060 : Label Alzheimer's disease not found in label2int mapping.
+	Error parsing prediction for row with id 6093 : Label Alzheimer's disease not found in label2int mapping.
+	Error parsing prediction for row with id 6121 : Label Alzheimer's disease not found in label2int mapping.
+	Error parsing prediction for row with id 6602 : Label Alzheimer's disease not found in label2int mapping.
+	Error parsing prediction for row with id 7719 : Label Alzheimer's disease not found in label2int mapping.
+	Error parsing prediction for row with id 8138 : Label Alzheimer's disease not found in label2int mapping.
+	Error parsing prediction for row with id 9140 : Label Alzheimer's disease not found in label2int mapping.
+Parsing predictions in file zero_shot/condition/condition_gpt-4o-mini_09-09-09.csv for task Condition
+	Error parsing prediction for row with id 3371 : Could not parse prediction: {
+    "Psychiatric condition": "",
+    "Depression": "",
+    "Anxiety": "",
+    "Post-traumatic stress disorder (PTSD)": "",
+    "Alcoholism": "",
+    "Other addictions (e.g. smoking)": "",
+    "Anorexia": "",
+    "Alzheimer’s disease": "",
+    "Non-Alzheimer dementia": "",
+    "Substance abuse": "",
+    "(Chronic) Pain": "",
+    "Palliative Setting": "",
+    "Recreational Drug Use": "",
+    "Healthy Participants": 1
+}
+	Error parsing prediction for row with id 56 : Could not parse prediction: {
+    "Psychiatric condition": "Bipolar II disorder",
+    "Depression": "Major Depressive Episodes",
+    "Anxiety": "",
+    "Post-traumatic stress disorder (PTSD)": "",
+    "Alcoholism": "",
+    "Other addictions (e.g. smoking)": "",
+    "Anorexia": "",
+    "Alzheimer’s disease": "",
+    "Non-Alzheimer dementia": "",
+    "Substance abuse": "",
+    "(Chronic) Pain": "",
+    "Palliative Setting": "",
+    "Recreational Drug Use": "",
+    "Healthy Participants": ""
+}
+	Error parsing prediction for row with id 1958 : Could not parse prediction: {
+    "Psychiatric condition": "",
+    "Depression": "",
+    "Anxiety": "",
+    "Post-traumatic stress disorder (PTSD)": "",
+    "Alcoholism": "",
+    "Other addictions (e.g. smoking)": "",
+    "Anorexia": "",
+    "Alzheimer’s disease": "",
+    "Non-Alzheimer dementia": "",
+    "Substance abuse": "",
+    "(Chronic) Pain": "",
+    "Palliative Setting": "",
+    "Recreational Drug Use": "",
+    "Healthy Participants": 1
+}
+	Error parsing prediction for row with id 135 : Could not parse prediction: {
+    "Psychiatric condition": "Major Depressive Disorder",
+    "Depression": "Major Depressive Disorder",
+    "Anxiety": "",
+    "Post-traumatic stress disorder (PTSD)": "",
+    "Alcoholism": "",
+    "Other addictions (e.g. smoking)": "",
+    "Anorexia": "",
+    "Alzheimer’s disease": "",
+    "Non-Alzheimer dementia": "",
+    "Substance abuse": "",
+    "(Chronic) Pain": "",
+    "Palliative Setting": "",
+    "Recreational Drug Use": "",
+    "Healthy Participants": ""
+}
+	Error parsing prediction for row with id 4494 : Could not parse prediction: {
+    "Psychiatric condition": "",
+    "Depression": "",
+    "Anxiety": "",
+    "Post-traumatic stress disorder (PTSD)": "",
+    "Alcoholism": "",
+    "Other addictions (e.g. smoking)": "",
+    "Anorexia": "",
+    "Alzheimer’s disease": "",
+    "Non-Alzheimer dementia": "",
+    "Substance abuse": "",
+    "(Chronic) Pain": "",
+    "Palliative Setting": "",
+    "Recreational Drug Use": "",
+    "Healthy Participants": 1
+}
+	Error parsing prediction for row with id 4893 : Could not parse prediction: {
+    "Psychiatric condition": "",
+    "Depression": "",
+    "Anxiety": "",
+    "Post-traumatic stress disorder (PTSD)": "",
+    "Alcoholism": "",
+    "Other addictions (e.g. smoking)": "",
+    "Anorexia": "",
+    "Alzheimer’s disease": "",
+    "Non-Alzheimer dementia": "",
+    "Substance abuse": "",
+    "(Chronic) Pain": "",
+    "Palliative Setting": "",
+    "Recreational Drug Use": "",
+    "Healthy Participants": 1
+}
+	Error parsing prediction for row with id 5828 : Could not parse prediction: {
+    "Psychiatric condition": "",
+    "Depression": "",
+    "Anxiety": "",
+    "Post-traumatic stress disorder (PTSD)": "",
+    "Alcoholism": "",
+    "Other addictions (e.g. smoking)": "",
+    "Anorexia": "",
+    "Alzheimer’s disease": "",
+    "Non-Alzheimer dementia": "",
+    "Substance abuse": "",
+    "(Chronic) Pain": "",
+    "Palliative Setting": "",
+    "Recreational Drug Use": "",
+    "Healthy Participants": 1
+}
+	Error parsing prediction for row with id 8271 : Could not parse prediction: {
+    "Psychiatric condition": "",
+    "Depression": "",
+    "Anxiety": "",
+    "Post-traumatic stress disorder (PTSD)": "",
+    "Alcoholism": "",
+    "Other addictions (e.g. smoking)": "",
+    "Anorexia": "",
+    "Alzheimer’s disease": "",
+    "Non-Alzheimer dementia": "",
+    "Substance abuse": "",
+    "(Chronic) Pain": "",
+    "Palliative Setting": "",
+    "Recreational Drug Use": "",
+    "Healthy Participants": 1
+}
+	Error parsing prediction for row with id 1255 : Could not parse prediction: {
+    "Psychiatric condition": "",
+    "Depression": "",
+    "Anxiety": "",
+    "Post-traumatic stress disorder (PTSD)": "",
+    "Alcoholism": "",
+    "Other addictions (e.g. smoking)": "",
+    "Anorexia": "",
+    "Alzheimer’s disease": "",
+    "Non-Alzheimer dementia": "",
+    "Substance abuse": "",
+    "(Chronic) Pain": "",
+    "Palliative Setting": "",
+    "Recreational Drug Use": "",
+    "Healthy Participants": 1
+}
+	Error parsing prediction for row with id 1513 : Could not parse prediction: {
+    "Psychiatric condition": "",
+    "Depression": "",
+    "Anxiety": "",
+    "Post-traumatic stress disorder (PTSD)": "",
+    "Alcoholism": "",
+    "Other addictions (e.g. smoking)": "",
+    "Anorexia": "",
+    "Alzheimer’s disease": "",
+    "Non-Alzheimer dementia": "",
+    "Substance abuse": "",
+    "(Chronic) Pain": "",
+    "Palliative Setting": "",
+    "Recreational Drug Use": "",
+    "Healthy Participants": 1
+}
+	Error parsing prediction for row with id 1964 : invalid literal for int() with base 10: 'bipolar disorder, depression'
+	Error parsing prediction for row with id 6427 : invalid literal for int() with base 10: 'Schizophrenia'
+	Error parsing prediction for row with id 6684 : Could not parse prediction: {
+    "Psychiatric condition": "Bipolar disorder",
+    "Depression": "",
+    "Anxiety": "Anxiety",
+    "Post-traumatic stress disorder (PTSD)": "",
+    "Alcoholism": "",
+    "Other addictions (e.g. smoking)": "",
+    "Anorexia": "",
+    "Alzheimer’s disease": "",
+    "Non-Alzheimer dementia": "",
+    "Substance abuse": "",
+    "(Chronic) Pain": "",
+    "Palliative Setting": "",
+    "Recreational Drug Use": "",
+    "Healthy Participants": ""
+}
+	Error parsing prediction for row with id 7083 : Could not parse prediction: {
+    "Psychiatric condition": "",
+    "Depression": "",
+    "Anxiety": "",
+    "Post-traumatic stress disorder (PTSD)": "",
+    "Alcoholism": "",
+    "Other addictions (e.g. smoking)": "",
+    "Anorexia": "",
+    "Alzheimer’s disease": "",
+    "Non-Alzheimer dementia": "",
+    "Substance abuse": "",
+    "(Chronic) Pain": "",
+    "Palliative Setting": "",
+    "Recreational Drug Use": "",
+    "Healthy Participants": 1
+}
+	Error parsing prediction for row with id 8295 : invalid literal for int() with base 10: 'Schizophrenia'
+	Error parsing prediction for row with id 8905 : invalid literal for int() with base 10: 'Schizophrenia'
+Parsing predictions in file zero_shot/condition/condition_MeLLaMA-70B-chat_08-09-08.csv for task Condition
+	Error parsing prediction for row with id 1441 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3371 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5380 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6103 : substring not found
+	Error parsing prediction for row with id 56 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1281 : substring not found
+	Error parsing prediction for row with id 1829 : substring not found
+	Error parsing prediction for row with id 1958 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2358 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6954 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 135 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 687 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5679 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 691 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 692 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1264 : substring not found
+	Error parsing prediction for row with id 1451 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1879 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2048 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2398 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2915 : substring not found
+	Error parsing prediction for row with id 3592 : substring not found
+	Error parsing prediction for row with id 4049 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4494 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4558 : substring not found
+	Error parsing prediction for row with id 4578 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4893 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5828 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6643 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7890 : substring not found
+	Error parsing prediction for row with id 8271 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 165 : substring not found
+	Error parsing prediction for row with id 170 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 319 : substring not found
+	Error parsing prediction for row with id 512 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1255 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1439 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1513 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1537 : substring not found
+	Error parsing prediction for row with id 1649 : substring not found
+	Error parsing prediction for row with id 1745 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1799 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1806 : substring not found
+	Error parsing prediction for row with id 1850 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1866 : substring not found
+	Error parsing prediction for row with id 1964 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1966 : substring not found
+	Error parsing prediction for row with id 2225 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2301 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2864 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3152 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3175 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3238 : substring not found
+	Error parsing prediction for row with id 3257 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3452 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4326 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4567 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4884 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5173 : substring not found
+	Error parsing prediction for row with id 5469 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5794 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5928 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6060 : substring not found
+	Error parsing prediction for row with id 6093 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6121 : substring not found
+	Error parsing prediction for row with id 6196 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6295 : substring not found
+	Error parsing prediction for row with id 6427 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6446 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6488 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6602 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6644 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6677 : substring not found
+	Error parsing prediction for row with id 6684 : substring not found
+	Error parsing prediction for row with id 6979 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7074 : substring not found
+	Error parsing prediction for row with id 7077 : substring not found
+	Error parsing prediction for row with id 7083 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7158 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7313 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7414 : substring not found
+	Error parsing prediction for row with id 7719 : substring not found
+	Error parsing prediction for row with id 7816 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7980 : substring not found
+	Error parsing prediction for row with id 8138 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8295 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8494 : substring not found
+	Error parsing prediction for row with id 8578 : substring not found
+	Error parsing prediction for row with id 8703 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8905 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8970 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9140 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9173 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9578 : Prediction text is empty or NaN.
+Parsing predictions in file zero_shot/condition/condition_Med-LLaMA3-8B_06-09-06.csv for task Condition
+	Error parsing prediction for row with id 2398 : '1. Psychiatric condition'
+	Error parsing prediction for row with id 1964 : Could not parse prediction: 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0
+	Error parsing prediction for row with id 3238 : '19.3 Psilocybin-Assisted Therapy for MDD'
+Parsing predictions in file zero_shot/condition/condition_Llama-3.1-8B-Instruct_06-09-06.csv for task Condition
+Parsing predictions in file zero_shot/condition/condition_Llama-2-70b-chat-hf_08-09-08.csv for task Condition

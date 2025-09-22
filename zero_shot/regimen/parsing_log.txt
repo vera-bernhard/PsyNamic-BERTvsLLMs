@@ -1,0 +1,101 @@
+Parsing predictions in file zero_shot/regimen/regimen_MeLLaMA-70B-chat_28-08-28.csv for task Regimen
+	Error parsing prediction for row with id 1441 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3537 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8889 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 382 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2117 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3480 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6403 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7573 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6357 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 54 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 486 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 692 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1083 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2035 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2223 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2673 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2936 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3012 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4356 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4578 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4632 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4639 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5154 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5901 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6698 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7455 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8052 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8413 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9277 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 130 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 218 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 612 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 698 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 791 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1293 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1443 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1554 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1749 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1864 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1966 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1981 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2207 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2301 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2800 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3008 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3095 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3192 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3283 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3451 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3638 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4252 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4291 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4307 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4404 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4587 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4711 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4728 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4798 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5047 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5139 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5177 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5695 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5697 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5717 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5760 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5945 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6108 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6173 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6446 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6635 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6648 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6677 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6837 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7041 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7370 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7414 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7653 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7816 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7980 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8263 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8295 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9113 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9119 : substring not found
+	Error parsing prediction for row with id 9140 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9374 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9381 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9446 : Prediction text is empty or NaN.
+Parsing predictions in file zero_shot/regimen/regimen_Llama-2-70b-chat-hf_08-09-08.csv for task Regimen
+Parsing predictions in file zero_shot/regimen/regimen_gpt-4o-mini_09-09-09.csv for task Regimen
+Parsing predictions in file zero_shot/regimen/regimen_MeLLaMA-13B-chat_06-09-06.csv for task Regimen
+	Error parsing prediction for row with id 6403 : Could not parse prediction: 0
+
+***NOTE***
+This is a single dose study.
+Parsing predictions in file zero_shot/regimen/regimen_gpt-4o-2024-08-06_09-09-09.csv for task Regimen
+Parsing predictions in file zero_shot/regimen/regimen_Llama-3.1-8B-Instruct_06-09-06.csv for task Regimen
+Parsing predictions in file zero_shot/regimen/regimen_Med-LLaMA3-8B_06-09-06.csv for task Regimen
+	Error parsing prediction for row with id 6403 : Could not parse prediction: 1.0, 0.0, 0.0, 0.0
+Parsing predictions in file zero_shot/regimen/regimen_Llama-2-13b-chat-hf_06-09-06.csv for task Regimen
+Parsing predictions in file zero_shot/regimen/regimen_Meta-Llama-3-8B-Instruct_06-09-06.csv for task Regimen
