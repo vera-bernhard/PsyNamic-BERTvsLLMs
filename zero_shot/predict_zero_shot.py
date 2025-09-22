@@ -655,6 +655,8 @@ def parse_class_predictions(pred_file: str, task: str, reparse: bool = False, lo
     nr_non_parsable = 0
     nr_faulty_parsable = 0
     # change dtype of labels column to string
+    # add nan  
+    df['pred_labels'] = None
     df['labels'] = df['labels'].astype(str)
     for i, row in df.iterrows():
         if not multilabel:
