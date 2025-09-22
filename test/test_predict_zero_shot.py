@@ -3,6 +3,8 @@ from zero_shot.predict_zero_shot import parse_class_prediction, parse_ner_predic
 from prompts.build_prompts import get_label2int
 
 
+#TODO: not sure if I considered here that the order of the labels in the prompt and the labels int2label differs when creating the expecteed
+
 class TestPredictZeroShot(unittest.TestCase):
 
     # add a data for the entire class
