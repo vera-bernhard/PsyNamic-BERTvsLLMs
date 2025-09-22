@@ -16,6 +16,7 @@ import pandas as pd
 import spacy
 import torch
 from tqdm import tqdm
+from typing import TextIO
 
 from dotenv import load_dotenv
 from huggingface_hub import login
@@ -520,6 +521,9 @@ def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> tuple
     - MeLLaMA
     - GPT-4o
     """
+    # if pred text is nan
+    if pd.isna(pred_text) or pred_text == '':
+        raise ValueError("Prediction text is empty or NaN.")
 
     if model.startswith('Llama-2'):
         # Split at [/INST]
@@ -618,8 +622,18 @@ def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> tuple
         raise ValueError(f'Could not parse prediction: {pred_text}')
 
 
-def parse_class_predictions(pred_file: str, task: str) -> dict:
+def parse_class_predictions(pred_file: str, task: str, reparse: bool = False, log_file: TextIO = None) -> dict:
     """Parse the predictions from a file and add a new column with one-hot encoded labels."""
+    if log_file is not None:
+        log_file.write(f"Parsing predictions in file {pred_file} for task {task}\n")
+        log_file.flush()
+
+    # Check if already parsed
+    df_check = pd.read_csv(pred_file)
+    if 'pred_labels' in df_check.columns and not reparse:
+        print(
+            f"The file {pred_file} already contains the column 'pred_labels'. Skipping parsing.")
+        return {}
 
     label2int = get_label2int(task)
     multilabel = is_multilabel(task)
@@ -646,12 +660,13 @@ def parse_class_predictions(pred_file: str, task: str) -> dict:
         if not multilabel:
             # Check if it is one-hot encoded already
             if is_one_hot(row['labels'], len(label2int)):
-                continue
-            # Convert the true label to one-hot encoding
-            true_label = int(row['labels'])
-            true_onehot = [0] * len(label2int)
-            true_onehot[true_label] = 1
-            df.at[i, 'labels'] = str(true_onehot)
+                pass
+            else: 
+                # Convert the true label to one-hot encoding
+                true_label = int(row['labels'])
+                true_onehot = [0] * len(label2int)
+                true_onehot[true_label] = 1
+                df.at[i, 'labels'] = str(true_onehot)
         try:
             pred_labels, faulty_but_parsable = parse_class_prediction(
                 row['prediction_text'], label2int, model)
@@ -659,14 +674,19 @@ def parse_class_predictions(pred_file: str, task: str) -> dict:
             if faulty_but_parsable:
                 nr_faulty_parsable += 1
         except Exception as e:
-            print(
-                f"Error parsing prediction for row with id {row['id']} : {e}")
+            if log_file is not None:
+                log_file.write(
+                    f"\tError parsing prediction for row with id {row['id']} : {e}\n")
+                log_file.flush()
+            else:
+                print(
+                    f"Error parsing prediction for row with id {row['id']} : {e}")
             nr_non_parsable += 1
             continue
 
     df.to_csv(pred_file, index=False, encoding='utf-8')
     stats = {
-        'nr_faulty_parsable': 0,
+        'nr_faulty_parsable': nr_faulty_parsable,
         'nr_non_parsable': nr_non_parsable,
     }
     return stats
