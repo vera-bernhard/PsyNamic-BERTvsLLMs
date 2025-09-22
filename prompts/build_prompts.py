@@ -296,6 +296,18 @@ def get_int2label(task: str) -> dict:
     int2label = {int(k): v for k, v in int2label.items()}
     return int2label
 
+def is_multilabel(task: str) -> bool:
+    task_lower = task.lower().replace(' ', '_')
+    file = os.path.join(os.path.dirname(__file__), '..',
+                        'data', task_lower, 'meta.json')
+    if not os.path.exists(file):
+        raise FileNotFoundError(
+            f"The file {file} does not exist. Check the task name.")
+    with open(file, 'r', encoding='utf-8') as f:
+        meta = json.load(f)
+    return meta.get('Is_multilabel', False)
+
+
 def build_class_examples(id: str, task: str, task_options: OrderedDict = None, few_shot_nr: int = 3, few_shot_strategy: Literal['selected', 'random'] = 'selected', shots: list[int] = None):
     if few_shot_strategy == 'selected' and shots is None:
         raise ValueError(
