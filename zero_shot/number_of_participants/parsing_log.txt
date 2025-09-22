@@ -1,0 +1,397 @@
+Parsing predictions in file zero_shot/number_of_participants/number_of_participants_Llama-2-13b-chat-hf_06-09-06.csv for task Number of Participants
+	Error parsing prediction for row with id 151 : Could not parse prediction: Based on the input you provided, here is the output:
+
+{
+"1-20": "",
+"21-40": "",
+"41-60": "",
+"61-80": "",
+"81-100": "",
+"100-199": "",
+"200-499": "",
+"500-999": "",
+"≥1000": "",
+"Not applicable": "",
+"Unknown": ""
+}
+
+The output is an empty JSON object, as none of the options apply to the research paper. The paper does not provide information on the number of participants, and therefore none of the options can be selected.
+Parsing predictions in file zero_shot/number_of_participants/number_of_participants_Meta-Llama-3-8B-Instruct_06-09-06.csv for task Number of Participants
+Parsing predictions in file zero_shot/number_of_participants/number_of_participants_Med-LLaMA3-8B_06-09-06.csv for task Number of Participants
+	Error parsing prediction for row with id 2439 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21
+	Error parsing prediction for row with id 624 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 1710 : '1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown\n\n1-20'
+	Error parsing prediction for row with id 8372 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 9596 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21
+	Error parsing prediction for row with id 4848 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 6362 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 180 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21
+	Error parsing prediction for row with id 8457 : '1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown\n\n1-20'
+	Error parsing prediction for row with id 7466 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 1770 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21
+	Error parsing prediction for row with id 8746 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+***EXAMPLES***
+	Error parsing prediction for row with id 9525 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 6683 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21
+	Error parsing prediction for row with id 3002 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+***EXAMPLES***
+	Error parsing prediction for row with id 5997 : '1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown\n\n1-20'
+	Error parsing prediction for row with id 5231 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 8062 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21
+	Error parsing prediction for row with id 2150 : '1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown\n\n1-20'
+	Error parsing prediction for row with id 6158 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 869 : '1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown\n\n1-20'
+	Error parsing prediction for row with id 3181 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+***EXAMPLES***
+	Error parsing prediction for row with id 7344 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21
+	Error parsing prediction for row with id 379 : '1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown\n\n1-20'
+	Error parsing prediction for row with id 1918 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 7083 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+***EXAMPLES***
+	Error parsing prediction for row with id 8554 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 4641 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 94 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21
+	Error parsing prediction for row with id 6470 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21
+	Error parsing prediction for row with id 6072 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+***EXAMPLES***
+	Error parsing prediction for row with id 5928 : '1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown\n\n1-20'
+	Error parsing prediction for row with id 4684 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 564 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+***EXAMPLES***
+	Error parsing prediction for row with id 4404 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21
+	Error parsing prediction for row with id 6629 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 5705 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21
+	Error parsing prediction for row with id 4729 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 2800 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+***EXAMPLE***
+	Error parsing prediction for row with id 6345 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 2112 : '1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown\n\n1-20'
+	Error parsing prediction for row with id 9151 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 5221 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21
+	Error parsing prediction for row with id 3605 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 6446 : '1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown\n\n1-20'
+	Error parsing prediction for row with id 6016 : '1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown\n\n1-20'
+	Error parsing prediction for row with id 7048 : '1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown\n\n1-20'
+	Error parsing prediction for row with id 9565 : '1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown\n\n1-20'
+	Error parsing prediction for row with id 8387 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+***EXAMPLES***
+	Error parsing prediction for row with id 7460 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21
+	Error parsing prediction for row with id 4755 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 6325 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 7035 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+***EXAMPLES***
+	Error parsing prediction for row with id 8087 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21
+	Error parsing prediction for row with id 2490 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+***EXAMPLES***
+	Error parsing prediction for row with id 8247 : '1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown\n\n1-20'
+	Error parsing prediction for row with id 5794 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+***EXAMPLES***
+	Error parsing prediction for row with id 751 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 9340 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21
+	Error parsing prediction for row with id 2998 : '1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown\n\n1-20'
+	Error parsing prediction for row with id 8143 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21
+	Error parsing prediction for row with id 2669 : '1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown\n\n1-20'
+	Error parsing prediction for row with id 8913 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21
+	Error parsing prediction for row with id 8596 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 4885 : '1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown\n\n1-20'
+	Error parsing prediction for row with id 2497 : '1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown\n\n1-20'
+	Error parsing prediction for row with id 8319 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 5641 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21
+	Error parsing prediction for row with id 2784 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 6085 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 591 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21
+	Error parsing prediction for row with id 5760 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 4236 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+
+1-20, 21
+	Error parsing prediction for row with id 3719 : '1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown\n\n***DATA***\n\nThe data is available at'
+	Error parsing prediction for row with id 7381 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 1887 : '1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown\n\n1-20'
+	Error parsing prediction for row with id 5001 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 7914 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 7313 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 54 : '1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown\n\n1-20'
+	Error parsing prediction for row with id 1077 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 2539 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+	Error parsing prediction for row with id 612 : Could not parse prediction: 1-20, 21-40, 41-60, 61-80, 81-100, 100-199, 200-499, 500-999, ≥1000, Not applicable, Unknown
+Parsing predictions in file zero_shot/number_of_participants/number_of_participants_Llama-3.1-8B-Instruct_06-09-06.csv for task Number of Participants
+Parsing predictions in file zero_shot/number_of_participants/number_of_participants_MeLLaMA-13B-chat_06-09-06.csv for task Number of Participants
+	Error parsing prediction for row with id 8457 : Could not parse prediction: 5
+	Error parsing prediction for row with id 7466 : Could not parse prediction: 20-40
+	Error parsing prediction for row with id 3002 : Could not parse prediction: {
+    "1-20": "",
+    "21-40": "",
+    "41-60": "",
+    "61-80": "",
+    "81-100": "",
+    "100-199": "",
+    "200-499": "",
+    "500-999": "",
+    "\u22651000": "",
+    "Not applicable": "",
+    "Unknown": ""
+}
+	Error parsing prediction for row with id 6016 : Could not parse prediction: 16
+	Error parsing prediction for row with id 7381 : Could not parse prediction: 0
+
+**/
+	Error parsing prediction for row with id 7914 : Could not parse prediction: 0
+Parsing predictions in file zero_shot/number_of_participants/number_of_participants_MeLLaMA-70B-chat_08-09-08.csv for task Number of Participants
+	Error parsing prediction for row with id 2439 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 624 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1710 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8031 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6198 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 777 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8372 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9596 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4848 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6362 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 180 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8457 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7466 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1770 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8746 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9525 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6683 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3002 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5997 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5231 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8062 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2150 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6158 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 869 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3181 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7344 : substring not found
+	Error parsing prediction for row with id 379 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1918 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7083 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8554 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4641 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 94 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6470 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6072 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5928 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4684 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 564 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4404 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6629 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5705 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4729 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2800 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6345 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2112 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9151 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5221 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3605 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6446 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6016 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7048 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9565 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8387 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7460 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4755 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6325 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7035 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3916 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6047 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8087 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2490 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8247 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4876 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2411 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5794 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 751 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9340 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2998 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8143 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2669 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2382 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8913 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8596 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4885 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8319 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5641 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2784 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6085 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 151 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 591 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5760 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4236 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3719 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4826 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7381 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1887 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5001 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7914 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7313 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 54 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1077 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2420 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 612 : Prediction text is empty or NaN.
+Parsing predictions in file zero_shot/number_of_participants/number_of_participants_gpt-4o-mini_09-09-09.csv for task Number of Participants
+Parsing predictions in file zero_shot/number_of_participants/number_of_participants_gpt-4o-2024-08-06_21-08-21.csv for task Number of Participants
+Parsing predictions in file zero_shot/number_of_participants/number_of_participants_Llama-2-70b-chat-hf_08-09-08.csv for task Number of Participants
+	Error parsing prediction for row with id 1710 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 8372 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 4848 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 8457 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 2150 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 6158 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 379 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 1918 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 4641 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 94 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 6470 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 6072 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 5928 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 4729 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 6345 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 2112 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 5221 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 6446 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 7048 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 3916 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 8247 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 4876 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 2411 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 2998 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 2669 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 2382 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 8913 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 4885 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 151 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 3719 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 7381 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 54 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 1077 : Label >=1000 not found in label2int mapping.
+	Error parsing prediction for row with id 2420 : Label >=1000 not found in label2int mapping.

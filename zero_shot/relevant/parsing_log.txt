@@ -1,0 +1,1168 @@
+Parsing predictions in file zero_shot/relevant/relevant_MeLLaMA-70B-chat_28-08-28.csv for task Relevant
+	Error parsing prediction for row with id 1951 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4160 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6235 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8157 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4703 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8269 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7362 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 486 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3943 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5797 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8330 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4970 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 130 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3189 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8480 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5232 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6707 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9261 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2743 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 159 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2608 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6006 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 593 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 381 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1548 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3625 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7027 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4177 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9131 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8409 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5034 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5697 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6394 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2566 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7650 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5227 : substring not found
+	Error parsing prediction for row with id 7833 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7278 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2518 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 360 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4330 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5136 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3195 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9089 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5674 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9436 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 657 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8429 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6426 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8839 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8319 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1233 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3442 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7258 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6637 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1869 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2631 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 215 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4843 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6241 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5092 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7167 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1714 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 863 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4853 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3450 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9486 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5203 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1729 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 959 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 579 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 356 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1814 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8496 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8469 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7570 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5316 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8998 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4347 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3810 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4381 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7955 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9271 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6062 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1385 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3408 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1911 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3260 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8103 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7521 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4475 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9308 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4059 : substring not found
+	Error parsing prediction for row with id 4523 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8332 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2998 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1538 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8551 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 161 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1770 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6568 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4816 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3177 : substring not found
+	Error parsing prediction for row with id 8156 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7067 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7314 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1524 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6247 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1389 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7366 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 513 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5047 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8424 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1061 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2309 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8099 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3048 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1758 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7036 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1953 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 933 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5512 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2200 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 612 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3532 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9636 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3955 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4854 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4400 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3799 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8064 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4238 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7519 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3112 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1397 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4914 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 716 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3305 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2383 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3959 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6189 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4094 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5221 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1837 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 299 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 647 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6106 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1431 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5647 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 451 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 518 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 642 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 990 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5396 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9522 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9258 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5456 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8561 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 483 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4812 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 272 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4632 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6379 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7516 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5331 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 481 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4067 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2305 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2498 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8690 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1466 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5903 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 935 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5804 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 563 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6850 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3969 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8428 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 732 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 705 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7601 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2243 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2953 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4125 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9419 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 814 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7830 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 875 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3089 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 447 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8421 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8038 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3097 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7435 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3402 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8795 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 434 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4097 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7035 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5062 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6779 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8348 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3153 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5524 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7352 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2780 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3734 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9401 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5968 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3978 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 872 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 293 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2320 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 672 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3821 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7349 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4678 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8087 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2384 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8176 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6242 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8932 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9101 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3681 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2273 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 892 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 912 : substring not found
+	Error parsing prediction for row with id 1618 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5972 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5379 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6838 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7089 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8746 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6479 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2568 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8913 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8523 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7903 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 679 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 218 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6238 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1072 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8870 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3182 : substring not found
+	Error parsing prediction for row with id 7970 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4231 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3893 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8775 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1647 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 149 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6719 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9114 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9147 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6360 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6439 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1731 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7342 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7708 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5798 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1744 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4070 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1808 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1482 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4421 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3786 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5476 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6456 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4327 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1312 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8462 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1143 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5071 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1392 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1766 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5157 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4100 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6806 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7397 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6421 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1301 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4784 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5703 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 914 : substring not found
+	Error parsing prediction for row with id 3012 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9125 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7059 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5786 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2928 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 692 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7282 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2670 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2265 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6042 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5890 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5471 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4430 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 165 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1394 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7074 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9233 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 782 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6703 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2547 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6030 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3045 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4031 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4030 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1387 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2447 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9141 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5998 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2232 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2834 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5390 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9056 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6641 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7713 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9306 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3419 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6887 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 822 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 51 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 121 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6740 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3870 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7162 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8262 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5508 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3654 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2354 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8232 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7917 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2974 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9109 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4751 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2139 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2256 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6894 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1933 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1944 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2099 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4911 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1689 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4876 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8054 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5169 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5612 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3492 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 991 : substring not found
+	Error parsing prediction for row with id 2963 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8803 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7030 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1803 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 649 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8146 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1693 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4227 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 248 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5023 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6364 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1569 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 664 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1346 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1646 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7300 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 700 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2980 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3244 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6000 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5039 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1914 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2051 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7361 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4194 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 219 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3858 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 49 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1588 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3787 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8525 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3013 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6290 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7913 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2482 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7041 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7681 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5405 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1455 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3825 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8687 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6130 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1383 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2379 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8498 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8751 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5858 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3970 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2411 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 730 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3719 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2789 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8359 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1114 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9430 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2605 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 155 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6969 : substring not found
+	Error parsing prediction for row with id 8091 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7504 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1941 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8035 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5816 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3334 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2537 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1611 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1214 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4287 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5915 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3649 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2276 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 750 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4578 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4588 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9533 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3122 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8955 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 148 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7233 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7477 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5675 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2748 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3524 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3063 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8991 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3780 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5586 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6297 : Could not parse prediction: S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S     S, S, S,,,, S, S, S, S, S, S, S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S, S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S the the the the the the the S S S S S S S S S S S S S S S S S the the the the S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S S,, and S, and,,,, and, and S S S S S S S S S S S S S S S S S S, and
+	Error parsing prediction for row with id 8513 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3335 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7138 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3107 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4093 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3478 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 127 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5231 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6797 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1065 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1476 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1230 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 842 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4711 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2150 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3689 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8664 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4408 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8166 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2191 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7685 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1093 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2110 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4915 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 729 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6909 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1452 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3802 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5595 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2505 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5758 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8614 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2797 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1777 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6494 : substring not found
+	Error parsing prediction for row with id 4122 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 660 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8031 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 983 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5387 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7174 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1401 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3740 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 273 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 924 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5740 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3296 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5164 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4126 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1097 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6604 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3879 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2946 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8258 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7034 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9412 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8937 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7976 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4507 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6615 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4623 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2181 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2719 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3850 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3175 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 343 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7289 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1256 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8431 : substring not found
+	Error parsing prediction for row with id 6592 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 825 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7367 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3276 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7301 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1663 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3977 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5104 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2257 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2787 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8535 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3792 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7417 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2278 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3679 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3733 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8731 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9559 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 590 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3171 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 554 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6490 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5383 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6268 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3479 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5248 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7786 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4781 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9179 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3183 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1537 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1912 : substring not found
+	Error parsing prediction for row with id 2294 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9462 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 893 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5218 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 352 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6026 : substring not found
+	Error parsing prediction for row with id 3936 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3613 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9053 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 997 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9286 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2747 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2454 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7317 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6979 : Prediction text is empty or NaN.
+Parsing predictions in file zero_shot/relevant/relevant_Llama-2-70b-chat-hf_08-09-08.csv for task Relevant
+	Error parsing prediction for row with id 6297 : Could not parse prediction: llll and,,,,,ll,,,,ll,,0ll0ll all0ll,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Parsing predictions in file zero_shot/relevant/relevant_Llama-3.1-8B-Instruct_06-09-06.csv for task Relevant
+Parsing predictions in file zero_shot/relevant/relevant_Med-LLaMA3-8B_06-09-06.csv for task Relevant
+	Error parsing prediction for row with id 1951 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 5697 : Could not parse prediction: 1,1,0
+	Error parsing prediction for row with id 7650 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 1714 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 863 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 8496 : Could not parse prediction: 1, 0, 0
+
+***EXAMPLES***
+	Error parsing prediction for row with id 5316 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 75 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 612 : Could not parse prediction: 1, 0, 0, 0
+	Error parsing prediction for row with id 4238 : Could not parse prediction: 1, 0, 0
+	Error parsing prediction for row with id 4094 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 6106 : Could not parse prediction: 1.0, 0.0
+	Error parsing prediction for row with id 9522 : Could not parse prediction: 1, 0, 0, 1
+	Error parsing prediction for row with id 8561 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 2498 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 563 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0
+	Error parsing prediction for row with id 8428 : Could not parse prediction: 1, 0, 0
+	Error parsing prediction for row with id 4125 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 3734 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 9401 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 3978 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 872 : Could not parse prediction: 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+	Error parsing prediction for row with id 4678 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 2384 : Could not parse prediction: 1.0
+
+***TESTING***
+
+The test set is a subset of the training set. The test set is not included in the training set. The test set is not used for training. The test set is used for testing only. The test set is not used for training or testing. The test set is not used for training or
+	Error parsing prediction for row with id 7664 : Could not parse prediction: 1, 0, 0, 1, 1
+	Error parsing prediction for row with id 679 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 3893 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 149 : '1. irrelevant'
+	Error parsing prediction for row with id 4100 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 7282 : Could not parse prediction: 1, 0, 0
+	Error parsing prediction for row with id 5890 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 1394 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 4030 : Could not parse prediction: 0, 1, 0, 1
+	Error parsing prediction for row with id 9056 : Could not parse prediction: 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 7713 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 9306 : Could not parse prediction: 1, 0, 0, 0, 0
+	Error parsing prediction for row with id 8232 : Could not parse prediction: 0, 1, 0, 0, 0, 0, 0, 0
+	Error parsing prediction for row with id 4751 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 2099 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 1689 : Could not parse prediction: 1, 0, 0
+	Error parsing prediction for row with id 7030 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 2051 : Could not parse prediction: 1, 0, 0
+	Error parsing prediction for row with id 4194 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 6290 : Could not parse prediction: 1, 0, 0
+	Error parsing prediction for row with id 8498 : Could not parse prediction: 1, 0, 1
+	Error parsing prediction for row with id 1114 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 9430 : Could not parse prediction: 1, 0, 1
+	Error parsing prediction for row with id 2276 : Could not parse prediction: 1, 0, 0, 0
+	Error parsing prediction for row with id 3524 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 5586 : Could not parse prediction: 0, 0, 0, 0, 1
+	Error parsing prediction for row with id 6297 : '1. Relevant'
+	Error parsing prediction for row with id 6797 : Could not parse prediction: 1, 0, 0
+	Error parsing prediction for row with id 1452 : Could not parse prediction: 1, 0, 0
+	Error parsing prediction for row with id 8031 : Could not parse prediction: 1, 0, 0
+	Error parsing prediction for row with id 5387 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 3740 : Could not parse prediction: 1, 0, 1, 1
+	Error parsing prediction for row with id 7034 : Could not parse prediction: 1, 0, 1
+	Error parsing prediction for row with id 343 : Could not parse prediction: 1, 0, 0
+	Error parsing prediction for row with id 3613 : Could not parse prediction: 1, 0, 0
+Parsing predictions in file zero_shot/relevant/relevant_MeLLaMA-13B-chat_06-09-06.csv for task Relevant
+	Error parsing prediction for row with id 6235 : '0\n\nINPUT'
+	Error parsing prediction for row with id 8269 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3943 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 159 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1548 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3625 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5034 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 6394 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 5227 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 2518 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5674 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9436 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 6426 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7258 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 6637 : Could not parse prediction: 1
+	Error parsing prediction for row with id 215 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7167 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1714 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4853 : '0\n\nINPUT'
+	Error parsing prediction for row with id 3450 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5203 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1729 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 579 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 356 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 1814 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8496 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3810 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4381 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9271 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 6062 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1385 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 1911 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8103 : Could not parse prediction: 0
+
+# Static AI model
+This is an irrelevant study.
+	Error parsing prediction for row with id 4523 : '0\n\nTitle'
+	Error parsing prediction for row with id 8332 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2998 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1538 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7067 : '0\n\nINPUT'
+	Error parsing prediction for row with id 1389 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8424 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1061 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2309 : substring not found
+	Error parsing prediction for row with id 3048 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5512 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3532 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3799 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8064 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7519 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 1397 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4914 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 2383 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5221 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 299 : Could not parse prediction: 1
+	Error parsing prediction for row with id 647 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 6106 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1431 : Could not parse prediction: 0
+	Error parsing prediction for row with id 793 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 5396 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 8561 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 483 : Could not parse prediction: 0
+	Error parsing prediction for row with id 272 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4632 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7516 : Could not parse prediction: 0
+	Error parsing prediction for row with id 481 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1466 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 5903 : Could not parse prediction: 0
+	Error parsing prediction for row with id 935 : '0\n\nINPUT'
+	Error parsing prediction for row with id 6850 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3969 : Could not parse prediction: 0
+	Error parsing prediction for row with id 705 : Could not parse prediction: 1
+	Error parsing prediction for row with id 875 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3089 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8421 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7435 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3402 : '0\n\nINPUT'
+	Error parsing prediction for row with id 434 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7035 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 3153 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 5524 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3734 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 9401 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5968 : substring not found
+	Error parsing prediction for row with id 3978 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2320 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 7349 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 2384 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9101 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 892 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 1618 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5972 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8746 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 8523 : Could not parse prediction: 1
+	Error parsing prediction for row with id 679 : '0\n\nTitle'
+	Error parsing prediction for row with id 218 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1072 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7970 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 3893 : '0\n\nTitle'
+	Error parsing prediction for row with id 8775 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 1647 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 149 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6439 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1731 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7342 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 5798 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4070 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 4421 : substring not found
+	Error parsing prediction for row with id 5476 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8462 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 1766 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3012 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 7059 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5786 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 2928 : Could not parse prediction: 0
+	Error parsing prediction for row with id 692 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2670 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 2265 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 4430 : Could not parse prediction: 1
+	Error parsing prediction for row with id 165 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9233 : Could not parse prediction: 0
+	Error parsing prediction for row with id 782 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6703 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4030 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2447 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5998 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2232 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 2834 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6641 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7713 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 9306 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3419 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6887 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 822 : '0\n\nTitle'
+	Error parsing prediction for row with id 6740 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3870 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7162 : '0\n\nINPUT'
+	Error parsing prediction for row with id 8232 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2974 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4751 : '0\n\nTitle'
+	Error parsing prediction for row with id 2139 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 4911 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4876 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 3492 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 7030 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1803 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 649 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8146 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 1693 : Could not parse prediction: 0
+	Error parsing prediction for row with id 248 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 6364 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 1569 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5510 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1646 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7300 : Could not parse prediction: 1
+	Error parsing prediction for row with id 700 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 1914 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7361 : '0\n\nINPUT'
+	Error parsing prediction for row with id 219 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3858 : Could not parse prediction: 1
+	Error parsing prediction for row with id 49 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3787 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6290 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 7913 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5405 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3825 : '0\n\nTitle'
+	Error parsing prediction for row with id 6130 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2379 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8498 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8751 : '0\n\nTitle'
+	Error parsing prediction for row with id 5858 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3970 : '0\n\nINPUT'
+	Error parsing prediction for row with id 2411 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2789 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8359 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1114 : Could not parse prediction: 0
+	Error parsing prediction for row with id 155 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8091 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7504 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5816 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 3334 : '0\n\nTitle'
+	Error parsing prediction for row with id 2537 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4287 : '0\n\nTitle'
+	Error parsing prediction for row with id 5915 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3649 : Could not parse prediction: 0
+	Error parsing prediction for row with id 750 : Could not parse prediction: 0
+	Error parsing prediction for row with id 148 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7477 : '0\n\nTitle'
+	Error parsing prediction for row with id 5675 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2748 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5586 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 6297 : Could not parse prediction: inel lymph node biopsy and adjuvant chemotherapy as needed. (II) Cryoablation arm with neoadjuvant chemotherapy followed by cryoablation of the tumor and sentinel lymph node biopsy and adjuvant chemotherapy as needed. (III) Cryo
+	Error parsing prediction for row with id 8513 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7138 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 3478 : Could not parse prediction: 1
+	Error parsing prediction for row with id 127 : '0\n\nTitle'
+	Error parsing prediction for row with id 6797 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1230 : Could not parse prediction: 0
+	Error parsing prediction for row with id 842 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4711 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 3689 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2191 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2110 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 729 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6909 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 1452 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 8614 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1777 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 660 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7174 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 4466 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1401 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 273 : Could not parse prediction: 0
+	Error parsing prediction for row with id 924 : '0\n\nTitle'
+	Error parsing prediction for row with id 5164 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6604 : '0\n\nTitle'
+	Error parsing prediction for row with id 3879 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8258 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9412 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 4623 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2719 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 3850 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7289 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6592 : substring not found
+	Error parsing prediction for row with id 825 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3276 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 7301 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 3792 : '0\n\nTitle'
+	Error parsing prediction for row with id 7417 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9559 : Could not parse prediction: 0
+	Error parsing prediction for row with id 590 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 3171 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6490 : Could not parse prediction: 0
+
+*** REASONING ***
+This study investigates the use of ketamine in elderly patients with treatment-resistant depression.
+	Error parsing prediction for row with id 5248 : substring not found
+	Error parsing prediction for row with id 9179 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 1537 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 893 : '0\n\nINPUT'
+	Error parsing prediction for row with id 5218 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 352 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 3936 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9053 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9286 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 2454 : Could not parse prediction: {
+    "irrelevant": "",
+    "relevant": ""
+}
+	Error parsing prediction for row with id 7317 : Could not parse prediction: 0
+Parsing predictions in file zero_shot/relevant/relevant_Llama-2-13b-chat-hf_06-09-06.csv for task Relevant
+	Error parsing prediction for row with id 159 : 'Based on the provided title and abstract, the study is relevant.\n\nRelevant'
+	Error parsing prediction for row with id 215 : "Sure, I'd be happy to help! Based on the title and abstract you provided, I would classify this study as irrelevant. Here's my reasoning"
+	Error parsing prediction for row with id 1729 : "Sure, I'd be happy to help! Based on the title and abstract you provided, I would classify this study as relevant. Here's my reasoning"
+	Error parsing prediction for row with id 6062 : substring not found
+	Error parsing prediction for row with id 3532 : 'Sure, I can help you with that! Based on the title and abstract you provided, I would classify this study as irrelevant for the following reasons'
+	Error parsing prediction for row with id 6106 : 'Based on the provided title and abstract, I classify this study as relevant.\n\nRelevant'
+	Error parsing prediction for row with id 5968 : Could not parse prediction: Based on the title and abstract of the research paper, the study is relevant to the task. The study investigates the use of esketamine nasal spray in adults with severe major depressive disorder, which is a relevant topic for the task. The study also reports on the use of psychedelic substances in humans
+	Error parsing prediction for row with id 7664 : Could not parse prediction: Sure, I'd be happy to help! Based on the title and abstract of the research paper you provided, I would classify it as irrelevant. The study does not investigate the use of psychedelic substances in humans, and instead focuses on the effects of ayahuasca on zebrafish behavior. Therefore, it does
+	Error parsing prediction for row with id 3893 : "Sure, I'd be happy to help! Based on the information provided, the study you've described does not meet the criteria for relevance. Here's why"
+	Error parsing prediction for row with id 149 : 'Based on the provided input, I would classify this study as "relevant" for the following reasons'
+	Error parsing prediction for row with id 6360 : Could not parse prediction: Sure, I'd be happy to help! Based on the title and abstract of the research paper you provided, I would classify it as irrelevant for the task of classifying studies on the use of psychedelic substances in humans. The study does not investigate the use of psychedelic substances in humans, but rather the ant
+	Error parsing prediction for row with id 5157 : "Sure, I'd be happy to help! Based on the title and abstract you provided, I would classify this study as irrelevant for the following reasons"
+	Error parsing prediction for row with id 4430 : Could not parse prediction: Sure, I'd be happy to help! Based on the title and abstract of the research paper you provided, I would classify it as irrelevant for the task of classifying studies on the use of psychedelic substances in humans. The study does not investigate the use of psychedelic substances in humans, but rather examines
+	Error parsing prediction for row with id 165 : Could not parse prediction: Based on the title and abstract of the research paper you provided, I would classify it as relevant. Here's the output:
+
+{
+"irrelevant": "",
+"relevant": 1
+}
+
+The study meets the inclusion criteria for relevance because it involves the use of psilocybin in humans (he
+	Error parsing prediction for row with id 9233 : Could not parse prediction: Sure, I'd be happy to help! Based on the title and abstract you provided, I would classify this study as irrelevant. The study is a corrigendum, which means it reports an error or inaccuracy in a previous study, and does not contain any information about the use of psychedelic substances in humans.
+	Error parsing prediction for row with id 4031 : Could not parse prediction: Based on the title and abstract of the research paper, the study is not relevant for the task. The study is a statistical analysis plan for a randomized clinical trial to evaluate the efficacy and safety of ethosuximide in patients with treatment-resistant depression, and it does not involve the use of psychedelic substances
+	Error parsing prediction for row with id 4030 : Could not parse prediction: Sure, I'd be happy to help! Based on the title and abstract of the research paper you provided, I would classify it as irrelevant for the task of classifying studies on the use of psychedelic substances in humans. The study does not investigate the use of psychedelic substances in humans, but rather the use
+	Error parsing prediction for row with id 3858 : Could not parse prediction: Based on the title and abstract of the research paper you provided, I would classify it as irrelevant for the task of classifying studies on the use of psychedelic substances in humans. The study does not investigate the use of psychedelic substances in humans, but rather compares different dosages of ketamine and prop
+	Error parsing prediction for row with id 6130 : Could not parse prediction: Based on the information provided, the study is relevant because it discusses the use of psychedelic substances in humans, specifically morphine and ketamine, in the context of cardiac arrest and their potential neuroprotective effects. The study also mentions the importance of conserving ATP in the brain during cardiac arrest and the
+	Error parsing prediction for row with id 2379 : Could not parse prediction: Based on the provided information, the study is relevant.
+
+Here's the output:
+
+{
+"irrelevant": "",
+"relevant": 1
+}
+	Error parsing prediction for row with id 2789 : Could not parse prediction: Sure, I'd be happy to help! Based on the title and abstract, I would classify this study as relevant. Here's the output:
+
+{
+"irrelevant": "",
+"relevant": 1
+}
+
+The study is relevant because it investigates the use of psychedelic substances (
+	Error parsing prediction for row with id 1114 : Could not parse prediction: Sure, I can help you with that! Based on the title and abstract of the research paper you provided, I would classify it as irrelevant. The study does not investigate the use of psychedelic substances in humans, but rather the enantioselective quantitation of the ecstasy compound and its metabolites in human
+	Error parsing prediction for row with id 155 : Could not parse prediction: Based on the provided information, I would classify this study as relevant. The study involves the use of psychedelic substances (MDMA and psilocybin) in humans, specifically for the treatment of obsessive-compulsive disorder (OCD). The study meets the inclusion criteria for relevance as it involves the use
+	Error parsing prediction for row with id 3122 : Could not parse prediction: Sure, I'd be happy to help! Based on the title and abstract of the research paper you provided, I would classify it as irrelevant for the task at hand. The study does not investigate the use of psychedelic substances in humans, and instead focuses on comorbidity between DSM-IV drug use disorders
+	Error parsing prediction for row with id 148 : 'Based on the provided title and abstract, the study is relevant for the following reasons'
+	Error parsing prediction for row with id 6297 : ''
+	Error parsing prediction for row with id 343 : "Sure, I'd be happy to help! Based on the title and abstract you provided, I would classify this study as irrelevant for the following reasons"
+	Error parsing prediction for row with id 6592 : "Sure, I'd be happy to help! Based on the title and abstract you provided, I would classify this study as relevant. Here's my reasoning"
+	Error parsing prediction for row with id 3276 : Could not parse prediction: Based on the title and abstract of the research paper you provided, I would classify it as relevant. Here's the output:
+
+{
+"irrelevant": "",
+"relevant": 1
+}
+
+The study reports on the use of psychedelic substances in humans, specifically ketamine, in
+	Error parsing prediction for row with id 9559 : Could not parse prediction: Sure, I'd be happy to help! Based on the title and abstract of the research paper you provided, I would classify it as irrelevant for the task of classifying studies on the use of psychedelic substances in humans. The study does not investigate the use of any psychedelic substances, but rather the pharm
+	Error parsing prediction for row with id 5248 : "Sure, I'd be happy to help! Based on the title and abstract you provided, I would classify this study as irrelevant. Here's my reasoning"
+	Error parsing prediction for row with id 1537 : Could not parse prediction: Sure, I'd be happy to help! Based on the title and abstract of the research paper you provided, I would classify it as irrelevant for the task at hand. The study does not investigate the use of psychedelic substances in humans, and instead focuses on the use of intramuscular ketamine as a
+Parsing predictions in file zero_shot/relevant/relevant_Meta-Llama-3-8B-Instruct_06-09-06.csv for task Relevant
+	Error parsing prediction for row with id 6235 : substring not found
+	Error parsing prediction for row with id 8409 : substring not found
+	Error parsing prediction for row with id 3442 : substring not found
+	Error parsing prediction for row with id 5203 : substring not found
+	Error parsing prediction for row with id 7366 : substring not found
+	Error parsing prediction for row with id 6189 : substring not found
+	Error parsing prediction for row with id 793 : substring not found
+	Error parsing prediction for row with id 4067 : substring not found
+	Error parsing prediction for row with id 8690 : substring not found
+	Error parsing prediction for row with id 6242 : substring not found
+	Error parsing prediction for row with id 6238 : substring not found
+	Error parsing prediction for row with id 7342 : substring not found
+	Error parsing prediction for row with id 782 : substring not found
+	Error parsing prediction for row with id 5390 : substring not found
+	Error parsing prediction for row with id 7713 : substring not found
+	Error parsing prediction for row with id 51 : substring not found
+	Error parsing prediction for row with id 1588 : substring not found
+	Error parsing prediction for row with id 3063 : substring not found
+	Error parsing prediction for row with id 3802 : substring not found
+	Error parsing prediction for row with id 4507 : substring not found
+	Error parsing prediction for row with id 3171 : substring not found
+	Error parsing prediction for row with id 4781 : substring not found
+Parsing predictions in file zero_shot/relevant/relevant_gpt-4o-mini_09-09-09.csv for task Relevant
+Parsing predictions in file zero_shot/relevant/relevant_gpt-4o-2024-08-06_09-09-09.csv for task Relevant

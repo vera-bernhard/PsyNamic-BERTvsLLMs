@@ -1,0 +1,152 @@
+Parsing predictions in file zero_shot/substance_naivety/substance_naivety_Llama-2-70b-chat-hf_08-09-08.csv for task Substance Naivety
+	Error parsing prediction for row with id 1441 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 5380 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 5738 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 7451 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 8870 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 1650 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 2227 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 3653 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 5071 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 6058 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 7941 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 8100 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 8918 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 9452 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 9596 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 121 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 127 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 531 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 869 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 1054 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 1554 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 1765 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 1918 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 1981 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 3095 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 4035 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 4070 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 4103 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 4530 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 4653 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 4658 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 4711 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 4932 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 5012 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 5080 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 5177 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 5215 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 5717 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 5812 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 6010 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 6027 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 6345 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 6645 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 6979 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 7041 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 7318 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 8910 : Label Substance-Naive Participants not found in label2int mapping.
+	Error parsing prediction for row with id 9113 : Label Substance-Naive Participants not found in label2int mapping.
+Parsing predictions in file zero_shot/substance_naivety/substance_naivety_MeLLaMA-13B-chat_06-09-06.csv for task Substance Naivety
+Parsing predictions in file zero_shot/substance_naivety/substance_naivety_Meta-Llama-3-8B-Instruct_06-09-06.csv for task Substance Naivety
+Parsing predictions in file zero_shot/substance_naivety/substance_naivety_Llama-3.1-8B-Instruct_06-09-06.csv for task Substance Naivety
+Parsing predictions in file zero_shot/substance_naivety/substance_naivety_Med-LLaMA3-8B_06-09-06.csv for task Substance Naivety
+Parsing predictions in file zero_shot/substance_naivety/substance_naivety_Llama-2-13b-chat-hf_06-09-06.csv for task Substance Naivety
+Parsing predictions in file zero_shot/substance_naivety/substance_naivety_gpt-4o-2024-08-06_09-09-09.csv for task Substance Naivety
+Parsing predictions in file zero_shot/substance_naivety/substance_naivety_MeLLaMA-70B-chat_28-08-28.csv for task Substance Naivety
+	Error parsing prediction for row with id 1441 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3820 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8345 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8889 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9175 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 56 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5738 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8662 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5679 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7451 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8870 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 691 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 892 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1650 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2227 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3653 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5071 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5213 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5346 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5919 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6058 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6643 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7113 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7941 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8100 : substring not found
+	Error parsing prediction for row with id 8918 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9124 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9340 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9452 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9596 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 121 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 127 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 165 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 531 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 624 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 640 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 869 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1054 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1439 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1554 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1765 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1903 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1918 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1981 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2419 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2539 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2956 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3095 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3149 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3353 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3637 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4070 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4103 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4530 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4640 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4653 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4658 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4678 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4684 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4708 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4711 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4761 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4786 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4932 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5012 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5025 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5041 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5080 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5173 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5177 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5215 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5618 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5644 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5680 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5698 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5717 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5812 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6010 : substring not found
+	Error parsing prediction for row with id 6027 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6345 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6645 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6648 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6979 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7041 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7318 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7337 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7364 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7942 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8030 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8749 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8910 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9113 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9151 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9521 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9578 : Prediction text is empty or NaN.
+Parsing predictions in file zero_shot/substance_naivety/substance_naivety_gpt-4o-mini_09-09-09.csv for task Substance Naivety

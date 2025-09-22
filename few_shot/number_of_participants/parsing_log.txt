@@ -1,0 +1,14 @@
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_1shot_selected_gpt-4o-mini_09-09-09.csv for task Number of Participants
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_3shot_selected_Llama-2-13b-chat-hf_07-09-07.csv for task Number of Participants
+	Error parsing prediction for row with id 2382 : Could not parse prediction: To assess the effect of intranasal esketamine plus a newly initiated oral antidepressant compared with a newly initiated oral antidepressant (active comparator) plus intranasal placebo on the plasma concentrations of esketamine and the oral antidepressants and their metabolites, and the relationship between these concentrations and efficacy and safety outcomes.
+
+Please classify the number of participants in the study according to the options provided.
+	Error parsing prediction for row with id 151 : 'INPUT'
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_3shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Number of Participants
+	Error parsing prediction for row with id 6072 : Could not parse prediction: 1
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Number of Participants
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Number of Participants
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_3shot_selected_MeLLaMA-13B-chat_07-09-07.csv for task Number of Participants
+	Error parsing prediction for row with id 2382 : 'To assess the effect of intranasal esketamine plus a newly initiated oral antidepressant compared with a newly initiated oral antidepressant (active comparator) plus intranasal placebo on the following parameters in elderly subjects with TRD'
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv for task Number of Participants
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_1shot_selected_Llama-2-13b-chat-hf_06-09-06.csv for task Number of Participants
