@@ -3,6 +3,8 @@ ma_env
 model
 wandb
 finetuning/sft_*/*
+zero_shot/history
+few_shot/history
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,python
