@@ -74,29 +74,32 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 class LlamaModel():
-    def __init__(self, model_name: str, use_gpu: bool = True, system_prompt: str = ''):
+    def __init__(self, model_name: str, use_gpu: bool = True, system_prompt: str = '', use_quant: bool = False):
+        print("CUDA_VISIBLE_DEVICES:", os.environ.get("CUDA_VISIBLE_DEVICES"))
         self.model_name = model_name
         self.use_gpu = use_gpu
         self.model_name_short = model_name.split('/')[-1]
         self.system_prompt = system_prompt
-        if self.use_gpu:
+
+        if self.use_gpu and torch.cuda.is_available():
             self.device_map = "auto"
             self.torch_dtype = torch.float16
-            self.device = torch.device("cuda")
         else:
             self.device_map = None
             self.torch_dtype = torch.float32
-            self.device = torch.device("cpu")
+        print(f"Using device_map={self.device_map}, dtype={self.torch_dtype}")
 
-        # Load tokenizer
+        # Load tokenizer and set pad token
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
         if self.tokenizer.pad_token is None:
             self.tokenizer.pad_token = self.tokenizer.eos_token
         self.tokenizer.padding_side = "left"
-
-        if "70b" in self.model_name.lower():
+        print(f"eos_token_id={self.tokenizer.eos_token_id}, pad_token_id={self.tokenizer.pad_token_id}")
+        self.check_chat_template()
+        
+        if use_quant:
             # 4-bit quantization
-            print("Loading a 70B model with 4-bit quantization")
+            print("Loading model with 4-bit quantization")
             bnb_config = BitsAndBytesConfig(
                 load_in_4bit=True,
                 bnb_4bit_compute_dtype=torch.float16,
@@ -105,42 +108,44 @@ class LlamaModel():
             )
             self.model = AutoModelForCausalLM.from_pretrained(
                 self.model_name,
-                device_map=self.device_map,
+                device_map="balanced",  # ensures that all GPUs are used
                 torch_dtype=self.torch_dtype,
                 quantization_config=bnb_config,
                 low_cpu_mem_usage=True,
                 trust_remote_code=True,
             )
-
         else:
             self.model = AutoModelForCausalLM.from_pretrained(
                 self.model_name,
-                device_map=self.device_map,
+                device_map="balanced",
                 torch_dtype=self.torch_dtype,
                 low_cpu_mem_usage=True,
+                trust_remote_code=True,
             )
-            self.model.to(self.device)
+
+        print(f"Model loaded. Device map: {self.model.hf_device_map}")
+
+    def check_chat_template(self):
+        # Load chat template from backbone model if not present
+        if self.tokenizer.chat_template is None:
+            if self.model_name_short == 'Med-LLaMA3-8B':
+                tokenizer2 = AutoTokenizer.from_pretrained('meta-llama/Meta-Llama-3-8B-Instruct')
+                self.tokenizer.chat_template = tokenizer2.chat_template
+
+            elif self.model_name_short == 'MeLLaMA-13B-chat':
+                tokenizer2 = AutoTokenizer.from_pretrained('meta-llama/Llama-2-13b-chat-hf')
+                self.tokenizer.chat_template = tokenizer2.chat_template
+            
+            else:
+                raise ValueError(f"Model {self.model_name} does not have a chat template. Please provide one.")
 
     def build_prompt(self, prompt: str):
-        try:
-            message = [
+        message = [
                 {"role": "system", "content": self.system_prompt},
                 {"role": "user", "content": prompt}
             ]
-            prompt_with_template = self.tokenizer.apply_chat_template(
+        prompt_with_template = self.tokenizer.apply_chat_template(
                 message, tokenize=False)
-        except ValueError:
-            if 'llama2' in self.model_name.lower():
-                prompt_with_template = build_llama2_prompt(
-                    prompt, self.system_prompt)
-            elif 'mellama' in self.model_name.lower():
-                prompt_with_template = prompt
-            elif 'med-llama' in self.model_name.lower():
-                # TODO: Unsure if this is the case, check hugginface forum
-                prompt_with_template = prompt
-            else:
-                raise ValueError("Prompting not supported for this model.")
-
         return prompt_with_template
 
     def set_task(self, task: str):
@@ -160,65 +165,55 @@ class LlamaModel():
                 # check how many tokens the output format has
                 output_format_tokens = self.tokenizer(
                     output_format, return_tensors="pt").input_ids.shape[1]
-                print(f"Output format has {output_format_tokens} tokens.")
                 self.max_new_tokens = output_format_tokens + 50
 
         else:
-            self.max_new_tokens = None
+            self.max_new_tokens = 256
 
+   
     def predict(self, prompt_with_template: str, temperature: float = 0, do_sample: bool = False, top_p: float = 1.0) -> str:
-        # Set seed for reproducibility
         torch.manual_seed(SEED)
         if torch.cuda.is_available():
             torch.cuda.manual_seed_all(SEED)
 
         inputs = self.tokenizer(prompt_with_template, return_tensors="pt")
-        inputs = {k: v.to(self.device) for k, v in inputs.items()}
+        inputs = {k: v.to(self.model.device) for k, v in inputs.items()}
 
-        if 'ner' in self.task.lower():
+        # Determine max_new_tokens for NER tasks based on input length
+        if self.task and 'ner' in self.task.lower():
             input_text = prompt_with_template.split('INPUT:')[-1]
-            # remove OUPUT: and newlines
             input_text = input_text.rstrip().rstrip('OUTPUT:').strip()
             self.max_new_tokens = len(input_text.split()) * 2
-            print(f"Max new tokens for NER: {self.max_new_tokens}")
 
         generation_kwargs = {
-            # allow twice as many tokens as in the prompt --> to not cut off NER predictions
             "max_new_tokens": self.max_new_tokens,
+            "min_new_tokens": 1,
             "do_sample": do_sample,
             "eos_token_id": self.tokenizer.eos_token_id,
             "pad_token_id": self.tokenizer.pad_token_id,
             "top_p": top_p,
-            # unset temperature if do_sample is False, cause the argument is not considered
             "temperature": None,
         }
-
         if do_sample:
             generation_kwargs["temperature"] = temperature
-            generator = torch.Generator(device=self.device).manual_seed(SEED)
-            generation_kwargs["generator"] = generator
+            generation_kwargs["generator"] = torch.Generator(device=self.model.device).manual_seed(SEED)
 
         with torch.no_grad():
-            generation_output = self.model.generate(
-                **inputs, **generation_kwargs)
+            output_ids = self.model.generate(**inputs, **generation_kwargs)
 
-        output_text = self.tokenizer.decode(
-            # skip prompt
-            generation_output[0][inputs["input_ids"].shape[-1]:],
-            skip_special_tokens=True)
+        # Debug decode
+        full_text = self.tokenizer.decode(output_ids[0], skip_special_tokens=False)
+        # Slice off prompt
+        gen_text = self.tokenizer.decode(
+            output_ids[0][inputs["input_ids"].shape[-1]:],
+            skip_special_tokens=True
+        ).strip()
+        if not gen_text:
+            print("[WARN] Empty generation after slicing. Check EOS / prompt template.")
 
-        # print(output_text)
+        return gen_text
 
-        return output_text
-
-    def batch_predict(
-        self,
-        prompts_with_template: list[str],
-        temperature: float = 0,
-        do_sample: bool = False,
-        top_p: float = 1.0,
-    ) -> list[str]:
-        # Set seed for reproducibility
+    def batch_predict(self, prompts_with_template, temperature=0, do_sample=False, top_p=1.0):
         torch.manual_seed(SEED)
         if torch.cuda.is_available():
             torch.cuda.manual_seed_all(SEED)
@@ -239,11 +234,13 @@ class LlamaModel():
             padding=True,
             truncation=True,
             max_length=self.model.config.max_position_embeddings,
-            padding_side="left",
-        ).to(self.device)
+        )
+
+        inputs = {k: v.to(self.model.device) for k, v in inputs.items()}
 
         generation_kwargs = {
             "max_new_tokens": self.max_new_tokens,
+            "min_new_tokens": 1,
             "do_sample": do_sample,
             "eos_token_id": self.tokenizer.eos_token_id,
             "pad_token_id": self.tokenizer.pad_token_id,
@@ -253,26 +250,24 @@ class LlamaModel():
 
         if do_sample:
             generation_kwargs["temperature"] = temperature
-            generator = torch.Generator(device=self.device).manual_seed(SEED)
-            generation_kwargs["generator"] = generator
+            generation_kwargs["generator"] = torch.Generator(device=self.model.device).manual_seed(SEED)
 
         with torch.no_grad():
-            generation_output = self.model.generate(
-                **inputs,
-                **generation_kwargs
-            )
+            output_ids = self.model.generate(**inputs, **generation_kwargs)
 
-        # Decode outputs, skipping padding/prompt tokens
         results = []
-        for i, generated in enumerate(generation_output):
-            # slice off the input part to only keep new tokens
+        for i, generated in enumerate(output_ids):
+            full_text = self.tokenizer.decode(generated, skip_special_tokens=False)
             gen_text = self.tokenizer.decode(
                 generated[inputs["input_ids"].shape[1]:],
                 skip_special_tokens=True
-            )
-            results.append(gen_text.strip())
+            ).strip()
+            if not gen_text:
+                print(f"[WARN] Empty generation for item {i}.")
+            results.append(gen_text)
 
         return results
+
 
 
 def gpt_prediction(prompt: str, model: str = "gpt-4o-mini", system_role: str = '') -> tuple[str, str]:
@@ -889,53 +884,37 @@ def main():
         # "/data/vebern/ma-models/MeLLaMA-70B-chat",
     ]
     models = [
-        "gpt-4o-mini",
-        "gpt-4o-2024-08-06",
-        # 'meta-llama/Llama-2-13b-chat-hf',
-        # '/storage/homefs/vb25l522/me-llama/MeLLaMA-13B-chat',
-        # 'meta-llama/Meta-Llama-3-8B-Instruct',
-        # 'YBXL/Med-LLaMA3-8B',
-        # "meta-llama/Llama-3.1-8B-Instruct",
+        # "gpt-4o-mini",
+        # "gpt-4o-2024-08-06",
+        'meta-llama/Llama-2-13b-chat-hf',
+        '/storage/homefs/vb25l522/me-llama/MeLLaMA-13B-chat',
+        'meta-llama/Meta-Llama-3-8B-Instruct',
+        'YBXL/Med-LLaMA3-8B',
+        "meta-llama/Llama-3.1-8B-Instruct",
+        
+    ]
+    big_models = [
+        "/data/vebern/ma-models/MeLLaMA-70B-chat",
+        "meta-llama/Llama-3.3-70B-Instruct",
+        "meta-llama/Llama-2-70b-hf",
     ]
 
     # Zero-Shot: Classification
-    # for model_name in models:
-    #     make_class_predictions(
-    #         tasks=TASKS, model_name=model_name, batch_size=8, few_shot=0, skip_with_other_date=True)
-    #     make_ner_predictions(model_name=model_name,
-    #                          batch_size=8, few_shot=0, skip_with_other_date=True)
+    for model_name in models:
+        make_class_predictions(
+            tasks=TASKS, model_name=model_name, batch_size=8, few_shot=0, skip_with_other_date=True)
+        make_ner_predictions(model_name=model_name,
+                             batch_size=8, few_shot=0, skip_with_other_date=True)
 
-    # # Few-Shot: Classification & NER
-    # for i in [1, 3, 5]:
-    #     for model_name in models:
+    # Few-Shot: Classification & NER
+    for i in [1, 3, 5]:
+        for model_name in models:
 
-    #         make_class_predictions(
-    #             tasks=TASKS, model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
+            make_class_predictions(
+                tasks=TASKS, model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
 
-    #         make_ner_predictions(
-    #             model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
-
-    # models = [
-    #     'meta-llama/Llama-2-70b-chat-hf',
-    #     '/storage/homefs/vb25l522/me-llama/MeLLaMA-70B-chat',
-    # ]
-
-    # # Zero-Shot: Classification
-    # for model_name in models:
-    #     make_class_predictions(
-    #         tasks=TASKS, model_name=model_name, batch_size=1, few_shot=0, skip_with_other_date=False)
-    #     make_ner_predictions(model_name=model_name,
-    #                          batch_size=1, few_shot=0, skip_with_other_date=False)
-
-    # # Few-Shot: Classification & NER
-    # for i in [1, 3, 5]:
-    #     for model_name in models:
-    #         make_class_predictions(
-    #             tasks=TASKS, model_name=model_name, batch_size=1, few_shot=i, few_shot_strategy='selected',  skip_with_other_date=False)
-
-    #         make_ner_predictions(
-    #             model_name=model_name, batch_size=1, few_shot=i, few_shot_strategy='selected',  skip_with_other_date=False)
-
+            make_ner_predictions(
+                model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
 
 if __name__ == "__main__":
     main()
