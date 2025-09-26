@@ -36,7 +36,6 @@ from prompts.build_prompts import (
     system_role_class,
     system_role_ner,
     build_ner_prompt,
-    build_llama2_prompt,
     get_label2int,
     is_multilabel,
 )
@@ -145,7 +144,7 @@ class LlamaModel():
                 {"role": "user", "content": prompt}
             ]
         prompt_with_template = self.tokenizer.apply_chat_template(
-                message, tokenize=False)
+                message, tokenize=False, add_generation_prompt=True)
         return prompt_with_template
 
     def set_task(self, task: str):
@@ -718,9 +717,9 @@ def parse_ner_prediction(pred: str, tokens: list[str], model: str) -> list[str]:
 
     elif 'MeLLaMA' in model:
         parts = pred.split('OUTPUT:')
-        if len(parts) != 2:
-            raise ValueError(
-                f'Prediction text does not contain "OUTPUT:": {pred}')
+        # if len(parts) != 2:
+        #     raise ValueError(
+        #         f'Prediction text does not contain "OUTPUT:": {pred}')
         pred = parts[-1].strip()
 
     bio_tokens = ['O'] * len(tokens)
