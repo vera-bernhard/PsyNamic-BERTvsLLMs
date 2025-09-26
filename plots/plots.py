@@ -192,7 +192,8 @@ def make_few_shot_performance_plot(data: dict, save_path: str = None, metric: st
     palette = sns.color_palette("tab10", len(unique_conditions))
     condition_colors = dict(zip(unique_conditions, palette))
 
-    fig, ax = plt.subplots(figsize=(14, 7))  # wider plot
+    # Make chart wider (increased figsize)
+    fig, ax = plt.subplots(figsize=(20, 7))  # wider plot
 
     # Grouped barplot: x=model, hue=condition
     barplot = sns.barplot(
