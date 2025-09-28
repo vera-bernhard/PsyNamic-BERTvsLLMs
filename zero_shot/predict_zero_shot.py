@@ -93,9 +93,10 @@ class LlamaModel():
         if self.tokenizer.pad_token is None:
             self.tokenizer.pad_token = self.tokenizer.eos_token
         self.tokenizer.padding_side = "left"
-        print(f"eos_token_id={self.tokenizer.eos_token_id}, pad_token_id={self.tokenizer.pad_token_id}")
+        print(
+            f"eos_token_id={self.tokenizer.eos_token_id}, pad_token_id={self.tokenizer.pad_token_id}")
         self.check_chat_template()
-        
+
         if use_quant:
             # 4-bit quantization
             print("Loading model with 4-bit quantization")
@@ -127,24 +128,31 @@ class LlamaModel():
     def check_chat_template(self):
         # Load chat template from backbone model if not present
         if self.tokenizer.chat_template is None:
-            if self.model_name_short == 'Med-LLaMA3-8B':
-                tokenizer2 = AutoTokenizer.from_pretrained('meta-llama/Meta-Llama-3-8B-Instruct')
+            if self.model_name_short == 'Llama-2-70b-chat-hf':
+                tokenizer2 = AutoTokenizer.from_pretrained(
+                    'meta-llama/Llama-2-13b-chat-hf')
                 self.tokenizer.chat_template = tokenizer2.chat_template
-
             elif self.model_name_short == 'MeLLaMA-13B-chat':
-                tokenizer2 = AutoTokenizer.from_pretrained('meta-llama/Llama-2-13b-chat-hf')
+                tokenizer2 = AutoTokenizer.from_pretrained(
+                    'meta-llama/Llama-2-13b-chat-hf')
                 self.tokenizer.chat_template = tokenizer2.chat_template
-            
+            # no chat template for Med-LLaMA3-8B
+            elif self.model_name_short == 'Med-LLaMA3-8B':
+                return
             else:
-                raise ValueError(f"Model {self.model_name} does not have a chat template. Please provide one.")
+                raise ValueError(
+                    f"Model {self.model_name} does not have a chat template. Please provide one.")
 
     def build_prompt(self, prompt: str):
+        # no chat template for Med-LLaMA3-8B
+        if self.model_name_short == 'Med-LLaMA3-8B':
+            return prompt
         message = [
-                {"role": "system", "content": self.system_prompt},
-                {"role": "user", "content": prompt}
-            ]
+            {"role": "system", "content": self.system_prompt},
+            {"role": "user", "content": prompt}
+        ]
         prompt_with_template = self.tokenizer.apply_chat_template(
-                message, tokenize=False, add_generation_prompt=True)
+            message, tokenize=False, add_generation_prompt=True)
         return prompt_with_template
 
     def set_task(self, task: str):
@@ -169,7 +177,6 @@ class LlamaModel():
         else:
             self.max_new_tokens = 256
 
-   
     def predict(self, prompt_with_template: str, temperature: float = 0, do_sample: bool = False, top_p: float = 1.0) -> str:
         torch.manual_seed(SEED)
         if torch.cuda.is_available():
@@ -177,6 +184,12 @@ class LlamaModel():
 
         inputs = self.tokenizer(prompt_with_template, return_tensors="pt")
         inputs = {k: v.to(self.model.device) for k, v in inputs.items()}
+
+        input_len = inputs["input_ids"].shape[1]
+        max_ctx = self.model.config.max_position_embeddings
+        if input_len > max_ctx:
+            print(f"[WARN] Prompt length {input_len} exceeds context window ({max_ctx}). "
+                  f"Input will be truncated.")
 
         # Determine max_new_tokens for NER tasks based on input length
         if self.task and 'ner' in self.task.lower():
@@ -195,13 +208,15 @@ class LlamaModel():
         }
         if do_sample:
             generation_kwargs["temperature"] = temperature
-            generation_kwargs["generator"] = torch.Generator(device=self.model.device).manual_seed(SEED)
+            generation_kwargs["generator"] = torch.Generator(
+                device=self.model.device).manual_seed(SEED)
 
         with torch.no_grad():
             output_ids = self.model.generate(**inputs, **generation_kwargs)
 
         # Debug decode
-        full_text = self.tokenizer.decode(output_ids[0], skip_special_tokens=False)
+        full_text = self.tokenizer.decode(
+            output_ids[0], skip_special_tokens=False)
         # Slice off prompt
         gen_text = self.tokenizer.decode(
             output_ids[0][inputs["input_ids"].shape[-1]:],
@@ -237,6 +252,13 @@ class LlamaModel():
 
         inputs = {k: v.to(self.model.device) for k, v in inputs.items()}
 
+        input_lens = [len(ids) for ids in inputs["input_ids"]]
+        max_input_len = max(input_lens)
+        max_ctx = self.model.config.max_position_embeddings
+        if max_input_len > max_ctx:
+            print(f"[WARN] Longest prompt length {max_input_len} exceeds context window ({max_ctx}). "
+                  f"Inputs will be truncated.")
+
         generation_kwargs = {
             "max_new_tokens": self.max_new_tokens,
             "min_new_tokens": 1,
@@ -249,14 +271,16 @@ class LlamaModel():
 
         if do_sample:
             generation_kwargs["temperature"] = temperature
-            generation_kwargs["generator"] = torch.Generator(device=self.model.device).manual_seed(SEED)
+            generation_kwargs["generator"] = torch.Generator(
+                device=self.model.device).manual_seed(SEED)
 
         with torch.no_grad():
             output_ids = self.model.generate(**inputs, **generation_kwargs)
 
         results = []
         for i, generated in enumerate(output_ids):
-            full_text = self.tokenizer.decode(generated, skip_special_tokens=False)
+            full_text = self.tokenizer.decode(
+                generated, skip_special_tokens=False)
             gen_text = self.tokenizer.decode(
                 generated[inputs["input_ids"].shape[1]:],
                 skip_special_tokens=True
@@ -266,7 +290,6 @@ class LlamaModel():
             results.append(gen_text)
 
         return results
-
 
 
 def gpt_prediction(prompt: str, model: str = "gpt-4o-mini", system_role: str = '') -> tuple[str, str]:
@@ -611,7 +634,7 @@ def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> tuple
         pos = label2int[label]
         onehot_list[pos] = 1
         return str(onehot_list), faulty_but_parsable
-    
+
     else:
         raise ValueError(f'Could not parse prediction: {pred_text}')
 
@@ -619,7 +642,8 @@ def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> tuple
 def parse_class_predictions(pred_file: str, task: str, reparse: bool = False, log_file: TextIO = None) -> dict:
     """Parse the predictions from a file and add a new column with one-hot encoded labels."""
     if log_file is not None:
-        log_file.write(f"Parsing predictions in file {pred_file} for task {task}\n")
+        log_file.write(
+            f"Parsing predictions in file {pred_file} for task {task}\n")
         log_file.flush()
 
     # Check if already parsed
@@ -649,7 +673,7 @@ def parse_class_predictions(pred_file: str, task: str, reparse: bool = False, lo
     nr_non_parsable = 0
     nr_faulty_parsable = 0
     # change dtype of labels column to string
-    # add nan  
+    # add nan
     df['pred_labels'] = None
     df['labels'] = df['labels'].astype(str)
     for i, row in df.iterrows():
@@ -657,7 +681,7 @@ def parse_class_predictions(pred_file: str, task: str, reparse: bool = False, lo
             # Check if it is one-hot encoded already
             if is_one_hot(row['labels'], len(label2int)):
                 pass
-            else: 
+            else:
                 # Convert the true label to one-hot encoding
                 true_label = int(row['labels'])
                 true_onehot = [0] * len(label2int)
@@ -890,12 +914,12 @@ def main():
         'meta-llama/Meta-Llama-3-8B-Instruct',
         'YBXL/Med-LLaMA3-8B',
         "meta-llama/Llama-3.1-8B-Instruct",
-        
+
     ]
     big_models = [
         "/data/vebern/ma-models/MeLLaMA-70B-chat",
-        "meta-llama/Llama-3.3-70B-Instruct",
         "meta-llama/Llama-2-70b-hf",
+        "meta-llama/Llama-3.3-70B-Instruct",
     ]
 
     # Zero-Shot: Classification
@@ -914,6 +938,7 @@ def main():
 
             make_ner_predictions(
                 model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
+
 
 if __name__ == "__main__":
     main()
