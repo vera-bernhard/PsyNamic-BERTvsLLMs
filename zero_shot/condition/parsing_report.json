@@ -1,0 +1,38 @@
+{
+    "zero_shot/condition/condition_gpt-4o-2024-08-06_19-08-19.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
+    },
+    "zero_shot/condition/condition_MeLLaMA-70B-chat_27-09-27.csv": {
+        "nr_faulty_parsable": 89,
+        "nr_non_parsable": 0
+    },
+    "zero_shot/condition/condition_Meta-Llama-3-8B-Instruct_06-09-06.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 1
+    },
+    "zero_shot/condition/condition_gpt-4o-mini_09-09-09.csv": {
+        "nr_faulty_parsable": 36,
+        "nr_non_parsable": 7
+    },
+    "zero_shot/condition/condition_Med-LLaMA3-8B_06-09-06.csv": {
+        "nr_faulty_parsable": 93,
+        "nr_non_parsable": 3
+    },
+    "zero_shot/condition/condition_MeLLaMA-13B-chat_26-09-26.csv": {
+        "nr_faulty_parsable": 84,
+        "nr_non_parsable": 12
+    },
+    "zero_shot/condition/condition_Llama-3.1-8B-Instruct_06-09-06.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
+    },
+    "zero_shot/condition/condition_Llama-2-70b-chat-hf_28-09-28.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
+    },
+    "zero_shot/condition/condition_Llama-2-13b-chat-hf_27-09-27.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 1
+    }
+}

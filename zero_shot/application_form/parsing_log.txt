@@ -1,85 +1,24 @@
 Parsing predictions in file zero_shot/application_form/application_form_gpt-4o-2024-08-06_21-08-21.csv for task Application Form
 Parsing predictions in file zero_shot/application_form/application_form_Llama-3.1-8B-Instruct_06-09-06.csv for task Application Form
-Parsing predictions in file zero_shot/application_form/application_form_MeLLaMA-70B-chat_08-09-08.csv for task Application Form
-	Error parsing prediction for row with id 1441 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 5380 : substring not found
-	Error parsing prediction for row with id 8889 : substring not found
-	Error parsing prediction for row with id 5738 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 5789 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 6954 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 7097 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 7903 : substring not found
-	Error parsing prediction for row with id 9339 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 5679 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 7451 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 1037 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 1451 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 1804 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 2106 : substring not found
-	Error parsing prediction for row with id 3147 : substring not found
-	Error parsing prediction for row with id 3592 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 4367 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 4639 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 5231 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 5628 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 7035 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 7113 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 7455 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 7941 : substring not found
-	Error parsing prediction for row with id 8621 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 9340 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 9612 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 151 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 394 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 531 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 717 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 1109 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 1255 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 1418 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 1455 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 1891 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 1961 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 1990 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 2112 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 3175 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 3353 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 3662 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 4094 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 4653 : substring not found
-	Error parsing prediction for row with id 4682 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 5215 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 5317 : substring not found
-	Error parsing prediction for row with id 5812 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 5918 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 6121 : substring not found
-	Error parsing prediction for row with id 6232 : substring not found
-	Error parsing prediction for row with id 6235 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 6377 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 6427 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 6436 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 6979 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 7055 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 7210 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 7318 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 7537 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 7621 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 7816 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 8140 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 8247 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 8923 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 9140 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 9163 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 9198 : substring not found
-	Error parsing prediction for row with id 9374 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 9419 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 9496 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 9521 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 9578 : Prediction text is empty or NaN.
-Parsing predictions in file zero_shot/application_form/application_form_Llama-2-13b-chat-hf_06-09-06.csv for task Application Form
-Parsing predictions in file zero_shot/application_form/application_form_Llama-2-70b-chat-hf_08-09-08.csv for task Application Form
+Parsing predictions in file zero_shot/application_form/application_form_MeLLaMA-70B-chat_27-09-27.csv for task Application Form
+Parsing predictions in file zero_shot/application_form/application_form_Llama-2-13b-chat-hf_27-09-27.csv for task Application Form
+Parsing predictions in file zero_shot/application_form/application_form_Llama-2-70b-chat-hf_28-09-28.csv for task Application Form
 Parsing predictions in file zero_shot/application_form/application_form_Med-LLaMA3-8B_06-09-06.csv for task Application Form
-Parsing predictions in file zero_shot/application_form/application_form_MeLLaMA-13B-chat_06-09-06.csv for task Application Form
-	Error parsing prediction for row with id 151 : Could not parse prediction: 0
+Parsing predictions in file zero_shot/application_form/application_form_MeLLaMA-13B-chat_26-09-26.csv for task Application Form
+	Error parsing prediction for row with id 1441 : Label Intranasal not found in label2int mapping.
+	Error parsing prediction for row with id 7097 : Label Intranasal not found in label2int mapping.
+	Error parsing prediction for row with id 1804 : Label Injection not found in label2int mapping.
+	Error parsing prediction for row with id 6194 : 'Ingestion'
+	Error parsing prediction for row with id 7941 : 'Infrared Thermography in the Diagnosis of Peripheral Arterial Disease'
+	Error parsing prediction for row with id 127 : Could not parse prediction: Intramuscular
+	Error parsing prediction for row with id 1418 : Could not parse prediction: Intranasal, Intravenous, Not applicable
+	Error parsing prediction for row with id 5918 : 'Injection'
+	Error parsing prediction for row with id 5928 : Label Injection not found in label2int mapping.
+	Error parsing prediction for row with id 6115 : 'Ingestion'
+	Error parsing prediction for row with id 6209 : Could not parse prediction: [/INST]
+
+The effect of a single dose of oral methylphenidate on the sleep of children with attention deficit hyperactivity disorder.^\nThe aim of this study was to investigate the effect of a
+	Error parsing prediction for row with id 9419 : Label Intoxication not found in label2int mapping.
+	Error parsing prediction for row with id 9496 : Could not parse prediction: In this research paper, the form of substance application is Oral.
 Parsing predictions in file zero_shot/application_form/application_form_Meta-Llama-3-8B-Instruct_06-09-06.csv for task Application Form
-	Error parsing prediction for row with id 5789 : substring not found
 Parsing predictions in file zero_shot/application_form/application_form_gpt-4o-mini_09-09-09.csv for task Application Form

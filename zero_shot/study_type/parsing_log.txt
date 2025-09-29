@@ -1,109 +1,22 @@
 Parsing predictions in file zero_shot/study_type/study_type_gpt-4o-mini_22-07-22.csv for task Study Type
+Parsing predictions in file zero_shot/study_type/study_type_Llama-2-70b-chat-hf_28-09-28.csv for task Study Type
+Parsing predictions in file zero_shot/study_type/study_type_MeLLaMA-70B-chat_27-09-27.csv for task Study Type
 Parsing predictions in file zero_shot/study_type/study_type_Llama-3.1-8B-Instruct_06-09-06.csv for task Study Type
-Error parsing prediction for row with id 5641 : Label Randomized-controlled trial not found in label2int mapping.
-Parsing predictions in file zero_shot/study_type/study_type_MeLLaMA-70B-chat_28-08-28.csv for task Study Type
-Error parsing prediction for row with id 8606 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 56 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 748 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 941 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 2153 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 7425 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 7903 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 8457 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 135 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 2425 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 422 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 691 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 1037 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 1264 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 1731 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 1884 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 2033 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 2227 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 2637 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 3205 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 4367 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 4420 : substring not found
-Error parsing prediction for row with id 4641 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 4922 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 5221 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 5873 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 8319 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 9472 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 9596 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 394 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 514 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 612 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 640 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 1054 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 1439 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 1443 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 1511 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 1745 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 1765 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 1791 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 1918 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 1990 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 2053 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 2105 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 2176 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 2207 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 2301 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 2380 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 2912 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 3152 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 3257 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 3283 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 3637 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 3661 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 3662 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 3899 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 4064 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 4326 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 4415 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 4424 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 4711 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 5177 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 5317 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 5717 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 6302 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 6366 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 6436 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 6446 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 6496 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 7048 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 7055 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 7077 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 7126 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 7537 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 7713 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 8030 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 8089 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 8836 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 8923 : Prediction text is empty or NaN.
-Error parsing prediction for row with id 9163 : Prediction text is empty or NaN.
-Parsing predictions in file zero_shot/study_type/study_type_MeLLaMA-13B-chat_06-09-06.csv for task Study Type
-Error parsing prediction for row with id 6103 : Could not parse prediction: 1
-Error parsing prediction for row with id 2425 : '0\n\nTitle'
-Error parsing prediction for row with id 161 : Could not parse prediction: 1
-Error parsing prediction for row with id 1264 : Could not parse prediction: 1
-Error parsing prediction for row with id 1731 : Could not parse prediction: 1
-Error parsing prediction for row with id 3927 : Could not parse prediction: 0
-Error parsing prediction for row with id 4922 : Could not parse prediction: 1
-Error parsing prediction for row with id 6194 : Could not parse prediction: 1
-Error parsing prediction for row with id 2207 : Could not parse prediction: 0
-Error parsing prediction for row with id 2380 : '0\n\nTitle'
-Error parsing prediction for row with id 2912 : Could not parse prediction: 0
-Error parsing prediction for row with id 4415 : Could not parse prediction: 0 0 0 0 0 0 0 0
-Error parsing prediction for row with id 5317 : '0\n\nTitle'
-Error parsing prediction for row with id 5698 : Could not parse prediction: 1
-Error parsing prediction for row with id 6035 : Could not parse prediction: 1
-Error parsing prediction for row with id 6446 : Could not parse prediction: 0 0 0 0 0 0 0 0
-Error parsing prediction for row with id 8923 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5641 : Label Randomized-controlled trial not found in label2int mapping.
 Parsing predictions in file zero_shot/study_type/study_type_gpt-4o-2024-08-06_22-07-22.csv for task Study Type
 Parsing predictions in file zero_shot/study_type/study_type_Meta-Llama-3-8B-Instruct_06-09-06.csv for task Study Type
-Parsing predictions in file zero_shot/study_type/study_type_Llama-2-70b-chat-hf_08-09-08.csv for task Study Type
-Parsing predictions in file zero_shot/study_type/study_type_Llama-2-13b-chat-hf_06-09-06.csv for task Study Type
+Parsing predictions in file zero_shot/study_type/study_type_Llama-2-13b-chat-hf_27-09-27.csv for task Study Type
+Parsing predictions in file zero_shot/study_type/study_type_MeLLaMA-13B-chat_27-09-27.csv for task Study Type
+	Error parsing prediction for row with id 2425 : Could not parse prediction: [/SYS]
+	Error parsing prediction for row with id 3927 : Could not parse prediction: [/SYS]
+	Error parsing prediction for row with id 4420 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 394 : Could not parse prediction: Study Protocol
+	Error parsing prediction for row with id 612 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 2150 : Label Title not found in label2int mapping.
+	Error parsing prediction for row with id 2380 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 2912 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 4424 : Label Title not found in label2int mapping.
+	Error parsing prediction for row with id 6115 : 'Study Type'
 Parsing predictions in file zero_shot/study_type/study_type_Med-LLaMA3-8B_06-09-06.csv for task Study Type
-Error parsing prediction for row with id 3205 : Could not parse prediction: 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-Error parsing prediction for row with id 3927 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 3205 : Could not parse prediction: 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	Error parsing prediction for row with id 3927 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
