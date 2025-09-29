@@ -1,0 +1,10 @@
+{
+    "meta-llama/Llama-2-13b-chat-hf": 4096,
+    "me-llama/MeLLaMA-13B-chat": 4096,
+    "meta-llama/Llama-2-70b-hf": 4096,
+    "ma-models/MeLLaMA-70B-chat": 4096,
+    "YBXL/Med-LLaMA3-8B": 8192,
+    "meta-llama/Meta-Llama-3-8B-Instruct": 8192,
+    "meta-llama/Llama-3.1-8B-Instruct": 131072
+
+}
