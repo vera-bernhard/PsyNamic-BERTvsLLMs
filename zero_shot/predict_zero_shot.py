@@ -567,7 +567,14 @@ def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> tuple
     if '{' in pred_text:
         # Case 1: There is a prediction in dictionary format
         start = pred_text.index('{')
-        end = pred_text.index('}')
+        try:
+            end = pred_text.index('}')
+        # There is no closing bracket
+        except ValueError:
+            # Add closing bracket at the end
+            pred_text += '}'
+            end = pred_text.index('}')
+            faulty_but_parsable = True
         prediction_dict = pred_text[start:end+1]
         # Clean up the prediction dictionary so that is valid JSON
         prediction_dict = prediction_dict.replace('""', '"')
@@ -578,7 +585,7 @@ def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> tuple
         if "" in prediction_dict.values():
             faulty_but_parsable = True
             # Check if there is at leas one 1
-            if not any(value == '1' for value in prediction_dict.values()):
+            if not any(value == 1 or value == '1' for value in prediction_dict.values()):
                 print(f"Not parsable: {pred_text}")
                 faulty_but_parsable = False
                 raise ValueError(f'Could not parse prediction: {pred_text}')
@@ -593,8 +600,12 @@ def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> tuple
         for label, value in prediction_dict.items():
             # Sanity check: label exists in label2int
             if label not in label2int:
-                raise ValueError(
-                    f'Label {label} not found in label2int mapping.')
+                label_syn = check_label_synonyms(label)
+                if label_syn is not None:
+                    label = label_syn
+                else:
+                    raise ValueError(
+                        f'Label {label} not found in label2int mapping.')
             pos = label2int[label]
             onehot_list[pos] = int(value)
         return str(onehot_list), faulty_but_parsable
@@ -627,6 +638,26 @@ def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> tuple
         return str(onehot_list), faulty_but_parsable
 
     elif ':' in pred_text:
+        if pred_text.count(':') > 1:
+            preds = pred_text.split('\n')
+            # remove empty lines
+            preds = [p for p in preds if p.strip() != '']
+            onehot_list = [0] * len(label2int)
+            for p in preds:
+                label = p.split(':')[0].strip()
+                value = p.split(':')[1].strip()
+                if label not in label2int:
+                    label_syn = check_label_synonyms(label)
+                    if label_syn is not None:
+                        label = label_syn
+                    else:
+                        raise ValueError(
+                            f'Label {label} not found in label2int mapping.')
+                pos = label2int[label]
+                onehot_list[pos] = int(value)
+            faulty_but_parsable = True
+            return str(onehot_list), faulty_but_parsable    
+        
         faulty_but_parsable = True
         # Case 3: There is a prediction in string format with a score, e.g. 'Randomized-controlled trial (RCT): 1
         onehot_list = [0] * len(label2int)
@@ -637,6 +668,20 @@ def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> tuple
 
     else:
         raise ValueError(f'Could not parse prediction: {pred_text}')
+
+
+def check_label_synonyms(label: str) -> str: 
+    synonyms = {
+        "Alzheimer's disease": "Alzheimer’s disease",
+        "Alzheimer\\u2019s disease": "Alzheimer’s disease",
+        ">=1000": "≥1000",
+        "Substance-Naive Participants": "Substance-Naïve Participants",
+        "Substance-non-naive participants": "Substance-non-naïve participants"
+    }
+    try:
+        return synonyms[label]
+    except KeyError: 
+        return None
 
 
 def parse_class_predictions(pred_file: str, task: str, reparse: bool = False, log_file: TextIO = None) -> dict:
@@ -938,7 +983,6 @@ def main():
 
             make_ner_predictions(
                 model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
-
 
 if __name__ == "__main__":
     main()
