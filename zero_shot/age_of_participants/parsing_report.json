@@ -34,5 +34,9 @@
     "zero_shot/age_of_participants/age_of_participants_MeLLaMA-13B-chat_26-09-26.csv": {
         "nr_faulty_parsable": 97,
         "nr_non_parsable": 1
+    },
+    "zero_shot/age_of_participants/age_of_participants_sft_llama3_8b_instruction_tuned_29-09-29.csv": {
+        "nr_faulty_parsable": 2,
+        "nr_non_parsable": 0
     }
 }

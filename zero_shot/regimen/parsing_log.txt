@@ -12,3 +12,4 @@ Parsing predictions in file zero_shot/regimen/regimen_Med-LLaMA3-8B_06-09-06.csv
 	Error parsing prediction for row with id 6403 : Could not parse prediction: 1.0, 0.0, 0.0, 0.0
 Parsing predictions in file zero_shot/regimen/regimen_Llama-2-70b-chat-hf_28-09-28.csv for task Regimen
 Parsing predictions in file zero_shot/regimen/regimen_Meta-Llama-3-8B-Instruct_06-09-06.csv for task Regimen
+Parsing predictions in file zero_shot/regimen/regimen_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Regimen

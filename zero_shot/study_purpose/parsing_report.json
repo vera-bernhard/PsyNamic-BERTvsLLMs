@@ -34,5 +34,9 @@
     "zero_shot/study_purpose/study_purpose_Llama-2-13b-chat-hf_27-09-27.csv": {
         "nr_faulty_parsable": 0,
         "nr_non_parsable": 0
+    },
+    "zero_shot/study_purpose/study_purpose_sft_llama3_8b_instruction_tuned_29-09-29.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
     }
 }

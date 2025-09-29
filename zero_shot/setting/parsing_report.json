@@ -34,5 +34,9 @@
     "zero_shot/setting/setting_MeLLaMA-13B-chat_26-09-26.csv": {
         "nr_faulty_parsable": 98,
         "nr_non_parsable": 0
+    },
+    "zero_shot/setting/setting_sft_llama3_8b_instruction_tuned_29-09-29.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
     }
 }

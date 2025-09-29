@@ -34,5 +34,9 @@
     "zero_shot/sex_of_participants/sex_of_participants_Med-LLaMA3-8B_06-09-06.csv": {
         "nr_faulty_parsable": 95,
         "nr_non_parsable": 1
+    },
+    "zero_shot/sex_of_participants/sex_of_participants_sft_llama3_8b_instruction_tuned_29-09-29.csv": {
+        "nr_faulty_parsable": 1,
+        "nr_non_parsable": 0
     }
 }

@@ -34,5 +34,9 @@
     "zero_shot/regimen/regimen_Meta-Llama-3-8B-Instruct_06-09-06.csv": {
         "nr_faulty_parsable": 0,
         "nr_non_parsable": 0
+    },
+    "zero_shot/regimen/regimen_sft_llama3_8b_instruction_tuned_29-09-29.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
     }
 }
