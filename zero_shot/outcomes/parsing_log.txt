@@ -1,111 +1,54 @@
 Parsing predictions in file zero_shot/outcomes/outcomes_Llama-3.1-8B-Instruct_06-09-06.csv for task Outcomes
 	Error parsing prediction for row with id 8905 : Label PET not found in label2int mapping.
 Parsing predictions in file zero_shot/outcomes/outcomes_gpt-4o-mini_09-09-09.csv for task Outcomes
-Parsing predictions in file zero_shot/outcomes/outcomes_Llama-2-13b-chat-hf_06-09-06.csv for task Outcomes
-	Error parsing prediction for row with id 3799 : Label Psychedic experience not found in label2int mapping.
-	Error parsing prediction for row with id 8586 : Label Psychedexperience not found in label2int mapping.
 Parsing predictions in file zero_shot/outcomes/outcomes_Med-LLaMA3-8B_06-09-06.csv for task Outcomes
 	Error parsing prediction for row with id 6403 : Could not parse prediction: 1. 0 2. 0 3. 0 4. 0 5. 0 6. 0 7. 0 8. 0 9. 0 10. 0 11. 0 12. 0 13. 0 14. 0
-Parsing predictions in file zero_shot/outcomes/outcomes_Meta-Llama-3-8B-Instruct_06-09-06.csv for task Outcomes
-Parsing predictions in file zero_shot/outcomes/outcomes_MeLLaMA-70B-chat_08-09-08.csv for task Outcomes
-	Error parsing prediction for row with id 2483 : substring not found
-	Error parsing prediction for row with id 3371 : substring not found
-	Error parsing prediction for row with id 4916 : substring not found
-	Error parsing prediction for row with id 8345 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 1738 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 2358 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 5759 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 6403 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 7368 : substring not found
-	Error parsing prediction for row with id 7442 : substring not found
-	Error parsing prediction for row with id 8611 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 9044 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 260 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 1083 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 1347 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 1451 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 1884 : substring not found
-	Error parsing prediction for row with id 2099 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 2373 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 4428 : substring not found
-	Error parsing prediction for row with id 4641 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 5246 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 5919 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 94 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 514 : substring not found
-	Error parsing prediction for row with id 558 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 814 : substring not found
-	Error parsing prediction for row with id 1052 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 1216 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 1455 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 1963 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 1981 : substring not found
-	Error parsing prediction for row with id 2419 : substring not found
-	Error parsing prediction for row with id 2431 : substring not found
-	Error parsing prediction for row with id 3635 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 3662 : substring not found
-	Error parsing prediction for row with id 4291 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 4451 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 4658 : substring not found
-	Error parsing prediction for row with id 4915 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 5012 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 5317 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 5680 : substring not found
-	Error parsing prediction for row with id 5723 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 5894 : substring not found
-	Error parsing prediction for row with id 5918 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 6021 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 6258 : substring not found
-	Error parsing prediction for row with id 6427 : substring not found
-	Error parsing prediction for row with id 6903 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 7055 : substring not found
-	Error parsing prediction for row with id 7210 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 7278 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 7474 : substring not found
-	Error parsing prediction for row with id 7816 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 8041 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 8372 : substring not found
-	Error parsing prediction for row with id 8586 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 8868 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 8905 : Prediction text is empty or NaN.
-	Error parsing prediction for row with id 9419 : Prediction text is empty or NaN.
-Parsing predictions in file zero_shot/outcomes/outcomes_Llama-2-70b-chat-hf_08-09-08.csv for task Outcomes
-Parsing predictions in file zero_shot/outcomes/outcomes_gpt-4o-2024-08-06_21-08-21.csv for task Outcomes
-Parsing predictions in file zero_shot/outcomes/outcomes_MeLLaMA-13B-chat_06-09-06.csv for task Outcomes
-	Error parsing prediction for row with id 4916 : Could not parse prediction: 0
-	Error parsing prediction for row with id 5380 : Could not parse prediction: 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-	Error parsing prediction for row with id 1829 : Could not parse prediction: 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-	Error parsing prediction for row with id 6403 : Could not parse prediction: 0
-
-*** REASONING ***
-
- The study does not measure any of the outcomes.
-	Error parsing prediction for row with id 6591 : Could not parse prediction: 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-	Error parsing prediction for row with id 9044 : Label Memory not found in label2int mapping.
-	Error parsing prediction for row with id 221 : Could not parse prediction: 0
-	Error parsing prediction for row with id 1083 : Could not parse prediction: 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-	Error parsing prediction for row with id 1347 : Could not parse prediction: 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-	Error parsing prediction for row with id 2373 : Could not parse prediction: 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-	Error parsing prediction for row with id 2395 : '0\n\n*** REFERENCE***\n\nTitle'
-	Error parsing prediction for row with id 2863 : Could not parse prediction: 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0
-	Error parsing prediction for row with id 3649 : Could not parse prediction: 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-	Error parsing prediction for row with id 4641 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-	Error parsing prediction for row with id 514 : Could not parse prediction: 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0
-	Error parsing prediction for row with id 558 : Could not parse prediction: 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0
-	Error parsing prediction for row with id 1418 : Could not parse prediction: 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-	Error parsing prediction for row with id 1455 : Could not parse prediction: 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-	Error parsing prediction for row with id 1874 : Could not parse prediction: 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0
-	Error parsing prediction for row with id 2419 : Could not parse prediction: 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-	Error parsing prediction for row with id 3340 : Could not parse prediction: 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-	Error parsing prediction for row with id 3662 : Could not parse prediction: Electroencephalography (EEG), Mental Functions
-	Error parsing prediction for row with id 3733 : Could not parse prediction: 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-	Error parsing prediction for row with id 4291 : Could not parse prediction: 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-	Error parsing prediction for row with id 4915 : Could not parse prediction: 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-	Error parsing prediction for row with id 5317 : Could not parse prediction: 0
-	Error parsing prediction for row with id 5680 : Could not parse prediction: 0
-	Error parsing prediction for row with id 5723 : Could not parse prediction: 0
-	Error parsing prediction for row with id 5894 : Could not parse prediction: Electroencephalography (EEG), Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity
-	Error parsing prediction for row with id 5928 : Could not parse prediction: {
+Parsing predictions in file zero_shot/outcomes/outcomes_MeLLaMA-13B-chat_26-09-26.csv for task Outcomes
+	Error parsing prediction for row with id 2483 : Could not parse prediction: Functional MRI, Mental Functions, Psychedelic experience
+	Error parsing prediction for row with id 3371 : invalid literal for int() with base 10: '1, Physiological Functions'
+	Error parsing prediction for row with id 5380 : Could not parse prediction: Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity, Emergency department visits
+	Error parsing prediction for row with id 2358 : Could not parse prediction: Functional MRI, MRI, Physiological Functions, Electroencephalography (EEG), Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity, Emergency department visits
+	Error parsing prediction for row with id 5759 : Could not parse prediction: Functional MRI, MRI, Physiological Functions, Electroencephalography (EEG), Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity, Emergency department visits
+	Error parsing prediction for row with id 6403 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6591 : invalid literal for int() with base 10: '0, Suicide'
+	Error parsing prediction for row with id 7368 : Could not parse prediction: Functional MRI, MRI, Physiological Functions, Electroencephalography (EEG), Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity, Emergency department visits
+	Error parsing prediction for row with id 9044 : invalid literal for int() with base 10: '1, Physiological Functions'
+	Error parsing prediction for row with id 260 : Could not parse prediction: Electroencephalography (EEG), Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity, Emergency department visits
+	Error parsing prediction for row with id 1884 : Could not parse prediction: Functional MRI, MRI, Physiological Functions, Electroencephalography (EEG), Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity, Emergency department visits
+	Error parsing prediction for row with id 2373 : invalid literal for int() with base 10: '1, Physiological Functions'
+	Error parsing prediction for row with id 2395 : invalid literal for int() with base 10: '0, Suicide'
+	Error parsing prediction for row with id 3649 : Could not parse prediction: Functional MRI, MRI
+	Error parsing prediction for row with id 4428 : Could not parse prediction: Functional MRI, MRI, Physiological Functions, Electroencephalography (EEG), Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity, Emergency department visits
+	Error parsing prediction for row with id 5246 : Could not parse prediction: MRI, Physiological Functions, Electroencephalography (EEG), Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity, Emergency department visits
+	Error parsing prediction for row with id 5919 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7050 : Could not parse prediction: Functional MRI, Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity, Emergency department visits
+	Error parsing prediction for row with id 94 : Could not parse prediction: Electroencephalography (EEG), Mental Functions, Psychedelic experience
+	Error parsing prediction for row with id 1439 : Could not parse prediction: Functional MRI, MRI, Physiological Functions, Electroencephalography (EEG), Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity, Emergency department visits
+	Error parsing prediction for row with id 1455 : Could not parse prediction: Functional MRI, MRI, Physiological Functions, Electroencephalography (EEG), Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity, Emergency department visits
+	Error parsing prediction for row with id 1864 : Could not parse prediction: Psychedelic experience, Mental Functions, Physiological Functions, Suicide, MRI, PET, SPECT, Electroencephalography (EEG), Soluble biomarker, Interviews, Neurotoxicity, Emergency department visits
+	Error parsing prediction for row with id 1950 : Could not parse prediction: MRI, Neurotoxicity
+	Error parsing prediction for row with id 1963 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 1981 : invalid literal for int() with base 10: '1, Physiological Functions'
+	Error parsing prediction for row with id 2431 : Could not parse prediction: Functional MRI, MRI, Physiological Functions, Electroencephalography (EEG), Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity, Emergency department visits
+	Error parsing prediction for row with id 3662 : Could not parse prediction: Electroencephalography (EEG), Physiological Functions
+	Error parsing prediction for row with id 4567 : Could not parse prediction: Functional MRI, Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity, Emergency department visits
+	Error parsing prediction for row with id 5317 : Could not parse prediction: Interviews, Surveys
+	Error parsing prediction for row with id 5723 : invalid literal for int() with base 10: '0, Suicide'
+	Error parsing prediction for row with id 5894 : Could not parse prediction: EEG, Physiological Functions, Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity
+	Error parsing prediction for row with id 5928 : Could not parse prediction: Functional MRI, MRI, Physiological Functions, Electroencephalography (EEG), Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity, Emergency department visits
+	Error parsing prediction for row with id 6093 : Could not parse prediction: MRI, Physiological Functions, Electroencephalography (EEG), Mental Functions, Psychedelic experience, Soluble biomarker, Neurotoxicity
+	Error parsing prediction for row with id 6427 : Could not parse prediction: Functional MRI, MRI, Physiological Functions, Electroencephalography (EEG), Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity, Emergency department visits
+	Error parsing prediction for row with id 7055 : Could not parse prediction: Functional MRI, MRI, Physiological Functions, Electroencephalography (EEG), Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity, Emergency department visits
+	Error parsing prediction for row with id 7210 : invalid literal for int() with base 10: '1, Physiological Functions'
+	Error parsing prediction for row with id 7621 : Could not parse prediction: Functional MRI, MRI, Physiological Functions, Electroencephalography (EEG), Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity, Emergency department visits
+	Error parsing prediction for row with id 8372 : Could not parse prediction: Electroencephalography (EEG), Mental Functions, Physiological Functions
+	Error parsing prediction for row with id 8586 : Could not parse prediction: Interviews, Surveys
+	Error parsing prediction for row with id 8905 : Could not parse prediction: Functional MRI, MRI, Physiological Functions, Electroencephalography (EEG), Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity, Emergency department visits
+	Error parsing prediction for row with id 8923 : invalid literal for int() with base 10: '1, Physiological Functions'
+	Error parsing prediction for row with id 9419 : Could not parse prediction: Cognitive Functions,Mental Functions,Psychedelic experience,Soluble biomarker,Surveys,Interviews,Neurotoxicity,Emergency department visits
+Parsing predictions in file zero_shot/outcomes/outcomes_Llama-2-70b-chat-hf_28-09-28.csv for task Outcomes
+Parsing predictions in file zero_shot/outcomes/outcomes_MeLLaMA-70B-chat_27-09-27.csv for task Outcomes
+	Error parsing prediction for row with id 1963 : Could not parse prediction: {
     "The ability to drive a car": "",
     "Suicide": "",
     "Functional MRI": "",
@@ -121,9 +64,8 @@ Parsing predictions in file zero_shot/outcomes/outcomes_MeLLaMA-13B-chat_06-09-0
     "Neurotoxicity": "",
     "Emergency department visits": ""
 }
-	Error parsing prediction for row with id 7210 : Could not parse prediction: 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-	Error parsing prediction for row with id 7214 : Could not parse prediction: Psychedelic experience, Surveys, Interviews
-	Error parsing prediction for row with id 7474 : Could not parse prediction: 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-	Error parsing prediction for row with id 7621 : Could not parse prediction: 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-	Error parsing prediction for row with id 8905 : Could not parse prediction: MRI, Physiological Functions, Electroencephalography (EEG), Mental Functions, Psychedelic experience, Soluble biomarker, Surveys, Interviews, Neurotoxicity
-	Error parsing prediction for row with id 8923 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0
+Parsing predictions in file zero_shot/outcomes/outcomes_Meta-Llama-3-8B-Instruct_06-09-06.csv for task Outcomes
+Parsing predictions in file zero_shot/outcomes/outcomes_Llama-2-13b-chat-hf_27-09-27.csv for task Outcomes
+	Error parsing prediction for row with id 3799 : Label Psychedic experience not found in label2int mapping.
+	Error parsing prediction for row with id 8586 : Label Psychedexperience not found in label2int mapping.
+Parsing predictions in file zero_shot/outcomes/outcomes_gpt-4o-2024-08-06_21-08-21.csv for task Outcomes

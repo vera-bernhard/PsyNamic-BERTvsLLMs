@@ -1,0 +1,38 @@
+{
+    "zero_shot/substance_naivety/substance_naivety_MeLLaMA-13B-chat_26-09-26.csv": {
+        "nr_faulty_parsable": 97,
+        "nr_non_parsable": 0
+    },
+    "zero_shot/substance_naivety/substance_naivety_Meta-Llama-3-8B-Instruct_06-09-06.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
+    },
+    "zero_shot/substance_naivety/substance_naivety_Llama-3.1-8B-Instruct_06-09-06.csv": {
+        "nr_faulty_parsable": 2,
+        "nr_non_parsable": 0
+    },
+    "zero_shot/substance_naivety/substance_naivety_MeLLaMA-70B-chat_27-09-27.csv": {
+        "nr_faulty_parsable": 91,
+        "nr_non_parsable": 0
+    },
+    "zero_shot/substance_naivety/substance_naivety_Med-LLaMA3-8B_06-09-06.csv": {
+        "nr_faulty_parsable": 97,
+        "nr_non_parsable": 0
+    },
+    "zero_shot/substance_naivety/substance_naivety_gpt-4o-2024-08-06_09-09-09.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
+    },
+    "zero_shot/substance_naivety/substance_naivety_Llama-2-70b-chat-hf_28-09-28.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
+    },
+    "zero_shot/substance_naivety/substance_naivety_gpt-4o-mini_09-09-09.csv": {
+        "nr_faulty_parsable": 1,
+        "nr_non_parsable": 0
+    },
+    "zero_shot/substance_naivety/substance_naivety_Llama-2-13b-chat-hf_27-09-27.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
+    }
+}

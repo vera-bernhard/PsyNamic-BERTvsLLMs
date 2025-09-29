@@ -1,0 +1,38 @@
+{
+    "zero_shot/number_of_participants/number_of_participants_Meta-Llama-3-8B-Instruct_06-09-06.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
+    },
+    "zero_shot/number_of_participants/number_of_participants_Med-LLaMA3-8B_06-09-06.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 96
+    },
+    "zero_shot/number_of_participants/number_of_participants_Llama-3.1-8B-Instruct_06-09-06.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
+    },
+    "zero_shot/number_of_participants/number_of_participants_Llama-2-70b-chat-hf_28-09-28.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
+    },
+    "zero_shot/number_of_participants/number_of_participants_MeLLaMA-70B-chat_27-09-27.csv": {
+        "nr_faulty_parsable": 46,
+        "nr_non_parsable": 0
+    },
+    "zero_shot/number_of_participants/number_of_participants_MeLLaMA-13B-chat_26-09-26.csv": {
+        "nr_faulty_parsable": 94,
+        "nr_non_parsable": 2
+    },
+    "zero_shot/number_of_participants/number_of_participants_gpt-4o-mini_09-09-09.csv": {
+        "nr_faulty_parsable": 47,
+        "nr_non_parsable": 0
+    },
+    "zero_shot/number_of_participants/number_of_participants_gpt-4o-2024-08-06_21-08-21.csv": {
+        "nr_faulty_parsable": 5,
+        "nr_non_parsable": 0
+    },
+    "zero_shot/number_of_participants/number_of_participants_Llama-2-13b-chat-hf_27-09-27.csv": {
+        "nr_faulty_parsable": 1,
+        "nr_non_parsable": 1
+    }
+}
