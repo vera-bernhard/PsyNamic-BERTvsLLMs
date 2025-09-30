@@ -10,3 +10,4 @@ Parsing predictions in file zero_shot/substances/substances_MeLLaMA-13B-chat_26-
 	Error parsing prediction for row with id 5968 : Could not parse prediction: [/INST]
 	Error parsing prediction for row with id 4152 : list index out of range
 Parsing predictions in file zero_shot/substances/substances_Med-LLaMA3-8B_06-09-06.csv for task Substances
+Parsing predictions in file zero_shot/substances/substances_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Substances

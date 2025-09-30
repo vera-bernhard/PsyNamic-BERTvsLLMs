@@ -1,4 +1,8 @@
 {
+    "zero_shot/study_type/study_type_sft_llama3_8b_instruction_tuned_29-09-29.csv": {
+        "nr_faulty_parsable": 1,
+        "nr_non_parsable": 1
+    },
     "zero_shot/study_type/study_type_gpt-4o-mini_22-07-22.csv": {
         "nr_faulty_parsable": 1,
         "nr_non_parsable": 0

@@ -34,5 +34,9 @@
     "zero_shot/relevant/relevant_gpt-4o-2024-08-06_09-09-09.csv": {
         "nr_faulty_parsable": 0,
         "nr_non_parsable": 0
+    },
+    "zero_shot/relevant/relevant_sft_llama3_8b_instruction_tuned_29-09-29.csv": {
+        "nr_faulty_parsable": 149,
+        "nr_non_parsable": 0
     }
 }
