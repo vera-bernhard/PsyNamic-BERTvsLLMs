@@ -15,3 +15,21 @@ Parsing predictions in file zero_shot/data_collection/data_collection_gpt-4o-202
 Parsing predictions in file zero_shot/data_collection/data_collection_MeLLaMA-70B-chat_27-09-27.csv for task Data Collection
 Parsing predictions in file zero_shot/data_collection/data_collection_Meta-Llama-3-8B-Instruct_06-09-06.csv for task Data Collection
 Parsing predictions in file zero_shot/data_collection/data_collection_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Data Collection
+Parsing predictions in file zero_shot/data_collection/data_collection_Llama-3.1-8B-Instruct_06-09-06.csv for task Data Collection
+Parsing predictions in file zero_shot/data_collection/data_collection_gpt-4o-mini_09-09-09.csv for task Data Collection
+Parsing predictions in file zero_shot/data_collection/data_collection_Med-LLaMA3-8B_06-09-06.csv for task Data Collection
+Parsing predictions in file zero_shot/data_collection/data_collection_Llama-2-70b-chat-hf_28-09-28.csv for task Data Collection
+Parsing predictions in file zero_shot/data_collection/data_collection_MeLLaMA-13B-chat_26-09-26.csv for task Data Collection
+	Error parsing prediction for row with id 2408 : Could not parse prediction: [/INST]
+Parsing predictions in file zero_shot/data_collection/data_collection_Llama-2-13b-chat-hf_27-09-27.csv for task Data Collection
+	Error parsing prediction for row with id 5628 : 'Based on the title and abstract of the research paper, the data collection method is'
+	Error parsing prediction for row with id 497 : 'Sure, I can help you classify the data collection method used in the research paper you provided. Based on the information in the abstract, the data collection method is'
+	Error parsing prediction for row with id 2419 : 'Based on the title and abstract of the research paper, the data collection method is'
+	Error parsing prediction for row with id 1351 : Label Based on the title and abstract of the research paper, the data collection method is not found in label2int mapping.
+	Error parsing prediction for row with id 7945 : 'Based on the title and abstract of the research paper, the data collection method is'
+	Error parsing prediction for row with id 2408 : Label Based on the provided title and abstract, the data collection method for this research paper is not found in label2int mapping.
+	Error parsing prediction for row with id 1829 : Label Sure, I can help you classify the data collection method used in the research paper you provided. Based on the information in the abstract, the data collection method is not found in label2int mapping.
+Parsing predictions in file zero_shot/data_collection/data_collection_gpt-4o-2024-08-06_21-08-21.csv for task Data Collection
+Parsing predictions in file zero_shot/data_collection/data_collection_MeLLaMA-70B-chat_27-09-27.csv for task Data Collection
+Parsing predictions in file zero_shot/data_collection/data_collection_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Data Collection
+Parsing predictions in file zero_shot/data_collection/data_collection_Meta-Llama-3-8B-Instruct_06-09-06.csv for task Data Collection
