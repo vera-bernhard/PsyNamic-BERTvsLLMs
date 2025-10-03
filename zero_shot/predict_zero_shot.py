@@ -686,17 +686,17 @@ def check_label_synonyms(label: str) -> str:
 
 def parse_class_predictions(pred_file: str, task: str, reparse: bool = False, log_file: TextIO = None) -> dict:
     """Parse the predictions from a file and add a new column with one-hot encoded labels."""
-    if log_file is not None:
-        log_file.write(
-            f"Parsing predictions in file {pred_file} for task {task}\n")
-        log_file.flush()
-
     # Check if already parsed
     df_check = pd.read_csv(pred_file)
     if 'pred_labels' in df_check.columns and not reparse:
         print(
             f"The file {pred_file} already contains the column 'pred_labels'. Skipping parsing.")
         return {}
+
+    if log_file is not None:
+        log_file.write(
+            f"Parsing predictions in file {pred_file} for task {task}\n")
+        log_file.flush()
 
     label2int = get_label2int(task)
     multilabel = is_multilabel(task)

@@ -1,4 +1,4 @@
-from plots.plots import make_performance_plot, make_simple_performance_plot
+from plots.plots import make_performance_plot, make_simple_performance_plot, make_performance_box_plot,make_performance_spider_plot
 from evaluation.evaluate import get_performance_report
 from zero_shot.predict_zero_shot import parse_class_predictions, parse_ner_predictions
 import numpy as np
@@ -14,11 +14,6 @@ from tqdm import tqdm
 
 # enable import from parent directory
 sys.path.append(os.path.abspath('..'))
-
-PREDICTION_DIR = 'zero_shot'
-
-performance_dicts = {}  # Skip non-CSV files
-
 
 def convert_numpy(obj):
     if isinstance(obj, dict):
@@ -109,39 +104,23 @@ def add_bert_performance_data(task: str, performance_data_path: str):
     return performance_data
 
 
-def overall_class_performance(tasks: list[str], prediction_dir: str, metric: str = 'f1-weighted'):
-    overall_performance = defaultdict(list)
-    performance_reports = []
-    # collect all performance reports
+def overall_class_performance(tasks: list[str], prediction_dir: str, metric: str = 'f1-weighted') -> pd.DataFrame:
+    rows = []
     for task in tasks:
         prediction_path = os.path.join(
-            prediction_dir, task.lower().replace(' ', '_'), 'performance_report.json')
-        # check if path exists
-        if os.path.exists(prediction_path):
-            performance_reports.append(prediction_path)
-    # aggregate the performance reports
-    for report_path in performance_reports:
-        with open(report_path, "r") as f:
+            prediction_dir, task.lower().replace(' ', '_'), 'performance_reports.json')
+        if not os.path.exists(prediction_path):
+            continue
+        with open(prediction_path, "r") as f:
             performance_data = json.load(f)
         for model, data in performance_data.items():
-            # get model name without prediction date
-            model = model.split('_')[0]
-            if 'bert' in model.lower():
-                overall_performance['bert-baseline'].append(
-                    data['metrics'][metric][0])
-            else:
-                overall_performance[model].append(data['metrics'][metric][0])
-    # Check if all models have predicted all tasks
-    num_tasks = len(performance_reports)
-    for model, scores in overall_performance.items():
-        if len(scores) != num_tasks:
-            print(
-                f"Warning: Model {model} has predictions for {len(scores)} out of {num_tasks} tasks.")
-    # average the performance
-    averaged_performance = {}
-    for model, scores in overall_performance.items():
-        averaged_performance[model] = np.mean(scores)
-    return averaged_performance
+            model_name = model.split('_')[0]
+            if 'bert' in model_name.lower():
+                model_name = 'bert-baseline'
+            score = data['metrics'].get(metric, [None])[0]
+            rows.append({'model': model_name, 'task': task, 'performance': score})
+    df = pd.DataFrame(rows)
+    return df
 
 
 def get_all_prediction_files(prediction_dir: str, task: str) -> list[str]:
@@ -201,53 +180,96 @@ def plot_performance_report(task: str, performance_report: str):
                           metrics_col='metrics')
 
 
-def main():
-    TASKS = [
-        # "Study Type", "Data Collection", "Data Type", "Number of Participants", "Age of Participants",
-        "Application Form",
-        "Clinical Trial Phase", "Condition", "Outcomes", "Regimen", "Setting", "Study Control", "Study Purpose",
-        "Substance Naivety", "Substances", "Sex of Participants", "Study Conclusion", "Relevant"
-    ]
-    for task in TASKS:
+def parse_all_class_predictions(tasks: list[str], prediction_dir: str):
+    for task in tasks:
         parsing_log = os.path.join(
-            PREDICTION_DIR, task.lower().replace(' ', '_'), 'parsing_log.txt')
-        if os.path.exists(parsing_log):
-            os.remove(parsing_log)
+            prediction_dir, task.lower().replace(' ', '_'), 'parsing_log.txt')
+
+        all_pred_files = get_all_prediction_files(prediction_dir, task)
+        parsing_reports = {}
         with open(parsing_log, "a") as log_file:
-            report_data = defaultdict(dict)
             print(f"Evaluating task: {task}")
-            for pred_file in tqdm(get_all_prediction_files(PREDICTION_DIR, task)):
-                print(f"\tParsing: {pred_file}")
-                # 1. Parse class predictions
-                parsing_report = parse_class_predictions(
-                    pred_file, task, reparse=True, log_file=log_file)
-                # 2. Evaluate predictions
-                performance_report = evaluate_predictions(pred_file, task)
-                model = parse_file_name(pred_file, "model")
-                report_data[model].update(performance_report)
-                report_data[model].update(parsing_report)
+            for pred_file in tqdm(all_pred_files):
+                if task == 'Data Collection':
+                    parsing_report = parse_class_predictions(
+                        pred_file, task, reparse=True, log_file=log_file)
+                else:
+                    parsing_report = parse_class_predictions(
+                        pred_file, task, reparse=False, log_file=log_file)
+                if parsing_report:
+                    parsing_reports[pred_file] = parsing_report
 
-        # 3. Save performance report of the task
-        performance_report_path = os.path.join(
-            PREDICTION_DIR, task.lower().replace(' ', '_'), "performance_report.json")
-        # Convert numpy types to native Python types
-        report_data = convert_numpy(report_data)
-        with open(performance_report_path, "w") as f:
-            json.dump(report_data, f, indent=4)
+        parsing_report_path = os.path.join(
+            prediction_dir, task.lower().replace(' ', '_'), 'parsing_report.json')
+        if os.path.exists(parsing_report_path):
+            with open(parsing_report_path, "r") as f:
+                existing_reports = json.load(f)
+                existing_reports.update(parsing_reports)
+                parsing_reports = existing_reports
+        with open(parsing_report_path, "w") as f:
+            json.dump(parsing_reports, f, indent=4)
 
-        # 4. Add BERT performance data
-        report_data = add_bert_performance_data(task, performance_report_path)
+
+def evaluate_all_class_tasks(tasks: list[str], prediction_dir: str):
+    for task in tasks:
+        all_pred_files = get_all_prediction_files(prediction_dir, task)
+        performance_reports_path = os.path.join(
+            prediction_dir, task.lower().replace(' ', '_'), 'performance_reports.json'
+        )
+
+        if os.path.exists(performance_reports_path):
+            with open(performance_reports_path, "r") as f:
+                performance_reports = json.load(f)
+        else:
+            performance_reports = {}
+
+        for pred_file in tqdm(all_pred_files):
+            model = parse_file_name(pred_file, "model")
+            if model in performance_reports:
+                print(
+                    f"Skipping evaluation for {model} as it is already evaluated.")
+                continue
+            performance_report = evaluate_predictions(pred_file, task)
+            performance_reports[model] = performance_report
+
+        with open(performance_reports_path, "w") as f:
+            json.dump(performance_reports, f, indent=4)
+
+        # Step 3: Add BERT performance data
+        performance_reports = add_bert_performance_data(
+            task, performance_reports_path)
+
+        # Step 4: Make performance plot
         plot_path = os.path.join(
-            PREDICTION_DIR, task.lower().replace(' ', '_'), "performance_plot.png")
-        # 5. Make performance plot
-        make_performance_plot(report_data, plot_path,
+            prediction_dir, task.lower().replace(' ', '_'), "performance_plot.png")
+        make_performance_plot(performance_reports, plot_path,
                               metrics_col='metrics')
 
-    # averaged_performance = overall_class_performance(TASKS, PREDICTION_DIR)
-    # make_simple_performance_plot(averaged_performance, 'zero_shot/overall_performance.png')
 
-    plot_performance_report(
-        'Study Type', 'zero_shot/study_type/performance_report.json')
+def main():
+    TASKS = [
+        "Study Type", "Data Collection", "Data Type", "Number of Participants", "Age of Participants", "Application Form", "Clinical Trial Phase", "Condition", "Outcomes", "Regimen", "Study Control", "Study Purpose",
+        "Substance Naivety", "Substances", "Study Conclusion", "Relevant",
+        "Setting", "Sex of Participants",
+    ]
+    PREDICTION_DIR = 'zero_shot'
+
+    # Step 1: Parse all predictions
+    # parse_all_class_predictions(TASKS, PREDICTION_DIR)
+
+    # # Step 2: Evaluate all predictions
+    # evaluate_all_class_tasks(TASKS, PREDICTION_DIR)
+
+    df_performance = overall_class_performance(TASKS, PREDICTION_DIR)
+    print(df_performance)
+    make_performance_box_plot(df_performance, 'Zero-Shot Performance Across Tasks',
+                              save_path='zero_shot/overall_performance_boxplot.png')
+    make_performance_spider_plot(df_performance, 'Zero-Shot Performance Across Tasks',
+                                save_path='zero_shot/overall_performance_spiderplot.png')
+    # I want a df with two columns: model and performance
+    averaged_performance = df_performance.groupby('model')['performance'].mean().reset_index()
+    make_simple_performance_plot(
+        averaged_performance, 'zero_shot/overall_performance.png')
 
 
 if __name__ == "__main__":

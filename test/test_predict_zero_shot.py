@@ -260,6 +260,33 @@ OUTPUT: 1'''
         self.assertEqual(excepted, results)
         self.assertEqual(faulty_parsable, False)
 
+    def test_parse_class_gpt_2(self):
+        model = 'gpt-4o-mini-2024-07-18'
+        input_data = '''{
+    ""Psychiatric condition"": """",
+    ""Depression"": """",
+    ""Anxiety"": """",
+    ""Post-traumatic stress disorder (PTSD)"": """",
+    ""Alcoholism"": """",
+    ""Other addictions (e.g. smoking)"": """",
+    ""Anorexia"": """",
+    ""Alzheimer’s disease"": """",
+    ""Non-Alzheimer dementia"": """",
+    ""Substance abuse"": """",
+    ""(Chronic) Pain"": """",
+    ""Palliative Setting"": """",
+    ""Recreational Drug Use"": """",
+    ""Healthy Participants"": 1
+}'''
+        expected = "[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]"
+        label2int = get_label2int('Condition')
+        results, faulty_parsable = parse_class_prediction(
+            input_data, label2int, model)
+        self.assertEqual(results, expected)
+        self.assertTrue(faulty_parsable)
+        
+
+
     def test_parse_class_gpt_faulty(self):
         model = 'gpt-4o-mini-2024-07-18'
         input_data = '''"{
@@ -555,3 +582,65 @@ Please submit your code as a single file. The file should be named as ""task1.py
                     'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O']
         result = parse_ner_prediction(pred, tokens, model)
         self.assertEqual(result, expected)
+
+    def test_parse_class_mellama_3(self):
+        model = 'MeLLaMA-70B-chat'
+        input_data = '''{
+    ""Adult (\u226518 years)"": 1,
+    ""Not applicable"": 0,
+    ""Pediatric (< 18 years old)"": 0,
+    ""Unknown"": 0'''
+        expected = '[0, 1, 0, 0]'
+        label2int = get_label2int('Age of Participants')
+        result, faulty_parsable = parse_class_prediction(input_data, label2int, model)
+
+        self.assertEqual(result, expected)
+        self.assertTrue(faulty_parsable)
+
+    def test_parse_class_mellama_4(self):
+        model = 'MeLLaMA-13B-chat'
+        input_data = '''Smoking: 1
+Unknown: 1'''
+        expected = '[0, 0, 0, 1, 0, 0, 1, 0]'
+        label2int = get_label2int('Application Form')
+
+        result, faulty_parsable = parse_class_prediction(input_data, label2int, model)
+
+        self.assertEqual(result, expected)
+        self.assertTrue(faulty_parsable)
+
+
+    def test_parse_class_mellama_5(self):
+        model = 'MeLLaMA-13B-chat'
+        input_data = '''Depression: 1
+
+Anxiety: 0
+
+Post-traumatic stress disorder (PTSD): 0
+
+Alcoholism: 0
+
+Other addictions (e.g. smoking): 0
+
+Anorexia: 0
+
+Alzheimer\u2019s disease: 0
+
+Non-Alzheimer dementia: 0
+
+Substance abuse: 0
+
+(Chronic) Pain: 0
+
+Palliative Setting: 0
+
+Recreational Drug Use: 0
+
+Healthy Participants: 1'''
+
+        expected = '[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]'
+        label2int = get_label2int('Condition')
+
+        result, faulty_parsable = parse_class_prediction(input_data, label2int, model)
+        self.assertEqual(result, expected)
+        self.assertTrue(faulty_parsable)
