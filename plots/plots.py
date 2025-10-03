@@ -13,6 +13,41 @@ BERT_PRED = '/home/vera/Documents/Uni/Master/Master_Thesis2.0/PsyNamic-Scale/ber
 
 sns.set(style="whitegrid")
 
+# color_map = {
+#     'gpt-4o-2024-08-06': '#17a583',
+#     'gpt-4o-mini': '#48c9b0',
+#     'bert-baseline': '#7f7f7f',
+#     'tuned': '#ff7f00',
+#     'Llama-3.1-8B-Instruct': '#fdbf6f',
+#     'Meta-Llama-3-8B-Instruct': '#fb9a99',
+#     'Med-LLaMA3-8B': '#e31a1c',
+#     'MeLLaMA-70B-chat': '#1f78b4',
+#     'MeLLaMA-13B-chat': '#33a02c',
+#     'Llama-2-70b-chat-hf': '#a6cee3',
+#     'Llama-2-13b-chat-hf': '#b2df8a',
+# }
+
+# Based on seaborn colorblind palette
+color_map = {
+    'gpt-4o-2024-08-06': '#029e73',
+    'gpt-4o-mini': '#029e73',
+    'bert-baseline': '#949494',
+    'tuned': '#de8f05',
+    'Llama-3.1-8B-Instruct': '#de8f05',
+    'Meta-Llama-3-8B-Instruct': '#d55e00',
+    'Med-LLaMA3-8B': '#d55e00',
+    'MeLLaMA-70B-chat': '#0173b2',
+    'MeLLaMA-13B-chat': '#56b4e9',
+    'Llama-2-70b-chat-hf': '#0173b2',
+    'Llama-2-13b-chat-hf': '#56b4e9',
+}
+
+texture_map = {
+    'MeLLaMA-70B-chat': 'hatch',
+    'MeLLaMA-13B-chat': 'hatch',
+    'Med-LLaMA3-8B': 'hatch',
+}
+
 
 def make_performance_plot(data: dict, save_path: str = None, metrics_col: str = 'metrics') -> None:
     rows = []
@@ -97,30 +132,35 @@ def make_performance_plot(data: dict, save_path: str = None, metrics_col: str = 
         plt.show()
 
 
-def make_simple_performance_plot(data: dict, save_path: str = None) -> None:
+def make_simple_performance_plot(data: pd.DataFrame, save_path: str = None) -> None:
     """
-    Plot a horizontal barplot for simple model performance comparison, styled similarly to make_performance_plot.
-    Input data: {model_name: score}
+    Plot a simple horizontal barplot comparing model performance.
+    Expects a DataFrame with columns: 'model' and 'performance'.
     """
-    df = pd.DataFrame(data.items(), columns=['model', 'mean'])
-    df = df.sort_values(by='mean', ascending=False).reset_index(drop=True)
+    df = data.copy()
+    df = df.sort_values(by='performance', ascending=False).reset_index(drop=True)
 
     unique_models = df['model'].unique()
-    palette = sns.color_palette("tab10", len(unique_models))
-    model_colors = dict(zip(unique_models, palette))
+    model_colors = {model: color_map.get(model, sns.color_palette("tab10")[i % 10])
+                    for i, model in enumerate(unique_models)}
 
     fig, ax = plt.subplots(figsize=(8, 6))
 
-    sns.barplot(
-        x="mean",
+    barplot = sns.barplot(
+        x="performance",
         y="model",
         data=df,
-        palette=model_colors,
+        palette=[model_colors[model] for model in df['model']],
         ax=ax,
         errorbar=None,
-        legend=False,
         orient="h"
     )
+
+    # Apply hatching to bars for models in texture_map
+    for idx, patch in enumerate(ax.patches):
+        model = df.loc[idx, "model"]
+        if model in texture_map:
+            patch.set_hatch('//')
 
     ax.set(xlim=(0, 1))
     ax.set_xlabel("Performance Score")
@@ -128,13 +168,13 @@ def make_simple_performance_plot(data: dict, save_path: str = None) -> None:
     ax.set_title("Model Performance Comparison")
 
     for idx, row in df.iterrows():
-        ax.text(row["mean"] + 0.01, idx, f"{row['mean']:.3f}",
+        ax.text(row["performance"] + 0.01, idx, f"{row['performance']:.3f}",
                 va="center", ha="left", color="black", fontsize=10)
 
     # Single legend
-    handles = [plt.Rectangle((0, 0), 1, 1, color=color)
-               for model, color in model_colors.items()]
-    labels = list(model_colors.keys())
+    handles = [plt.Rectangle((0, 0), 1, 1, color=model_colors[model], hatch='//' if model in texture_map else '')
+               for model in unique_models]
+    labels = list(unique_models)
     fig.legend(handles, labels, title="Model", loc="upper left",
                bbox_to_anchor=(0.8, 0.9), title_fontsize="small")
 
@@ -144,7 +184,6 @@ def make_simple_performance_plot(data: dict, save_path: str = None) -> None:
         plt.close()
     else:
         plt.show()
-
 
 def make_few_shot_performance_plot(data: dict, save_path: str = None, metric: str = "f1-weighted") -> None:
     """
@@ -324,6 +363,70 @@ def plot_length_histogram(data: list[str], title: str, ax: Axes = None, label: s
     if fig is not None:
         plt.show()
 
+
+def make_performance_box_plot(data: pd.DataFrame, title: str, save_path: str = None):
+    mean_performance = data.groupby('model')['performance'].mean().sort_values(ascending=False)
+    ordered_models = mean_performance.index.tolist()
+    
+    plt.figure(figsize=(12, 6))
+    box = sns.boxplot(
+        data=data,
+        x="model",
+        y="performance",
+        showfliers=True,
+        order=ordered_models,
+        palette=[color_map.get(model, "#cccccc") for model in ordered_models]
+    )
+    sns.stripplot(
+        data=data,
+        x="model",
+        y="performance",
+        color="black",
+        size=3,
+        alpha=0.6,
+        jitter=True,
+        order=ordered_models
+    )
+    plt.xticks(rotation=45, ha="right")
+    plt.title(title)
+    plt.ylabel("Performance")
+    plt.xlabel("Model")
+    plt.tight_layout()
+    if save_path:
+        plt.savefig(save_path, bbox_inches='tight')
+        plt.close()
+    else:
+        plt.show()
+
+
+def make_performance_spider_plot(data: pd.DataFrame, title: str, save_path: str = None):
+    df_pivot = data.pivot(index="model", columns="task", values="performance")
+    tasks = df_pivot.columns.tolist()
+    num_tasks = len(tasks)
+
+    angles = np.linspace(0, 2 * np.pi, num_tasks, endpoint=False).tolist()
+    angles += angles[:1] 
+    fig, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))
+
+    for model, row in df_pivot.iterrows():
+        values = row.tolist()
+        values += values[:1] 
+        color = color_map.get(model, None)
+        linestyle = '--' if model in texture_map else '-'
+        ax.plot(angles, values, label=model, color=color, linestyle=linestyle, linewidth=2)
+        ax.fill(angles, values, alpha=0.1, color=color)
+
+    ax.set_xticks(angles[:-1])
+    ax.set_xticklabels(tasks, fontsize=10)
+    ax.set_ylim(0, 1)
+    plt.title(title, size=14, weight="bold", pad=20)
+    ax.legend(loc="upper right", bbox_to_anchor=(1.2, 1.1))
+    plt.tight_layout()
+    if save_path:
+        plt.savefig(save_path, bbox_inches='tight')
+        plt.close()
+    else:
+        plt.show()
 
 if __name__ == "__main__":
     # data = [[1, 0, 1, 0, 1],
