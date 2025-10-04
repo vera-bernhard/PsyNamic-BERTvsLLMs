@@ -21,6 +21,7 @@ from typing import TextIO
 from dotenv import load_dotenv
 from huggingface_hub import login
 from openai import OpenAI
+from evaluation.helper import parse_file_name
 
 from transformers import (
     AutoModelForCausalLM,
@@ -656,8 +657,8 @@ def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> tuple
                 pos = label2int[label]
                 onehot_list[pos] = int(value)
             faulty_but_parsable = True
-            return str(onehot_list), faulty_but_parsable    
-        
+            return str(onehot_list), faulty_but_parsable
+
         faulty_but_parsable = True
         # Case 3: There is a prediction in string format with a score, e.g. 'Randomized-controlled trial (RCT): 1
         onehot_list = [0] * len(label2int)
@@ -670,7 +671,7 @@ def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> tuple
         raise ValueError(f'Could not parse prediction: {pred_text}')
 
 
-def check_label_synonyms(label: str) -> str: 
+def check_label_synonyms(label: str) -> str:
     synonyms = {
         "Alzheimer's disease": "Alzheimer’s disease",
         "Alzheimer\\u2019s disease": "Alzheimer’s disease",
@@ -680,7 +681,7 @@ def check_label_synonyms(label: str) -> str:
     }
     try:
         return synonyms[label]
-    except KeyError: 
+    except KeyError:
         return None
 
 
@@ -757,7 +758,7 @@ def parse_class_predictions(pred_file: str, task: str, reparse: bool = False, lo
     return stats
 
 
-def parse_ner_prediction(pred: str, tokens: list[str], model: str) -> list[str]:
+def parse_ner_prediction_bio(pred: str, tokens: list[str], text: str, log_file: TextIO) -> list[str]:
     """ Convert model prediction text with <span> tags into a BIO sequence.
 
     The prediction contains entities like:
@@ -773,39 +774,50 @@ def parse_ner_prediction(pred: str, tokens: list[str], model: str) -> list[str]:
        - Fallback: search span text directly in tokens.
     4. Warn if number of B- labels doesn’t match number of spans.
     """
+    # if text is nan
+    if pd.isna(text) or text == '':
+        return ['O'] * len(tokens)
 
+    #TODO: Redunancy with function to extract entities
     ner_labels = {
         'application-area': 'Application area',
         'dosage': 'Dosage',
     }
-
-    # TODO: Deduplicate with class parse predictions
-    if 'Llama-2' in model:
-        parts = pred.split('[/INST]')
-        pred = parts[-1].strip()
-
-    elif 'MeLLaMA' in model:
-        parts = pred.split('OUTPUT:')
-        # if len(parts) != 2:
-        #     raise ValueError(
-        #         f'Prediction text does not contain "OUTPUT:": {pred}')
-        pred = parts[-1].strip()
+    text = text.replace('\xa0', ' ')
 
     bio_tokens = ['O'] * len(tokens)
     token_pointer = 0
 
-    # Extract spans from the prediction text
-    spans = re.findall(r'<span class="(.*?)">(.*?)</span>', pred)
-    spans = [(e, t) for t, e in spans]
-    spans = [(e.strip(), t.strip('"')) for e, t in spans]
+    # Don't do this twice
+    spans = parse_ner_prediction_entities(pred)
+
+    # Remove all spans with entity type not in ner_labels
+    original_span_count = len(spans)
+    removed_spans = [(e, t) for e, t in spans if t not in ner_labels]
+    spans = [(e, t) for e, t in spans if t in ner_labels]
+    removed_count = original_span_count - len(spans)
+    if removed_count > 0:
+        log_file.write(f"Removed {removed_count} spans with unknown entity types:\n")
+        for e, t in removed_spans:
+            log_file.write(f"  Removed entity: '{e}' (type: {t})\n")
+
+    # Remove any spans that there string don't appear in the text at all, case insensitive
+    original_span_count = len(spans)
+    removed_spans = [(e, t) for e, t in spans if e.lower() not in text.lower()]
+    spans = [(e, t) for e, t in spans if e.lower() in text.lower()]
+    removed_count = original_span_count - len(spans)
+    if removed_count > 0:
+        log_file.write(f"Removed {removed_count} spans that don't appear in the text:\n")
+        for e, t in removed_spans:
+            log_file.write(f"  Removed entity: '{e}' (type: {t})\n")
 
     # Iterate through the spans and in parallel through the tokens to find matches
     # - assuming that the spans are in the same order as the tokens
     # - assuming that the spans are not overlapping (which is the case for the PsyNamic Scale)
     for e, t in spans:
         if t not in ner_labels:
-            print(
-                f'Warning: Entity {t} not found in ner_labels mapping. Available labels: {ner_labels.keys()}')
+            log_file.write(
+                f'Warning: Entity {t} not found in ner_labels mapping. Available labels: {ner_labels.keys()}\n')
             continue
         e_in_bio = False  # Keep track if entity is matched
         temp_e = e.lower()  # Keep track what of the entity is still to be matched
@@ -817,7 +829,7 @@ def parse_ner_prediction(pred: str, tokens: list[str], model: str) -> list[str]:
         for i in range(token_pointer, len(tokens)):
             if tokens[i] == '\n':
                 continue
-            token = tokens[i].strip().lower()
+            token = tokens[i].strip().lower().rstrip('.^')
             if not token_start:
                 if temp_e.startswith(token):
                     bio_tokens[i] = f'B-{ner_labels[t]}'
@@ -865,41 +877,54 @@ def parse_ner_prediction(pred: str, tokens: list[str], model: str) -> list[str]:
     # Check if there is as many entities in bio_token as in spans
     num_entities = sum(1 for label in bio_tokens if label.startswith('B-'))
     if num_entities > len(spans):
-        print(
-            f"Warning: Number of entities in bio_token ({num_entities}) is greater than number of spans ({len(spans)}).")
+        log_file.write(
+            f"Warning: Number of entities in bio_token ({num_entities}) is greater than number of spans ({len(spans)}).\n")
 
     if num_entities != len(spans):
-        print(
-            f"Warning: Number of entities in bio_token ({num_entities}) does not match number of spans ({len(spans)}).")
-
+        log_file.write(
+            f"Warning: Number of entities in bio_token ({num_entities}) does not match number of spans ({len(spans)}).\n")
+    log_file.flush()
     return bio_tokens
 
 
-def parse_ner_predictions(file: str, output: Literal['entities', 'tokens']) -> None:
-    # Check if file exists
-    if not os.path.exists(file):
+def parse_ner_prediction_entities(pred: str) -> list[tuple[str, str]]:
+    spans = re.findall(r'<span class="(.*?)">(.*?)</span>', pred)
+    spans = [(e, t) for t, e in spans]
+    spans = [(e.strip(), t.strip('"')) for e, t in spans]
+    return spans
+
+
+def parse_ner_predictions(pred_file: str, reparse: bool = False, log_file: TextIO = None) -> None:
+    if log_file is not None:
+        log_file.write(
+            f"Parsing predictions in file {pred_file} for NER\n")
+        log_file.flush()
+    if not os.path.exists(pred_file):
         raise FileNotFoundError(
-            f"The file {file} does not exist. Check the task name.")
+            f"The file {pred_file} does not exist. Check the task name.")
+    df = pd.read_csv(pred_file)
+
+    if 'pred_labels' in df.columns and 'entities' in df.columns and not reparse:
+        log_file.write(
+        f"The file {pred_file} already contains the columns 'pred_labels' and 'entities'. Skipping parsing.\n")
+        log_file.flush()
+      
+        return
 
     # Check if column 'prediction_text' exists
-    df = pd.read_csv(file)
     if 'prediction_text' not in df.columns:
         raise ValueError(
-            f"The file {file} does not contain the column 'prediction_text'. Check the file format.")
+            f"The file {pred_file} does not contain the column 'prediction_text'. Check the file format.")
 
-    # Parse model name from the file name --> model name before date dd-mm-dd.csv
-    model = os.path.basename(file).split('_')[-2]
-
+    model = parse_file_name(pred_file, 'model')
     for i, row in df.iterrows():
-        bio = parse_ner_prediction(
-            row['prediction_text'], ast.literal_eval(row['tokens']), model)
+        bio = parse_ner_prediction_bio(
+            row['prediction_text'], ast.literal_eval(row['tokens']), row['text'], log_file)
+        entities = parse_ner_prediction_entities(row['prediction_text'])
         df.at[i, 'pred_labels'] = str(bio)
+        df.at[i, 'pred_entities'] = str(entities)
 
-    # Remove entities column if it exists
-    if 'entities' in df.columns:
-        df = df.drop(columns=['entities'])
-
-    df.to_csv(file, index=False, encoding='utf-8')
+    df.to_csv(pred_file, index=False, encoding='utf-8')
 
 
 def basic_tokenizer(text: str) -> list[str]:
@@ -927,20 +952,6 @@ def clean_token(token: str) -> str:
     if token.endswith('.^'):
         token = token[:-2].strip()
     return token
-
-
-def add_tokens_nertags(bioner_path: str):
-    test_path = '/home/vera/Documents/Uni/Master/Master_Thesis2.0/PsyNamic-Scale/data/ner_bio/test.csv'
-    df_full = pd.read_csv(test_path)
-    df_bioner = pd.read_csv(bioner_path)
-    # add ner_tags if id matches
-    for i, row in df_bioner.iterrows():
-        id = row['id']
-        if id in df_full['id'].values:
-            matching_row = df_full[df_full['id'] == id]
-            if not matching_row.empty:
-                df_bioner.at[i, 'ner_tags'] = matching_row['ner_tags'].values[0]
-    df_bioner.to_csv(bioner_path, index=False, encoding='utf-8')
 
 
 def main():
@@ -983,6 +994,7 @@ def main():
 
             make_ner_predictions(
                 model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
+
 
 if __name__ == "__main__":
     main()

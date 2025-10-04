@@ -12,6 +12,9 @@ import pandas as pd
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, confusion_matrix
 from confidenceinterval.bootstrap import bootstrap_ci
 from joblib import Parallel, delayed
+from collections import Counter
+from nervaluate import Evaluator, summary_report_ent, summary_report_overall
+
 
 
 # STRIDE-Lab
@@ -107,4 +110,109 @@ def get_performance_report(col_tru: str, col_pred: str, df: pd.DataFrame) -> dic
     }
 
     return report
+
+
+def evaluate_ner_extraction(
+    list_pred: list[list[tuple[str, str]]],
+    list_label: list[list[tuple[str, str]]]
+) -> dict[str, float]:
+    """
+    Evaluate NER predictions against gold annotations, following the same logic
+    as metric/extraction.py, but using tuple-based inputs.
+
+    Args:
+        list_pred: List of samples, each sample is a list of (entity, type) tuples.
+        list_label: Same structure as list_pred, but gold labels.
+
+    Returns:
+        dict with accuracy, precision, recall, and f1 for subject (entity only)
+        and event (entity+type).
+    """
+
+    # Accumulators
+    metrics_sample = {
+        "subject_tp": [], "subject_fp": [], "subject_fn": [],
+        "event_tp": [], "event_fp": [], "event_fn": [],
+        "subject_correct_samples": [], "event_correct_samples": []
+    }
+
+    for pred, gold in zip(list_pred, list_label):
+        # SUBJECT LEVEL = entity string only
+        pred_subject = Counter([ent for ent, _ in pred])
+        gold_subject = Counter([ent for ent, _ in gold])
+
+        # EVENT LEVEL = (entity, type) pair
+        pred_event = Counter(pred)
+        gold_event = Counter(gold)
+
+        # --- SUBJECT metrics ---
+        tp_subj = sum((pred_subject & gold_subject).values())
+        fp_subj = sum((pred_subject - gold_subject).values())
+        fn_subj = sum((gold_subject - pred_subject).values())
+
+        subject_correct = 1 if pred_subject == gold_subject else 0
+
+        # --- EVENT metrics ---
+        tp_event = sum((pred_event & gold_event).values())
+        fp_event = sum((pred_event - gold_event).values())
+        fn_event = sum((gold_event - pred_event).values())
+
+        event_correct = 1 if pred_event == gold_event else 0
+
+        # Record per-sample metrics
+        metrics_sample["subject_tp"].append(tp_subj)
+        metrics_sample["subject_fp"].append(fp_subj)
+        metrics_sample["subject_fn"].append(fn_subj)
+        metrics_sample["event_tp"].append(tp_event)
+        metrics_sample["event_fp"].append(fp_event)
+        metrics_sample["event_fn"].append(fn_event)
+        metrics_sample["subject_correct_samples"].append(subject_correct)
+        metrics_sample["event_correct_samples"].append(event_correct)
+
+    # ---- Aggregate across samples ----
+    num_samples = len(list_pred)
+    results = {}
+
+    for col in ["subject", "event"]:
+        tp = sum(metrics_sample[f"{col}_tp"])
+        fp = sum(metrics_sample[f"{col}_fp"])
+        fn = sum(metrics_sample[f"{col}_fn"])
+        correct = sum(metrics_sample[f"{col}_correct_samples"])
+
+        accuracy = correct / num_samples if num_samples > 0 else 0
+        precision = tp / (tp + fp) if (tp + fp) > 0 else 0
+        recall = tp / (tp + fn) if (tp + fn) > 0 else 0
+        f1 = (2 * precision * recall / (precision + recall)) if (precision + recall) > 0 else 0
+
+        results[f"accuracy_{col}"] = accuracy * 100
+        results[f"precision_{col}"] = precision * 100
+        results[f"recall_{col}"] = recall * 100
+        results[f"f1_{col}"] = f1 * 100
+
+    return results
+
+
+def evaluate_ner_bio(pred: list[list[str]], true: list[list[str]]) -> dict[str, float]:
+    renaming = {
+        'I-Application area': 'I-APP',
+        'B-Application area': 'B-APP',
+        'I-Dosage': 'I-DOS',
+        'B-Dosage': 'B-DOS',
+        'O': 'O'
+    }
+    pred = [[renaming.get(label, label) for label in seq] for seq in pred]
+    true = [[renaming.get(label, label) for label in seq] for seq in true]
+
+    evaluator = Evaluator(true=true, pred=pred, tags=['APP', 'DOS'], loader='list')
+    results, resultsagg, _, _ = evaluator.evaluate()
+    r = {
+        'f1 overall - strict': results['strict']['f1'],
+        'f1 overall - partial': results['partial']['f1'],
+        'f1 APP - strict': resultsagg['APP']['strict']['f1'],
+        'f1 APP - partial': resultsagg['APP']['partial']['f1'],
+        'f1 DOS - strict': resultsagg['DOS']['strict']['f1'],
+        'f1 DOS - partial': resultsagg['DOS']['partial']['f1'],
+    }
+
+    return r
 
