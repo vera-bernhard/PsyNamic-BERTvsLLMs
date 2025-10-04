@@ -76,7 +76,8 @@ def make_performance_plot(data: dict, save_path: str = None, metrics_col: str = 
     num_metrics = len(metrics)
     num_models = len(unique_models)
     fig_width = num_metrics * max(4, num_models * 1.5)
-    fig, axes = plt.subplots(1, num_metrics, figsize=(fig_width, 7), sharey=True)
+    fig, axes = plt.subplots(
+        1, num_metrics, figsize=(fig_width, 7), sharey=True)
     plt.subplots_adjust(wspace=0.15)
 
     if num_metrics == 1:
@@ -84,7 +85,8 @@ def make_performance_plot(data: dict, save_path: str = None, metrics_col: str = 
 
     for i, metric in enumerate(metrics):
         ax = axes[i]
-        df_sub = df_metrics[df_metrics['metric'] == metric].reset_index(drop=True)
+        df_sub = df_metrics[df_metrics['metric']
+                            == metric].reset_index(drop=True)
 
         sns.barplot(
             x="model",
@@ -138,7 +140,8 @@ def make_simple_performance_plot(data: pd.DataFrame, save_path: str = None) -> N
     Expects a DataFrame with columns: 'model' and 'performance'.
     """
     df = data.copy()
-    df = df.sort_values(by='performance', ascending=False).reset_index(drop=True)
+    df = df.sort_values(
+        by='performance', ascending=False).reset_index(drop=True)
 
     unique_models = df['model'].unique()
     model_colors = {model: color_map.get(model, sns.color_palette("tab10")[i % 10])
@@ -185,6 +188,7 @@ def make_simple_performance_plot(data: pd.DataFrame, save_path: str = None) -> N
     else:
         plt.show()
 
+
 def make_few_shot_performance_plot(data: dict, save_path: str = None, metric: str = "f1-weighted") -> None:
     """
     Plot a grouped barplot for few-shot performance comparison.
@@ -205,11 +209,13 @@ def make_few_shot_performance_plot(data: dict, save_path: str = None, metric: st
     """
     # Prepare data for plotting
     # Ensure consistent condition order
-    condition_order = ["zero_shot", "selected_1shot", "selected_3shot", "selected_5shot"]
+    condition_order = ["zero_shot", "selected_1shot",
+                       "selected_3shot", "selected_5shot"]
     rows = []
     for model, conditions in data.items():
         # Sort conditions by the specified order, fallback to sorted keys
-        sorted_conditions = sorted(conditions.keys(), key=lambda x: condition_order.index(x) if x in condition_order else 100 + list(conditions.keys()).index(x))
+        sorted_conditions = sorted(conditions.keys(), key=lambda x: condition_order.index(
+            x) if x in condition_order else 100 + list(conditions.keys()).index(x))
         for condition in sorted_conditions:
             results = conditions[condition]
             if "metrics" not in results or metric not in results["metrics"]:
@@ -225,9 +231,11 @@ def make_few_shot_performance_plot(data: dict, save_path: str = None, metric: st
     df = pd.DataFrame(rows)
 
     # Set up colors for conditions (keep order consistent)
-    unique_conditions = [c for c in condition_order if c in df['condition'].unique()]
+    unique_conditions = [
+        c for c in condition_order if c in df['condition'].unique()]
     # Add any other conditions not in the order list
-    unique_conditions += [c for c in df['condition'].unique() if c not in unique_conditions]
+    unique_conditions += [c for c in df['condition'].unique()
+                          if c not in unique_conditions]
     palette = sns.color_palette("tab10", len(unique_conditions))
     condition_colors = dict(zip(unique_conditions, palette))
 
@@ -365,9 +373,10 @@ def plot_length_histogram(data: list[str], title: str, ax: Axes = None, label: s
 
 
 def make_performance_box_plot(data: pd.DataFrame, title: str, save_path: str = None):
-    mean_performance = data.groupby('model')['performance'].mean().sort_values(ascending=False)
+    mean_performance = data.groupby(
+        'model')['performance'].mean().sort_values(ascending=False)
     ordered_models = mean_performance.index.tolist()
-    
+
     plt.figure(figsize=(12, 6))
     box = sns.boxplot(
         data=data,
@@ -405,15 +414,16 @@ def make_performance_spider_plot(data: pd.DataFrame, title: str, save_path: str 
     num_tasks = len(tasks)
 
     angles = np.linspace(0, 2 * np.pi, num_tasks, endpoint=False).tolist()
-    angles += angles[:1] 
+    angles += angles[:1]
     fig, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))
 
     for model, row in df_pivot.iterrows():
         values = row.tolist()
-        values += values[:1] 
+        values += values[:1]
         color = color_map.get(model, None)
         linestyle = '--' if model in texture_map else '-'
-        ax.plot(angles, values, label=model, color=color, linestyle=linestyle, linewidth=2)
+        ax.plot(angles, values, label=model, color=color,
+                linestyle=linestyle, linewidth=2)
         ax.fill(angles, values, alpha=0.1, color=color)
 
     ax.set_xticks(angles[:-1])
@@ -427,6 +437,7 @@ def make_performance_spider_plot(data: pd.DataFrame, title: str, save_path: str 
         plt.close()
     else:
         plt.show()
+
 
 if __name__ == "__main__":
     # data = [[1, 0, 1, 0, 1],
