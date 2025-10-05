@@ -50,29 +50,31 @@ texture_map = {
 
 
 def make_performance_plot(data: dict, save_path: str = None, metrics_col: str = 'metrics') -> None:
-    rows = []
-    for model, values in data.items():
-        # TODO: ugly fix for bert data format
-        if 'bert' in model.lower():
-            metrics = values['metrics']
-        else:
+    # if data is dict
+    if isinstance(data, dict):
+        rows = []
+        for model, values in data.items():
+            # TODO: ugly fix for bert data format
             metrics = values[metrics_col]
-        for metric, (mean, (ci_low, ci_high)) in metrics.items():
-            rows.append({
-                'model': model,
-                'metric': metric,
-                'mean': float(mean),
-                'ci_lower': float(ci_low),
-                'ci_upper': float(ci_high)
-            })
-    df_metrics = pd.DataFrame(rows)
+            for metric, (mean, (ci_low, ci_high)) in metrics.items():
+                rows.append({
+                    'model': model,
+                    'metric': metric,
+                    'mean': float(mean),
+                    'ci_lower': float(ci_low),
+                    'ci_upper': float(ci_high)
+                })
+        df_metrics = pd.DataFrame(rows)
+    elif isinstance(data, pd.DataFrame):
+        df_metrics = data.copy()
+    else:
+        raise ValueError("Data must be a dict or a pandas DataFrame")
 
     unique_models = df_metrics['model'].unique()
-    palette = sns.color_palette("tab10", len(unique_models))
-    model_colors = dict(zip(unique_models, palette))
+    model_colors = {model: color_map.get(model, sns.color_palette("tab10")[i % 10])
+                    for i, model in enumerate(unique_models)}
 
     metrics = df_metrics['metric'].unique()
-
     num_metrics = len(metrics)
     num_models = len(unique_models)
     fig_width = num_metrics * max(4, num_models * 1.5)
@@ -93,7 +95,7 @@ def make_performance_plot(data: dict, save_path: str = None, metrics_col: str = 
             y="mean",
             hue="model",
             data=df_sub,
-            palette=model_colors,
+            palette=[model_colors[model] for model in df_sub["model"]],
             ax=ax,
             errorbar=None,
             legend=False
@@ -120,9 +122,9 @@ def make_performance_plot(data: dict, save_path: str = None, metrics_col: str = 
         ax.set_xticks(range(len(df_sub["model"])))
         ax.set_xticklabels(df_sub["model"], rotation=30, ha="right")
 
-    handles = [plt.Rectangle((0, 0), 1, 1, color=color)
-               for model, color in model_colors.items()]
-    labels = list(model_colors.keys())
+    handles = [plt.Rectangle((0, 0), 1, 1, color=model_colors[model])
+               for model in unique_models]
+    labels = list(unique_models)
     fig.legend(handles, labels, title="Model", loc="upper left",
                bbox_to_anchor=(0.8, 0.9), title_fontsize="small")
 
