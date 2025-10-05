@@ -200,19 +200,19 @@ def evaluate_ner_extraction(
         recall = tp / (tp + fn) if (tp + fn) > 0 else 0
         f1 = (2 * precision * recall / (precision + recall)) if (precision + recall) > 0 else 0
 
-        results[f"accuracy_{col}"] = accuracy * 100
-        results[f"precision_{col}"] = precision * 100
-        results[f"recall_{col}"] = recall * 100
-        results[f"f1_{col}"] = f1 * 100
+        results[f"accuracy_{col}"] = accuracy
+        results[f"precision_{col}"] = precision
+        results[f"recall_{col}"] = recall
+        results[f"f1_{col}"] = f1
 
     for typ, vals in per_type_counts.items():
         tp, fp, fn = vals["tp"], vals["fp"], vals["fn"]
         precision = tp / (tp + fp) if (tp + fp) > 0 else 0
         recall = tp / (tp + fn) if (tp + fn) > 0 else 0
         f1 = (2 * precision * recall / (precision + recall)) if (precision + recall) > 0 else 0
-        results[f"precision_{typ}"] = precision * 100
-        results[f"recall_{typ}"] = recall * 100
-        results[f"f1_{typ}"] = f1 * 100
+        results[f"precision_{typ}"] = precision
+        results[f"recall_{typ}"] = recall
+        results[f"f1_{typ}"] = f1
 
     return results
 
