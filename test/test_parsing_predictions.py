@@ -1,11 +1,9 @@
 import unittest
-from zero_shot.predict_zero_shot import parse_class_prediction, parse_ner_prediction
+from evaluation.parsing import parse_class_prediction, parse_ner_prediction
 from prompts.build_prompts import get_label2int
 
 
-#TODO: not sure if I considered here that the order of the labels in the prompt and the labels int2label differs when creating the expecteed
-
-class TestPredictZeroShot(unittest.TestCase):
+class TestParsingLLMPredictions(unittest.TestCase):
 
     # add a data for the entire class
     def setUp(self):
@@ -284,8 +282,6 @@ OUTPUT: 1'''
             input_data, label2int, model)
         self.assertEqual(results, expected)
         self.assertTrue(faulty_parsable)
-        
-
 
     def test_parse_class_gpt_faulty(self):
         model = 'gpt-4o-mini-2024-07-18'
@@ -369,6 +365,8 @@ Please submit your code as a single file. The file should be named as ""task1.py
 
     def test_ner_parse_gpt(self):
         model = 'gpt-40-2024-08-06'
+        text = """Default Mode Connectivity in Major Depressive Disorder Measured Up to 10 Days After Ketamine Administration.^
+BACKGROUND: The symptoms of major depressive disorder (MDD) are rapidly alleviated by administration of a single dose of the glutamatergic modulator ketamine. However, few studies have investigated the potential sustained neural effects of this agent beyond immediate infusion. This study used functional magnetic resonance imaging to examine the effect of a single ketamine infusion on the resting state default mode network (DMN) at 2 and 10 days after a single ketamine infusion in unmedicated subjects with MDD as well as healthy control subjects (HCs). METHODS: Data were drawn from a double-blind, placebo-controlled crossover study of 58 participants (33 with MDD and 25 HCs) who received an intravenous infusion of either ketamine hydrochloride (0.5 mg/kg) or placebo on 2 separate test days spaced 2 weeks apart. Eight minutes of functional magnetic resonance imaging resting state data was acquired at baseline and at about 2 and 10 days after both infusions. The DMN was defined using seed-based correlation and was compared across groups and scans. RESULTS: In subjects with MDD, connectivity between the insula and the DMN was normalized compared with HCs 2 days postketamine infusion. This change was reversed after 10 days and did not appear in either of the placebo scans. Group-specific connectivity differences in drug response were observed, most notably in the insula in subjects with MDD and in the thalamus in HCs. CONCLUSIONS: Connectivity changes in the insula in subjects with MDD suggest that ketamine may normalize the interaction between the DMN and salience networks, supporting the triple network dysfunction model of MDD."""
         pred_data = '''"```html
             Default Mode Connectivity in <span class=""application-area"">Major Depressive Disorder</span> Measured Up to 10 Days After Ketamine Administration.^
             BACKGROUND: The symptoms of <span class=""application-area"">major depressive disorder (MDD)</span> are rapidly alleviated by administration of a single dose of the glutamatergic modulator ketamine. However, few studies have investigated the potential sustained neural effects of this agent beyond immediate infusion. This study used functional magnetic resonance imaging to examine the effect of a single ketamine infusion on the resting state default mode network (DMN) at 2 and 10 days after a single ketamine infusion in unmedicated subjects with <span class=""application-area"">MDD</span> as well as healthy control subjects (HCs). METHODS: Data were drawn from a double-blind, placebo-controlled crossover study of 58 participants (33 with <span class=""application-area"">MDD</span> and 25 HCs) who received an intravenous infusion of either ketamine hydrochloride (<span class=""dosage"">0.5 mg/kg</span>) or placebo on 2 separate test days spaced 2 weeks apart. Eight minutes of functional magnetic resonance imaging resting state data was acquired at baseline and at about 2 and 10 days after both infusions. The DMN was defined using seed-based correlation and was compared across groups and scans. RESULTS: In subjects with <span class=""application-area"">MDD</span>, connectivity between the insula and the DMN was normalized compared with HCs 2 days postketamine infusion. This change was reversed after 10 days and did not appear in either of the placebo scans. Group-specific connectivity differences in drug response were observed, most notably in the insula in subjects with <span class=""application-area"">MDD</span> and in the thalamus in HCs. CONCLUSIONS: Connectivity changes in the insula in subjects with <span class=""application-area"">MDD</span> suggest that ketamine may normalize the interaction between the DMN and salience networks, supporting the triple network dysfunction model of <span class=""application-area"">MDD</span>.
@@ -379,11 +377,18 @@ Please submit your code as a single file. The file should be named as ""task1.py
         expected = ['O', 'O', 'O', 'O', 'B-Application area', 'I-Application area', 'I-Application area', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Application area', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Application area', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O',
                     'O', 'O', 'O', 'B-Dosage', 'I-Dosage', 'I-Dosage', 'I-Dosage', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Application area', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Application area', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Application area', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Application area', 'O']
 
-        result = parse_ner_prediction(pred_data, tokens, model)
+        result, spans = parse_ner_prediction(pred_data, tokens, text)
+        spans_expected = [
+            ('Major Depressive Disorder', 'application-area'), ('major depressive disorder (MDD)', 'application-area'), ('MDD', 'application-area'), ('MDD',
+                                                                                                                                                      'application-area'), ('0.5 mg/kg', 'dosage'), ('MDD', 'application-area'), ('MDD', 'application-area'), ('MDD', 'application-area'), ('MDD', 'application-area')
+        ]
+        print(result)
         self.assertEqual(result, expected)
+        self.assertEqual(spans, spans_expected)
 
     def test_ner_parse_gpt_mini(self):
-        model = 'gpt-4o-mini-06-06-06'
+        text = """Default Mode Connectivity in Major Depressive Disorder Measured Up to 10 Days After Ketamine Administration.^
+BACKGROUND: The symptoms of major depressive disorder (MDD) are rapidly alleviated by administration of a single dose of the glutamatergic modulator ketamine. However, few studies have investigated the potential sustained neural effects of this agent beyond immediate infusion. This study used functional magnetic resonance imaging to examine the effect of a single ketamine infusion on the resting state default mode network (DMN) at 2 and 10 days after a single ketamine infusion in unmedicated subjects with MDD as well as healthy control subjects (HCs). METHODS: Data were drawn from a double-blind, placebo-controlled crossover study of 58 participants (33 with MDD and 25 HCs) who received an intravenous infusion of either ketamine hydrochloride (0.5 mg/kg) or placebo on 2 separate test days spaced 2 weeks apart. Eight minutes of functional magnetic resonance imaging resting state data was acquired at baseline and at about 2 and 10 days after both infusions. The DMN was defined using seed-based correlation and was compared across groups and scans. RESULTS: In subjects with MDD, connectivity between the insula and the DMN was normalized compared with HCs 2 days postketamine infusion. This change was reversed after 10 days and did not appear in either of the placebo scans. Group-specific connectivity differences in drug response were observed, most notably in the insula in subjects with MDD and in the thalamus in HCs. CONCLUSIONS: Connectivity changes in the insula in subjects with MDD suggest that ketamine may normalize the interaction between the DMN and salience networks, supporting the triple network dysfunction model of MDD."""
         pred = '''```html
 <h1>Default Mode Connectivity in <span class=""application-area"">Major Depressive Disorder</span> Measured Up to <span class=""dosage"">10 Days</span> After <span class=""dosage"">Ketamine Administration</span>.</h1>
 <p>BACKGROUND: The symptoms of <span class=""application-area"">major depressive disorder</span> (MDD) are rapidly alleviated by administration of a single dose of the glutamatergic modulator ketamine. However, few studies have investigated the potential sustained neural effects of this agent beyond immediate infusion. This study used functional magnetic resonance imaging to examine the effect of a single ketamine infusion on the resting state default mode network (DMN) at <span class=""dosage"">2</span> and <span class=""dosage"">10</span> days after a single ketamine infusion in unmedicated subjects with <span class=""application-area"">MDD</span> as well as healthy control subjects (HCs). METHODS: Data were drawn from a double-blind, placebo-controlled crossover study of <span class=""dosage"">58</span> participants (<span class=""dosage"">33</span> with <span class=""application-area"">MDD</span> and <span class=""dosage"">25</span> HCs) who received an intravenous infusion of either ketamine hydrochloride (<span class=""dosage"">0.5 mg/kg</span>) or placebo on <span class=""dosage"">2</span> separate test days spaced <span class=""dosage"">2</span> weeks apart. Eight minutes of functional magnetic resonance imaging resting state data was acquired at baseline and at about <span class=""dosage"">2</span> and <span class=""dosage"">10</span> days after both infusions. The DMN was defined using seed-based correlation and was compared across groups and scans. RESULTS: In subjects with <span class=""application-area"">MDD</span>, connectivity between the insula and the DMN was normalized compared with HCs <span class=""dosage"">2</span> days postketamine infusion. This change was reversed after <span class=""dosage"">10</span> days and did not appear in either of the placebo scans. Group-specific connectivity differences in drug response were observed, most notably in the insula in subjects with <span class=""application-area"">MDD</span> and in the thalamus in HCs. CONCLUSIONS: Connectivity changes in the insula in subjects with <span class=""application-area"">MDD</span> suggest that ketamine may normalize the interaction between the DMN and salience networks, supporting the triple network dysfunction model of <span class=""application-area"">MDD</span>.</p>
@@ -393,12 +398,37 @@ Please submit your code as a single file. The file should be named as ""task1.py
 
         expected = ['O', 'O', 'O', 'O', 'B-Application area', 'I-Application area', 'I-Application area', 'O', 'O', 'O', 'B-Dosage', 'I-Dosage', 'O', 'B-Dosage', 'I-Dosage', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Application area', 'I-Application area', 'I-Application area', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Dosage', 'O', 'B-Dosage', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Application area', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Dosage', 'O', 'O', 'B-Dosage', 'O', 'B-Application area', 'O', 'B-Dosage', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O',
                     'B-Dosage', 'I-Dosage', 'I-Dosage', 'I-Dosage', 'O', 'O', 'O', 'O', 'B-Dosage', 'O', 'O', 'O', 'O', 'B-Dosage', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Dosage', 'O', 'B-Dosage', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Application area', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Dosage', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Dosage', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Application area', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Application area', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Application area', 'O']
-        result = parse_ner_prediction(pred, tokens, model)
-        # for r, p, t in zip(result, expected, tokens):
-        #     print(r, p, t)
-        self.assertEqual(result, expected)
+        bio, spans = parse_ner_prediction(pred, tokens, text)
+        expected_spans = [
+            ('Major Depressive Disorder', 'application-area'),
+            ('10 Days', 'dosage'),
+            ('Ketamine Administration', 'dosage'),
+            ('major depressive disorder', 'application-area'),
+            ('2', 'dosage'),
+            ('10', 'dosage'),
+            ('MDD', 'application-area'),
+            ('58', 'dosage'),
+            ('33', 'dosage'),
+            ('MDD', 'application-area'),
+            ('25', 'dosage'),
+            ('0.5 mg/kg', 'dosage'),
+            ('2', 'dosage'),
+            ('2', 'dosage'),
+            ('2', 'dosage'),
+            ('10', 'dosage'),
+            ('MDD', 'application-area'),
+            ('2', 'dosage'),
+            ('10', 'dosage'),
+            ('MDD', 'application-area'),
+            ('MDD', 'application-area'),
+            ('MDD', 'application-area')
+        ]
+        self.assertEqual(bio, expected)
+        self.assertEqual(spans, expected_spans)
 
     def test_ner_parse_gpt_mini_2(self):
+        text = """"Ketamine as a rapid treatment for chronic ptsd: clinical effects and potential biological mechanisms.^
+Background: Chronic stress and posttraumatic stress disorder (PTSD) have been linked to glutamate system dysfunction. A sub‐anesthetic dose of ketamine, an N‐methyl‐D‐aspartate (NMDA) glutamate receptor antagonist, previously shown to be rapidly effective for treatment‐resistant depression, has been proposed as a potential PTSD treatment. Methods: In a randomized, double‐blind, crossover trial, 41 patients with chronic PTSD, assessed with the SCID‐P and CAPS, were assigned to receive one intravenous infusion of ketamine hydrochloride (0.5 mg/kg) and one infusion of midazolam (0.045 mg/kg), two weeks apart, in randomized counterbalanced order. The primary outcome was improvement on the Impact of Event Scale‐Revised (IES‐R) 24 hours post‐infusion. Additional measures included the CAPS, Montgomery‐Asberg Depression Rating Scale (MADRS), Clinical Global Severity Scales (CGI), among others. Results: PTSD symptom improvement after ketamine infusion was rapid and significantly better than after midazolam, measured 24 hours post‐infusion (mean difference in IES‐R score = 12.7 [95% CI: 2.5‐22.8], p = .02, in analysis of crossover data). Analyses of PTSD symptom improvement after the first infusion, and after adjusting for baseline and 24‐hour depressive symptoms, paralleled this finding. Ketamine infusion was also associated with improvement in comorbid depressive symptoms and GCI scores, with short‐lived, non‐clinically significant dissociative symptoms. Conclusions: Results provide the first evidence of rapid improvement in core PTSD symptoms after ketamine infusion in chronic PTSD patients. Implications for future pharmacologic approaches in patients with chronic PTSD will be discussed, as well as potential biological mechanisms underlying the effects of ketamine in this disabling chronic condition."""
         pred = '''"```html
         <h1>Ketamine as a rapid treatment for <span class=""application-area"">chronic PTSD</span>: clinical effects and potential biological mechanisms.^</h1>
         <p>Background: Chronic stress and <span class=""application-area"">posttraumatic stress disorder (PTSD)</span> have been linked to glutamate system dysfunction. A sub‐anesthetic dose of ketamine, an N‐methyl‐D‐aspartate (NMDA) glutamate receptor antagonist, previously shown to be rapidly effective for treatment‐resistant depression, has been proposed as a potential <span class=""application-area"">PTSD</span> treatment. Methods: In a randomized, double‐blind, crossover trial, 41 patients with <span class=""application-area"">chronic PTSD</span>, assessed with the SCID‐P and CAPS, were assigned to receive one intravenous infusion of ketamine hydrochloride (<span class=""dosage"">0.5 mg/kg</span>) and one infusion of midazolam (<span class=""dosage"">0.045 mg/kg</span>), two weeks apart, in randomized counterbalanced order. The primary outcome was improvement on the Impact of Event Scale‐Revised (IES‐R) 24 hours post‐infusion. Additional measures included the CAPS, Montgomery‐Asberg Depression Rating Scale (MADRS), Clinical Global Severity Scales (CGI), among others. Results: <span class=""application-area"">PTSD</span> symptom improvement after ketamine infusion was rapid and significantly better than after midazolam, measured 24 hours post‐infusion (mean difference in IES‐R score = 12.7 [95% CI: 2.5‐22.8], p = .02, in analysis of crossover data). Analyses of <span class=""application-area"">PTSD</span> symptom improvement after the first infusion, and after adjusting for baseline and 24‐hour depressive symptoms, paralleled this finding. Ketamine infusion was also associated with improvement in comorbid depressive symptoms and GCI scores, with short‐lived, non‐clinically significant dissociative symptoms. Conclusions: Results provide the first evidence of rapid improvement in core <span class=""application-area"">PTSD</span> symptoms after ketamine infusion in <span class=""application-area"">chronic PTSD</span> patients. Implications for future pharmacologic approaches in patients with <span class=""application-area"">chronic PTSD</span> will be discussed, as well as potential biological mechanisms underlying the effects of ketamine in this disabling chronic condition.</p>
@@ -410,15 +440,28 @@ Please submit your code as a single file. The file should be named as ""task1.py
         tokens = ['Ketamine', 'as', 'a', 'rapid', 'treatment', 'for', 'chronic', 'ptsd', ':', 'clinical', 'effects', 'and', 'potential', 'biological', 'mechanisms.^', '\n', 'Background', ':', 'Chronic', 'stress', 'and', 'posttraumatic', 'stress', 'disorder', '(', 'PTSD', ')', 'have', 'been', 'linked', 'to', 'glutamate', 'system', 'dysfunction', '.', 'A', 'sub‐anesthetic', 'dose', 'of', 'ketamine', ',', 'an', 'N‐methyl‐D‐aspartate', '(', 'NMDA', ')', 'glutamate', 'receptor', 'antagonist', ',', 'previously', 'shown', 'to', 'be', 'rapidly', 'effective', 'for', 'treatment‐resistant', 'depression', ',', 'has', 'been', 'proposed', 'as', 'a', 'potential', 'PTSD', 'treatment', '.', 'Methods', ':', 'In', 'a', 'randomized', ',', 'double‐blind', ',', 'crossover', 'trial', ',', '41', 'patients', 'with', 'chronic', 'PTSD', ',', 'assessed', 'with', 'the', 'SCID‐P', 'and', 'CAPS', ',', 'were', 'assigned', 'to', 'receive', 'one', 'intravenous', 'infusion', 'of', 'ketamine', 'hydrochloride', '(', '0.5', 'mg', '/', 'kg', ')', 'and', 'one', 'infusion', 'of', 'midazolam', '(', '0.045', 'mg', '/', 'kg', ')', ',', 'two', 'weeks', 'apart', ',', 'in', 'randomized', 'counterbalanced', 'order', '.', 'The', 'primary', 'outcome', 'was', 'improvement', 'on', 'the', 'Impact', 'of', 'Event', 'Scale‐Revised', '(', 'IES‐R', ')', '24', 'hours', 'post‐infusion', '.', 'Additional', 'measures', 'included', 'the', 'CAPS', ',', 'Montgomery‐Asberg', 'Depression', 'Rating', 'Scale', '(', 'MADRS', ')', ',',
                   'Clinical', 'Global', 'Severity', 'Scales', '(', 'CGI', ')', ',', 'among', 'others', '.', 'Results', ':', 'PTSD', 'symptom', 'improvement', 'after', 'ketamine', 'infusion', 'was', 'rapid', 'and', 'significantly', 'better', 'than', 'after', 'midazolam', ',', 'measured', '24', 'hours', 'post‐infusion', '(', 'mean', 'difference', 'in', 'IES‐R', 'score', '=', '12.7', '[', '95', '%', 'CI', ':', '2.5‐22.8', ']', ',', 'p', '=', '.02', ',', 'in', 'analysis', 'of', 'crossover', 'data', ')', '.', 'Analyses', 'of', 'PTSD', 'symptom', 'improvement', 'after', 'the', 'first', 'infusion', ',', 'and', 'after', 'adjusting', 'for', 'baseline', 'and', '24‐hour', 'depressive', 'symptoms', ',', 'paralleled', 'this', 'finding', '.', 'Ketamine', 'infusion', 'was', 'also', 'associated', 'with', 'improvement', 'in', 'comorbid', 'depressive', 'symptoms', 'and', 'GCI', 'scores', ',', 'with', 'short‐lived', ',', 'non‐clinically', 'significant', 'dissociative', 'symptoms', '.', 'Conclusions', ':', 'Results', 'provide', 'the', 'first', 'evidence', 'of', 'rapid', 'improvement', 'in', 'core', 'PTSD', 'symptoms', 'after', 'ketamine', 'infusion', 'in', 'chronic', 'PTSD', 'patients', '.', 'Implications', 'for', 'future', 'pharmacologic', 'approaches', 'in', 'patients', 'with', 'chronic', 'PTSD', 'will', 'be', 'discussed', ',', 'as', 'well', 'as', 'potential', 'biological', 'mechanisms', 'underlying', 'the', 'effects', 'of', 'ketamine', 'in', 'this', 'disabling', 'chronic', 'condition', '.']
 
-        model = 'gpt-4o-mini-06-06-06'
-
-        result = parse_ner_prediction(pred, tokens, model)
+        bio, spans = parse_ner_prediction(pred, tokens, text)
+        expected_spans = expected_spans = [
+            ('chronic PTSD', 'application-area'),
+            ('posttraumatic stress disorder (PTSD)', 'application-area'),
+            ('PTSD', 'application-area'),
+            ('chronic PTSD', 'application-area'),
+            ('0.5 mg/kg', 'dosage'),
+            ('0.045 mg/kg', 'dosage'),
+            ('PTSD', 'application-area'),
+            ('PTSD', 'application-area'),
+            ('PTSD', 'application-area'),
+            ('chronic PTSD', 'application-area'),
+            ('chronic PTSD', 'application-area')
+        ]
         # for r, e, t in zip(result, expected, tokens):
         #     print(r, e, t)
-        self.assertEqual(result, expected)
+        self.assertEqual(bio, expected)
+        self.assertEqual(spans, expected_spans)
 
     def test_ner_parse_llama2(self):
-        model = 'ner_Llama-2-13-chat-hf'
+        text = '''Resting-state Network-specific Breakdown of Functional Connectivity during Ketamine Alteration of Consciousness in Volunteers.^
+BACKGROUND: Consciousness-altering anesthetic agents disturb connectivity between brain regions composing the resting-state consciousness networks (RSNs). The default mode network (DMn), executive control network, salience network (SALn), auditory network, sensorimotor network (SMn), and visual network sustain mentation. Ketamine modifies consciousness differently from other agents, producing psychedelic dreaming and no apparent interaction with the environment. The authors used functional magnetic resonance imaging to explore ketamine-induced changes in RSNs connectivity. METHODS: Fourteen healthy volunteers received stepwise intravenous infusions of ketamine up to loss of responsiveness. Because of agitation, data from six subjects were excluded from analysis. RSNs connectivity was compared between absence of ketamine (wake state [W1]), light ketamine sedation, and ketamine-induced unresponsiveness (deep sedation [S2]). RESULTS: Increasing the depth of ketamine sedation from W1 to S2 altered DMn and SALn connectivity and suppressed the anticorrelated activity between DMn and other brain regions. During S2, DMn connectivity, particularly between the medial prefrontal cortex and the remaining network (effect size β [95% CI]: W1 = 0.20 [0.18 to 0.22]; S2 = 0.07 [0.04 to 0.09]), and DMn anticorrelated activity (e.g., right sensory cortex: W1 = -0.07 [-0.09 to -0.04]; S2 = 0.04 [0.01 to 0.06]) were broken down. SALn connectivity was nonuniformly suppressed (e.g., left parietal operculum: W1 = 0.08 [0.06 to 0.09]; S2 = 0.05 [0.02 to 0.07]). Executive control networks, auditory network, SMn, and visual network were minimally affected. CONCLUSIONS: Ketamine induces specific changes in connectivity within and between RSNs. Breakdown of frontoparietal DMn connectivity and DMn anticorrelation and sensory and SMn connectivity preservation are common to ketamine and propofol-induced alterations of consciousness.'''
         pred = '''"[INST] <<SYS>>
             You are a helpful medical expert who is helping to extract named entities from medical abstracts.
             <</SYS>>
@@ -477,11 +520,18 @@ Please submit your code as a single file. The file should be named as ""task1.py
         expected = ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Dosage', 'I-Dosage', 'I-Dosage', 'I-Dosage', 'I-Dosage', 'I-Dosage', 'I-Dosage', 'I-Dosage', 'I-Dosage', 'I-Dosage', 'I-Dosage', 'I-Dosage', 'I-Dosage', 'I-Dosage', 'I-Dosage', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area',
                     'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O']
 
-        result = parse_ner_prediction(pred, tokens, model)
-        self.assertEqual(result, expected)
+        bio, spans = parse_ner_prediction(pred, tokens, text)
+        expected_spans = expected_spans = [
+            ('Consciousness-altering anesthetic agents', 'application-area'),
+            ('Fourteen healthy volunteers received stepwise intravenous infusions of ketamine up to loss of responsiveness.', 'dosage'),
+            ('Increasing the depth of ketamine sedation from W1 to S2 altered DMn and SALn connectivity and suppressed the anticorrelated activity between DMn and other brain regions.', 'application-area')
+        ]
+        self.assertEqual(bio, expected)
+        self.assertEqual(spans, expected_spans)
 
     def test_parse_ner_mellama(self):
-        model = 'MeLLaMA-13B-chat'
+        text = '''Default Mode Connectivity in Major Depressive Disorder Measured Up to 10 Days After Ketamine Administration.^
+BACKGROUND: The symptoms of major depressive disorder (MDD) are rapidly alleviated by administration of a single dose of the glutamatergic modulator ketamine. However, few studies have investigated the potential sustained neural effects of this agent beyond immediate infusion. This study used functional magnetic resonance imaging to examine the effect of a single ketamine infusion on the resting state default mode network (DMN) at 2 and 10 days after a single ketamine infusion in unmedicated subjects with MDD as well as healthy control subjects (HCs). METHODS: Data were drawn from a double-blind, placebo-controlled crossover study of 58 participants (33 with MDD and 25 HCs) who received an intravenous infusion of either ketamine hydrochloride (0.5 mg/kg) or placebo on 2 separate test days spaced 2 weeks apart. Eight minutes of functional magnetic resonance imaging resting state data was acquired at baseline and at about 2 and 10 days after both infusions. The DMN was defined using seed-based correlation and was compared across groups and scans. RESULTS: In subjects with MDD, connectivity between the insula and the DMN was normalized compared with HCs 2 days postketamine infusion. This change was reversed after 10 days and did not appear in either of the placebo scans. Group-specific connectivity differences in drug response were observed, most notably in the insula in subjects with MDD and in the thalamus in HCs. CONCLUSIONS: Connectivity changes in the insula in subjects with MDD suggest that ketamine may normalize the interaction between the DMN and salience networks, supporting the triple network dysfunction model of MDD.'''
         pred = '''"###Task
         Your task is to generate an HTML version of an input text, marking up specific entities. The entities to be identified are: Application area, Dosage. Use HTML <span> tags to highlight these entities. Each <span> should have a class attribute indicating the type of entity.
 
@@ -529,11 +579,17 @@ Please submit your code as a single file. The file should be named as ""task1.py
         expected = ['O', 'O', 'O', 'O', 'B-Application area', 'I-Application area', 'I-Application area', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Dosage', 'I-Dosage',
                     'I-Dosage', 'I-Dosage', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O']
 
-        result = parse_ner_prediction(pred, tokens, model)
-        self.assertEqual(result, expected)
+        bio, spans = parse_ner_prediction(pred, tokens, text)
+        expected_spans = [
+            ('Major Depressive Disorder', 'application-area'),
+            ('0.5 mg/kg', 'dosage')
+        ]
+        self.assertEqual(bio, expected)
+        self.assertEqual(spans, expected_spans)
 
     def test_ner_parse_mellama_2(self):
-        model = 'MeLLaMA-13B-chat'
+        text = '''Resting-state Network-specific Breakdown of Functional Connectivity during Ketamine Alteration of Consciousness in Volunteers.^
+BACKGROUND: Consciousness-altering anesthetic agents disturb connectivity between brain regions composing the resting-state consciousness networks (RSNs). The default mode network (DMn), executive control network, salience network (SALn), auditory network, sensorimotor network (SMn), and visual network sustain mentation. Ketamine modifies consciousness differently from other agents, producing psychedelic dreaming and no apparent interaction with the environment. The authors used functional magnetic resonance imaging to explore ketamine-induced changes in RSNs connectivity. METHODS: Fourteen healthy volunteers received stepwise intravenous infusions of ketamine up to loss of responsiveness. Because of agitation, data from six subjects were excluded from analysis. RSNs connectivity was compared between absence of ketamine (wake state [W1]), light ketamine sedation, and ketamine-induced unresponsiveness (deep sedation [S2]). RESULTS: Increasing the depth of ketamine sedation from W1 to S2 altered DMn and SALn connectivity and suppressed the anticorrelated activity between DMn and other brain regions. During S2, DMn connectivity, particularly between the medial prefrontal cortex and the remaining network (effect size β [95% CI]: W1 = 0.20 [0.18 to 0.22]; S2 = 0.07 [0.04 to 0.09]), and DMn anticorrelated activity (e.g., right sensory cortex: W1 = -0.07 [-0.09 to -0.04]; S2 = 0.04 [0.01 to 0.06]) were broken down. SALn connectivity was nonuniformly suppressed (e.g., left parietal operculum: W1 = 0.08 [0.06 to 0.09]; S2 = 0.05 [0.02 to 0.07]). Executive control networks, auditory network, SMn, and visual network were minimally affected. CONCLUSIONS: Ketamine induces specific changes in connectivity within and between RSNs. Breakdown of frontoparietal DMn connectivity and DMn anticorrelation and sensory and SMn connectivity preservation are common to ketamine and propofol-induced alterations of consciousness.'''
         pred = '''"###Task
 
             Your task is to generate an HTML version of an input text, marking up specific entities. The entities to be identified are: Application area, Dosage. Use HTML <span> tags to highlight these entities. Each <span> should have a class attribute indicating the type of entity.
@@ -580,67 +636,10 @@ Please submit your code as a single file. The file should be named as ""task1.py
 
         expected = ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area',
                     'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'I-Application area', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O']
-        result = parse_ner_prediction(pred, tokens, model)
-        self.assertEqual(result, expected)
-
-    def test_parse_class_mellama_3(self):
-        model = 'MeLLaMA-70B-chat'
-        input_data = '''{
-    ""Adult (\u226518 years)"": 1,
-    ""Not applicable"": 0,
-    ""Pediatric (< 18 years old)"": 0,
-    ""Unknown"": 0'''
-        expected = '[0, 1, 0, 0]'
-        label2int = get_label2int('Age of Participants')
-        result, faulty_parsable = parse_class_prediction(input_data, label2int, model)
-
-        self.assertEqual(result, expected)
-        self.assertTrue(faulty_parsable)
-
-    def test_parse_class_mellama_4(self):
-        model = 'MeLLaMA-13B-chat'
-        input_data = '''Smoking: 1
-Unknown: 1'''
-        expected = '[0, 0, 0, 1, 0, 0, 1, 0]'
-        label2int = get_label2int('Application Form')
-
-        result, faulty_parsable = parse_class_prediction(input_data, label2int, model)
-
-        self.assertEqual(result, expected)
-        self.assertTrue(faulty_parsable)
-
-
-    def test_parse_class_mellama_5(self):
-        model = 'MeLLaMA-13B-chat'
-        input_data = '''Depression: 1
-
-Anxiety: 0
-
-Post-traumatic stress disorder (PTSD): 0
-
-Alcoholism: 0
-
-Other addictions (e.g. smoking): 0
-
-Anorexia: 0
-
-Alzheimer\u2019s disease: 0
-
-Non-Alzheimer dementia: 0
-
-Substance abuse: 0
-
-(Chronic) Pain: 0
-
-Palliative Setting: 0
-
-Recreational Drug Use: 0
-
-Healthy Participants: 1'''
-
-        expected = '[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]'
-        label2int = get_label2int('Condition')
-
-        result, faulty_parsable = parse_class_prediction(input_data, label2int, model)
-        self.assertEqual(result, expected)
-        self.assertTrue(faulty_parsable)
+        bio, spans = parse_ner_prediction(pred, tokens, text)
+        expected_spans = [
+    ("Consciousness-altering anesthetic agents disturb connectivity between brain regions composing the resting-state consciousness networks (RSNs). The default mode network (DMn), executive control network, salience network (SALn), auditory network, sensorimotor network (SMn), and visual network sustain mentation. Ketamine modifies consciousness differently from other agents, producing psychedelic dreaming and no apparent interaction with the environment. The authors used functional magnetic resonance imaging to explore ketamine-induced changes in RSNs connectivity.", 
+     "application-area")
+]
+        self.assertEqual(spans, expected_spans)
+        self.assertEqual(bio, expected)

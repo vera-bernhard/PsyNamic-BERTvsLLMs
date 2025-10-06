@@ -1,17 +1,15 @@
-from plots.plots import make_performance_plot, make_simple_performance_plot, make_performance_box_plot, make_performance_spider_plot
-from evaluation.evaluate import get_performance_report, evaluate_ner_bio, evaluate_ner_extraction
+from plots.plots import make_performance_plot
+from evaluation.evaluate import get_performance_report, evaluate_ner_bio, evaluate_ner_extraction, bootstrap_metrics
 from zero_shot.predict_zero_shot import parse_class_predictions, parse_ner_predictions
 import numpy as np
 import pandas as pd
 import json
 import sys
-import re
 import os
 from prompts.build_prompts import get_label2int
-from collections import defaultdict
-from typing import Literal
 from tqdm import tqdm
-from evaluation.helper import parse_file_name, normalize_spaces, get_closest_match, get_substring_matches
+from evaluation.parsing import parse_file_name
+from data.helper import add_entities
 import ast
 
 
@@ -128,6 +126,32 @@ def overall_class_performance(tasks: list[str], prediction_dir: str, metric: str
     return df
 
 
+def overall_ner_performance(prediction_dir: str, metrics: list[str] = None) -> pd.DataFrame:
+    rows = []
+    prediction_path = os.path.join(
+        prediction_dir, 'ner', 'performance_reports.json')
+    if not os.path.exists(prediction_path):
+        return pd.DataFrame(rows)
+    with open(prediction_path, "r") as f:
+        performance_data = json.load(f)
+    for model, data in performance_data.items():
+        model_name = model.split('_')[0]
+        if 'bert' in model_name.lower():
+            model_name = 'bert-baseline'
+        for metric in metrics:
+            score = data.get(metric, None)
+            rows.append(
+                {
+                    'metric': metric,
+                    'model': model_name,
+                    'mean': score['mean'],
+                    'ci_lower': score['lower'],
+                    'ci_upper': score['upper']
+                })
+    df = pd.DataFrame(rows)
+    return df
+
+
 def get_all_prediction_files(prediction_dir: str, task: str) -> list[str]:
     task_dir = os.path.join(
         prediction_dir, task.lower().replace(' ', '_'))
@@ -238,88 +262,14 @@ def parse_all_ner_predictions(prediction_dir: str):
     log_file.close()
 
 
-def get_entity_strings_from_bio(tokens: list[str], sample_text: str, entity_type: str):
-    if not tokens:
-        return "", None
-
-    merged = " ".join(tokens)
-
-    replacements = [
-        (" ,", ","), (" .", "."), (" :", ":"), (" ;", ";"),
-        (" )", ")"), ("( ", "("), (" '", "'"), ("`` ", "``"),
-        (" ''", "''"), (" - ", "-"), (" / ", "/"), (" %", "%"),
-        ("$ ", "$"), (" @ ", "@"), (" # ", "#"), (" & ", "&"),
-        (" * ", "*"), (" ...", "...")
-    ]
-    for old, new in replacements:
-        merged = merged.replace(old, new)
-
-    if sample_text:
-        sample_text = normalize_spaces(sample_text)
-        if merged not in sample_text:
-            options = get_substring_matches(tokens, sample_text)
-            merged = get_closest_match(merged, options)
-            if not merged:
-                pass
-    return merged, entity_type
-
-
-def add_entities(file: str):
-    df = pd.read_csv(file)
-
-    # add entities column
-    df['entities'] = None
-    for i, row in df.iterrows():
-        ner_tags = ast.literal_eval(row['ner_tags'])
-        tokens = ast.literal_eval(row['tokens'])
-        text = row['text']
-
-        if pd.isna(text):
-            df.at[i, 'entities'] = str([])
-            continue
-
-        entities = []
-        cur_entity_tokens = []
-        cur_entity_type = None
-
-        # Step 1: collect entities tokens
-        for token, label in zip(tokens, ner_tags):
-            if label.startswith("B-"):
-                if cur_entity_tokens:
-                    entities.append((cur_entity_tokens, cur_entity_type))
-                    cur_entity_tokens = []
-                cur_entity_type = label[2:].lower().replace(" ", "-")
-                cur_entity_tokens.append(token)
-
-            elif label.startswith("I-") and cur_entity_type is not None:
-                cur_entity_tokens.append(token)
-            else:
-                if cur_entity_tokens:
-                    entities.append((cur_entity_tokens, cur_entity_type))
-                    cur_entity_tokens = []
-                    cur_entity_type = None
-
-        # Step 2: convert entity tokens to strings
-        entity_strings = []
-        for entity_tokens, entity_type in entities:
-            entity_string, entity_type = get_entity_strings_from_bio(
-                entity_tokens, text, entity_type)
-            if entity_string:
-                entity_strings.append((entity_string, entity_type))
-            else:
-                print(
-                    f"Warning: Empty entity string for tokens {entity_tokens} in text '{text}'")
-        
-        df.at[i, 'entities'] = str(entity_strings)
-    df.to_csv(file, index=False, encoding='utf-8')
-
-
 def get_ner_predictions_and_labels(file: str, pred_col='pred_labels', pred_entities_col='pred_entities', true_col='ner_tags', true_entities_col='entities'):
     df = pd.read_csv(file)
     predictions_bio = [ast.literal_eval(item) for item in df[pred_col]]
-    predictions_entities = [ast.literal_eval(item) for item in df[pred_entities_col]]
+    predictions_entities = [ast.literal_eval(
+        item) for item in df[pred_entities_col]]
     labels_bio = [ast.literal_eval(item) for item in df[true_col]]
-    labels_entities = [ast.literal_eval(item) for item in df[true_entities_col]]
+    labels_entities = [ast.literal_eval(item)
+                       for item in df[true_entities_col]]
     return predictions_bio, predictions_entities, labels_bio, labels_entities
 
 
@@ -338,13 +288,14 @@ def evaluate_all_ner(prediction_dir: str):
     for ner_file in tqdm(ner_files):
         pred_bio, pred_entities, true_bio, true_entities = get_ner_predictions_and_labels(
             ner_file)
-        
-        r = evaluate_ner_extraction(pred_entities, true_entities)
-        r_bio = evaluate_ner_bio(pred_bio, true_bio)
-    
+
+        r = bootstrap_metrics(evaluate_ner_extraction,
+                              pred_entities, true_entities)
+        r_bio = bootstrap_metrics(evaluate_ner_bio, pred_bio, true_bio)
+
         model = parse_file_name(ner_file, "model")
         performance_reports[model] = {**r, **r_bio}
-        
+
     with open(performance_reports_path, "w") as f:
         json.dump(performance_reports, f, indent=4)
 
@@ -357,27 +308,30 @@ def main():
     ]
     PREDICTION_DIR = 'zero_shot'
 
-    # Parse Class Predictions
-    # Step 1: Parse all predictions
+    # Parse & evaluate class predictions
     # parse_all_class_predictions(TASKS, PREDICTION_DIR)
-
-    # # Step 2: Evaluate all predictions
     # evaluate_all_class_tasks(TASKS, PREDICTION_DIR)
 
-    # Parse NER Predictions
+    # Parse & evaluate NER predictions
     # parse_all_ner_predictions(PREDICTION_DIR)
-    evaluate_all_ner(PREDICTION_DIR)
+    # evaluate_all_ner(PREDICTION_DIR)
 
     # df_performance = overall_class_performance(TASKS, PREDICTION_DIR)
-    # print(df_performance)
+    # # print(df_performance)
     # make_performance_box_plot(df_performance, 'Zero-Shot Performance Across Tasks',
     #                           save_path='zero_shot/overall_performance_boxplot.png')
     # make_performance_spider_plot(df_performance, 'Zero-Shot Performance Across Tasks',
-    #                             save_path='zero_shot/overall_performance_spiderplot.png')
-    # # I want a df with two columns: model and performance
-    # averaged_performance = df_performance.groupby('model')['performance'].mean().reset_index()
+    #                              save_path='zero_shot/overall_performance_spiderplot.png')
+    # averaged_performance = df_performance.groupby(
+    #     'model')['performance'].mean().reset_index()
     # make_simple_performance_plot(
     #     averaged_performance, 'zero_shot/overall_performance.png')
+
+    df_ner_performance = overall_ner_performance(
+        PREDICTION_DIR, ['f1 overall - strict', 'f1 overall - partial', 'f1_entity_type'])
+    print(df_ner_performance)
+    make_performance_plot(
+        df_ner_performance, save_path='zero_shot/ner/overall_ner_performance.png')
 
 
 if __name__ == "__main__":
