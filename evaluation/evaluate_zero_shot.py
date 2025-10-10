@@ -1,4 +1,4 @@
-from plots.plots import make_performance_plot
+from plots.plots import make_performance_plot, make_performance_box_plot, make_performance_spider_plot, make_simple_performance_plot
 from evaluation.evaluate import get_performance_report, evaluate_ner_bio, evaluate_ner_extraction, bootstrap_metrics
 from zero_shot.predict_zero_shot import parse_class_predictions, parse_ner_predictions
 import numpy as np
@@ -8,8 +8,7 @@ import sys
 import os
 from prompts.build_prompts import get_label2int
 from tqdm import tqdm
-from evaluation.parsing import parse_file_name
-from data.helper import add_entities
+from evaluation.parsing import parse_file_name, add_entities
 import ast
 
 
@@ -72,32 +71,64 @@ def add_bert_performance_data(task: str, performance_data_path: str):
     bert_data = {}
     bert_path = '/home/vera/Documents/Uni/Master/Master_Thesis2.0/PsyNamic-Scale/bert_baseline'
     model = None
-    for metric in ['f1', 'accuracy', 'precision', 'recall']:
-        # find best_accuracy_scores.csv ect. files
-        file_path = f'best_{metric}_scores.csv'
+    if 'ner' in task.lower():
+        # read ner_performance.csv
+        file_path = 'ner_performance.csv'
         df = pd.read_csv(os.path.join(bert_path, file_path))
-        # get row from task
-        # make task case insensitive
-        df['task'] = df['task'].str.lower()
-        task = task.lower()
-        task_row = df[df['task'] == task]
+        
+        # get model with highest f1 overall - strict, metric == 'f1 overall - strict'
+        best_row_overall_strict = df[df['Metric'] == 'f1 overall - strict'].sort_values(by='Score', ascending=False).iloc[0]
+        best_row_entity_type = df[df['Metric'] == 'f1_entity_type'].sort_values(by='Score', ascending=False).iloc[0]
+        # Check if it is the same model
+        if best_row_overall_strict['Model'] != best_row_entity_type['Model']:
+            print("Warning: Different models have the best scores for 'f1 overall - strict' and 'f1_entity_type'. Using the model with the best 'f1 overall - strict'.")
+        model = best_row_overall_strict['Model']
 
-        score = float(task_row[f'{metric}_score'].values[0])
-        ci_lower = float(task_row['ci_lower'].values[0])
-        ci_upper = float(task_row['ci_upper'].values[0])
-        score_data = [score, [ci_lower, ci_upper]]
+        # add all metrics to the performance data
+        # collect all unique
+        all_metrics = df['Metric'].unique()
+        performance_data[model] = {}
+        # add to performance data
+        for metric in all_metrics:
+            # mean, lower, upper
+            metric_row = df[(df['Metric'] == metric) & (df['Model'] == model)]
+            mean = float(metric_row['Score'].values[0])
+            ci_lower = float(metric_row['CI Lower'].values[0])
+            ci_upper = float(metric_row['CI Upper'].values[0])
+            score_data = {
+                "mean": mean,
+                "lower": ci_lower,
+                "upper": ci_upper
+            }
+            performance_data[model][metric] = score_data
 
-        if metric == 'f1':
-            metric = 'f1-weighted'
-        bert_data[metric] = score_data
-        # Assuming the model is the same for all metrics
-        model = task_row['model'].values[0]
+    else:
+        for metric in ['f1', 'accuracy', 'precision', 'recall']:
+            # find best_accuracy_scores.csv ect. files
+            file_path = f'best_{metric}_scores_class.csv'
+            df = pd.read_csv(os.path.join(bert_path, file_path))
+            # get row from task
+            # make task case insensitive
+            df['task'] = df['task'].str.lower()
+            task = task.lower()
+            task_row = df[df['task'] == task]
 
-    # Add clinicalbert to performance_data if not present
-    performance_data[model] = {'metrics': {},
-                               'nr_faulty_parsable': 0, 'nr_non_parsable': 0}
+            score = float(task_row[f'{metric}_score'].values[0])
+            ci_lower = float(task_row['ci_lower'].values[0])
+            ci_upper = float(task_row['ci_upper'].values[0])
+            score_data = [score, [ci_lower, ci_upper]]
 
-    performance_data[model]['metrics'] = bert_data
+            if metric == 'f1':
+                metric = 'f1-weighted'
+            bert_data[metric] = score_data
+            # Assuming the model is the same for all metrics
+            model = task_row['model'].values[0]
+
+        # Add clinicalbert to performance_data if not present
+        performance_data[model] = {'metrics': {},
+                                'nr_faulty_parsable': 0, 'nr_non_parsable': 0}
+
+        performance_data[model]['metrics'] = bert_data
 
     # save new performance data
     with open(performance_data_path, "w") as f:
@@ -258,7 +289,7 @@ def parse_all_ner_predictions(prediction_dir: str):
             add_tokens_nertags(file)
         if 'entities' not in df.columns:
             add_entities(file)
-        parse_ner_predictions(file, reparse=True, log_file=log_file)
+        parse_ner_predictions(file, reparse=False, log_file=log_file)
     log_file.close()
 
 
@@ -286,6 +317,11 @@ def evaluate_all_ner(prediction_dir: str):
         performance_reports = {}
 
     for ner_file in tqdm(ner_files):
+        model = parse_file_name(ner_file, "model")
+        if model in performance_reports:
+            print(f"Skipping evaluation for {model} as it is already evaluated.")
+            continue
+
         pred_bio, pred_entities, true_bio, true_entities = get_ner_predictions_and_labels(
             ner_file)
 
@@ -293,7 +329,6 @@ def evaluate_all_ner(prediction_dir: str):
                               pred_entities, true_entities)
         r_bio = bootstrap_metrics(evaluate_ner_bio, pred_bio, true_bio)
 
-        model = parse_file_name(ner_file, "model")
         performance_reports[model] = {**r, **r_bio}
 
     with open(performance_reports_path, "w") as f:
@@ -309,24 +344,26 @@ def main():
     PREDICTION_DIR = 'zero_shot'
 
     # Parse & evaluate class predictions
-    # parse_all_class_predictions(TASKS, PREDICTION_DIR)
-    # evaluate_all_class_tasks(TASKS, PREDICTION_DIR)
+    parse_all_class_predictions(TASKS, PREDICTION_DIR)
+    evaluate_all_class_tasks(TASKS, PREDICTION_DIR)
 
     # Parse & evaluate NER predictions
-    # parse_all_ner_predictions(PREDICTION_DIR)
-    # evaluate_all_ner(PREDICTION_DIR)
+    parse_all_ner_predictions(PREDICTION_DIR)
+    evaluate_all_ner(PREDICTION_DIR)
 
-    # df_performance = overall_class_performance(TASKS, PREDICTION_DIR)
-    # # print(df_performance)
-    # make_performance_box_plot(df_performance, 'Zero-Shot Performance Across Tasks',
-    #                           save_path='zero_shot/overall_performance_boxplot.png')
-    # make_performance_spider_plot(df_performance, 'Zero-Shot Performance Across Tasks',
-    #                              save_path='zero_shot/overall_performance_spiderplot.png')
-    # averaged_performance = df_performance.groupby(
-    #     'model')['performance'].mean().reset_index()
-    # make_simple_performance_plot(
-    #     averaged_performance, 'zero_shot/overall_performance.png')
+    df_performance = overall_class_performance(TASKS, PREDICTION_DIR)
+    # print(df_performance)
+    make_performance_box_plot(df_performance, 'Zero-Shot Performance Across Tasks',
+                              save_path='zero_shot/overall_performance_boxplot.png')
+    make_performance_spider_plot(df_performance, 'Zero-Shot Performance Across Tasks',
+                                 save_path='zero_shot/overall_performance_spiderplot.png')
+    averaged_performance = df_performance.groupby(
+        'model')['performance'].mean().reset_index()
+    make_simple_performance_plot(
+        averaged_performance, 'zero_shot/overall_performance.png')
 
+    add_bert_performance_data('ner', os.path.join(
+        PREDICTION_DIR, 'ner', 'performance_reports.json'))
     df_ner_performance = overall_ner_performance(
         PREDICTION_DIR, ['f1 overall - strict', 'f1 overall - partial', 'f1_entity_type'])
     print(df_ner_performance)

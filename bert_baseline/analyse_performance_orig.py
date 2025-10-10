@@ -9,13 +9,17 @@ from sklearn.metrics import (
     accuracy_score, f1_score, precision_score, recall_score, precision_recall_curve)
 import math
 
+from evaluation.evaluate import evaluate_ner_extraction, evaluate_ner_bio, bootstrap_metrics
+from evaluation.evaluate_zero_shot import get_ner_predictions_and_labels
+
 
 EXPERIMENTS_PATH = "/home/vebern/scratch/PsyNamic/model/experiments"
 DATE_PREFIX = "202502"  # Match folders with this prefix
 TASKS = [
     "Data Collection", "Data Type", "Number of Participants", "Age of Participants", "Application Form",
     "Clinical Trial Phase", "Condition", "Outcomes", "Regimen", "Setting", "Study Control", "Study Purpose",
-    "Substance Naivety", "Substances", "Sex of Participants", "Study Conclusion", "Study Type", "Relevant"
+    "Substance Naivety", "Substances", "Sex of Participants", "Study Conclusion", "Study Type", "Relevant", 
+    "NER"
 ]
 
 MODEL_COLORS = {
@@ -441,8 +445,8 @@ def plot_performance_per_label(y_true, y_pred, label_mapping, save_path, task: s
     plt.close()
 
 # Written for MA
-def plot_best_scores(directory: str, metric: str = 'F1', best_strategy: str = 'F1') -> None:
-    df_tasks = get_best_scores(directory, metric, best_strategy)
+def plot_best_class_scores(directory: str, metric: str = 'F1', best_strategy: str = 'F1') -> None:
+    df_tasks = get_best_class_scores(directory, metric, best_strategy)
     # Plot
     fig, ax = plt.subplots(figsize=(10, 6))
 
@@ -496,7 +500,7 @@ def plot_best_scores(directory: str, metric: str = 'F1', best_strategy: str = 'F
 
 
 # Written for MA
-def get_best_scores(directory: str, metric: str = 'F1', best_strategy: str = 'F1') -> pd.DataFrame:
+def get_best_class_scores(directory: str, metric: str = 'F1', best_strategy: str = 'F1') -> pd.DataFrame:
     task_data = []
 
     # Iterate through CSV files in the directory
@@ -531,20 +535,49 @@ def get_best_scores(directory: str, metric: str = 'F1', best_strategy: str = 'F1
         by=f"{metric.lower()}_score", ascending=False).reset_index(drop=True)
     return df_tasks
 
+def collect_ner_metrics(prediction_dir: str) -> None:
+    model_performance = []
+    for filename in os.listdir(prediction_dir):
+        if filename.endswith("formatted.csv"):
+            model = filename.split("_")[0]
+            file_path = os.path.join(prediction_dir, filename)
+            print(f"Evaluating {file_path}...")
+            # Evaluate BIO
+            # TODO: very ugly to have to call this function here again, s. evaluate_zero_shot.py
+            pred_bio, pred_entities, true_bio, true_entities = get_ner_predictions_and_labels(file_path)
+            r = bootstrap_metrics(evaluate_ner_extraction,
+                              pred_entities, true_entities)
+            r_bio = bootstrap_metrics(evaluate_ner_bio, pred_bio, true_bio)
+            # merge two dicts
+            r.update(r_bio)
+            for metric in r:
+                model_performance.append({
+                    "Model": model,
+                    "Metric": metric,
+                    "Score": r[metric]['mean'],
+                    "CI Lower": r[metric]['lower'],
+                    "CI Upper": r[metric]['upper'],
+                })
+    df = pd.DataFrame(model_performance)
+    # write into parents directory
+    df.to_csv(os.path.join(os.path.dirname(prediction_dir), "ner_performance.csv"), index=False)
+
 
 def main():
     dir = '/home/vera/Documents/Uni/Master/Master_Thesis2.0/PsyNamic-Scale/bert_baseline/model_performance'
-    get_best_scores(dir, metric='F1').to_csv(
-        os.path.join(os.path.dirname(dir), 'best_f1_scores.csv'), index=False)
-    get_best_scores(dir, metric='Accuracy').to_csv(
-        os.path.join(os.path.dirname(dir), 'best_accuracy_scores.csv'), index=False)
-    get_best_scores(dir, metric='Precision').to_csv(
-        os.path.join(os.path.dirname(dir), 'best_precision_scores.csv'), index=False)
-    get_best_scores(dir, metric='Recall').to_csv(
-        os.path.join(os.path.dirname(dir), 'best_recall_scores.csv'), index=False)
-    
+    # get_best_class_scores(dir, metric='F1').to_csv(
+    #     os.path.join(os.path.dirname(dir), 'best_f1_scores_class.csv'), index=False)
+    # get_best_class_scores(dir, metric='Accuracy').to_csv(
+    #     os.path.join(os.path.dirname(dir), 'best_accuracy_scores_class.csv'), index=False)
+    # get_best_class_scores(dir, metric='Precision').to_csv(
+    #     os.path.join(os.path.dirname(dir), 'best_precision_scores_class.csv'), index=False)
+    # get_best_class_scores(dir, metric='Recall').to_csv(
+    #     os.path.join(os.path.dirname(dir), 'best_recall_scores_class.csv'), index=False)
 
-    plot_best_scores('/home/vera/Documents/Arbeit/CRS/PsychNER/model')
+    # plot_best_class_scores('/home/vera/Documents/Arbeit/CRS/PsychNER/model')
+    collect_ner_metrics('bert_baseline/predictions')    
+
+
     # save_dir = "model/performance_plots"
     # task_model_performance = collect_metrics_all_tasks()
     # plot_model_metric_all_tasks(task_model_performance,

@@ -157,6 +157,9 @@ def parse_ner_prediction(pred: str, tokens: list[str], text: str, log_file: Text
        - Fallback: search span text directly in tokens.
     4. Warn if number of B- labels doesn’t match number of spans.
     """
+    if 'thought\n' in pred:
+        pred = pred.split('thought\n')[0]
+
     # if text is nan
     if pd.isna(text) or text == '':
         return ['O'] * len(tokens), []
