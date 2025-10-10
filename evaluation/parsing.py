@@ -6,8 +6,11 @@ import pandas as pd
 import unicodedata
 from typing import Literal
 import spacy
+import ast
+from collections import Counter
 
 nlp = spacy.load("en_core_web_sm")
+
 
 def parse_file_name(pred_path: str, info: Literal["model", "condition", "date", "task"]) -> str:
     """Parses the prediction file name to extract model, condition, date or task.
@@ -102,6 +105,8 @@ def basic_tokenizer(text: str) -> list[str]:
     return tokenized
 
 # TODO: Check if this is somewhat the same as get_closest_match scenario
+
+
 def find_phrase_indices(tokens: list[str], phrase: str) -> list[int]:
     tokens_lower = [clean_token(t.lower()) for t in tokens]
     phrase_tokens = [t.lower() for t in basic_tokenizer(phrase)]
@@ -195,12 +200,12 @@ def parse_ner_prediction(pred: str, tokens: list[str], text: str, log_file: Text
     if removed_count > 0:
         if log_file is not None:
             log_file.write(
-            f"Removed {removed_count} spans that don't appear in the text:\n")
+                f"Removed {removed_count} spans that don't appear in the text:\n")
             for e, t in removed_spans:
                 log_file.write(f"  Removed entity: '{e}' (type: {t})\n")
         else:
             print(
-            f"Removed {removed_count} spans that don't appear in the text:")
+                f"Removed {removed_count} spans that don't appear in the text:")
             for e, t in removed_spans:
                 print(f"  Removed entity: '{e}' (type: {t})")
 
@@ -236,7 +241,8 @@ def parse_ner_prediction(pred: str, tokens: list[str], text: str, log_file: Text
 
                 else:
                     # Case 1: all of the entity is matched or only non-letter characters and only then save in bio_tokens
-                    if temp_e == '': # or (len(temp_e) == 1 and not temp_e.isalnum()):
+                    # or (len(temp_e) == 1 and not temp_e.isalnum()):
+                    if temp_e == '':
                         token_start = False
                         token_pointer = i
                         break  # Move to next entity
@@ -494,3 +500,184 @@ def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> tuple
 
     else:
         raise ValueError(f'Could not parse prediction: {pred_text}')
+    
+
+def convert_berttoken_to_bio(file: str, other_pred_file: str) -> str:
+    """
+    Convert a CSV file with id, token, prediction columns into 
+    a list of BIO labels and entities, merging subwords (##).
+
+    Example input:
+        id,token,word_id,prediction,probability,label
+        2431,default,0,O,"[0.9994654059410095, 2.1159517928026617e-05, 5.5784756114007905e-05, 4.1225506720365956e-05, 0.000416381168179214]",O
+        2431,mode,1,O,"[0.9995869994163513, 2.3245402189786546e-05, 0.00030319008510559797, 2.5240009563276544e-05, 6.131161353550851e-05]",O
+        2431,connectivity,2,O,"[0.9998838901519775, 8.697813427716028e-06, 4.1984756535384804e-05, 1.6123200111906044e-05, 4.937177072861232e-05]",O
+        2431,in,3,O,"[0.9998694658279419, 1.8335587810724974e-05, 5.0957842177012935e-05, 1.7795697203837335e-05, 4.3426607589935884e-05]",O
+        2431,major,4,B-Application area,"[0.027369728311896324, 0.0006279110675677657, 0.00217921263538301, 0.000719171017408371, 0.969103991985321]",B-Application area
+
+    Example Output:
+    id,text,prompt,prediction_text,model,tokens,pred_labels,ner_tags,pred_entities,entities
+    
+    """
+    df = pd.read_csv(file)
+    df_pred = pd.read_csv(other_pred_file)
+
+    model = os.path.basename(file).split('_')[0]
+   
+    new_records = []
+
+    ids = df['id'].unique()
+    for id in ids:
+        # get all rows keeping the order of the rows
+        df_id = df[df['id'] == id]
+        df_id = df_id.reset_index(drop=True)
+       
+        # get tokens from df_pred
+        match = df_pred[df_pred['id'] == id]
+        if len(match) != 1:
+            raise ValueError(
+                f"Could not find unique row in {other_pred_file} with id {id}")
+        match_row = match.iloc[0]
+        
+        # Check that number of unique word_ids matches number of tokens
+        max_word_id = df_id['word_id'].max()+1
+        tokens = eval(match_row['tokens']) 
+        if max_word_id != len(tokens):
+            raise ValueError(
+                f"Number of unique word_ids {max_word_id} does not match number of tokens {len(tokens)} in {other_pred_file} with id {id}")
+        new_bio_labels = len(tokens) * ['O']
+
+        current_word_id = 0
+        word_id_labels = []
+        for i, row in df_id.iterrows():
+            label = row['prediction']
+            
+            # New word has started, save previous word_id labels
+            if row['word_id'] != current_word_id:
+                # Save previous word_id labels
+                if len(set(word_id_labels)) == 1:
+                    new_bio_labels[current_word_id] = word_id_labels[0]
+                    previous_label = word_id_labels[0]
+                    word_id_labels = []
+                    
+                elif len(set(word_id_labels)) > 1:
+                    # Check if there is 1 B- and rest I- labels and same type
+                    label_types = set(l[2:] for l in word_id_labels if l != 'O')
+                    if len(label_types) == 1 and any(l.startswith('B-') for l in word_id_labels):
+                        new_bio_labels[current_word_id] = 'B-' + list(label_types)[0]
+                        word_id_labels = []
+                    elif len(label_types) > 1:
+                        raise ValueError(f"Conflicting labels for word_id {current_word_id} in id {id}: {word_id_labels}")
+                    else:
+                        # take majority label as fallback, using Counter
+                        most_common_label = Counter(word_id_labels).most_common(1)[0][0]
+                        new_bio_labels[current_word_id] = most_common_label
+                        word_id_labels = []
+
+                word_id_labels.append(label)
+            # Word continues
+            else:
+                word_id_labels.append(label)
+            
+            current_word_id = row['word_id']
+
+        new_records.append({
+            'id': id,
+            'model': model,
+            'text': match_row['text'],
+            'tokens': tokens,
+            'ner_tags': match_row['ner_tags'],
+            'pred_labels': new_bio_labels,
+            'entities': match_row['entities'],
+        })
+
+    new_df = pd.DataFrame(new_records)
+    # print length of dataframe
+    print(len(new_df))
+    new_file = file.replace('.csv', '_formatted.csv')
+    new_df.to_csv(new_file, index=False, encoding='utf-8')
+
+    return new_file
+       
+def get_all_ner_files(directory: str) -> list[str]:
+    """Get all NER prediction files in a directory."""
+    files = []
+    for filename in os.listdir(directory):
+        if filename.endswith('.csv') and 'ner' in filename:
+            if 'formatted' in filename:
+                continue
+            files.append(os.path.join(directory, filename))
+    return files
+
+
+def add_entities(file: str, tokens_col='tokens', bio_col='ner_tags', output_col='entities'):
+    """ 
+        Add an entities column to a data file based on the BIO-formatted NER tags.
+        This is necessary to evaluate on entity level.
+    """
+    df = pd.read_csv(file)
+
+    # add entities column
+    df[output_col] = None
+    for i, row in df.iterrows():
+        ner_tags = ast.literal_eval(row[bio_col])
+        tokens = ast.literal_eval(row[tokens_col])
+        text = row['text']
+
+        if pd.isna(text):
+            df.at[i, output_col] = str([])
+            continue
+
+        entities = []
+        cur_entity_tokens = []
+        cur_entity_type = None
+
+        # Step 1: collect entities tokens
+        for token, label in zip(tokens, ner_tags):
+            if label.startswith("B-"):
+                if cur_entity_tokens:
+                    entities.append((cur_entity_tokens, cur_entity_type))
+                    cur_entity_tokens = []
+                cur_entity_type = label[2:].lower().replace(" ", "-")
+                cur_entity_tokens.append(token)
+
+            elif label.startswith("I-") and cur_entity_type is not None:
+                cur_entity_tokens.append(token)
+            else:
+                if cur_entity_tokens:
+                    entities.append((cur_entity_tokens, cur_entity_type))
+                    cur_entity_tokens = []
+                    cur_entity_type = None
+
+        # Step 2: convert entity tokens to strings
+        entity_strings = []
+        for entity_tokens, entity_type in entities:
+            entity_string = get_entity_string_from_bio(
+                entity_tokens, text)
+            if entity_string:
+                entity_strings.append((entity_string, entity_type))
+            else:
+                print(
+                    f"Warning: Empty entity string for tokens {entity_tokens} in text '{text}'")
+
+        df.at[i, output_col] = str(entity_strings)
+    df.to_csv(file, index=False, encoding='utf-8')
+
+
+def main():
+
+    # Get all NER prediction files in a directory
+    ner_files = get_all_ner_files(
+        '/home/vera/Documents/Uni/Master/Master_Thesis2.0/PsyNamic-Scale/bert_baseline/predictions')
+
+    for file in ner_files:
+        print(f"Processing file: {file}")
+        new_file = convert_berttoken_to_bio(
+            file,
+            '/home/vera/Documents/Uni/Master/Master_Thesis2.0/PsyNamic-Scale/zero_shot/ner/ner_gpt-4o-2024-08-06_22-07-22.csv'
+        )
+        add_entities(new_file, tokens_col='tokens', bio_col='pred_labels', output_col='pred_entities')
+
+
+if __name__ == "__main__":
+    main()
