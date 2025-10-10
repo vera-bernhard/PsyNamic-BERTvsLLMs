@@ -80,7 +80,9 @@ SEED = 42
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
-class LlamaModel():
+
+#TODO: Make it more generic; ugly asking if 'llama' or 'gemma' in model name
+class HFChatModel():
     def __init__(self, model_name: str, use_gpu: bool = True, system_prompt: str = '', use_quant: bool = False):
         print("CUDA_VISIBLE_DEVICES:", os.environ.get("CUDA_VISIBLE_DEVICES"))
         self.model_name = model_name
@@ -90,11 +92,16 @@ class LlamaModel():
 
         if self.use_gpu and torch.cuda.is_available():
             self.device_map = "auto"
-            self.torch_dtype = torch.float16
+            self.dtype = torch.float16
         else:
             self.device_map = None
-            self.torch_dtype = torch.float32
-        print(f"Using device_map={self.device_map}, dtype={self.torch_dtype}")
+            self.dtype = torch.float32
+
+        if 'gemma' in model_name.lower():
+            # s. Documentation: https://huggingface.co/google/medgemma-27b-text-it
+            self.dtype = torch.bfloat16
+
+        print(f"Using device_map={self.device_map}, dtype={self.dtype}")
 
         # Load tokenizer and set pad token
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
@@ -117,7 +124,7 @@ class LlamaModel():
             self.model = AutoModelForCausalLM.from_pretrained(
                 self.model_name,
                 device_map="balanced",  # ensures that all GPUs are used
-                torch_dtype=self.torch_dtype,
+                dtype=self.dtype,
                 quantization_config=bnb_config,
                 low_cpu_mem_usage=True,
                 trust_remote_code=True,
@@ -126,7 +133,7 @@ class LlamaModel():
             self.model = AutoModelForCausalLM.from_pretrained(
                 self.model_name,
                 device_map="balanced",
-                torch_dtype=self.torch_dtype,
+                dtype=self.dtype,
                 low_cpu_mem_usage=True,
                 trust_remote_code=True,
             )
@@ -222,9 +229,6 @@ class LlamaModel():
         with torch.no_grad():
             output_ids = self.model.generate(**inputs, **generation_kwargs)
 
-        # Debug decode
-        full_text = self.tokenizer.decode(
-            output_ids[0], skip_special_tokens=False)
         # Slice off prompt
         gen_text = self.tokenizer.decode(
             output_ids[0][inputs["input_ids"].shape[-1]:],
@@ -287,8 +291,6 @@ class LlamaModel():
 
         results = []
         for i, generated in enumerate(output_ids):
-            full_text = self.tokenizer.decode(
-                generated, skip_special_tokens=False)
             gen_text = self.tokenizer.decode(
                 generated[inputs["input_ids"].shape[1]:],
                 skip_special_tokens=True
@@ -328,8 +330,8 @@ def make_class_predictions(
     batch_size: int = 8,
     skip_with_other_date: bool = True,
 ) -> None:
-    if 'llama' in model_name.lower():
-        model = LlamaModel(model_name=model_name,
+    if 'llama' in model_name.lower() or 'gemma' in model_name.lower():
+        model = HFChatModel(model_name=model_name,
                            system_prompt=system_role_class)
     else:
         model = None
@@ -381,14 +383,14 @@ def make_class_predictions(
             prompt = build_class_prompt(
                 row['id'], task, row['text'], few_shot=few_shot, few_shot_strategy=few_shot_strategy
             )
-            if 'llama' in model_name.lower():
+            if 'llama' in model_name.lower() or 'gemma' in model_name.lower():
                 model.set_task(task)
                 built_prompts.append(model.build_prompt(prompt))
             else:
                 built_prompts.append(prompt)
 
         # Predict in batches
-        if 'llama' in model_name.lower():
+        if 'llama' in model_name.lower() or 'gemma' in model_name.lower():
             model_spec = model.model_name_short
 
             for i in tqdm(range(0, len(built_prompts), batch_size), desc=f"Predicting {task}"):
@@ -457,8 +459,8 @@ def make_ner_predictions(
                     f"Found existing prediction with this model: {existing_file}. Skipping...")
                 return
 
-    if 'llama' in model_name.lower():
-        model = LlamaModel(model_name=model_name,
+    if 'llama' in model_name.lower() or 'gemma' in model_name.lower():
+        model = HFChatModel(model_name=model_name,
                            system_prompt=system_role_ner)
         model.set_task(task)
 
@@ -475,12 +477,12 @@ def make_ner_predictions(
     for _, row in df.iterrows():
         prompt = build_ner_prompt(
             row['id'], row['text'], few_shot=few_shot, few_shot_strategy=few_shot_strategy)
-        if 'llama' in model_name.lower():
+        if 'llama' in model_name.lower() or 'gemma' in model_name.lower():
             built_prompts.append(model.build_prompt(prompt))
         else:
             built_prompts.append(prompt)
 
-    if 'llama' in model_name.lower():
+    if 'llama' in model_name.lower() or 'gemma' in model_name.lower():
         model_spec = model.model_name_short
         for i in tqdm(range(0, len(built_prompts), batch_size), desc="Predicting (NER)"):
             batch = built_prompts[i:i + batch_size]
@@ -633,36 +635,56 @@ def main():
     models = [
         # "gpt-4o-mini",
         # "gpt-4o-2024-08-06",
-        'meta-llama/Llama-2-13b-chat-hf',
-        '/storage/homefs/vb25l522/me-llama/MeLLaMA-13B-chat',
-        'meta-llama/Meta-Llama-3-8B-Instruct',
-        'YBXL/Med-LLaMA3-8B',
-        "meta-llama/Llama-3.1-8B-Instruct",
-
+        # 'meta-llama/Llama-2-13b-chat-hf',
+        # 'YBXL/Med-LLaMA3-8B',
+        # '/storage/homefs/vb25l522/me-llama/MeLLaMA-13B-chat',
+        # 'meta-llama/Meta-Llama-3-8B-Instruct',
+        # "meta-llama/Llama-3.1-8B-Instruct",
+        "google/medgemma-27b-text-it"
+        
     ]
     big_models = [
         "/data/vebern/ma-models/MeLLaMA-70B-chat",
-        "meta-llama/Llama-2-70b-hf",
-        "meta-llama/Llama-3.3-70B-Instruct",
+        # "meta-llama/Llama-3.3-70B-Instruct",
+    ]
+
+    fine_tuned_models = [
+        "/home/vebern/data/PsyNamic-Scale/finetuning/sft_llama3_8b_instruction_tuned"
     ]
 
     # Zero-Shot: Classification
     for model_name in models:
+        make_ner_predictions(model_name=model_name,
+                        batch_size=8, few_shot=0, skip_with_other_date=True)
         make_class_predictions(
             tasks=TASKS, model_name=model_name, batch_size=8, few_shot=0, skip_with_other_date=True)
-        make_ner_predictions(model_name=model_name,
-                             batch_size=8, few_shot=0, skip_with_other_date=True)
+
 
     # Few-Shot: Classification & NER
     for i in [1, 3, 5]:
         for model_name in models:
-
             make_class_predictions(
                 tasks=TASKS, model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
 
             make_ner_predictions(
                 model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
 
+    # Zero-Shot: Fine-tuned
+    # for model_name in fine_tuned_models:
+    #     make_ner_predictions(model_name=model_name,
+    #                     batch_size=1, few_shot=0, skip_with_other_date=True)
+    #     make_class_predictions(
+    #         tasks=TASKS, model_name=model_name, batch_size=8, few_shot=0, skip_with_other_date=True)
+
+
+    # Few-Shot: Classification & NER
+    # for i in [1]:
+    #     for model_name in big_models:
+    #         make_class_predictions(
+    #             tasks=TASKS, model_name=model_name, batch_size=4, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
+
+    #         make_ner_predictions(
+    #             model_name=model_name, batch_size=4, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
 
 if __name__ == "__main__":
     main()
