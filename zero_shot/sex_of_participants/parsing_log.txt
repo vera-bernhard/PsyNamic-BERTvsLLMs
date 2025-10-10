@@ -21,3 +21,4 @@ Parsing predictions in file zero_shot/sex_of_participants/sex_of_participants_Me
 
 ***EXAMPLES***
 Parsing predictions in file zero_shot/sex_of_participants/sex_of_participants_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Sex of Participants
+Parsing predictions in file zero_shot/sex_of_participants/sex_of_participants_medgemma-27b-text-it_09-10-09.csv for task Sex of Participants

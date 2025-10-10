@@ -38,5 +38,9 @@
     "zero_shot/data_collection/data_collection_Med-LLaMA3-8B_06-09-06.csv": {
         "nr_faulty_parsable": 96,
         "nr_non_parsable": 0
+    },
+    "zero_shot/data_collection/data_collection_medgemma-27b-text-it_09-10-09.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
     }
 }

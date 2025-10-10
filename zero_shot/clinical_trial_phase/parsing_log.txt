@@ -11,3 +11,4 @@ Parsing predictions in file zero_shot/clinical_trial_phase/clinical_trial_phase_
 Parsing predictions in file zero_shot/clinical_trial_phase/clinical_trial_phase_MeLLaMA-70B-chat_27-09-27.csv for task Clinical Trial Phase
 Parsing predictions in file zero_shot/clinical_trial_phase/clinical_trial_phase_Meta-Llama-3-8B-Instruct_06-09-06.csv for task Clinical Trial Phase
 Parsing predictions in file zero_shot/clinical_trial_phase/clinical_trial_phase_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Clinical Trial Phase
+Parsing predictions in file zero_shot/clinical_trial_phase/clinical_trial_phase_medgemma-27b-text-it_09-10-09.csv for task Clinical Trial Phase

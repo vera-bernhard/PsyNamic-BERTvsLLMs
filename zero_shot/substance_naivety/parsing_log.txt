@@ -8,3 +8,4 @@ Parsing predictions in file zero_shot/substance_naivety/substance_naivety_Llama-
 Parsing predictions in file zero_shot/substance_naivety/substance_naivety_gpt-4o-mini_09-09-09.csv for task Substance Naivety
 Parsing predictions in file zero_shot/substance_naivety/substance_naivety_Llama-2-13b-chat-hf_27-09-27.csv for task Substance Naivety
 Parsing predictions in file zero_shot/substance_naivety/substance_naivety_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Substance Naivety
+Parsing predictions in file zero_shot/substance_naivety/substance_naivety_medgemma-27b-text-it_09-10-09.csv for task Substance Naivety

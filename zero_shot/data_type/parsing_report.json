@@ -38,5 +38,9 @@
     "zero_shot/data_type/data_type_sft_llama3_8b_instruction_tuned_29-09-29.csv": {
         "nr_faulty_parsable": 15,
         "nr_non_parsable": 0
+    },
+    "zero_shot/data_type/data_type_medgemma-27b-text-it_09-10-09.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
     }
 }

@@ -23,3 +23,4 @@ The effect of a single dose of oral methylphenidate on the sleep of children wit
 Parsing predictions in file zero_shot/application_form/application_form_Meta-Llama-3-8B-Instruct_06-09-06.csv for task Application Form
 Parsing predictions in file zero_shot/application_form/application_form_gpt-4o-mini_09-09-09.csv for task Application Form
 Parsing predictions in file zero_shot/application_form/application_form_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Application Form
+Parsing predictions in file zero_shot/application_form/application_form_medgemma-27b-text-it_09-10-09.csv for task Application Form

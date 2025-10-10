@@ -10,3 +10,4 @@ Parsing predictions in file zero_shot/study_control/study_control_Llama-2-13b-ch
 Parsing predictions in file zero_shot/study_control/study_control_Llama-2-70b-chat-hf_28-09-28.csv for task Study Control
 Parsing predictions in file zero_shot/study_control/study_control_Meta-Llama-3-8B-Instruct_06-09-06.csv for task Study Control
 Parsing predictions in file zero_shot/study_control/study_control_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Study Control
+Parsing predictions in file zero_shot/study_control/study_control_medgemma-27b-text-it_09-10-09.csv for task Study Control
