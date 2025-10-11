@@ -1,0 +1,332 @@
+Parsing predictions in file few_shot/condition/condition_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Condition
+Parsing predictions in file few_shot/condition/condition_1shot_selected_MeLLaMA-13B-chat_27-09-27.csv for task Condition
+	Error parsing prediction for row with id 2398 : Could not parse prediction: [/SYS]
+	Error parsing prediction for row with id 4494 : list index out of range
+	Error parsing prediction for row with id 2225 : list index out of range
+	Error parsing prediction for row with id 6427 : invalid literal for int() with base 10: '1\n\nINPUT'
+	Error parsing prediction for row with id 6446 : list index out of range
+	Error parsing prediction for row with id 6488 : Label Chronic Pain not found in label2int mapping.
+	Error parsing prediction for row with id 7719 : invalid literal for int() with base 10: '1\n\nINPUT'
+	Error parsing prediction for row with id 8703 : Could not parse prediction: [/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST
+	Error parsing prediction for row with id 8905 : list index out of range
+	Error parsing prediction for row with id 8970 : list index out of range
+Parsing predictions in file few_shot/condition/condition_5shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Condition
+	Error parsing prediction for row with id 1441 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5380 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6103 : Could not parse prediction: 1
+	Error parsing prediction for row with id 56 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1281 : Label 1. Psychiatric condition not found in label2int mapping.
+	Error parsing prediction for row with id 1958 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6954 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7097 : Could not parse prediction: 1
+	Error parsing prediction for row with id 687 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5679 : Could not parse prediction: 1
+	Error parsing prediction for row with id 691 : Could not parse prediction: 1
+	Error parsing prediction for row with id 692 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1264 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1451 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1879 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2048 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2398 : list index out of range
+	Error parsing prediction for row with id 2915 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3592 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4049 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4494 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4558 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4578 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4893 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5828 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6058 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6643 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7890 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8271 : Could not parse prediction: 1
+	Error parsing prediction for row with id 165 : Could not parse prediction: 1
+	Error parsing prediction for row with id 170 : Could not parse prediction: 1
+	Error parsing prediction for row with id 319 : Could not parse prediction: 1
+	Error parsing prediction for row with id 512 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1255 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1439 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1513 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1649 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1799 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1806 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1866 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1964 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1966 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2301 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3175 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3238 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3257 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3452 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4326 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4567 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4884 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5173 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5469 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5794 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5928 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6060 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6093 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6196 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6295 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6427 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6446 : Label 1. Psychiatric condition not found in label2int mapping.
+	Error parsing prediction for row with id 6602 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6644 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6677 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6684 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6979 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7074 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7077 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7083 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7158 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7414 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7719 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7980 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8138 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8295 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8578 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8703 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8905 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9140 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9173 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9578 : Could not parse prediction: 1
+Parsing predictions in file few_shot/condition/condition_5shot_selected_gpt-4o-mini_09-09-09.csv for task Condition
+Parsing predictions in file few_shot/condition/condition_1shot_selected_medgemma-27b-text-it_09-10-09.csv for task Condition
+Parsing predictions in file few_shot/condition/condition_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv for task Condition
+Parsing predictions in file few_shot/condition/condition_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Condition
+Parsing predictions in file few_shot/condition/condition_1shot_selected_Med-LLaMA3-8B_01-09-01.csv for task Condition
+	Error parsing prediction for row with id 6103 : Label 1
+    "Psychiatric condition" not found in label2int mapping.
+	Error parsing prediction for row with id 7097 : Could not parse prediction: 0
+	Error parsing prediction for row with id 687 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5679 : Label 1
+    "Psychiatric condition" not found in label2int mapping.
+	Error parsing prediction for row with id 2398 : list index out of range
+	Error parsing prediction for row with id 3592 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5828 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6058 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8271 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1513 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1649 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1850 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2301 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3257 : Label 1
+    "Psychiatric condition" not found in label2int mapping.
+	Error parsing prediction for row with id 3452 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4326 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	Error parsing prediction for row with id 4884 : Label 1
+    "Psychiatric condition" not found in label2int mapping.
+	Error parsing prediction for row with id 5173 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6093 : Label 1
+    "Depression" not found in label2int mapping.
+	Error parsing prediction for row with id 6121 : Label 1
+    "Psychiatric condition" not found in label2int mapping.
+	Error parsing prediction for row with id 6196 : Label 1. "Psychiatric condition" not found in label2int mapping.
+	Error parsing prediction for row with id 6295 : Label 1
+    "Psychiatric condition" not found in label2int mapping.
+	Error parsing prediction for row with id 6427 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7083 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7313 : Label 1
+    "Psychiatric condition" not found in label2int mapping.
+	Error parsing prediction for row with id 8905 : Label 1
+    "Psychiatric condition" not found in label2int mapping.
+	Error parsing prediction for row with id 9578 : Could not parse prediction: 0
+Parsing predictions in file few_shot/condition/condition_1shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Condition
+	Error parsing prediction for row with id 2048 : Label Chronic Pain not found in label2int mapping.
+	Error parsing prediction for row with id 4049 : Label Chronic Pain not found in label2int mapping.
+	Error parsing prediction for row with id 6058 : Label Chronic Pain not found in label2int mapping.
+	Error parsing prediction for row with id 170 : Label Chronic Pain not found in label2int mapping.
+	Error parsing prediction for row with id 1745 : Label Chronic Pain not found in label2int mapping.
+	Error parsing prediction for row with id 1966 : Label Chronic Pain not found in label2int mapping.
+	Error parsing prediction for row with id 3452 : Label Chronic Pain not found in label2int mapping.
+	Error parsing prediction for row with id 4326 : Label Chronic Pain not found in label2int mapping.
+	Error parsing prediction for row with id 5173 : Label Chronic Pain not found in label2int mapping.
+	Error parsing prediction for row with id 5469 : Label Chronic Pain not found in label2int mapping.
+	Error parsing prediction for row with id 6427 : Label Chronic Pain not found in label2int mapping.
+	Error parsing prediction for row with id 6677 : Label Chronic Pain not found in label2int mapping.
+	Error parsing prediction for row with id 6979 : Label Chronic Pain not found in label2int mapping.
+	Error parsing prediction for row with id 8578 : Label Chronic Pain not found in label2int mapping.
+Parsing predictions in file few_shot/condition/condition_3shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Condition
+	Error parsing prediction for row with id 1441 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5380 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6103 : 'mg. The study will be conducted in N ≈ 100 participants. Participants will be enrolled in one of two groups at a 1'
+	Error parsing prediction for row with id 56 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1958 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2358 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6954 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7097 : Could not parse prediction: 1
+	Error parsing prediction for row with id 687 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5679 : Label 1. Psychiatric condition not found in label2int mapping.
+	Error parsing prediction for row with id 691 : Could not parse prediction: 1
+	Error parsing prediction for row with id 692 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1264 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1451 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1879 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2048 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2398 : list index out of range
+	Error parsing prediction for row with id 2915 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3592 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4049 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4494 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4558 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4578 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5828 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6058 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6643 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7890 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8271 : Could not parse prediction: 1
+	Error parsing prediction for row with id 165 : Could not parse prediction: 1
+	Error parsing prediction for row with id 170 : Could not parse prediction: 1
+	Error parsing prediction for row with id 319 : Could not parse prediction: 1
+	Error parsing prediction for row with id 512 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1255 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1439 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1513 : Could not parse prediction: 0
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 1537 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1649 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1799 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1806 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1850 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1866 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1964 : Label 1. Psychiatric condition not found in label2int mapping.
+	Error parsing prediction for row with id 1966 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2301 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2864 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3152 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 3175 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3238 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3257 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3452 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4326 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4567 : Label 1. Psychiatric condition not found in label2int mapping.
+	Error parsing prediction for row with id 4884 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5173 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5469 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5794 : Label 1. "Substance abuse" not found in label2int mapping.
+	Error parsing prediction for row with id 5928 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6060 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6093 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6121 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6196 : Label 1.1.2. Aim 2 not found in label2int mapping.
+	Error parsing prediction for row with id 6295 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6427 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6488 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6602 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6644 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6677 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6684 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6979 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7074 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7077 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7083 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7158 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7313 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7414 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7719 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7980 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8138 : Label 1. Psychiatric condition not found in label2int mapping.
+	Error parsing prediction for row with id 8295 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8578 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8703 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8905 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8970 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9140 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9173 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9578 : Could not parse prediction: 1
+Parsing predictions in file few_shot/condition/condition_5shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Condition
+Parsing predictions in file few_shot/condition/condition_3shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Condition
+Parsing predictions in file few_shot/condition/condition_1shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Condition
+Parsing predictions in file few_shot/condition/condition_1shot_selected_Llama-2-13b-chat-hf_27-09-27.csv for task Condition
+Parsing predictions in file few_shot/condition/condition_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv for task Condition
+Parsing predictions in file few_shot/condition/condition_1shot_selected_gpt-4o-mini_09-09-09.csv for task Condition
+Parsing predictions in file few_shot/condition/condition_1shot_selected_Llama-3.1-8B-Instruct_22-09-22.csv for task Condition
+	Error parsing prediction for row with id 6684 : Label Bipolar disorder not found in label2int mapping.
+Parsing predictions in file few_shot/condition/condition_5shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Condition
+Parsing predictions in file few_shot/condition/condition_3shot_selected_gpt-4o-mini_09-09-09.csv for task Condition
+Parsing predictions in file few_shot/condition/condition_3shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Condition
+Parsing predictions in file few_shot/condition/condition_1shot_selected_Llama-2-70b-chat-hf_29-09-29.csv for task Condition
+	Error parsing prediction for row with id 1829 : Label Autism not found in label2int mapping.
+	Error parsing prediction for row with id 2398 : Label Suicidal ideation not found in label2int mapping.
+Parsing predictions in file few_shot/condition/condition_1shot_selected_MeLLaMA-70B-chat_29-09-29.csv for task Condition
+Parsing predictions in file few_shot/condition/condition_1shot_selected_Meta-Llama-3-8B-Instruct_22-09-22.csv for task Condition

@@ -1,16 +1,151 @@
 Parsing predictions in file few_shot/number_of_participants/number_of_participants_1shot_selected_gpt-4o-mini_09-09-09.csv for task Number of Participants
-Parsing predictions in file few_shot/number_of_participants/number_of_participants_3shot_selected_Llama-2-13b-chat-hf_07-09-07.csv for task Number of Participants
-	Error parsing prediction for row with id 2382 : Could not parse prediction: To assess the effect of intranasal esketamine plus a newly initiated oral antidepressant compared with a newly initiated oral antidepressant (active comparator) plus intranasal placebo on the plasma concentrations of esketamine and the oral antidepressants and their metabolites, and the relationship between these concentrations and efficacy and safety outcomes.
-
-Please classify the number of participants in the study according to the options provided.
-	Error parsing prediction for row with id 151 : 'INPUT'
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_1shot_selected_medgemma-27b-text-it_09-10-09.csv for task Number of Participants
 Parsing predictions in file few_shot/number_of_participants/number_of_participants_3shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Number of Participants
+	Error parsing prediction for row with id 624 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 1710 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 8031 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 6198 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 4848 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 180 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 8457 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 7466 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 8746 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 9525 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 6683 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 3002 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 5997 : invalid literal for int() with base 10: '0\n\n***FINAL OUTPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 5231 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 8062 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 2150 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 869 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 3181 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT***\n\nThe final output must be exactly one JSON object'
+	Error parsing prediction for row with id 7344 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 379 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 7083 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 8554 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 4641 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 94 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 4530 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
 	Error parsing prediction for row with id 6072 : Could not parse prediction: 1
-Parsing predictions in file few_shot/number_of_participants/number_of_participants_1shot_selected_MeLLaMA-13B-chat_22-09-22.csv for task Number of Participants
+	Error parsing prediction for row with id 5928 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 8263 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 4684 : invalid literal for int() with base 10: '0\n\n***FINAL OUTPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 4404 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT TO CLASSIFY***\n\nThe output must be exactly one JSON object'
+	Error parsing prediction for row with id 6629 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 5705 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 2800 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 2112 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 5221 : invalid literal for int() with base 10: '0\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 3605 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 6446 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 6016 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 7048 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 9565 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 8387 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 3916 : invalid literal for int() with base 10: '0 21-40'
+	Error parsing prediction for row with id 6047 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 2490 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 4876 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 5794 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 751 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 9340 : invalid literal for int() with base 10: '0\n\n***FINAL OUTPUT TO CLASSIFY***\n\nThe output must be exactly one JSON object'
+	Error parsing prediction for row with id 2998 : invalid literal for int() with base 10: '0\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 8143 : invalid literal for int() with base 10: '0\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 2669 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 8913 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 8596 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 8319 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 5641 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 6085 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 591 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 4236 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 4826 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 1887 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 5001 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 7313 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT TO CLASSIFY***\n\nThe final output must be exactly one JSON object'
+	Error parsing prediction for row with id 54 : invalid literal for int() with base 10: '0\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 1077 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT TO CLASSIFY***\n\nThe final output must be exactly one JSON object'
+	Error parsing prediction for row with id 2420 : invalid literal for int() with base 10: '0 21-40'
+	Error parsing prediction for row with id 2539 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
 Parsing predictions in file few_shot/number_of_participants/number_of_participants_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Number of Participants
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_5shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Number of Participants
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_1shot_selected_MeLLaMA-13B-chat_27-09-27.csv for task Number of Participants
+	Error parsing prediction for row with id 2439 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 624 : Could not parse prediction: ***OUTPUT***
+	Error parsing prediction for row with id 1710 : Could not parse prediction: ***OUTPUT***
+	Error parsing prediction for row with id 6198 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 4848 : Could not parse prediction: ***OUTPUT***
+	Error parsing prediction for row with id 8457 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 5231 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 2150 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6158 : Could not parse prediction: ***OUTPUT TO CLASSIFY***
+
+
+[/INST]
+	Error parsing prediction for row with id 379 : Could not parse prediction: ***OUTPUT***
+	Error parsing prediction for row with id 1918 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7083 : Could not parse prediction: ***OUTPUT TO CLASSIFY***
+
+
+[/INST]
+	Error parsing prediction for row with id 8554 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 94 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 4530 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 564 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 9151 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 5221 : Could not parse prediction: ***OUTPUT***
+	Error parsing prediction for row with id 3605 : Could not parse prediction: ***OUTPUT***
+	Error parsing prediction for row with id 6325 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6047 : Could not parse prediction: [/SYS]
+	Error parsing prediction for row with id 751 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 2669 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 8596 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 8319 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 3719 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 4826 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 1887 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 5001 : Could not parse prediction: ***OUTPUT***
+	Error parsing prediction for row with id 54 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 612 : Could not parse prediction: [/INST]
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_3shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Number of Participants
 Parsing predictions in file few_shot/number_of_participants/number_of_participants_1shot_selected_Llama-3.1-8B-Instruct_22-09-22.csv for task Number of Participants
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_1shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Number of Participants
 Parsing predictions in file few_shot/number_of_participants/number_of_participants_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Number of Participants
-Parsing predictions in file few_shot/number_of_participants/number_of_participants_3shot_selected_MeLLaMA-13B-chat_07-09-07.csv for task Number of Participants
-	Error parsing prediction for row with id 2382 : 'To assess the effect of intranasal esketamine plus a newly initiated oral antidepressant compared with a newly initiated oral antidepressant (active comparator) plus intranasal placebo on the following parameters in elderly subjects with TRD'
 Parsing predictions in file few_shot/number_of_participants/number_of_participants_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv for task Number of Participants
-Parsing predictions in file few_shot/number_of_participants/number_of_participants_1shot_selected_Llama-2-13b-chat-hf_06-09-06.csv for task Number of Participants
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_1shot_selected_Llama-2-70b-chat-hf_29-09-29.csv for task Number of Participants
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv for task Number of Participants
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_1shot_selected_Meta-Llama-3-8B-Instruct_22-09-22.csv for task Number of Participants
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_5shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Number of Participants
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_1shot_selected_Llama-2-13b-chat-hf_27-09-27.csv for task Number of Participants
+	Error parsing prediction for row with id 8457 : Value 5 for label ≥1000 is not 0 or 1.
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_1shot_selected_Med-LLaMA3-8B_22-09-22.csv for task Number of Participants
+	Error parsing prediction for row with id 1710 : invalid literal for int() with base 10: '0\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 8031 : invalid literal for int() with base 10: '0\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 777 : invalid literal for int() with base 10: '0\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 1918 : invalid literal for int() with base 10: '0\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 8263 : invalid literal for int() with base 10: '0 21-40'
+	Error parsing prediction for row with id 2800 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3605 : invalid literal for int() with base 10: '0\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 6446 : invalid literal for int() with base 10: '0\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 6016 : invalid literal for int() with base 10: '0\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 3916 : invalid literal for int() with base 10: '0 21-40'
+	Error parsing prediction for row with id 6047 : invalid literal for int() with base 10: '0\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 2382 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8596 : invalid literal for int() with base 10: '0\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 4826 : invalid literal for int() with base 10: '0\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 1077 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2420 : invalid literal for int() with base 10: '0 21-40'
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_1shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Number of Participants
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_3shot_selected_gpt-4o-mini_09-09-09.csv for task Number of Participants
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_1shot_selected_MeLLaMA-70B-chat_29-09-29.csv for task Number of Participants
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_3shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Number of Participants
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_5shot_selected_gpt-4o-mini_09-09-09.csv for task Number of Participants
+Parsing predictions in file few_shot/number_of_participants/number_of_participants_5shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Number of Participants
+	Error parsing prediction for row with id 6198 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 7344 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT TO CLASSIFY***\n\nThe output must be exactly one JSON object'
+	Error parsing prediction for row with id 5928 : invalid literal for int() with base 10: '0\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 2112 : invalid literal for int() with base 10: '0\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 6446 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT TO CLASSIFY***\n\nThe output must be exactly one JSON object'
+	Error parsing prediction for row with id 3916 : invalid literal for int() with base 10: '1\n\n***FINAL OUTPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 5641 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'
+	Error parsing prediction for row with id 4826 : invalid literal for int() with base 10: '1\n\n***FINAL INPUT TO CLASSIFY***'

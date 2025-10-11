@@ -1,0 +1,445 @@
+Processing file: few_shot/ner/ner_5shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv
+Parsing predictions in file few_shot/ner/ner_5shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for NER
+The file few_shot/ner/ner_5shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: few_shot/ner/ner_5shot_selected_gpt-4o-mini_09-09-09.csv
+Parsing predictions in file few_shot/ner/ner_5shot_selected_gpt-4o-mini_09-09-09.csv for NER
+The file few_shot/ner/ner_5shot_selected_gpt-4o-mini_09-09-09.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: few_shot/ner/ner_1shot_selected_MeLLaMA-13B-chat_27-09-27.csv
+Parsing predictions in file few_shot/ner/ner_1shot_selected_MeLLaMA-13B-chat_27-09-27.csv for NER
+Removed 1 spans that don't appear in the text:
+  Removed entity: '1.5 mg / kg or 125-mg fixed dose' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '125 mg / 25 mg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5mg / kg' (type: dosage)
+Processing file: few_shot/ner/ner_5shot_selected_Med-LLaMA3-8B_08-09-08.csv
+Parsing predictions in file few_shot/ner/ner_5shot_selected_Med-LLaMA3-8B_08-09-08.csv for NER
+The file few_shot/ner/ner_5shot_selected_Med-LLaMA3-8B_08-09-08.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: few_shot/ner/ner_3shot_selected_gpt-4o-mini_09-09-09.csv
+Parsing predictions in file few_shot/ner/ner_3shot_selected_gpt-4o-mini_09-09-09.csv for NER
+The file few_shot/ner/ner_3shot_selected_gpt-4o-mini_09-09-09.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: few_shot/ner/ner_5shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv
+Parsing predictions in file few_shot/ner/ner_5shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for NER
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 2 spans that don't appear in the text:
+  Removed entity: '0.4 mg / kg' (type: dosage)
+  Removed entity: '0.4 mg / kg' (type: dosage)
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 6 spans that don't appear in the text:
+  Removed entity: '5, 10, and 20 µg' (type: dosage)
+  Removed entity: '5, 10, and 20 µg' (type: dosage)
+  Removed entity: '5 µg' (type: dosage)
+  Removed entity: '10 µg' (type: dosage)
+  Removed entity: '10 µg' (type: dosage)
+  Removed entity: '20 µg' (type: dosage)
+Removed 4 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant bipolar depression.^' (type: application-area)
+  Removed entity: 'treatment - resistant bipolar depression' (type: application-area)
+  Removed entity: 'treatment - resistant bipolar I / II depression' (type: application-area)
+  Removed entity: '0.5 - 0.75 mg / kg' (type: dosage)
+Removed 2 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+  Removed entity: '0.045 mg / kg' (type: dosage)
+Removed 2 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+  Removed entity: '0.045 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '2.5 mg / kg(-1)' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant major depression' (type: application-area)
+Removed 3 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.8 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '1.5 mg / kg' (type: dosage)
+Removed 2 spans that don't appear in the text:
+  Removed entity: '0.1 mg / kg' (type: dosage)
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Warning: Number of entities in bio_token (3) does not match number of spans (4).
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'Treatment - resistant Depression' (type: application-area)
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 6 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: '0.6 mg / kg / h' (type: dosage)
+  Removed entity: '0.5 mg / kg' (type: dosage)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Warning: Number of entities in bio_token (2) does not match number of spans (4).
+Removed 2 spans that don't appear in the text:
+  Removed entity: '10, 20, 30 mg / 70 kg' (type: dosage)
+  Removed entity: '400 mg / 70 kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '1 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Processing file: few_shot/ner/ner_1shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv
+Parsing predictions in file few_shot/ner/ner_1shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv for NER
+The file few_shot/ner/ner_1shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: few_shot/ner/ner_1shot_selected_gpt-4o-2024-08-06_09-09-09.csv
+Parsing predictions in file few_shot/ner/ner_1shot_selected_gpt-4o-2024-08-06_09-09-09.csv for NER
+The file few_shot/ner/ner_1shot_selected_gpt-4o-2024-08-06_09-09-09.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: few_shot/ner/ner_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv
+Parsing predictions in file few_shot/ner/ner_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv for NER
+The file few_shot/ner/ner_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: few_shot/ner/ner_1shot_selected_Llama-3.1-8B-Instruct_07-09-07.csv
+Parsing predictions in file few_shot/ner/ner_1shot_selected_Llama-3.1-8B-Instruct_07-09-07.csv for NER
+The file few_shot/ner/ner_1shot_selected_Llama-3.1-8B-Instruct_07-09-07.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: few_shot/ner/ner_1shot_selected_Llama-2-13b-chat-hf_27-09-27.csv
+Parsing predictions in file few_shot/ner/ner_1shot_selected_Llama-2-13b-chat-hf_27-09-27.csv for NER
+Warning: Number of entities in bio_token (5) does not match number of spans (9).
+Removed 3 spans with unknown entity types:
+  Removed entity: 'Research on psilocybin has become increasingly popular during the current psychedelic renaissance, which began in the early 1990s.' (type: background)
+  Removed entity: 'Aims: The purpose of this study is to report trends in publications, methods, and findings from research examining the effects of psilocybin on cognition and creativity in adults.' (type: aim)
+  Removed entity: 'Methods: We conducted an Open Science Framework preregistered scoping review, guided by the JBI Manual for Evidence Synthesis, on literature pertaining to psilocybin’s effects on cognition and creativity.' (type: method)
+Warning: Number of entities in bio_token (1) does not match number of spans (2).
+Removed 6 spans that don't appear in the text:
+  Removed entity: 'We hypothesised that a single low-dose administration of ketamine after bariatric surgery can improve pain and mood scores in the immediate postoperative period.' (type: application-area)
+  Removed entity: 'We performed a randomised, double-blind, placebo-controlled study to compare a single subanaesthetic dose of ketamine (0.4 mg kg-1) with a normal saline placebo in the postanaesthesia care unit after laparoscopic gastric bypass and gastrectomy.' (type: application-area)
+  Removed entity: 'Single-centre, tertiary care hospital, October 2014 to January 2018.' (type: application-area)
+  Removed entity: 'Patients in the ketamine group received a single dose of ketamine infusion (0.4 mg kg-1) in the postanaesthesia care unit. Patients in the placebo group received 0.9% saline.' (type: application-area)
+  Removed entity: 'The primary outcome was the visual analogue pain score. A secondary outcome was performance on the short-form McGill's Pain Questionnaire (SF-MPQ).' (type: application-area)
+  Removed entity: 'There were no significant differences in visual analogue pain scores between groups (group-by-time interaction P = 0.966; marginal group effect P = 0.137).' (type: application-area)
+Warning: Number of entities in bio_token (11) does not match number of spans (15).
+Warning: Number of entities in bio_token (3) does not match number of spans (5).
+Removed 1 spans that don't appear in the text:
+  Removed entity: 'Neurocognitive effects of repeated ketamine infusion treatments in patients with treatment-resistant depression' (type: application-area)
+Removed 6 spans that don't appear in the text:
+  Removed entity: 'ptsd' (type: application-area)
+  Removed entity: 'Chronic stress and posttraumatic stress disorder' (type: application-area)
+  Removed entity: 'PTSD' (type: application-area)
+  Removed entity: 'PTSD' (type: application-area)
+  Removed entity: '0.5 mg / kg' (type: dosage)
+  Removed entity: 'ptsd' (type: application-area)
+Removed 5 spans with unknown entity types:
+  Removed entity: 'To investigate the safety and efficacy of intranasal ketamine for the treatment of a single cluster headache (CH) attack.' (type: objective)
+  Removed entity: 'Acute treatment options for patients with CH who have an insufficient response to oxygen and triptans are limited.' (type: background)
+  Removed entity: 'We conducted an open-label pilot study enrolling 23 patients with chronic CH (International Classification of Headache Disorders, 3rd edition), and of these, 20 patients treated a single CH attack with intranasal ketamine.' (type: method)
+  Removed entity: 'The primary endpoint was a 50% reduction in pain intensity within 15 min after initiating treatment.' (type: primary-endpoint)
+  Removed entity: 'However, 30 min after the first application, the pain intensity was reduced by 59% on an 11-point NRS (mean difference: 4.3, 95% CI: 2.4-6.2, p < 0.001, N = 16) and 11 out of 16 (69%) scored 4 or below on the NRS.' (type: result)
+Removed 1 spans that don't appear in the text:
+  Removed entity: 'Under in-hospital observation, patients received 15 mg of intranasal ketamine every 6 min a maximum of five times.' (type: dosage)
+Removed 4 spans that don't appear in the text:
+  Removed entity: 'PTSD' (type: application-area)
+  Removed entity: 'PTSD' (type: application-area)
+  Removed entity: 'PTSD' (type: application-area)
+  Removed entity: 'PTSD' (type: application-area)
+Warning: Number of entities in bio_token (1) does not match number of spans (3).
+Warning: Number of entities in bio_token (6) does not match number of spans (10).
+Removed 1 spans that don't appear in the text:
+  Removed entity: 'amphetamines' (type: application-area)
+Warning: Number of entities in bio_token (11) does not match number of spans (18).
+Warning: Number of entities in bio_token (3) does not match number of spans (6).
+Removed 2 spans that don't appear in the text:
+  Removed entity: '0.5mg/kg' (type: dosage)
+  Removed entity: '0.5mg/kg' (type: dosage)
+Warning: Number of entities in bio_token (2) does not match number of spans (4).
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'Major depressive disorder' (type: application-area)
+  Removed entity: 'MDD' (type: application-area)
+Warning: Number of entities in bio_token (13) does not match number of spans (14).
+Warning: Number of entities in bio_token (23) does not match number of spans (45).
+Removed 4 spans that don't appear in the text:
+  Removed entity: '10-day repeated exposure of SAGE-718' (type: dosage)
+  Removed entity: '1.0 mg/day' (type: dosage)
+  Removed entity: 'higher-order working memory' (type: application-area)
+  Removed entity: 'Two-Back Test' (type: application-area)
+Warning: Number of entities in bio_token (4) does not match number of spans (5).
+Removed 3 spans with unknown entity types:
+  Removed entity: 'dissociative side effects' (type: side-effect)
+  Removed entity: 'floating' (type: side-effect)
+  Removed entity: 'Montgomery-Asberg Depression Rating Scale (MADRS) total score' (type: dependent-variable)
+Removed 4 spans with unknown entity types:
+  Removed entity: 'ketamine' (type: substance)
+  Removed entity: 'fMRI' (type: imaging-technique)
+  Removed entity: 'Esketamine effects on brain activity and connectivity' (type: primary-outcome)
+  Removed entity: 'Psychological measures to assess depression and pain symptoms' (type: secondary-outcome)
+Removed 1 spans that don't appear in the text:
+  Removed entity: 'NMDA receptor antagonist' (type: application-area)
+Warning: Number of entities in bio_token (9) does not match number of spans (18).
+Removed 1 spans that don't appear in the text:
+  Removed entity: '3,4-methylenedioxymethamphetamine' (type: application-area)
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'double-blind' (type: application-area)
+  Removed entity: 'single-dose' (type: application-area)
+Warning: Number of entities in bio_token (4) does not match number of spans (5).
+Removed 1 spans that don't appear in the text:
+  Removed entity: 'bolus loading dose of DMT followed by a slow-rate infusion' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '±3,4-Methylenedioxymethamphetamine' (type: application-area)
+Warning: Number of entities in bio_token (3) does not match number of spans (4).
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'TRD' (type: application-area)
+  Removed entity: 'TRD' (type: application-area)
+Warning: Number of entities in bio_token (2) does not match number of spans (4).
+Warning: Number of entities in bio_token (11) does not match number of spans (12).
+Removed 1 spans that don't appear in the text:
+  Removed entity: 'Recreational drug use' (type: application-area)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '3,4-methylenedioxymethamphetamine' (type: dosage)
+Warning: Number of entities in bio_token (1) does not match number of spans (2).
+Removed 1 spans that don't appear in the text:
+  Removed entity: 'for application area, <span class="dosage"> for dosage' (type: application-area)
+Warning: Number of entities in bio_token (22) does not match number of spans (23).
+Warning: Number of entities in bio_token (3) does not match number of spans (4).
+Warning: Number of entities in bio_token (11) does not match number of spans (12).
+Processing file: few_shot/ner/ner_1shot_selected_gpt-4o-mini_09-09-09.csv
+Parsing predictions in file few_shot/ner/ner_1shot_selected_gpt-4o-mini_09-09-09.csv for NER
+The file few_shot/ner/ner_1shot_selected_gpt-4o-mini_09-09-09.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: few_shot/ner/ner_3shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv
+Parsing predictions in file few_shot/ner/ner_3shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for NER
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 2 spans that don't appear in the text:
+  Removed entity: '0.4 mg / kg' (type: dosage)
+  Removed entity: '0.4 mg / kg' (type: dosage)
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Removed 6 spans that don't appear in the text:
+  Removed entity: '5, 10, and 20 µg' (type: dosage)
+  Removed entity: '5, 10, and 20 µg' (type: dosage)
+  Removed entity: '5 µg' (type: dosage)
+  Removed entity: '10 µg' (type: dosage)
+  Removed entity: '10 µg' (type: dosage)
+  Removed entity: '20 µg' (type: dosage)
+Removed 3 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant bipolar depression.^' (type: application-area)
+  Removed entity: 'treatment - resistant bipolar depression' (type: application-area)
+  Removed entity: 'treatment - resistant bipolar I / II depression' (type: application-area)
+Removed 2 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+  Removed entity: '0.045 mg / kg' (type: dosage)
+Removed 2 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+  Removed entity: '0.045 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '2.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant major depression' (type: application-area)
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.8 mg / kg' (type: dosage)
+Removed 2 spans that don't appear in the text:
+  Removed entity: '1.5 mg / kg' (type: dosage)
+  Removed entity: '125 - mg' (type: dosage)
+Removed 2 spans that don't appear in the text:
+  Removed entity: '0.1 mg / kg' (type: dosage)
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'MDD' (type: application-area)
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Warning: Number of entities in bio_token (3) does not match number of spans (4).
+Warning: Number of entities in bio_token (0) does not match number of spans (1).
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'Treatment - resistant Depression' (type: application-area)
+Removed 3 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 4 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Warning: Number of entities in bio_token (2) does not match number of spans (4).
+Removed 2 spans that don't appear in the text:
+  Removed entity: '10, 20, 30 mg / 70 kg' (type: dosage)
+  Removed entity: '400 mg / 70 kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Removed 1 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Processing file: few_shot/ner/ner_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv
+Parsing predictions in file few_shot/ner/ner_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv for NER
+The file few_shot/ner/ner_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: few_shot/ner/ner_1shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv
+Parsing predictions in file few_shot/ner/ner_1shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for NER
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.4 mg / kg' (type: dosage)
+Removed 3 spans that don't appear in the text:
+  Removed entity: '14 mg / 70 kg' (type: dosage)
+  Removed entity: '30 mg / 70 kg' (type: dosage)
+  Removed entity: '25 mg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '1 / 2' (type: dosage)
+Removed 6 spans that don't appear in the text:
+  Removed entity: '5, 10, and 20 µg' (type: dosage)
+  Removed entity: '5, 10, and 20 µg' (type: dosage)
+  Removed entity: '5 µg' (type: dosage)
+  Removed entity: '10 µg' (type: dosage)
+  Removed entity: '10 µg' (type: dosage)
+  Removed entity: '20 µg' (type: dosage)
+Removed 4 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant bipolar depression.^' (type: application-area)
+  Removed entity: 'treatment - resistant bipolar depression' (type: application-area)
+  Removed entity: 'treatment - resistant bipolar I / II depression' (type: application-area)
+  Removed entity: '0.5 - 0.75 mg / kg' (type: dosage)
+Removed 2 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+  Removed entity: '0.045 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.3 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '2.5 mg / kg' (type: dosage)
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Removed 4 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: '0.5 mg / kg' (type: dosage)
+  Removed entity: '0.25 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Warning: Number of entities in bio_token (1) does not match number of spans (2).
+Removed 1 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant major depression' (type: application-area)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.8 mg / kg' (type: dosage)
+Removed 2 spans that don't appear in the text:
+  Removed entity: '1.5 mg / kg' (type: dosage)
+  Removed entity: '125 mg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.4 mg / kg' (type: dosage)
+Removed 3 spans that don't appear in the text:
+  Removed entity: '100 mg / day' (type: dosage)
+  Removed entity: '40 mg / day' (type: dosage)
+  Removed entity: '500 mg / day' (type: dosage)
+Removed 2 spans that don't appear in the text:
+  Removed entity: '0.1 mg / kg' (type: dosage)
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'MDD' (type: application-area)
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Warning: Number of entities in bio_token (3) does not match number of spans (4).
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'Treatment - resistant depression' (type: application-area)
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 6 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: '0.6 mg / kg / h' (type: dosage)
+  Removed entity: '0.5 mg / kg' (type: dosage)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Removed 4 spans that don't appear in the text:
+  Removed entity: '85 μg' (type: dosage)
+  Removed entity: '85 μg' (type: dosage)
+  Removed entity: '85 μg' (type: dosage)
+  Removed entity: '85 μg' (type: dosage)
+Warning: Number of entities in bio_token (2) does not match number of spans (4).
+Removed 4 spans that don't appear in the text:
+  Removed entity: '10 mg / 70 kg' (type: dosage)
+  Removed entity: '20 mg / 70 kg' (type: dosage)
+  Removed entity: '30 mg / 70 kg' (type: dosage)
+  Removed entity: '400 mg / 70 kg' (type: dosage)
+Warning: Number of entities in bio_token (7) does not match number of spans (12).
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+Removed 2 spans that don't appear in the text:
+  Removed entity: 'treatment - resistant depression' (type: application-area)
+  Removed entity: '1 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Removed 1 spans that don't appear in the text:
+  Removed entity: '0.5 mg / kg' (type: dosage)
+Processing file: few_shot/ner/ner_3shot_selected_gpt-4o-2024-08-06_09-09-09.csv
+Parsing predictions in file few_shot/ner/ner_3shot_selected_gpt-4o-2024-08-06_09-09-09.csv for NER
+The file few_shot/ner/ner_3shot_selected_gpt-4o-2024-08-06_09-09-09.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: few_shot/ner/ner_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv
+Parsing predictions in file few_shot/ner/ner_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv for NER
+The file few_shot/ner/ner_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: few_shot/ner/ner_3shot_selected_Med-LLaMA3-8B_08-09-08.csv
+Parsing predictions in file few_shot/ner/ner_3shot_selected_Med-LLaMA3-8B_08-09-08.csv for NER
+The file few_shot/ner/ner_3shot_selected_Med-LLaMA3-8B_08-09-08.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: few_shot/ner/ner_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv
+Parsing predictions in file few_shot/ner/ner_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for NER
+The file few_shot/ner/ner_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: few_shot/ner/ner_1shot_selected_Med-LLaMA3-8B_07-09-07.csv
+Parsing predictions in file few_shot/ner/ner_1shot_selected_Med-LLaMA3-8B_07-09-07.csv for NER
+The file few_shot/ner/ner_1shot_selected_Med-LLaMA3-8B_07-09-07.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.

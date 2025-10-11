@@ -1,0 +1,200 @@
+Parsing predictions in file few_shot/substances/substances_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv for task Substances
+Parsing predictions in file few_shot/substances/substances_1shot_selected_Llama-2-13b-chat-hf_27-09-27.csv for task Substances
+Parsing predictions in file few_shot/substances/substances_3shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Substances
+Parsing predictions in file few_shot/substances/substances_5shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Substances
+Parsing predictions in file few_shot/substances/substances_5shot_selected_gpt-4o-mini_09-09-09.csv for task Substances
+Parsing predictions in file few_shot/substances/substances_3shot_selected_gpt-4o-mini_09-09-09.csv for task Substances
+Parsing predictions in file few_shot/substances/substances_1shot_selected_Llama-2-70b-chat-hf_29-09-29.csv for task Substances
+Parsing predictions in file few_shot/substances/substances_3shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Substances
+	Error parsing prediction for row with id 3371 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 5968 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6221 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 748 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2482 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5738 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8611 : Could not parse prediction: 1
+	Error parsing prediction for row with id 135 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 691 : Could not parse prediction: 1
+	Error parsing prediction for row with id 933 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2227 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2395 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2673 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 4428 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4473 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 4558 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 5082 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5221 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6162 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 7268 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 7608 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8634 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9484 : Could not parse prediction: 1
+	Error parsing prediction for row with id 166 : Label 1
+    "Ketamine" not found in label2int mapping.
+	Error parsing prediction for row with id 518 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 718 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 764 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1097 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1237 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1649 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1886 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2105 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 2477 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2913 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 3060 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3277 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 3285 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 4152 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4884 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 4943 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 5227 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5723 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6021 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 6028 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 6035 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6070 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 6115 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 6121 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 6123 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6321 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7278 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7318 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8221 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 8636 : list index out of range
+	Error parsing prediction for row with id 8836 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8923 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9039 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 9163 : Could not parse prediction: 1
+Parsing predictions in file few_shot/substances/substances_1shot_selected_medgemma-27b-text-it_09-10-09.csv for task Substances
+Parsing predictions in file few_shot/substances/substances_1shot_selected_Med-LLaMA3-8B_22-09-22.csv for task Substances
+	Error parsing prediction for row with id 6221 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 4428 : Label 1
+    "Ketamine" not found in label2int mapping.
+	Error parsing prediction for row with id 4558 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 166 : Label 1
+    "Ketamine" not found in label2int mapping.
+	Error parsing prediction for row with id 1237 : Label 1
+    "Ketamine" not found in label2int mapping.
+	Error parsing prediction for row with id 1649 : Label 1
+    "Ketamine" not found in label2int mapping.
+	Error parsing prediction for row with id 4884 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 6021 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 6028 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 6115 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 6321 : Label 1
+    "Ketamine" not found in label2int mapping.
+	Error parsing prediction for row with id 7278 : Could not parse prediction: 1
+Parsing predictions in file few_shot/substances/substances_1shot_selected_Llama-3.1-8B-Instruct_22-09-22.csv for task Substances
+Parsing predictions in file few_shot/substances/substances_1shot_selected_Meta-Llama-3-8B-Instruct_22-09-22.csv for task Substances
+Parsing predictions in file few_shot/substances/substances_3shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Substances
+	Error parsing prediction for row with id 1963 : Unterminated string starting at: line 23 column 5 (char 437)
+	Error parsing prediction for row with id 2669 : Label Midazolam not found in label2int mapping.
+Parsing predictions in file few_shot/substances/substances_5shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Substances
+Parsing predictions in file few_shot/substances/substances_5shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Substances
+	Error parsing prediction for row with id 2483 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3371 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5968 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6221 : Could not parse prediction: 1
+	Error parsing prediction for row with id 748 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1825 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2482 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2830 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5738 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7097 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7368 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8611 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8706 : Could not parse prediction: 1
+	Error parsing prediction for row with id 135 : Could not parse prediction: 1
+	Error parsing prediction for row with id 691 : Could not parse prediction: 1
+	Error parsing prediction for row with id 933 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1451 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2048 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2106 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2227 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2395 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2673 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4428 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4473 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4558 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5082 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5221 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5901 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6162 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7268 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7484 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7608 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8634 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9452 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9484 : Could not parse prediction: 1
+	Error parsing prediction for row with id 166 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 518 : Could not parse prediction: 1
+	Error parsing prediction for row with id 640 : Could not parse prediction: 1
+	Error parsing prediction for row with id 718 : Could not parse prediction: 0
+	Error parsing prediction for row with id 764 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1097 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1216 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1237 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1649 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1770 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1799 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1886 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1963 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 2105 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2244 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2477 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2669 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2822 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2913 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2998 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3060 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3149 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3277 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3285 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3452 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4152 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4424 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4635 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4678 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4884 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4943 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5215 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5227 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5646 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5723 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5928 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6021 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6028 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6035 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6070 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6115 : Label 1. Ketamine not found in label2int mapping.
+	Error parsing prediction for row with id 6121 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6123 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6191 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6235 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6321 : list index out of range
+	Error parsing prediction for row with id 6366 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6451 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6496 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7278 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7318 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8089 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8221 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8307 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8636 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8749 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8836 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8910 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8923 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9039 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9163 : Could not parse prediction: 1
+Parsing predictions in file few_shot/substances/substances_1shot_selected_MeLLaMA-70B-chat_29-09-29.csv for task Substances
+Parsing predictions in file few_shot/substances/substances_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv for task Substances
+Parsing predictions in file few_shot/substances/substances_1shot_selected_MeLLaMA-13B-chat_27-09-27.csv for task Substances
+Parsing predictions in file few_shot/substances/substances_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Substances
+Parsing predictions in file few_shot/substances/substances_1shot_selected_gpt-4o-mini_09-09-09.csv for task Substances
+Parsing predictions in file few_shot/substances/substances_1shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Substances
+Parsing predictions in file few_shot/substances/substances_1shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Substances
+Parsing predictions in file few_shot/substances/substances_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Substances
+	Error parsing prediction for row with id 2477 : Label Esketamine not found in label2int mapping.

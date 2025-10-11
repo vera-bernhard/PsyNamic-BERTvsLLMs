@@ -1,0 +1,146 @@
+Parsing predictions in file few_shot/study_purpose/study_purpose_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Study Purpose
+Parsing predictions in file few_shot/study_purpose/study_purpose_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv for task Study Purpose
+Parsing predictions in file few_shot/study_purpose/study_purpose_1shot_selected_medgemma-27b-text-it_09-10-09.csv for task Study Purpose
+Parsing predictions in file few_shot/study_purpose/study_purpose_3shot_selected_gpt-4o-mini_09-09-09.csv for task Study Purpose
+Parsing predictions in file few_shot/study_purpose/study_purpose_5shot_selected_gpt-4o-mini_09-09-09.csv for task Study Purpose
+Parsing predictions in file few_shot/study_purpose/study_purpose_3shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Study Purpose
+Parsing predictions in file few_shot/study_purpose/study_purpose_5shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Study Purpose
+	Error parsing prediction for row with id 5968 : Label 1
+    "Efficacy endpoints" not found in label2int mapping.
+	Error parsing prediction for row with id 6357 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7419 : Label 0
+    "Efficacy endpoints" not found in label2int mapping.
+	Error parsing prediction for row with id 692 : Could not parse prediction: 0 1 0 0 0
+
+***FINAL OUTPUT TO CLASSIFY***
+	Error parsing prediction for row with id 1694 : Label 1
+    "Efficacy endpoints" not found in label2int mapping.
+	Error parsing prediction for row with id 2395 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2874 : Label 1
+    "Efficacy endpoints" not found in label2int mapping.
+	Error parsing prediction for row with id 3493 : Label 1
+    "Efficacy endpoints" not found in label2int mapping.
+	Error parsing prediction for row with id 4165 : Label 1
+    "Efficacy endpoints" not found in label2int mapping.
+	Error parsing prediction for row with id 5901 : Label 1
+    "Efficacy endpoints" not found in label2int mapping.
+	Error parsing prediction for row with id 1447 : Label 1
+    "Efficacy endpoints" not found in label2int mapping.
+	Error parsing prediction for row with id 2053 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2380 : Label 1. Efficacy endpoints not found in label2int mapping.
+	Error parsing prediction for row with id 4587 : Label 1
+    "Efficacy endpoints" not found in label2int mapping.
+	Error parsing prediction for row with id 5525 : Label 1
+    "Efficacy endpoints" not found in label2int mapping.
+	Error parsing prediction for row with id 5556 : Label 1
+    "Efficacy endpoints" not found in label2int mapping.
+	Error parsing prediction for row with id 6108 : Label 1
+    "Efficacy endpoints" not found in label2int mapping.
+	Error parsing prediction for row with id 6220 : Label 1. Efficacy endpoints not found in label2int mapping.
+	Error parsing prediction for row with id 6230 : Label 1. Efficacy endpoints not found in label2int mapping.
+	Error parsing prediction for row with id 6436 : Label 1. Efficacy endpoints not found in label2int mapping.
+	Error parsing prediction for row with id 9446 : Label 1
+    "Efficacy endpoints" not found in label2int mapping.
+	Error parsing prediction for row with id 9521 : Could not parse prediction: 0
+Parsing predictions in file few_shot/study_purpose/study_purpose_5shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Study Purpose
+Parsing predictions in file few_shot/study_purpose/study_purpose_5shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Study Purpose
+Parsing predictions in file few_shot/study_purpose/study_purpose_3shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Study Purpose
+Parsing predictions in file few_shot/study_purpose/study_purpose_1shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Study Purpose
+Parsing predictions in file few_shot/study_purpose/study_purpose_1shot_selected_Med-LLaMA3-8B_22-09-22.csv for task Study Purpose
+	Error parsing prediction for row with id 4893 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2380 : Could not parse prediction: 1. 1. 0. 0. 0. 0.
+	Error parsing prediction for row with id 6436 : Label 1. Efficacy endpoints not found in label2int mapping.
+Parsing predictions in file few_shot/study_purpose/study_purpose_1shot_selected_MeLLaMA-70B-chat_29-09-29.csv for task Study Purpose
+Parsing predictions in file few_shot/study_purpose/study_purpose_1shot_selected_gpt-4o-mini_09-09-09.csv for task Study Purpose
+Parsing predictions in file few_shot/study_purpose/study_purpose_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Study Purpose
+Parsing predictions in file few_shot/study_purpose/study_purpose_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv for task Study Purpose
+Parsing predictions in file few_shot/study_purpose/study_purpose_1shot_selected_Llama-2-70b-chat-hf_29-09-29.csv for task Study Purpose
+Parsing predictions in file few_shot/study_purpose/study_purpose_3shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Study Purpose
+	Error parsing prediction for row with id 1441 : Could not parse prediction: 0.5 mg/kg ketamine infusion exhibited the optimal antidepressant effect (p = 0.002); in the moderate treatment refractoriness group, the 0.5 mg/kg ketamine infusion achieved the strongest antidepressant effect (p = 0.006); however, in the high treatment refractoriness group, the trajectory of depressive symptoms did not differ between treatments (p = 0.325). In future clinical practice, ketamine dose may be adjusted according to the level of treatment refractoriness and BDNF
+	Error parsing prediction for row with id 5020 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5968 : Label 1
+    "Efficacy endpoints" not found in label2int mapping.
+	Error parsing prediction for row with id 5032 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6357 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7419 : Label 1
+    "Efficacy endpoints" not found in label2int mapping.
+	Error parsing prediction for row with id 161 : Could not parse prediction: 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 2395 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1966 : Label 1. Efficacy endpoints not found in label2int mapping.
+	Error parsing prediction for row with id 2053 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2380 : Label 1. Efficacy endpoints not found in label2int mapping.
+	Error parsing prediction for row with id 5525 : Label 0
+    "Efficacy endpoints" not found in label2int mapping.
+	Error parsing prediction for row with id 6220 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6228 : Label 1. Efficacy endpoints not found in label2int mapping.
+	Error parsing prediction for row with id 6230 : Label 1. Efficacy endpoints not found in label2int mapping.
+	Error parsing prediction for row with id 6436 : Label 1. Efficacy endpoints not found in label2int mapping.
+	Error parsing prediction for row with id 9446 : Label 0
+    "Efficacy endpoints" not found in label2int mapping.
+	Error parsing prediction for row with id 9521 : Could not parse prediction: 0
+Parsing predictions in file few_shot/study_purpose/study_purpose_1shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Study Purpose
+Parsing predictions in file few_shot/study_purpose/study_purpose_1shot_selected_Meta-Llama-3-8B-Instruct_22-09-22.csv for task Study Purpose
+Parsing predictions in file few_shot/study_purpose/study_purpose_1shot_selected_Llama-2-13b-chat-hf_27-09-27.csv for task Study Purpose
+Parsing predictions in file few_shot/study_purpose/study_purpose_1shot_selected_MeLLaMA-13B-chat_27-09-27.csv for task Study Purpose
+	Error parsing prediction for row with id 5968 : Could not parse prediction: [/FINAL INPUT TO CLASSIFY]
+
+[/FINAL INPUT TO CLASSIFY]
+
+[/FINAL INPUT TO CLASSIFY]
+
+[/FINAL INPUT TO CLASSIFY]
+
+[/FINAL INPUT TO CLASSIFY]
+
+[/FINAL INPUT TO CLASSIFY]
+
+[/FINAL INPUT TO CLASSIFY]
+
+[/FINAL INPUT TO CLASS
+	Error parsing prediction for row with id 3197 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 532 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 2380 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6220 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6436 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 9446 : Could not parse prediction: [/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST
+Parsing predictions in file few_shot/study_purpose/study_purpose_1shot_selected_Llama-3.1-8B-Instruct_22-09-22.csv for task Study Purpose

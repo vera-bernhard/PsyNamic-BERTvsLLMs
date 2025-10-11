@@ -441,6 +441,9 @@ def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> tuple
                 else:
                     raise ValueError(
                         f'Label {label} not found in label2int mapping.')
+            elif value not in [0, 1, '0', '1']:
+                raise ValueError(
+                    f'Value {value} for label {label} is not 0 or 1.')
             pos = label2int[label]
             onehot_list[pos] = int(value)
         return str(onehot_list), faulty_but_parsable
@@ -474,7 +477,11 @@ def parse_class_prediction(pred_text: str, label2int: dict, model: str) -> tuple
 
     elif ':' in pred_text:
         if pred_text.count(':') > 1:
-            preds = pred_text.split('\n')
+            # Check if there is commas in the text
+            if ',' in pred_text:
+                preds = [p.strip() for p in pred_text.split(',')]
+            else: 
+                preds = pred_text.split('\n')
             # remove empty lines
             preds = [p for p in preds if p.strip() != '']
             onehot_list = [0] * len(label2int)

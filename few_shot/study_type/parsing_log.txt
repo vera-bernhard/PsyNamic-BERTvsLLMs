@@ -1,231 +1,49 @@
 Parsing predictions in file few_shot/study_type/study_type_1shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Study Type
 Parsing predictions in file few_shot/study_type/study_type_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv for task Study Type
-	Error parsing prediction for row with id 6103 : substring not found
-	Error parsing prediction for row with id 8606 : substring not found
-	Error parsing prediction for row with id 8889 : substring not found
-	Error parsing prediction for row with id 56 : substring not found
-	Error parsing prediction for row with id 748 : substring not found
-	Error parsing prediction for row with id 941 : substring not found
-	Error parsing prediction for row with id 2153 : substring not found
-	Error parsing prediction for row with id 7425 : substring not found
-	Error parsing prediction for row with id 7903 : substring not found
-	Error parsing prediction for row with id 8457 : substring not found
-	Error parsing prediction for row with id 2425 : substring not found
-	Error parsing prediction for row with id 7451 : substring not found
-	Error parsing prediction for row with id 161 : substring not found
-	Error parsing prediction for row with id 422 : substring not found
-	Error parsing prediction for row with id 691 : substring not found
-	Error parsing prediction for row with id 1037 : substring not found
-	Error parsing prediction for row with id 1264 : substring not found
-	Error parsing prediction for row with id 1731 : substring not found
-	Error parsing prediction for row with id 1884 : substring not found
-	Error parsing prediction for row with id 2227 : substring not found
-	Error parsing prediction for row with id 2637 : substring not found
-	Error parsing prediction for row with id 3205 : substring not found
-	Error parsing prediction for row with id 4367 : substring not found
-	Error parsing prediction for row with id 4420 : substring not found
-	Error parsing prediction for row with id 4641 : substring not found
-	Error parsing prediction for row with id 4922 : substring not found
-	Error parsing prediction for row with id 5221 : substring not found
-	Error parsing prediction for row with id 5873 : substring not found
-	Error parsing prediction for row with id 8319 : substring not found
-	Error parsing prediction for row with id 9472 : substring not found
-	Error parsing prediction for row with id 394 : substring not found
-	Error parsing prediction for row with id 514 : substring not found
-	Error parsing prediction for row with id 612 : substring not found
-	Error parsing prediction for row with id 1439 : substring not found
-	Error parsing prediction for row with id 1443 : substring not found
-	Error parsing prediction for row with id 1745 : substring not found
-	Error parsing prediction for row with id 1765 : substring not found
-	Error parsing prediction for row with id 1791 : substring not found
-	Error parsing prediction for row with id 1990 : substring not found
-	Error parsing prediction for row with id 2053 : substring not found
-	Error parsing prediction for row with id 2150 : substring not found
-	Error parsing prediction for row with id 2539 : substring not found
-	Error parsing prediction for row with id 2912 : substring not found
-	Error parsing prediction for row with id 3149 : substring not found
-	Error parsing prediction for row with id 3257 : substring not found
-	Error parsing prediction for row with id 3283 : substring not found
-	Error parsing prediction for row with id 3662 : substring not found
-	Error parsing prediction for row with id 3899 : substring not found
-	Error parsing prediction for row with id 4064 : substring not found
-	Error parsing prediction for row with id 4415 : substring not found
-	Error parsing prediction for row with id 4424 : substring not found
-	Error parsing prediction for row with id 4711 : substring not found
-	Error parsing prediction for row with id 4841 : substring not found
-	Error parsing prediction for row with id 5317 : substring not found
-	Error parsing prediction for row with id 5698 : substring not found
-	Error parsing prediction for row with id 5717 : substring not found
-	Error parsing prediction for row with id 6035 : substring not found
-	Error parsing prediction for row with id 6115 : substring not found
-	Error parsing prediction for row with id 6302 : substring not found
-	Error parsing prediction for row with id 6366 : substring not found
-	Error parsing prediction for row with id 6446 : substring not found
-	Error parsing prediction for row with id 6496 : substring not found
-	Error parsing prediction for row with id 7048 : substring not found
-	Error parsing prediction for row with id 7055 : substring not found
-	Error parsing prediction for row with id 7077 : substring not found
-	Error parsing prediction for row with id 7126 : substring not found
-	Error parsing prediction for row with id 7713 : substring not found
-	Error parsing prediction for row with id 8089 : substring not found
-	Error parsing prediction for row with id 8798 : substring not found
-	Error parsing prediction for row with id 8836 : substring not found
-	Error parsing prediction for row with id 8923 : substring not found
-	Error parsing prediction for row with id 9163 : substring not found
 Parsing predictions in file few_shot/study_type/study_type_5shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Study Type
-Parsing predictions in file few_shot/study_type/study_type_3shot_selected_MeLLaMA-13B-chat_07-09-07.csv for task Study Type
-	Error parsing prediction for row with id 6103 : Could not parse prediction: 1
-	Error parsing prediction for row with id 8889 : Could not parse prediction: 0
-	Error parsing prediction for row with id 8457 : substring not found
-	Error parsing prediction for row with id 2425 : Could not parse prediction: 0
-	Error parsing prediction for row with id 1731 : Could not parse prediction: 1
-	Error parsing prediction for row with id 2227 : Could not parse prediction: 1
-	Error parsing prediction for row with id 4367 : Could not parse prediction: 0
-	Error parsing prediction for row with id 4420 : Could not parse prediction: 0
-	Error parsing prediction for row with id 5873 : substring not found
-	Error parsing prediction for row with id 612 : substring not found
-	Error parsing prediction for row with id 1054 : substring not found
-	Error parsing prediction for row with id 1990 : substring not found
-	Error parsing prediction for row with id 2105 : Could not parse prediction: 1
-	Error parsing prediction for row with id 2207 : Could not parse prediction: 0
-	Error parsing prediction for row with id 2301 : substring not found
-	Error parsing prediction for row with id 2380 : Could not parse prediction: 0
-	Error parsing prediction for row with id 2912 : substring not found
-	Error parsing prediction for row with id 3661 : substring not found
-	Error parsing prediction for row with id 3662 : substring not found
-	Error parsing prediction for row with id 4415 : Could not parse prediction: 0
-	Error parsing prediction for row with id 5177 : substring not found
-	Error parsing prediction for row with id 5317 : Could not parse prediction: 1
-	Error parsing prediction for row with id 5717 : substring not found
-	Error parsing prediction for row with id 6035 : Could not parse prediction: 1
-	Error parsing prediction for row with id 6302 : Could not parse prediction: 0
-	Error parsing prediction for row with id 6496 : substring not found
-	Error parsing prediction for row with id 7537 : substring not found
-	Error parsing prediction for row with id 8029 : substring not found
-	Error parsing prediction for row with id 8030 : substring not found
+Parsing predictions in file few_shot/study_type/study_type_3shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Study Type
 Parsing predictions in file few_shot/study_type/study_type_1shot_selected_gpt-4o-mini_09-09-09.csv for task Study Type
-Parsing predictions in file few_shot/study_type/study_type_5shot_selected_Llama-2-13b-chat-hf_08-09-08.csv for task Study Type
-	Error parsing prediction for row with id 6103 : Could not parse prediction: may facilitate the therapeutic process. MDMA has been used in the past as an adjunct to psychotherapy for the treatment of anxiety disorders, and has been shown to enhance the therapeutic effects of psychotherapy. The primary objective of this study is to evaluate the safety and efficacy of MDMA as an adjunct to psychotherapy for the treatment of PTSD. The study will be conducted at three sites in the United States. The study will be conducted in two phases. Phase 1 will be a randomized, double blind, placebo controlled, multi dose escalation study to determine the optimal dose of MDMA for the treatment of PTSD. Phase
-	Error parsing prediction for row with id 8606 : Could not parse prediction: anxiety symptoms in patients with treatment-resistant anxiety disorders, with a sustained response during maintenance therapy. These findings support the potential of ketamine as a rapid-acting anxiolytic agent in the treatment of anxiety disorders.
-
-Please classify the input text into the appropriate category based on the information provided.
-	Error parsing prediction for row with id 56 : 'psilocybin infusion, and 5 times during the 12-week follow-up. MAIN OUTCOMES AND MEASURES'
-	Error parsing prediction for row with id 941 : Could not parse prediction: ilocybin’s effects on cognition and creativity, with acute impairment followed by potential long-term enhancement. The findings suggest that the optimal dosing and timing of psilocybin administration for cognitive and creative enhancement are critical factors for future research.
-
-Please classify the input text into the appropriate category based on the information provided.
-	Error parsing prediction for row with id 2153 : '.5, p\xa0=\xa00.68) and 240\xa0min (Z\xa0=\xa01.8, p\xa0=\xa00.07) after ayahuasca intake in Study 2. No significant changes were observed in 2-AG levels. In Study 1, no significant differences were observed in AEA or 2-AG levels. CONCLUSIONS'
-	Error parsing prediction for row with id 7425 : 'group. In contrast, the ecstasy users showed a trend for the opposite pattern. In addition, the ecstasy users showed impaired memory and executive function, regardless of genotype. Conclusion'
-	Error parsing prediction for row with id 8457 : Could not parse prediction: Scale). mCPP produced increases in subjective effects indicative of serotonergic activity (increases in POMS Anxiety, Dysphoria, and Depression scales and on the Hallucinogenic Rating Scale). The subjective effects of MDMA and mCPP were compared to the effects of a placebo condition. The results of this study will be used to inform the design of future studies examining the abuse liability of MDMA and mCPP in humans.
-
-Please classify the input as one of the options given in the documentation.
-
-
-Please note that the input is a research paper, and the output should be based on the information provided in the paper.
-	Error parsing prediction for row with id 2425 : Could not parse prediction: 01-F99] ‐ Major depressive disorder [F33.0] ‐ Depressive episode, single [F32.0] ‐ Depressive episode, recurrent [F33.1] ‐ Depressive disorder, unspecified [F34.0] ‐ Depressive disorder, recurrent [F34.1] ‐ Depressive disorder, unspecified [F34.2] ‐ Depressive disorder, recurrent [F34.3] ‐ Depressive disorder, unspecified [F34.4] ‐ Depressive disorder, recurrent [F
-	Error parsing prediction for row with id 161 : 'Post-Traumatic Stress Disorder PRIMARY OUTCOME'
-	Error parsing prediction for row with id 422 : 'val'
-	Error parsing prediction for row with id 1264 : 'S'
-	Error parsing prediction for row with id 1731 : 'and day 4) for a period of 6 weeks. Subjects in the Placebo arm will receive matching placebo. SECONDARY OUTCOME'
-	Error parsing prediction for row with id 1884 : Could not parse prediction: associated with increased global integration in the brain, as measured by the global efficiency of functional connectivity (GEFCo) in the default mode network (DMN) and the salience network (SN). In the open-label trial, GEFCo in the DMN and SN increased after psilocybin, and this increase was associated with improved depressive symptoms. In the randomized controlled trial, GEFCo in the DMN and SN increased after psilocybin but not after escitalopram, and this increase was associated with improved depressive symptoms. These findings suggest that psilocybin therapy may improve global integration in the brain, which may contribute to its therapeutic effects in de
-	Error parsing prediction for row with id 2033 : Could not parse prediction: (QIDS-SR) compared to the adjunctive group (p = 0.03). No significant differences were observed between groups on the Montgomery-Asberg Depression Rating Scale (MADRS), Beck Depression Inventory (BDI-II), and Sheehan Disability Scale (SDS) at post-treatment. The present study provides preliminary evidence that ketamine monotherapy may be a viable treatment option for adults with TRD, particularly in reducing suicidal ideation. Future studies should continue to investigate the long-term efficacy and safety of ketamine monotherapy for TRD.
-
-
-Please classify the input text
-	Error parsing prediction for row with id 2227 : 'executive function was only observed after MDMA and ethanol co-administration. Subjective experience was rated as more intense after MDMA and ethanol co-administration compared to the other conditions. CONCLUSION'
-	Error parsing prediction for row with id 3205 : 'p < 0.001) followed by LSD, psilocybin, and amphetamine (p < 0.01). CONCLUSION'
-	Error parsing prediction for row with id 3927 : 'The consultant psychiatrist is responsible for the overall conduct of the study and for ensuring that the study is conducted in accordance with the protocol and applicable regulations. The dispenser and checker are blinded to the treatment condition of the participants. OUTCOMES'
-	Error parsing prediction for row with id 4367 : 'not related to age, sex, or other drug use. The reduction in cortical serotonin transporter binding was associated with reduced gray matter volume in the prefrontal cortex and basal ganglia, but not in the hippocampus. These findings suggest that long-term ecstasy use can cause widespread reduction in cerebral cortical serotonin transporter binding, which may contribute to the cognitive and emotional symptoms of long-term ecstasy users.\n\nPlease classify the input text into one of the following categories'
-	Error parsing prediction for row with id 4420 : 'intranasally has been approved by the US Food and Drug Administration for the treatment of treatment-resistant depression. OBJECTIVE'
-	Error parsing prediction for row with id 4641 : 'did not affect any of the laboratory or actual driving tasks. MDMA combined with alcohol did not further impair the performance on the critical tracking task, but it did increase the impairment of the road tracking test and the car-following test. Subjective ratings of driving quality and mental effort were not affected by MDMA but were increased by alcohol. CONCLUSIONS'
-	Error parsing prediction for row with id 4922 : 'ptake value ratio (SUVR) of the PET-glucose was used to assess the functional changes of the DLPFC. RESULTS'
-	Error parsing prediction for row with id 5221 : ',N-dimethyltryptamine. The studies have shown significant improvements in symptoms of depression, anxiety, post-traumatic stress disorder, and quality of life. CONCLUSION'
-	Error parsing prediction for row with id 5873 : Could not parse prediction: inogenic drugs and the neural correlates of consciousness.
-
-Please classify the input text as one of the options provided above.
-	Error parsing prediction for row with id 9596 : 'diastolic blood pressure. CONCLUSIONS'
-	Error parsing prediction for row with id 394 : 'pressive episode and have active suicidal ideation. The study will be conducted in two phases'
-	Error parsing prediction for row with id 514 : 'persisting negative effects (mostly anxiety). CONCLUSIONS'
-	Error parsing prediction for row with id 612 : 'S'
-	Error parsing prediction for row with id 1054 : 'ive symptoms in grade 11. The association between MDMA use and depressive symptoms remained significant after controlling for meth/amphetamine use (OR 1.6, 95% CI 1.1 to 2.3). CONCLUSIONS'
-	Error parsing prediction for row with id 1439 : 'CONCLUSIONS'
-	Error parsing prediction for row with id 1443 : 'ine dose, age, and VASH) analyses of covariance, happiness during the infusion was a significant predictor of response to ketamine treatment. The results showed that patients who reported higher happiness during the infusion had a better response to ketamine treatment. CONCLUSIONS'
-	Error parsing prediction for row with id 1745 : Could not parse prediction: activity in the anterior cingulate cortex (ACC) and the prefrontal cortex (PFC) under ketamine. Moreover, ketamine administration was associated with increased PANSS positive and negative symptoms, and 5D-ASC ratings. These findings suggest that subanesthetic ketamine administration modulates the aeGBR and is associated with schizophrenia-like symptoms in healthy volunteers. The results provide evidence for the role of NMDAR antagonism in the modulation of GBO and the potential of ketamine as a tool for investigating the pathophysiology of schizophrenia.
-
-
-Please class
-	Error parsing prediction for row with id 1765 : 'failed to attenuate these effects. The combination of ketamine and nicotine did not produce any additional effects. CONCLUSIONS'
-	Error parsing prediction for row with id 1791 : Could not parse prediction: Please classify the study type based on the given input.
-	Error parsing prediction for row with id 1990 : ", LSD intake increased the FC between the thalamus and the basal ganglia, which is consistent with the known LSD effects on dopamine release. The results provide a comprehensive view of LSD-induced changes in thalamocortical connectivity and suggest that the thalamus plays a key role in mediating LSD's effects on sensory processing and cognition.\n\nPlease classify the input text as one of the options given below"
-	Error parsing prediction for row with id 2053 : '-SDLP (cm)'
-	Error parsing prediction for row with id 2105 : '. Subjects with a history of psychiatric disorders, substance abuse, or previous LSD use were also excluded. Subjects were randomly assigned to receive either LSD or placebo in a double blind manner. The primary outcome measures were the effects of LSD on mood, cognition, and perception. The effects of LSD on mood, cognition, and perception were rated using a standardized rating scale. The rating scale consisted of 15 items that were rated on a 5 point Likert scale (1=not at all, 5=extremely). The items were grouped into three subscales'
-	Error parsing prediction for row with id 2150 : Could not parse prediction: that serotonergic hallucinogens modulate brain activity in regions involved in attention, perception, and mood regulation, and may have long-term effects on brain structure and function.
-
-Please classify the input text as one of the options listed above.
-	Error parsing prediction for row with id 2176 : Could not parse prediction: ognitive deficit, which may contribute to their subjective experience of memory impairment.
-
-Please classify the input as one of the options listed above.
-	Error parsing prediction for row with id 2207 : '.63, -0.03]) and ventromedial prefrontal cortex (VMPFC) activation (0.28, sd\u2009=\u20090.13, 95%HDI [0.03, 0.53]) compared to midazolam recipients (amy-gdala'
-	Error parsing prediction for row with id 2301 : '(SF-36) were considered to have a poor outcome. RESULTS'
-	Error parsing prediction for row with id 2380 : 'at 4 and 12 weeks after the last dose of study treatment. 2. To assess the safety and tolerability of intranasal esketamine compared with placebo. 3. To evaluate the pharmacokinetics and pharmacodynamics of intranasal esketamine. 4. To assess the effects of intranasal esketamine on cognitive function. DURATION'
-	Error parsing prediction for row with id 2539 : 'ement scales, and the Beck Depression Inventory-II. RESULTS'
-	Error parsing prediction for row with id 2912 : 'doses, and (3) assess the safety and tolerability of noribogaine in treatment‐seeking opioid‐dependent subjects. Methods'
-	Error parsing prediction for row with id 3149 : Could not parse prediction: Please classify the study type of the given input.
-	Error parsing prediction for row with id 3257 : Could not parse prediction: 95% CI [-0.73, 0.13], P = 0.14, I(2) = 0% on POD 7. The results showed that perioperative ketamine administration was associated with a significant reduction in postoperative depression. However, the quality of the evidence was generally low due to the high risk of bias and the limited number of studies. The results suggest that further high-quality studies are needed to confirm the efficacy and safety of perioperative ketamine administration for postoperative depression.
-
-
-Please classify the input text as one of the options given in the documentation.
-	Error parsing prediction for row with id 3283 : 'to retrospective memory or executive functioning. These findings highlight the importance of using laboratory-based measures of PM in order to capture the full extent of drug-related cognitive impairment.\n\nPlease classify the input text into the following categories'
-	Error parsing prediction for row with id 3637 : Could not parse prediction: 00 µg LSD dose showed a trend toward more intense subjective effects compared with the 100 µg dose. The 30 mg psilocybin dose showed a trend toward longer-lasting subjective effects compared with the 15 mg dose. The 100 and 200 µg LSD doses produced more intense autonomic effects than the psilocybin doses. The 30 mg psilocybin dose showed a trend toward longer-lasting autonomic effects compared with the 15 mg dose. The 100 and 200 µg
-	Error parsing prediction for row with id 3661 : Could not parse prediction: s ecstasy is used may be driven by factors other than ecstasy use. However, craving for ecstasy may be an important factor in determining when ecstasy use occurs.
-
-Please classify the input text into the appropriate category based on the information provided.
-	Error parsing prediction for row with id 3662 : Could not parse prediction: ce after 1 week of treatment. The rapid decrease in prefrontal theta cordance may be a biomarker of the antidepressant effect of ketamine.
-
-Please classify the input text as one of the options listed above.
-	Error parsing prediction for row with id 3899 : 'MA. The results suggest that plasma MDMA concentrations in humans attending dance parties may be associated with potential neurotoxicity, and that the use of MDMA in this setting may be a risk factor for 5-HT neuron damage.\n\nPlease classify the input text into one of the following categories'
-	Error parsing prediction for row with id 4064 : Could not parse prediction: agonists (Visual Analogue Scale for Intensity of Effects). No dose-related increases were observed on a measure of anxiety (State-Trait Anxiety Inventory). The results suggest that salvinorin A is a potent, rapidly acting, and short-lasting kappa opioid agonist hallucinogen that may be useful for studying the neural mechanisms of mystical experiences and other subjective effects of hallucinogens.
-
-PLEASE CLASSIFY THE STUDY AS PER THE ABOVE INPUTS.
-	Error parsing prediction for row with id 4326 : '1.44, 95 % CI = 1.14, 1.83). Conclusion'
-	Error parsing prediction for row with id 4415 : Could not parse prediction: bo. The results showed that nicotine, but not ketamine, significantly improved attentional performance in the RVIP task, and that the combination of nicotine and ketamine did not produce any additional effects. The P300 ERP component was significantly larger in the nicotine group than in the placebo group, and the combination of nicotine and ketamine did not produce any additional effects. These findings suggest that nicotine, but not ketamine, has a positive effect on attentional performance in healthy volunteers, and that the combination of nicotine and ketamine does not produce any additional effects. These findings have implications for the use
-	Error parsing prediction for row with id 4424 : 'may have affected the results. CONCLUSION'
-	Error parsing prediction for row with id 4711 : 'of treatment. CONCLUSIONS'
-	Error parsing prediction for row with id 4841 : Could not parse prediction: 6-h arm. Limitations The small sample size and open-label design limit the conclusions that can be drawn. Conclusion This pilot study demonstrates the feasibility of a 96-h ketamine infusion with co-administered clonidine for treatment-resistant depression. The study provides a foundation for a larger, double-blinded, placebo-controlled trial to further investigate the efficacy and safety of this novel treatment approach.
-
-Please classify the input text as one of the options given in the documentation.
-	Error parsing prediction for row with id 5177 : Could not parse prediction: 1) ecstasy use. These findings suggest that former chronic users of MDMA may be at risk of developing mild depressive symptoms, which may be related to their previous drug use.
-
-Please classify the study type based on the provided input.
-	Error parsing prediction for row with id 5641 : 'with no significant differences between them. The results of this study suggest that both ketamine and rTMS are effective in treating treatment-resistant depression, and that the choice of treatment should be individualized based on patient preference and clinical presentation.\n\nPlease classify the input into one of the following categories'
-	Error parsing prediction for row with id 5698 : 'Administered PTSD Scale scores from baseline to 2 months was the primary outcome measure. RESULTS'
-	Error parsing prediction for row with id 5717 : 'CLUSIONS'
-	Error parsing prediction for row with id 6035 : substring not found
-	Error parsing prediction for row with id 6302 : Could not parse prediction: the ketamine condition. These findings suggest that ketamine can be used to model the semantic deficits in schizophrenia and provide insights into the underlying neural mechanisms.
-
-Please classify the input text as one of the options listed above.
-	Error parsing prediction for row with id 6366 : 'of time was found for the derealization subscale, with higher scores at baseline and lower scores at 24 hours. The amnesia subscale was unrelated to antidepressant response. CONCLUSIONS'
-	Error parsing prediction for row with id 6446 : 'American College of Rheumatology 1990 criteria). EXCLUSION CRITERIA'
-	Error parsing prediction for row with id 6496 : "frontal electrode site was significantly correlated with the pain reduction. These results suggest that the analgesic effects of low-dose ketamine in neuropathic pain patients are related to the drug's ability to alter the brain's electrical activity and that the EEGalpha amplitude reduction at the right frontal electrode site may be a useful marker for the analgesic effect of ketamine.\n\nPlease classify the input text as one of the options given below"
-	Error parsing prediction for row with id 7048 : '.015). Conclusion'
-	Error parsing prediction for row with id 7055 : 'CLUSIONS'
-	Error parsing prediction for row with id 7077 : 'maintained in the thrice-weekly ketamine group (p < .001; d = 1.53). CONCLUSIONS'
-	Error parsing prediction for row with id 7126 : 'ivity scores. In the GT, MDMA users showed significantly impaired decision-making cognition, as reflected in the disadvantageous choice rate, compared with controls. Conclusion'
-	Error parsing prediction for row with id 7537 : Could not parse prediction: ogenic effects of Ecstasy. The results suggest that the use of Ecstasy may be a contributing factor to the development of psychotic symptoms, particularly aggressive behavior, in some individuals.
-
-Please classify the input text as one of the options listed above.
-	Error parsing prediction for row with id 7713 : 'ydrug users suggests that long-term ecstasy use may contribute to cognitive decline and neuropsychological dysfunction, particularly in the areas of verbal memory and depression. However, the results also suggest that age-related decline may be a more important factor than ecstasy use in the development of these dysfunctions.\n\nPlease classify the input text into one of the following categories'
-	Error parsing prediction for row with id 8030 : 'variables (disagreeable physical environment, negative mindset, dose was too large) were associated with the likelihood of seeking medical, psychiatric, or psychological assistance. The findings suggest that challenging, difficult, or distressing experiences using classic psychedelics are relatively rare, but may be associated with certain set and setting factors and co-use of certain substances.\n\nPlease classify the input text as one of the options given below'
-	Error parsing prediction for row with id 8089 : 'for 6 months. CONCLUSIONS'
-	Error parsing prediction for row with id 8836 : 'of depression at baseline was associated with better response to ketamine. CONCLUSIONS'
-	Error parsing prediction for row with id 8923 : Could not parse prediction: -20.3, -5.7; p = 0.002). The response rate was 64.7% in the psilocybin condition and 30.8% in the placebo condition (95% CI 46.3, 78.3; p < 0.001). The remission rate was 42.3% in the psilocybin condition and 8.3% in the placebo condition (95% CI 26.3, 48.3; p < 0.001). The most common adverse events were anxiety-related, and were more frequent in the psil
-	Error parsing prediction for row with id 9113 : Could not parse prediction: psychological stress reactivity. The results suggest that drug use may have long-lasting effects on mood and cognitive functioning, particularly in situations that require the ability to respond to multiple stimuli.
-
-Please classify the input text as one of the options listed above.
-	Error parsing prediction for row with id 9163 : ''
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_Llama-2-13b-chat-hf_26-09-26.csv for task Study Type
 Parsing predictions in file few_shot/study_type/study_type_3shot_selected_gpt-4o-mini_09-09-09.csv for task Study Type
-Parsing predictions in file few_shot/study_type/study_type_3shot_selected_Llama-2-13b-chat-hf_07-09-07.csv for task Study Type
-	Error parsing prediction for row with id 135 : "Sure! Here's the classification of the study based on the input"
-	Error parsing prediction for row with id 2912 : substring not found
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_Med-LLaMA3-8B_22-09-22.csv for task Study Type
+	Error parsing prediction for row with id 941 : Could not parse prediction: 0
+	Error parsing prediction for row with id 161 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 691 : Label 1
+    "Randomized-controlled trial (RCT)" not found in label2int mapping.
+	Error parsing prediction for row with id 3205 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 3927 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5221 : Label 0
+    "Randomized-controlled trial (RCT)" not found in label2int mapping.
+	Error parsing prediction for row with id 394 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2150 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2380 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 4326 : Label 1
+    "Randomized-controlled trial (RCT)" not found in label2int mapping.
+	Error parsing prediction for row with id 6436 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 8030 : Could not parse prediction: 1
+Parsing predictions in file few_shot/study_type/study_type_5shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_MeLLaMA-13B-chat_27-09-27.csv for task Study Type
+	Error parsing prediction for row with id 56 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7903 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 8457 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 135 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 2425 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 1731 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 2637 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 394 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 1443 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 1791 : invalid literal for int() with base 10: '1\n\nINPUT'
+	Error parsing prediction for row with id 2380 : Could not parse prediction: [/SYS]
+	Error parsing prediction for row with id 3257 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 3662 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 5641 : Label INPUT not found in label2int mapping.
+	Error parsing prediction for row with id 6115 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6436 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6446 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7077 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7537 : invalid literal for int() with base 10: '1\n\nINPUT'
+	Error parsing prediction for row with id 8029 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 9113 : list index out of range
 Parsing predictions in file few_shot/study_type/study_type_3shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Study Type
 Parsing predictions in file few_shot/study_type/study_type_3shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Study Type
 	Error parsing prediction for row with id 6103 : Could not parse prediction: 1
@@ -241,7 +59,7 @@ Parsing predictions in file few_shot/study_type/study_type_3shot_selected_Med-LL
 
 ***FINAL INPUT TO CLASSIFY***
 	Error parsing prediction for row with id 7903 : Could not parse prediction: 1
-	Error parsing prediction for row with id 8457 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 8457 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 2425 : Could not parse prediction: 1
 	Error parsing prediction for row with id 7451 : Could not parse prediction: 1
 	Error parsing prediction for row with id 161 : Could not parse prediction: 1
@@ -250,20 +68,21 @@ Parsing predictions in file few_shot/study_type/study_type_3shot_selected_Med-LL
 	Error parsing prediction for row with id 1037 : Could not parse prediction: 1
 	Error parsing prediction for row with id 1264 : Could not parse prediction: 1
 	Error parsing prediction for row with id 1731 : Could not parse prediction: 1
-	Error parsing prediction for row with id 2033 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 2033 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 2227 : Could not parse prediction: 1
 	Error parsing prediction for row with id 3205 : Could not parse prediction: 1
 	Error parsing prediction for row with id 3927 : Could not parse prediction: 1. Change in the magnitude of negative and positive valence adjectives in the autobiographical memory task measured using a self‐reported questionnaire on day ‐1 and 1 day after ketamine/placebo treatment; 2. Brain activation measured using functional magnetic resonance in a network of areas related to autobiographical memories, including the medial prefrontal cortex and associated networks during the autobiographical memory task 1 day after ketamine/placebo treatment 3. Accuracy measured using a computer‐based task of facial expression recognition (FERT) on ‐1 day, and up to 2 hours after ketamine/placebo treatment; 4. Reaction time measured using a computer‐
-	Error parsing prediction for row with id 4367 : '1. Randomized-controlled trial (RCT)'
-	Error parsing prediction for row with id 4420 : '1\n    "Randomized-controlled trial (RCT)"'
+	Error parsing prediction for row with id 4367 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 4420 : Label 1
+    "Randomized-controlled trial (RCT)" not found in label2int mapping.
 	Error parsing prediction for row with id 4922 : Could not parse prediction: 0
 	Error parsing prediction for row with id 5221 : Could not parse prediction: 1
 	Error parsing prediction for row with id 5873 : Could not parse prediction: 1
 
 ***FINAL INPUT TO CLASSIFY***
-	Error parsing prediction for row with id 6194 : '1. Randomized-controlled trial (RCT)'
-	Error parsing prediction for row with id 8319 : '1. Randomized-controlled trial (RCT)'
-	Error parsing prediction for row with id 9472 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 6194 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 8319 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 9472 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 9596 : Could not parse prediction: 1
 	Error parsing prediction for row with id 394 : Could not parse prediction: 0
 	Error parsing prediction for row with id 514 : Could not parse prediction: 1
@@ -274,140 +93,75 @@ Parsing predictions in file few_shot/study_type/study_type_3shot_selected_Med-LL
 	Error parsing prediction for row with id 1054 : Could not parse prediction: 1
 	Error parsing prediction for row with id 1439 : '0.5mg/kg ketamine, 0.2mg/kg ketamine, or normal saline. Depressive symptoms were measured using the 17-item Hamilton Depression Rating Scale (HDRS) at baseline and after treatment. Cognitive function was evaluated using working memory and go-no-go tasks at baseline. RESULTS'
 	Error parsing prediction for row with id 1443 : Could not parse prediction: 1
-	Error parsing prediction for row with id 1511 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 1511 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 1765 : Could not parse prediction: 0
 	Error parsing prediction for row with id 1918 : Could not parse prediction: 1. Randomized-controlled trial (RCT) 0. Cohort study 0. Real-world study 0. Study protocol 0. Systematic review/meta-analysis 0. Qualitative Study 0. Case report 0. Case series 0. Other 1
 
 ***FINAL INPUT TO CLASSIFY***
-	Error parsing prediction for row with id 1990 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 1990 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 2053 : Could not parse prediction: 1
-	Error parsing prediction for row with id 2105 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 2105 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 2150 : Could not parse prediction: 1
-	Error parsing prediction for row with id 2176 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 2176 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 2207 : Could not parse prediction: 1
 	Error parsing prediction for row with id 2301 : Could not parse prediction: 1
-	Error parsing prediction for row with id 2380 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 2380 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 2912 : Could not parse prediction: 1. Describe noribogaine as a potential non‐addictive, nonopioid treatment for opioid dependence. 2. Examine the utility of a predefined dosing algorithm to avoid pronounced QTc prolongation. 3. Recognize the importance/challenge of conducting controlled clinical trials in the opioid‐dependents.
 	Error parsing prediction for row with id 3149 : Could not parse prediction: 1
 
 ***FINAL INPUT TO CLASSIFY***
-	Error parsing prediction for row with id 3152 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 3152 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 3257 : Could not parse prediction: 1
-	Error parsing prediction for row with id 3637 : '1. Randomized-controlled trial (RCT)'
-	Error parsing prediction for row with id 3661 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 3637 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 3661 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 3662 : Could not parse prediction: 1
 
 ***FINAL INPUT TO CLASSIFY***
 	Error parsing prediction for row with id 3899 : Could not parse prediction: 1
-	Error parsing prediction for row with id 4326 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 4326 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 4424 : Could not parse prediction: 1
 	Error parsing prediction for row with id 4841 : Could not parse prediction: 1
 
 ***FINAL INPUT TO CLASSIFY***
-	Error parsing prediction for row with id 5641 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 5641 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 5698 : Could not parse prediction: 1
-	Error parsing prediction for row with id 5717 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 5717 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 6035 : Could not parse prediction: 1
-	Error parsing prediction for row with id 6115 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 6115 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 6302 : Could not parse prediction: 0
 	Error parsing prediction for row with id 6366 : Could not parse prediction: 1
-	Error parsing prediction for row with id 6436 : '1. Randomized-controlled trial (RCT)'
-	Error parsing prediction for row with id 6446 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 6436 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 6446 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 7077 : Could not parse prediction: 1
 
 ***FINAL INPUT TO CLASSIFY***
 	Error parsing prediction for row with id 7713 : Could not parse prediction: 0
 
 ***FINAL INPUT TO CLASSIFY***
-	Error parsing prediction for row with id 8029 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 8029 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 8030 : Could not parse prediction: 1
 	Error parsing prediction for row with id 8089 : Could not parse prediction: 1
 	Error parsing prediction for row with id 8798 : Could not parse prediction: 0
 	Error parsing prediction for row with id 8836 : Could not parse prediction: 1
-	Error parsing prediction for row with id 9113 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 9113 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 9163 : Could not parse prediction: 0
 
 ***FINAL INPUT TO CLASSIFY***
 Parsing predictions in file few_shot/study_type/study_type_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Study Type
-Parsing predictions in file few_shot/study_type/study_type_1shot_selected_Llama-2-13b-chat-hf_06-09-06.csv for task Study Type
-Parsing predictions in file few_shot/study_type/study_type_5shot_selected_MeLLaMA-13B-chat_08-09-08.csv for task Study Type
-	Error parsing prediction for row with id 6103 : Could not parse prediction: PTSD. This study will evaluate the safety and efficacy of MDMA‐assisted psychotherapy for PTSD. The study will enroll 100 participants with PTSD at three sites in the United States. Participants will receive 180‐225 mg of MDMA in a supportive setting with a trained therapist. The study will evaluate the safety and efficacy of MDMA‐assisted psychotherapy for PTSD. The study will enroll 100 participants with PTSD at three sites in the United States. Participants will receive 180‐25 mg of MDMA in a supportive setting with a trained therap
-	Error parsing prediction for row with id 8889 : Could not parse prediction: 0
-	Error parsing prediction for row with id 56 : 'in depressive symptoms from baseline to 12 weeks, as measured by the Quick Inventory of Depressive Symptomatology-Self-Report (QIDS-SR). Secondary outcomes included the Montgomery-Asberg Depression Rating Scale (MADRS), the Hamilton Rating Scale for Depression (HAMRS), the Young Mania Rating Scale (YMRS), and the Clinical Global Impressions Scale (CGI). RESULTS'
-	Error parsing prediction for row with id 748 : Could not parse prediction: 0
-	Error parsing prediction for row with id 941 : substring not found
-	Error parsing prediction for row with id 2153 : substring not found
-	Error parsing prediction for row with id 7903 : Could not parse prediction: 0
-	Error parsing prediction for row with id 135 : Could not parse prediction: 0
-	Error parsing prediction for row with id 2425 : substring not found
-	Error parsing prediction for row with id 7451 : Could not parse prediction: 1
-	Error parsing prediction for row with id 161 : 'in Clinician Administered PTSD Scale (CAPS) scores at 12 months follow‐up SECONDARY OUTCOME'
-	Error parsing prediction for row with id 422 : substring not found
-	Error parsing prediction for row with id 691 : Could not parse prediction: 0
-	Error parsing prediction for row with id 1037 : Could not parse prediction: 0
-	Error parsing prediction for row with id 1264 : Could not parse prediction: opram group. The mean (±SD) QIDS-SR-16 score at baseline was 14.5±3.8 in the psilocybin group and 14.1±3.8 in the escitalopram group. At week 6, the mean QIDS-SR-16 score was 7.0±6.5 in the psilocybin group and 111.0±6.5 in the escitalopram group (mean difference, -7.5; 95% CI, -10.0 to -5.0; P<0.0000000000000000
-	Error parsing prediction for row with id 1731 : 'pto twice a week (on day 1 & day 4) for up to 6 weeks. SECONDARY OUTCOME'
-	Error parsing prediction for row with id 2033 : Could not parse prediction: 1, 218) = 4.12, p = 0.044, η2 = 0.02]. There were no significant differences between the two groups on the other QIDS-SR(16) items, the Beck Scale for Suicide Ideation (BSS), the Hamilton Anxiety Rating Scale (HAM-A), or the Work and Social Adjustment Scale (WSAS). These findings suggest that ketamine monotherapy and adjunctive ketamine treatment are both effective in treating TRD, with ketamine monotherapy exhibiting a greater reduction in SI than adjunctive ket
-	Error parsing prediction for row with id 2637 : Could not parse prediction: 0
-	Error parsing prediction for row with id 3927 : Could not parse prediction: Oxford. The CRF is a purpose-built facility for clinical research, with a dedicated research nurse and a consultant psychiatrist on call. The CRF is located within the hospital site and is staffed by a research nurse and a consultant psychiatrist on call. The CRF is a dedicated research facility with a dedicated research nurse and a consultant psychiatrist on call. The CRF is located within the hospital site and is staffed by a research nurse and a consultant psychiatrist on call. The CRF is a dedicated research facility with a dedicated research nurse and a consultant psychiatrist on call. The CRF is located within the hospital site and is staffed by a research nur
-	Error parsing prediction for row with id 4420 : 'is not available in Canada, and the intranasal route of administration is not ideal for patients who do not respond to electroconvulsive therapy. Therefore, the purpose of this study is to evaluate the safety, clinical, and neurophysiological effects of intranasal ketamine in patients who do not respond to electroconvulsive therapy. METHODS AND METHODS'
-	Error parsing prediction for row with id 4641 : substring not found
-	Error parsing prediction for row with id 4922 : 'r of the cerebellum as the reference. RESULTS'
-	Error parsing prediction for row with id 5873 : substring not found
-	Error parsing prediction for row with id 6194 : Could not parse prediction: 1
-	Error parsing prediction for row with id 8319 : Could not parse prediction: 0
-	Error parsing prediction for row with id 9472 : Could not parse prediction: 0
-	Error parsing prediction for row with id 394 : Could not parse prediction: SSRS). Patients will receive subcutaneous ketamine infusion (0.5 mg/kg) once a week for 4 weeks. The primary outcome will be the change in suicidal ideation and behavior assessed by the C-SSRS. Secondary outcomes will be the change in depressive symptoms assessed by the Montgomery-Asberg Depression Rating Scale (MADRS), the change in anxiety symptoms assessed by the Hamilton Anxiety Rating Scale (HAMRS), the change in mania symptoms assessed by the Young Mania Rating Scale (YMRS), the change in functional connectivity assessed by the Brief
-	Error parsing prediction for row with id 612 : Could not parse prediction: Real-world
-	Error parsing prediction for row with id 640 : Could not parse prediction: 0
-	Error parsing prediction for row with id 1443 : Could not parse prediction: Real-world
-	Error parsing prediction for row with id 1511 : Could not parse prediction: 0
-	Error parsing prediction for row with id 1745 : substring not found
-	Error parsing prediction for row with id 1765 : substring not found
-	Error parsing prediction for row with id 1918 : Could not parse prediction: 0
-	Error parsing prediction for row with id 2105 : 'of psychotropic medication, and use of recreational drugs within the last 3 months. Subjects were admitted to the study center on the day before the experimental session and remained there until the end of the experimental session. The experimental session started at 10'
-	Error parsing prediction for row with id 2176 : substring not found
-	Error parsing prediction for row with id 2207 : substring not found
-	Error parsing prediction for row with id 2301 : 'DU and outcomes. RESULTS'
-	Error parsing prediction for row with id 2380 : Could not parse prediction: the 4 week double‐blind treatment period 2. To evaluate the safety and tolerability of intranasal esketamine compared with placebo in subjects with TRD 3. To evaluate the effect of intranasal esketamine on cognitive functioning, as measured by the CogniTion Test Battery (CogniT) 4. To evaluate the effect of intranasal esketamine on suicidal ideation, as measured by the Beck Scale for Suicide Ideation (BSSI) 5. To evaluate the effect of intranasal esketamine on sleep quality, as measured by the Pittsburgh Sleep Quality Index (PSQI) 6
-	Error parsing prediction for row with id 2539 : 'Scale, and the Columbia-Suicide Severity Rating Scale. RESULTS'
-	Error parsing prediction for row with id 2912 : Could not parse prediction: trials to evaluate the safety and efficacy of noribogaine in opioid‐dependent subjects. This was a randomized, double‐blind, placebo‐controlled, multiple‐dose study in opioid‐dependent subjects. Subjects were randomized to receive noribogaine 125 mg, 50 mg, or placebo twice daily for 3 days. The primary endpoint was the incidence of treatment‐emergent adverse events (AEs) and serious AEs. Secondary endpoints included PK and PD. The study was conducted in accordance with Good Clinical Practice Guidelines. The study was conducted in accordance with Good Clinical Practice
-	Error parsing prediction for row with id 3149 : Could not parse prediction: 0
-	Error parsing prediction for row with id 3152 : Could not parse prediction: 0
-	Error parsing prediction for row with id 3257 : Could not parse prediction: 0% on POD 7. Ketamine was associated with a reduction in postoperative VAS scores for pain, by a SMD of -0.35, 95% CI [-0.55, -0.15], P = 0.0001, I(2) = 0% on POD 1; SMD-0.25, 95% CI [-0.45, -0.05], P = 0.00001, I(2) = 0% on POD 3; SMD-0.20, 95% CI [-0.35,
-	Error parsing prediction for row with id 3283 : substring not found
-	Error parsing prediction for row with id 3637 : Could not parse prediction: iety compared with the 100 µg dose. The 100 µg dose of LSD produced higher ratings of anxiety compared with the 15 mg dose of psilocybin. The 200 µg dose of LSD produced higher ratings of anxiety compared with the 30 mg dose of psilocybin. The 100 µg dose of LSD produced higher ratings of anxiety compared with the 30 mg dose of psilocybin. The 100 µg dose of LSD produced higher ratings of anxiety compared with the 30 mg dose of
-	Error parsing prediction for row with id 3661 : substring not found
-	Error parsing prediction for row with id 4424 : substring not found
-	Error parsing prediction for row with id 4841 : substring not found
-	Error parsing prediction for row with id 5317 : Could not parse prediction: 0
-	Error parsing prediction for row with id 5698 : substring not found
-	Error parsing prediction for row with id 6035 : substring not found
-	Error parsing prediction for row with id 6115 : Could not parse prediction: 0
-	Error parsing prediction for row with id 6302 : substring not found
-	Error parsing prediction for row with id 6366 : substring not found
-	Error parsing prediction for row with id 6446 : 'a BDI score ranging from 5 to 17. EXCLUSION CRITERIA'
-	Error parsing prediction for row with id 6496 : substring not found
-	Error parsing prediction for row with id 7048 : substring not found
-	Error parsing prediction for row with id 7126 : substring not found
-	Error parsing prediction for row with id 7537 : substring not found
-	Error parsing prediction for row with id 7713 : substring not found
-	Error parsing prediction for row with id 8029 : Could not parse prediction: 0
-	Error parsing prediction for row with id 8030 : substring not found
-	Error parsing prediction for row with id 8089 : substring not found
-	Error parsing prediction for row with id 8798 : Could not parse prediction: 1
-	Error parsing prediction for row with id 8923 : substring not found
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_Llama-3.1-8B-Instruct_22-09-22.csv for task Study Type
+	Error parsing prediction for row with id 5641 : Label Randomized-controlled trial not found in label2int mapping.
 Parsing predictions in file few_shot/study_type/study_type_5shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Study Type
 	Error parsing prediction for row with id 6103 : Could not parse prediction: 1
-	Error parsing prediction for row with id 8889 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 8889 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 56 : Could not parse prediction: 1
 	Error parsing prediction for row with id 748 : Could not parse prediction: 1
-	Error parsing prediction for row with id 941 : '1\n    "Randomized-controlled trial (RCT)"'
+	Error parsing prediction for row with id 941 : Label 1
+    "Randomized-controlled trial (RCT)" not found in label2int mapping.
 	Error parsing prediction for row with id 7425 : Could not parse prediction: 0
 	Error parsing prediction for row with id 7903 : Could not parse prediction: 1
-	Error parsing prediction for row with id 8457 : '1. Randomized-controlled trial (RCT)'
-	Error parsing prediction for row with id 135 : '1. Randomized-controlled trial (RCT)'
-	Error parsing prediction for row with id 2425 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 8457 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 135 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 2425 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 161 : Could not parse prediction: 1
 	Error parsing prediction for row with id 422 : Could not parse prediction: 1
 	Error parsing prediction for row with id 691 : Could not parse prediction: 0
@@ -415,43 +169,44 @@ Parsing predictions in file few_shot/study_type/study_type_5shot_selected_Med-LL
 	Error parsing prediction for row with id 1731 : Could not parse prediction: 1
 	Error parsing prediction for row with id 1884 : Could not parse prediction: 1
 	Error parsing prediction for row with id 3205 : Could not parse prediction: 0
-	Error parsing prediction for row with id 3927 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 3927 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 4367 : Could not parse prediction: 0
 	Error parsing prediction for row with id 4420 : Could not parse prediction: 0
 	Error parsing prediction for row with id 4922 : Could not parse prediction: 0
 	Error parsing prediction for row with id 5221 : Could not parse prediction: 1
 	Error parsing prediction for row with id 5873 : Could not parse prediction: 1
-	Error parsing prediction for row with id 6194 : '1. Randomized-controlled trial (RCT)'
-	Error parsing prediction for row with id 8319 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 6194 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 8319 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 394 : Could not parse prediction: 0
 	Error parsing prediction for row with id 514 : Could not parse prediction: 0
-	Error parsing prediction for row with id 612 : '1\n    "Randomized-controlled trial (RCT)"'
+	Error parsing prediction for row with id 612 : Label 1
+    "Randomized-controlled trial (RCT)" not found in label2int mapping.
 	Error parsing prediction for row with id 640 : Could not parse prediction: 1
 	Error parsing prediction for row with id 1439 : '0.5mg/kg ketamine, 0.2mg/kg ketamine, or normal saline. Depressive symptoms were measured using the 17-item Hamilton Depression Rating Scale (HDRS) at baseline and after treatment. Cognitive function was evaluated using working memory and go-no-go tasks at baseline. RESULTS'
 	Error parsing prediction for row with id 1443 : Could not parse prediction: 0
-	Error parsing prediction for row with id 1918 : '1. Randomized-controlled trial (RCT)'
-	Error parsing prediction for row with id 1990 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 1918 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 1990 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 2053 : Could not parse prediction: 1
-	Error parsing prediction for row with id 2105 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 2105 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 2301 : Could not parse prediction: 0
-	Error parsing prediction for row with id 2380 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 2380 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 2539 : Could not parse prediction: 1
 	Error parsing prediction for row with id 2912 : Could not parse prediction: 1. Describe noribogaine as a potential non‐addictive, nonopioid treatment for opioid dependence. 2. Examine the utility of a predefined dosing algorithm to avoid pronounced QTc prolongation. 3. Recognize the importance/challenge of conducting controlled clinical trials in the opioid‐dependents.
 	Error parsing prediction for row with id 3257 : Could not parse prediction: 0
 	Error parsing prediction for row with id 3283 : Could not parse prediction: 0
-	Error parsing prediction for row with id 3637 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 3637 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 3661 : Could not parse prediction: 0
 	Error parsing prediction for row with id 4064 : Could not parse prediction: 1
-	Error parsing prediction for row with id 4326 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 4326 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 4424 : Could not parse prediction: 1
 	Error parsing prediction for row with id 4711 : Could not parse prediction: 1
 	Error parsing prediction for row with id 4841 : Could not parse prediction: 1
 	Error parsing prediction for row with id 5641 : Could not parse prediction: 0
 	Error parsing prediction for row with id 5698 : Could not parse prediction: 1
 	Error parsing prediction for row with id 6035 : Could not parse prediction: 1
-	Error parsing prediction for row with id 6115 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 6115 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 6366 : Could not parse prediction: 0
-	Error parsing prediction for row with id 6436 : '1. Randomized-controlled trial (RCT)'
+	Error parsing prediction for row with id 6436 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
 	Error parsing prediction for row with id 6446 : Could not parse prediction: 1
 	Error parsing prediction for row with id 7055 : '0.2 mg/kg of psilocybin orally on 2 different test days. Participants underwent magnetic resonance imaging at 3 time points between administration and peak effects'
 	Error parsing prediction for row with id 7077 : Could not parse prediction: 1
@@ -461,47 +216,14 @@ Parsing predictions in file few_shot/study_type/study_type_5shot_selected_Med-LL
 	Error parsing prediction for row with id 8836 : Could not parse prediction: 1
 	Error parsing prediction for row with id 8923 : Could not parse prediction: 1
 Parsing predictions in file few_shot/study_type/study_type_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv for task Study Type
-	Error parsing prediction for row with id 6103 : substring not found
-	Error parsing prediction for row with id 941 : substring not found
-	Error parsing prediction for row with id 2153 : substring not found
-	Error parsing prediction for row with id 7425 : substring not found
-	Error parsing prediction for row with id 2425 : substring not found
-	Error parsing prediction for row with id 161 : substring not found
-	Error parsing prediction for row with id 691 : substring not found
-	Error parsing prediction for row with id 1264 : substring not found
-	Error parsing prediction for row with id 1731 : substring not found
-	Error parsing prediction for row with id 1884 : substring not found
-	Error parsing prediction for row with id 3205 : substring not found
-	Error parsing prediction for row with id 3927 : substring not found
-	Error parsing prediction for row with id 4420 : substring not found
-	Error parsing prediction for row with id 5873 : substring not found
-	Error parsing prediction for row with id 394 : substring not found
-	Error parsing prediction for row with id 514 : substring not found
-	Error parsing prediction for row with id 1443 : substring not found
-	Error parsing prediction for row with id 1791 : substring not found
-	Error parsing prediction for row with id 2053 : substring not found
-	Error parsing prediction for row with id 2105 : substring not found
-	Error parsing prediction for row with id 2150 : substring not found
-	Error parsing prediction for row with id 2207 : substring not found
-	Error parsing prediction for row with id 2380 : substring not found
-	Error parsing prediction for row with id 2539 : substring not found
-	Error parsing prediction for row with id 2912 : substring not found
-	Error parsing prediction for row with id 3152 : substring not found
-	Error parsing prediction for row with id 3257 : substring not found
-	Error parsing prediction for row with id 3662 : substring not found
-	Error parsing prediction for row with id 4326 : substring not found
-	Error parsing prediction for row with id 4424 : substring not found
-	Error parsing prediction for row with id 5698 : substring not found
-	Error parsing prediction for row with id 5717 : substring not found
-	Error parsing prediction for row with id 6035 : substring not found
-	Error parsing prediction for row with id 6302 : substring not found
-	Error parsing prediction for row with id 6366 : substring not found
-	Error parsing prediction for row with id 7048 : substring not found
-	Error parsing prediction for row with id 7077 : substring not found
-	Error parsing prediction for row with id 7126 : substring not found
-	Error parsing prediction for row with id 7537 : substring not found
-	Error parsing prediction for row with id 7713 : substring not found
-	Error parsing prediction for row with id 8089 : substring not found
-	Error parsing prediction for row with id 8923 : substring not found
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_Llama-2-13b-chat-hf_27-09-27.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_Meta-Llama-3-8B-Instruct_22-09-22.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_Llama-2-70b-chat-hf_29-09-29.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_MeLLaMA-70B-chat_29-09-29.csv for task Study Type
+	Error parsing prediction for row with id 2425 : Could not parse prediction: ### Real-world study
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Study Type
+	Error parsing prediction for row with id 8457 : Label Randomized-controlled trial not found in label2int mapping.
+	Error parsing prediction for row with id 9596 : Label Randomized-controlled trial not found in label2int mapping.
+	Error parsing prediction for row with id 7077 : Label Randomized-controlled trial not found in label2int mapping.
 Parsing predictions in file few_shot/study_type/study_type_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Study Type
 Parsing predictions in file few_shot/study_type/study_type_5shot_selected_gpt-4o-mini_09-09-09.csv for task Study Type

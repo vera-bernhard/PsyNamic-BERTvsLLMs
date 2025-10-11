@@ -15,6 +15,11 @@ import ast
 # enable import from parent directory
 sys.path.append(os.path.abspath('..'))
 
+TASKS = [
+        "Study Type", "Data Collection", "Data Type", "Number of Participants", "Age of Participants", "Application Form", "Clinical Trial Phase", "Condition", "Outcomes", "Regimen", "Study Control", "Study Purpose",
+        "Substance Naivety", "Substances", "Study Conclusion", "Relevant",
+        "Setting", "Sex of Participants",
+    ]
 
 def convert_numpy(obj):
     if isinstance(obj, dict):
@@ -200,18 +205,19 @@ def plot_performance_report(task: str, performance_report: str):
                           metrics_col='metrics')
 
 
-def parse_all_class_predictions(tasks: list[str], prediction_dir: str):
+def parse_all_class_predictions(tasks: list[str], prediction_dir: str, reparse: bool = False):
     for task in tasks:
+        
         parsing_log = os.path.join(
             prediction_dir, task.lower().replace(' ', '_'), 'parsing_log.txt')
 
         all_pred_files = get_all_prediction_files(prediction_dir, task)
         parsing_reports = {}
         with open(parsing_log, "a") as log_file:
-            print(f"Evaluating task: {task}")
+            print(f"Parsing task: {task}")
             for pred_file in tqdm(all_pred_files):
                 parsing_report = parse_class_predictions(
-                    pred_file, task, reparse=False, log_file=log_file)
+                    pred_file, task, reparse=reparse, log_file=log_file)
                 if parsing_report:
                     parsing_reports[pred_file] = parsing_report
 
@@ -226,7 +232,7 @@ def parse_all_class_predictions(tasks: list[str], prediction_dir: str):
             json.dump(parsing_reports, f, indent=4)
 
 
-def evaluate_all_class_tasks(tasks: list[str], prediction_dir: str):
+def evaluate_all_class_tasks(tasks: list[str], prediction_dir: str, reevaluate: bool = False):
     for task in tasks:
         all_pred_files = get_all_prediction_files(prediction_dir, task)
         performance_reports_path = os.path.join(
@@ -240,8 +246,9 @@ def evaluate_all_class_tasks(tasks: list[str], prediction_dir: str):
             performance_reports = {}
 
         for pred_file in tqdm(all_pred_files):
+            print(f"Evaluating: {pred_file}")
             model = parse_file_name(pred_file, "model")
-            if model in performance_reports:
+            if model in performance_reports and not reevaluate:
                 print(
                     f"Skipping evaluation for {model} as it is already evaluated.")
                 continue
@@ -336,11 +343,7 @@ def evaluate_all_ner(prediction_dir: str):
 
 
 def main():
-    TASKS = [
-        "Study Type", "Data Collection", "Data Type", "Number of Participants", "Age of Participants", "Application Form", "Clinical Trial Phase", "Condition", "Outcomes", "Regimen", "Study Control", "Study Purpose",
-        "Substance Naivety", "Substances", "Study Conclusion", "Relevant",
-        "Setting", "Sex of Participants",
-    ]
+
     PREDICTION_DIR = 'zero_shot'
 
     # Parse & evaluate class predictions

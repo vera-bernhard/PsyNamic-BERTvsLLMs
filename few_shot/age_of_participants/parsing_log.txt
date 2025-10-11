@@ -1,0 +1,115 @@
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_1shot_selected_Llama-2-13b-chat-hf_27-09-27.csv for task Age of Participants
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_1shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Age of Participants
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_5shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Age of Participants
+	Error parsing prediction for row with id 777 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6103 : list index out of range
+	Error parsing prediction for row with id 6221 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8889 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1829 : Could not parse prediction: 1
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_1shot_selected_MeLLaMA-70B-chat_29-09-29.csv for task Age of Participants
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv for task Age of Participants
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_3shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Age of Participants
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_5shot_selected_gpt-4o-mini_09-09-09.csv for task Age of Participants
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Age of Participants
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv for task Age of Participants
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_5shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Age of Participants
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_1shot_selected_gpt-4o-mini_09-09-09.csv for task Age of Participants
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_1shot_selected_medgemma-27b-text-it_09-10-09.csv for task Age of Participants
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Age of Participants
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_5shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Age of Participants
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_1shot_selected_Med-LLaMA3-8B_22-09-22.csv for task Age of Participants
+	Error parsing prediction for row with id 7425 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8611 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 763 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2385 : Could not parse prediction: 1. Men and women at the age between 18 to 65 years, with dextromanual dominance, t.j. scores 100 in Edinburgh Handedness Inventory (EHI) 2. Patients have to answer DSM IV [60] criteria for the major depressive episode, without psychotic symptoms, on the clinical investigation basis, by Mini international neuropsychiatry interview (M.I.N.I., Czech version 5.0.0.) ‐ structured
+	Error parsing prediction for row with id 4420 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4428 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4633 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5346 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6158 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6247 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1903 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2105 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2301 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2912 : Label 1. Pediatric (\< 18 years old) not found in label2int mapping.
+	Error parsing prediction for row with id 4684 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4761 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8972 : Could not parse prediction: 1. 1. 0. 0.
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_3shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Age of Participants
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_3shot_selected_gpt-4o-mini_09-09-09.csv for task Age of Participants
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_3shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Age of Participants
+	Error parsing prediction for row with id 6103 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6221 : Label 1. Pediatric (\< 18 years old) not found in label2int mapping.
+	Error parsing prediction for row with id 2153 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2482 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7425 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8611 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8870 : Could not parse prediction: 1
+	Error parsing prediction for row with id 221 : Could not parse prediction: 1
+	Error parsing prediction for row with id 763 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2385 : Could not parse prediction: 1. Men and women at the age between 18 to 65 years, with dextromanual dominance, t.j. scores 100 in Edinburgh Handedness Inventory (EHI) 2. Patients have to answer DSM IV [60] criteria for the major depressive episode, without psychotic symptoms, on the clinical investigation basis, by Mini international neuropsychiatry interview (M.I.N.I., Czech version 5.0.0.) ‐ structured
+	Error parsing prediction for row with id 4420 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4428 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4633 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5213 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5346 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5873 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6158 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6247 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7113 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7258 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9596 : Could not parse prediction: 1
+	Error parsing prediction for row with id 514 : Could not parse prediction: 1
+	Error parsing prediction for row with id 612 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1109 : Label 1. Pediatric (\< 18 years old) not found in label2int mapping.
+	Error parsing prediction for row with id 1148 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1418 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1455 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1874 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1903 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2105 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2150 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2301 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2912 : Could not parse prediction: 1. Describe noribogaine as a potential non‐addictive, nonopioid treatment for opioid dependence. 2. Examine the utility of a predefined dosing algorithm to avoid pronounced QTc prolongation. 3. Recognize the importance/challenge of conducting controlled clinical trials in the opioid‐dependents.
+	Error parsing prediction for row with id 2957 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3008 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3257 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4035 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4579 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4653 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4658 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4761 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5025 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5680 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6070 : Label 1. Pediatric (\< 18 years old) not found in label2int mapping.
+	Error parsing prediction for row with id 6232 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6629 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7077 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7214 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8586 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8810 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8972 : Label 1. "Pediatric (\< 18 years old)" not found in label2int mapping.
+	Error parsing prediction for row with id 9113 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9163 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9381 : Could not parse prediction: 1
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_1shot_selected_Meta-Llama-3-8B-Instruct_22-09-22.csv for task Age of Participants
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_1shot_selected_MeLLaMA-13B-chat_27-09-27.csv for task Age of Participants
+	Error parsing prediction for row with id 8889 : Could not parse prediction: This is no input.
+	Error parsing prediction for row with id 5789 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 8611 : '***OUTPUT TO CLASSIFY***\n\nAdult (≥18 years)'
+	Error parsing prediction for row with id 221 : Could not parse prediction: This is no input.
+	Error parsing prediction for row with id 5213 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7258 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 612 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 2105 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 2957 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 3257 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 4579 : Could not parse prediction: This is no input.
+	Error parsing prediction for row with id 4782 : Could not parse prediction: ***FINAL OUTPUT***
+
+[/OUTPUT]
+	Error parsing prediction for row with id 8972 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 9381 : Could not parse prediction: [/INST]
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_1shot_selected_Llama-3.1-8B-Instruct_22-09-22.csv for task Age of Participants
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_1shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Age of Participants
+Parsing predictions in file few_shot/age_of_participants/age_of_participants_1shot_selected_Llama-2-70b-chat-hf_29-09-29.csv for task Age of Participants

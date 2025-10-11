@@ -1,0 +1,345 @@
+Parsing predictions in file few_shot/regimen/regimen_3shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Regimen
+	Error parsing prediction for row with id 1441 : Could not parse prediction: 0.5 mg/kg ketamine infusion exhibited the optimal antidepressant effect (p = 0.002); in the moderate treatment refractoriness group, the 0.5 mg/kg ketamine infusion achieved the strongest antidepressant effect (p = 0.006); however, in the high treatment refractoriness group, the trajectory of depressive symptoms did not differ between treatments (p = 0.325).
+	Error parsing prediction for row with id 6403 : Label 1. Acute dosing day performance as assessed by the digit symbol substitution task. 2. Acute cognition not found in label2int mapping.
+	Error parsing prediction for row with id 6357 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4632 : Label 1
+    "Microdosing" not found in label2int mapping.
+	Error parsing prediction for row with id 612 : Could not parse prediction: 1
+	Error parsing prediction for row with id 791 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1864 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2207 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2301 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2800 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3008 : Label 1. Microdosing not found in label2int mapping.
+	Error parsing prediction for row with id 3192 : Label 1. Microdosing not found in label2int mapping.
+	Error parsing prediction for row with id 3451 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3638 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4587 : Label 1
+    "Microdosing" not found in label2int mapping.
+	Error parsing prediction for row with id 6108 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6173 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6837 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7414 : Label 1
+    "Microdosing" not found in label2int mapping.
+	Error parsing prediction for row with id 7653 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9374 : Label 1
+    "Microdosing" not found in label2int mapping.
+	Error parsing prediction for row with id 9381 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9446 : Label 1
+    "Microdosing" not found in label2int mapping.
+Parsing predictions in file few_shot/regimen/regimen_3shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Regimen
+Parsing predictions in file few_shot/regimen/regimen_1shot_selected_Llama-3.1-8B-Instruct_22-09-22.csv for task Regimen
+Parsing predictions in file few_shot/regimen/regimen_1shot_selected_MeLLaMA-13B-chat_27-09-27.csv for task Regimen
+	Error parsing prediction for row with id 3480 : Label INPUT not found in label2int mapping.
+	Error parsing prediction for row with id 6357 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 54 : Could not parse prediction: ***OUTPUT***
+
+[/INST]
+	Error parsing prediction for row with id 9277 : Could not parse prediction: [/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[
+	Error parsing prediction for row with id 1749 : invalid literal for int() with base 10: '1\n\nINPUT'
+	Error parsing prediction for row with id 2301 : Could not parse prediction: [/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[
+	Error parsing prediction for row with id 3095 : Could not parse prediction: [/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[
+	Error parsing prediction for row with id 3192 : Could not parse prediction: [/INST]
+
+[/INST]
+	Error parsing prediction for row with id 3283 : Could not parse prediction: ***OUTPUT***
+
+[/INST]
+	Error parsing prediction for row with id 4404 : Could not parse prediction: ***OUTPUT***
+
+[/INST]
+	Error parsing prediction for row with id 4728 : Could not parse prediction: [/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[
+	Error parsing prediction for row with id 4798 : Could not parse prediction: ***OUTPUT***
+
+[/OUTPUT]
+	Error parsing prediction for row with id 6173 : Could not parse prediction: [/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[
+	Error parsing prediction for row with id 6446 : Could not parse prediction: [/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[
+	Error parsing prediction for row with id 6837 : Could not parse prediction: ***OUTPUT***
+
+[/INST]
+	Error parsing prediction for row with id 7653 : Could not parse prediction: [/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[
+	Error parsing prediction for row with id 7816 : Could not parse prediction: ***OUTPUT***
+
+[/INST]
+	Error parsing prediction for row with id 8263 : Could not parse prediction: ***OUTPUT***
+
+[/INST]
+	Error parsing prediction for row with id 9113 : Label INPUT not found in label2int mapping.
+Parsing predictions in file few_shot/regimen/regimen_1shot_selected_Meta-Llama-3-8B-Instruct_22-09-22.csv for task Regimen
+Parsing predictions in file few_shot/regimen/regimen_1shot_selected_MeLLaMA-70B-chat_29-09-29.csv for task Regimen
+Parsing predictions in file few_shot/regimen/regimen_1shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Regimen
+Parsing predictions in file few_shot/regimen/regimen_5shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Regimen
+Parsing predictions in file few_shot/regimen/regimen_1shot_selected_Llama-2-13b-chat-hf_27-09-27.csv for task Regimen
+Parsing predictions in file few_shot/regimen/regimen_5shot_selected_gpt-4o-mini_09-09-09.csv for task Regimen
+Parsing predictions in file few_shot/regimen/regimen_1shot_selected_gpt-4o-mini_09-09-09.csv for task Regimen
+Parsing predictions in file few_shot/regimen/regimen_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Regimen
+Parsing predictions in file few_shot/regimen/regimen_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Regimen
+Parsing predictions in file few_shot/regimen/regimen_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv for task Regimen
+Parsing predictions in file few_shot/regimen/regimen_1shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Regimen
+Parsing predictions in file few_shot/regimen/regimen_5shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Regimen
+Parsing predictions in file few_shot/regimen/regimen_1shot_selected_medgemma-27b-text-it_09-10-09.csv for task Regimen
+Parsing predictions in file few_shot/regimen/regimen_5shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Regimen
+	Error parsing prediction for row with id 1441 : Could not parse prediction: 0.5 mg/kg ketamine infusion exhibited the optimal antidepressant effect (p = 0.002); in the moderate treatment refractoriness group, the 0.5 mg/kg ketamine infusion achieved the strongest antidepressant effect (p = 0.006); however, in the high treatment refractoriness group, the trajectory of depressive symptoms did not differ between treatments (p = 0.325).
+	Error parsing prediction for row with id 6403 : Could not parse prediction: 1. Previous experience with at least one psychedelic substance (e.g., psilocybin, LSD, DMT, ayahuasca, psilocybe fungi =1 times) but not within the past three months. 2. Aged between 18 and 40 years. 3. Free from medication (any drug prescribed for a medical indication). 4. The participant is, in the opinion of the investigator
+	Error parsing prediction for row with id 6357 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3012 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4356 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4578 : Label 1. Microdosing not found in label2int mapping.
+	Error parsing prediction for row with id 4632 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5154 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5901 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8052 : Could not parse prediction: 1
+	Error parsing prediction for row with id 130 : Could not parse prediction: 1
+	Error parsing prediction for row with id 612 : Could not parse prediction: 1
+	Error parsing prediction for row with id 791 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1443 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1864 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1966 : Label 1. Microdosing not found in label2int mapping.
+	Error parsing prediction for row with id 1981 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2207 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2301 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2800 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3008 : Label 1. Microdosing not found in label2int mapping.
+	Error parsing prediction for row with id 3192 : Could not parse prediction: 1.0
+	Error parsing prediction for row with id 4252 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4291 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4307 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4404 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4587 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4728 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5139 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5177 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5695 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5697 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6108 : Label 1. Microdosing not found in label2int mapping.
+	Error parsing prediction for row with id 6173 : Label 1. Microdosing not found in label2int mapping.
+	Error parsing prediction for row with id 6246 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6446 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6635 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7414 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7653 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8295 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9113 : Label 1. Microdosing not found in label2int mapping.
+	Error parsing prediction for row with id 9119 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9140 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9374 : Label 1. Microdosing not found in label2int mapping.
+	Error parsing prediction for row with id 9381 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9446 : Could not parse prediction: 1
+Parsing predictions in file few_shot/regimen/regimen_3shot_selected_gpt-4o-mini_09-09-09.csv for task Regimen
+Parsing predictions in file few_shot/regimen/regimen_3shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Regimen
+Parsing predictions in file few_shot/regimen/regimen_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv for task Regimen
+Parsing predictions in file few_shot/regimen/regimen_1shot_selected_Llama-2-70b-chat-hf_29-09-29.csv for task Regimen
+Parsing predictions in file few_shot/regimen/regimen_1shot_selected_Med-LLaMA3-8B_22-09-22.csv for task Regimen
+	Error parsing prediction for row with id 6403 : Label 1. Acute dosing day performance as assessed by the digit symbol substitution task. 2. Acute cognition not found in label2int mapping.
+	Error parsing prediction for row with id 2800 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6173 : Could not parse prediction: 1
