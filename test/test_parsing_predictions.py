@@ -669,3 +669,41 @@ BACKGROUND: The symptoms of <span class=""application-area"">major depressive di
         self.assertEqual(bio, expected)
         self.assertEqual(set(spans), set(expected_spans))
         
+
+    def test_parse_class_number_of_participants_colon(self):
+        model = "Med-LLaMA3-8B"
+        task = "Number of participants"
+        label2int = get_label2int(task)
+        input_data = "1-20: 0, 21-40: 1, 41-60: 0, 61-80: 0, 81-100: 0, 100-199: 0, 200-499: 0, 500-999: 0, ≥1000: 0, Not applicable: 0, Unknown: 0"
+        expected = "[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]"
+        result, faulty_parsable = parse_class_prediction(input_data, label2int, model)
+        self.assertEqual(result, expected)
+        self.assertFalse(faulty_parsable)
+
+    def test_parse_class_number_of_participants_json(self):
+        model = "Llama-2-13b-chat-hf"
+        task = "Number of participants"
+        label2int = get_label2int(task)
+        input_data = '''Sure, I'd be happy to help! Based on the input you provided, here is the output:
+
+{
+"1-20": 0,
+"21-40": 0,
+"41-60": 0,
+"61-80": 0,
+"81-100": 0,
+"100-199": 0,
+"200-499": 0,
+"500-999": 0,
+"≥1000": 5,
+"Not applicable": 0,
+"Unknown": 0
+}
+
+Here's how I arrived at the output:
+
+* The input has 5 participants, so the value for "1-20" should be 5.
+* The input'''
+        # it should raise a ValueError
+        with self.assertRaises(ValueError):
+            result, faulty_parsable = parse_class_prediction(input_data, label2int, model)
