@@ -14,6 +14,16 @@ from nervaluate import Evaluator
 import numpy as np
 import wandb
 import os
+from huggingface_hub import login
+from dotenv import load_dotenv
+import torch
+from evaluation.evaluate import evaluate_ner_bio
+
+
+
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
+access_token = os.getenv("ACCESS_TOKEN")
+login(access_token)
 
 
 # based on: https://github.com/WhereIsAI/BiLLM/blob/main/examples/billm_ner.py
@@ -32,7 +42,7 @@ parser.add_argument("--lora_r", type=int, default=32)
 parser.add_argument("--lora_alpha", type=int, default=32)
 parser.add_argument("--lora_dropout", type=float, default=0.1)
 parser.add_argument("--output_dir", type=str,
-                    default="./label_supervised_model")
+                    default="./lst_llama3_8b")
 
 args = parser.parse_args()
 
@@ -61,7 +71,6 @@ ds = DatasetDict({
     "test": load_split("test"),
 })
 
-print(ds)
 # print some everage, max and min lengths of tokens in the dataset
 all_lengths = [len(x) for x in ds["train"]["tokens"]]
 print(f"Average length: {np.mean(all_lengths)}")
@@ -72,12 +81,18 @@ print(f"Min length: {np.min(all_lengths)}")
 print("Loading model and tokenizer...")
 tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path)
 
+if tokenizer.pad_token is None:
+    tokenizer.pad_token = tokenizer.eos_token
+
 model = LlamaForTokenClassification.from_pretrained(
     args.model_name_or_path,
     num_labels=len(label2id),
     id2label=id2label,
     label2id=label2id,
-).bfloat16()
+    # device_map="auto",
+    low_cpu_mem_usage=True,
+    torch_dtype=torch.float16,
+)
 
 peft_config = LoraConfig(
     task_type=TaskType.TOKEN_CLS,
@@ -89,14 +104,16 @@ peft_config = LoraConfig(
 model = get_peft_model(model, peft_config)
 model.print_trainable_parameters()
 
+print("num_labels in model:", model.config.num_labels)
+
 
 def tokenize_and_align_labels(examples):
     tokenized_inputs = tokenizer(
         examples["tokens"],
         is_split_into_words=True,
-        truncation=True,
+        padding="longest",
         max_length=args.max_length,
-        padding="max_length",
+        truncation=True,
     )
 
     labels = []
@@ -107,9 +124,11 @@ def tokenize_and_align_labels(examples):
         for word_idx in word_ids:
             if word_idx is None:
                 label_ids.append(-100)
-            else:
-                # Label-supervised (no masking): assign label directly to all subtokens
+            elif word_idx != previous_word_idx:
                 label_ids.append(label2id[label[word_idx]])
+            else:
+                label_ids.append(-100)
+            previous_word_idx = word_idx
         labels.append(label_ids)
 
     tokenized_inputs["labels"] = labels
@@ -118,9 +137,6 @@ def tokenize_and_align_labels(examples):
 
 tokenized_ds = ds.map(tokenize_and_align_labels, batched=True)
 data_collator = DataCollatorForTokenClassification(tokenizer=tokenizer)
-
-
-evaluator = Evaluator(tag_scheme="BIO")
 
 
 def compute_metrics(p):
@@ -136,14 +152,8 @@ def compute_metrics(p):
         for pred_row, label_row in zip(predictions, labels)
     ]
 
-    results, _ = evaluator.evaluate(true_predictions, true_labels)
+    return evaluate_ner_bio(true_predictions, true_labels)
 
-    # Return overall metrics
-    return {
-        "precision": results["precision"],
-        "recall": results["recall"],
-        "f1": results["f1"],
-    }
 
 training_args = TrainingArguments(
     output_dir=args.output_dir,
@@ -169,6 +179,7 @@ trainer = Trainer(
     data_collator=data_collator,
     compute_metrics=compute_metrics,
 )
+
 
 print("Starting fine-tuning...")
 trainer.train()

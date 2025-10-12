@@ -13,7 +13,7 @@ from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_sc
 from confidenceinterval.bootstrap import bootstrap_ci
 from joblib import Parallel, delayed
 from collections import Counter
-from nervaluate import Evaluator, summary_report_ent, summary_report_overall
+from nervaluate import Evaluator
 from collections import defaultdict
 import random
 from typing import Callable
