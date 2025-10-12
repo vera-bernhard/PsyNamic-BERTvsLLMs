@@ -1,0 +1,8 @@
+transformers==4.46.1
+wandb
+nervaluate
+billm
+peft
+datasets
+pandas
+numpy
