@@ -24,6 +24,7 @@ from evaluation.evaluate import evaluate_ner_bio
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
 access_token = os.getenv("ACCESS_TOKEN")
 login(access_token)
+wandb.login(key=os.getenv("WANDB"))
 
 
 # based on: https://github.com/WhereIsAI/BiLLM/blob/main/examples/billm_ner.py
@@ -42,7 +43,7 @@ parser.add_argument("--lora_r", type=int, default=32)
 parser.add_argument("--lora_alpha", type=int, default=32)
 parser.add_argument("--lora_dropout", type=float, default=0.1)
 parser.add_argument("--output_dir", type=str,
-                    default="./lst_llama3_8b")
+                    default=os.path.join(os.path.dirname(__file__), "lst_llama3_8b"))
 
 args = parser.parse_args()
 
@@ -91,7 +92,6 @@ model = LlamaForTokenClassification.from_pretrained(
     label2id=label2id,
     # device_map="auto",
     low_cpu_mem_usage=True,
-    torch_dtype=torch.float16,
 )
 
 peft_config = LoraConfig(
@@ -138,6 +138,11 @@ def tokenize_and_align_labels(examples):
 tokenized_ds = ds.map(tokenize_and_align_labels, batched=True)
 data_collator = DataCollatorForTokenClassification(tokenizer=tokenizer)
 
+# Look at some tokenized labels to check for invalid values
+print("Sample tokenized labels from train set:")
+for i in range(min(3, len(tokenized_ds["train"]))):
+    print(tokenized_ds["train"][i]["labels"])
+
 
 def compute_metrics(p):
     predictions, labels = p
@@ -163,7 +168,11 @@ training_args = TrainingArguments(
     num_train_epochs=args.epochs,
     weight_decay=args.weight_decay,
     evaluation_strategy="epoch",
+    # eval_strategy="steps",
+    # eval_steps=20,
     save_strategy="epoch",
+    # save_strategy="steps",
+    # save_steps=20,
     logging_dir=f"{args.output_dir}/logs",
     logging_steps=50,
     load_best_model_at_end=True,

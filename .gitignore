@@ -3,6 +3,7 @@ ma_env
 model
 wandb
 finetuning/sft_*/*
+finetuning/lst_*/*
 zero_shot/history
 few_shot/history
 
