@@ -7,6 +7,7 @@ from transformers import (
     DataCollatorForTokenClassification,
     TrainingArguments,
     Trainer,
+    set_seed
 )
 from peft import get_peft_model, LoraConfig, TaskType
 from billm import LlamaForTokenClassification
@@ -26,6 +27,14 @@ access_token = os.getenv("ACCESS_TOKEN")
 login(access_token)
 wandb.login(key=os.getenv("WANDB"))
 
+
+SEED = 42
+# set seeds
+torch.manual_seed(SEED)
+torch.cuda.manual_seed_all(SEED)
+torch.backends.cudnn.deterministic = True
+np.random.seed(SEED)
+set_seed(SEED)
 
 # based on: https://github.com/WhereIsAI/BiLLM/blob/main/examples/billm_ner.py
 
@@ -177,6 +186,7 @@ training_args = TrainingArguments(
     logging_steps=50,
     load_best_model_at_end=True,
     report_to="wandb",
+    seed=SEED,
 )
 
 trainer = Trainer(
@@ -193,7 +203,6 @@ trainer = Trainer(
 print("Starting fine-tuning...")
 trainer.train()
 
-wandb.finish()
 
 os.makedirs(args.output_dir, exist_ok=True)
 
@@ -225,3 +234,5 @@ df_pred = pd.DataFrame({
 })
 df_pred.to_csv(f"{args.output_dir}/test_predictions.csv", index=False)
 print(f"Predictions saved to {args.output_dir}/test_predictions.csv")
+
+wandb.finish()
