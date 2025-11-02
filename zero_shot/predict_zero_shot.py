@@ -200,7 +200,8 @@ class HFChatModel():
         inputs = {k: v.to(self.model.device) for k, v in inputs.items()}
 
         input_len = inputs["input_ids"].shape[1]
-        max_ctx = self.model.config.max_position_embeddings
+        max_ctx = getattr(self.model.config, "max_position_embeddings", None) \
+            or getattr(self.tokenizer, "model_max_length", None) or 131072
         if input_len > max_ctx:
             print(f"[WARN] Prompt length {input_len} exceeds context window ({max_ctx}). "
                   f"Input will be truncated.")
@@ -252,20 +253,22 @@ class HFChatModel():
             self.max_new_tokens = max(max_tokens_per_prompt)
             print(f"Max new tokens for NER batch: {self.max_new_tokens}")
 
+        max_position_embeddings = getattr(self.model.config, "max_position_embeddings", 131072) 
         # Tokenize all prompts together (padding to max length in batch)
         inputs = self.tokenizer(
             prompts_with_template,
             return_tensors="pt",
-            padding=True,
+            padding="longest",
             truncation=True,
-            max_length=self.model.config.max_position_embeddings,
+            max_length=max_position_embeddings,
         )
 
         inputs = {k: v.to(self.model.device) for k, v in inputs.items()}
 
         input_lens = [len(ids) for ids in inputs["input_ids"]]
         max_input_len = max(input_lens)
-        max_ctx = self.model.config.max_position_embeddings
+        max_ctx = getattr(self.model.config, "max_position_embeddings", None) \
+            or getattr(self.tokenizer, "model_max_length", None) or 131072
         if max_input_len > max_ctx:
             print(f"[WARN] Longest prompt length {max_input_len} exceeds context window ({max_ctx}). "
                   f"Inputs will be truncated.")
@@ -657,15 +660,14 @@ def main():
             skip_with_other_date=args.skip_with_other_date,
         )
     else:
-        if args.task in TASKS:
-            make_class_predictions(
-                tasks=[args.task],
-                model_name=args.model,
-                batch_size=args.batch_size,
-                few_shot=args.few_shot,
-                few_shot_strategy=args.few_shot_strategy,
-                skip_with_other_date=args.skip_with_other_date,
-            )
+        make_class_predictions(
+            tasks=[args.task],
+            model_name=args.model,
+            batch_size=args.batch_size,
+            few_shot=args.few_shot,
+            few_shot_strategy=args.few_shot_strategy,
+            skip_with_other_date=args.skip_with_other_date,
+        )
 
 
     
