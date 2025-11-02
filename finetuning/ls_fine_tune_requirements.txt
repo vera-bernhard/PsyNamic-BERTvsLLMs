@@ -7,3 +7,5 @@ datasets
 pandas
 numpy
 dotenv
+scikit-learn
+git+https://github.com/jacobgil/confidenceinterval.git
