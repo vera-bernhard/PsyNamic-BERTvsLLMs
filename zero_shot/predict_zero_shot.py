@@ -11,6 +11,7 @@ import re
 import json
 import ast
 from datetime import datetime
+import argparse
 
 import pandas as pd
 import spacy
@@ -60,10 +61,8 @@ def set_seed(seed: int = 42):
 
 
 TASKS = [
-    "Condition", "Data Collection", "Data Type", "Number of Participants", "Age of Participants", "Application Form",
-    "Clinical Trial Phase",  "Outcomes", "Regimen", "Setting", "Study Control", "Study Purpose",
-    "Substance Naivety", "Substances", "Sex of Participants", "Relevant", "Study Conclusion",
-    "Study Type"
+    "Condition", "Data Collection", "Data Type", "Number of Participants", "Age of Participants", "Application Form", "Clinical Trial Phase",  "Outcomes", "Regimen", "Setting", "Study Control", "Study Purpose", "Substance Naivety", "Substances", "Sex of Participants", "Study Conclusion","Study Type",
+    #"Relevant", 
 ]
 
 # TODO: Move it somewhere else so that it is not always called
@@ -621,14 +620,56 @@ def parse_ner_predictions(pred_file: str, reparse: bool = False, log_file: TextI
     df.to_csv(pred_file, index=False, encoding='utf-8')
 
 
-
-
-
 def main():
 
+    # argument parser
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--task", type=str, default="all")
+    parser.add_argument("--model", type=str, required=True)
+    parser.add_argument("--batch_size", type=int, default=8)
+    parser.add_argument("--few_shot_strategy", type=str, default="selected")
+    parser.add_argument("--few_shot", type=int, default=0)
+    parser.add_argument("--skip_with_other_date", type=bool, default=True)
+    args = parser.parse_args()
+
+    if args.task == "all":
+        make_class_predictions(
+            tasks=TASKS,
+            model_name=args.model,
+            batch_size=args.batch_size,
+            few_shot=args.few_shot,
+            few_shot_strategy=args.few_shot_strategy,
+            skip_with_other_date=args.skip_with_other_date,
+        )
+        make_ner_predictions(
+            model_name=args.model,
+            batch_size=args.batch_size,
+            few_shot=args.few_shot,
+            few_shot_strategy=args.few_shot_strategy,
+            skip_with_other_date=args.skip_with_other_date,
+        )
+    elif args.task == "ner":
+        make_ner_predictions(
+            model_name=args.model,
+            batch_size=args.batch_size,
+            few_shot=args.few_shot,
+            few_shot_strategy=args.few_shot_strategy,
+            skip_with_other_date=args.skip_with_other_date,
+        )
+    else:
+        if args.task in TASKS:
+            make_class_predictions(
+                tasks=[args.task],
+                model_name=args.model,
+                batch_size=args.batch_size,
+                few_shot=args.few_shot,
+                few_shot_strategy=args.few_shot_strategy,
+                skip_with_other_date=args.skip_with_other_date,
+            )
+
+
+    
     uzh_models = [
-        # "/scratch/vebern/models/Llama-2-13-chat-hf",
-        # "/scratch/vebern/models/Llama-2-70-chat-hf",
         # "/data/vebern/ma-models/MeLLaMA-13B-chat",
         # "/data/vebern/ma-models/MeLLaMA-70B-chat",
     ]
@@ -640,12 +681,12 @@ def main():
         # '/storage/homefs/vb25l522/me-llama/MeLLaMA-13B-chat',
         # 'meta-llama/Meta-Llama-3-8B-Instruct',
         # "meta-llama/Llama-3.1-8B-Instruct",
-        "google/medgemma-27b-text-it"
+        "google/medgemma-27b-text-it",
+        # 'google/gemma-3-27b-it'
         
     ]
     big_models = [
         "/data/vebern/ma-models/MeLLaMA-70B-chat",
-        # "meta-llama/Llama-3.3-70B-Instruct",
     ]
 
     fine_tuned_models = [
@@ -653,21 +694,21 @@ def main():
     ]
 
     # Zero-Shot: Classification
-    for model_name in models:
-        make_ner_predictions(model_name=model_name,
-                        batch_size=8, few_shot=0, skip_with_other_date=True)
-        make_class_predictions(
-            tasks=TASKS, model_name=model_name, batch_size=8, few_shot=0, skip_with_other_date=True)
+    # for model_name in models:
+    #     make_ner_predictions(model_name=model_name,
+    #                     batch_size=8, few_shot=0, skip_with_other_date=True)
+    #     make_class_predictions(
+    #         tasks=TASKS, model_name=model_name, batch_size=8, few_shot=0, skip_with_other_date=True)
 
 
-    # Few-Shot: Classification & NER
-    for i in [1, 3, 5]:
-        for model_name in models:
-            make_class_predictions(
-                tasks=TASKS, model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
+    # # Few-Shot: Classification & NER
+    # for i in [1, 3, 5]:
+    #     for model_name in models:
+    #         make_class_predictions(
+    #             tasks=TASKS, model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
 
-            make_ner_predictions(
-                model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
+    #         make_ner_predictions(
+    #             model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
 
     # Zero-Shot: Fine-tuned
     # for model_name in fine_tuned_models:
