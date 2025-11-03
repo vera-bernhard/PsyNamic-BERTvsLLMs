@@ -387,3 +387,396 @@ Parsing predictions in file few_shot/application_form/application_form_1shot_sel
 
 [/INST]
 	Error parsing prediction for row with id 9578 : Could not parse prediction: [/INST]
+Parsing predictions in file few_shot/application_form/application_form_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_1shot_selected_Llama-2-70b-chat-hf_29-09-29.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_3shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_1shot_selected_medgemma-27b-text-it_09-10-09.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_5shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Application Form
+	Error parsing prediction for row with id 1441 : Could not parse prediction: 0.5 mg/kg ketamine, 0.2 mg/kg ketamine, and saline control infusion groups. They were further divided into three treatment refractoriness groups according to the Maudsley staging method and were genotyped for Val66Met BDNF polymorphism. Participants' Hamilton Depression Rating Scale (HDRS) scores were assessed preinfusion, at 40, 80, 120, and 240 min postinfusion, and sequentially on days 2-7 and 14 after infusion. Patients with any Val allele exhibited an antidepressant response
+	Error parsing prediction for row with id 56 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5738 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5789 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6954 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7097 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8457 : Label 1. Oral not found in label2int mapping.
+	Error parsing prediction for row with id 9339 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5679 : Label 1
+    "Oral" not found in label2int mapping.
+	Error parsing prediction for row with id 1451 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3147 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3592 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4367 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4428 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5231 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5628 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6072 : Could not parse prediction: 1. Methods All 50 patients will undergo routine evaluation, including complete blood testing for individual glycemic profile, serum cholesterol and triglyceride, plasma sodium and potassium, urea and creatinine. Patients will undergo a wash‐out period, between 7 and 14 days prior to the experimental session, depending on the lifetime of the antidepressant in use. Experiments will take place at the Hospital Universitário Onofre Lopes, a tertiary university hospital affiliated to the Universidade Federal do Rio Grande do Norte (UFRN), Brazil. In the treatment session,
+	Error parsing prediction for row with id 7035 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7113 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7258 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9452 : Could not parse prediction: 1
+	Error parsing prediction for row with id 127 : Could not parse prediction: 1
+	Error parsing prediction for row with id 151 : Could not parse prediction: 1
+	Error parsing prediction for row with id 165 : Could not parse prediction: 1
+	Error parsing prediction for row with id 394 : Could not parse prediction: 0
+	Error parsing prediction for row with id 531 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1109 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1255 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1418 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1455 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1770 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1891 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1961 : Label 1
+    "Oral" not found in label2int mapping.
+	Error parsing prediction for row with id 3175 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3257 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3353 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3662 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4094 : Label 1
+    "Oral" not found in label2int mapping.
+	Error parsing prediction for row with id 4653 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5918 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6070 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6115 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6121 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6189 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6232 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6246 : Label 1. Oral not found in label2int mapping.
+	Error parsing prediction for row with id 6377 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6436 : Label 1. Oral not found in label2int mapping.
+	Error parsing prediction for row with id 6979 : Label 1
+    "Oral" not found in label2int mapping.
+	Error parsing prediction for row with id 7055 : '0.2 mg/kg of psilocybin orally on 2 different test days. Participants underwent magnetic resonance imaging at 3 time points between administration and peak effects'
+	Error parsing prediction for row with id 7210 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7318 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7621 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8140 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8636 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8923 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9140 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9198 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9374 : Label 1
+    "Oral" not found in label2int mapping.
+	Error parsing prediction for row with id 9419 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9521 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9578 : Could not parse prediction: 1
+Parsing predictions in file few_shot/application_form/application_form_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_3shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_1shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_1shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_1shot_selected_gpt-4o-mini_09-09-09.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_3shot_selected_gpt-4o-mini_09-09-09.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_1shot_selected_MeLLaMA-70B-chat_29-09-29.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_3shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Application Form
+	Error parsing prediction for row with id 1441 : Could not parse prediction: 0.5 mg/kg ketamine, 0.2 mg/kg ketamine, and saline control infusion groups. They were further divided into three treatment refractoriness groups according to the Maudsley staging method and were genotyped for Val66Met BDNF polymorphism. Participants' Hamilton Depression Rating Scale (HDRS) scores were assessed preinfusion, at 40, 80, 120, and 240 min postinfusion, and sequentially on days 2-7 and 14 after infusion. Patients with any Val allele exhibited an
+	Error parsing prediction for row with id 5380 : Could not parse prediction: 1
+	Error parsing prediction for row with id 56 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5738 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5789 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6954 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7097 : Could not parse prediction: 0
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 8457 : Label 1. Oral not found in label2int mapping.
+	Error parsing prediction for row with id 9339 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5679 : Label 1. Oral not found in label2int mapping.
+	Error parsing prediction for row with id 7451 : Could not parse prediction: 0
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 1451 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1804 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2106 : Label 1. "Oral" not found in label2int mapping.
+	Error parsing prediction for row with id 3147 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3592 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4367 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4428 : Label 1
+    "Oral" not found in label2int mapping.
+	Error parsing prediction for row with id 5231 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5628 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6072 : Could not parse prediction: 1) Background The therapeutic effectiveness of currently available antidepressant is low. Less than 50% of the patients achieve remission after single treatment, and about 30% after four different treatments. Besides low response rates, pharmacological treatment are associated with several side effects and response onset is usually long ( 2‐3 weeks). Thus, great effort has been made to the development of alternative antidepressants. For instance, ketamine, a N‐methyl‐D‐aspartate (NMDA) receptor antagonist, has rapid and potent antidepressant effects in treatment of major
+	Error parsing prediction for row with id 7035 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7113 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7258 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8621 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9340 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9612 : Could not parse prediction: 1
+	Error parsing prediction for row with id 127 : Could not parse prediction: 1
+	Error parsing prediction for row with id 151 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 165 : Label 1
+    "Oral" not found in label2int mapping.
+	Error parsing prediction for row with id 394 : Could not parse prediction: 0
+	Error parsing prediction for row with id 531 : Could not parse prediction: 1
+	Error parsing prediction for row with id 717 : Could not parse prediction: 1.5 mg/kg MDMA increased self-reported sociability compared to MDMA (0.75 mg/kg) and PBO. MDMA (1.5 mg/kg) attenuated left amygdala response to angry facial expressions compared to PBO, but MDMA did not affect amygdala reactivity to fearful expressions. MDMA (0.75 mg/kg) enhanced ventral striatum response to happy expressions relative to PBO.
+	Error parsing prediction for row with id 1255 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1418 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1455 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1770 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1891 : Label 1
+    "Oral" not found in label2int mapping.
+	Error parsing prediction for row with id 1961 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1990 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3175 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3257 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3662 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4094 : Label 1. Oral not found in label2int mapping.
+	Error parsing prediction for row with id 4653 : Label 1. Oral not found in label2int mapping.
+	Error parsing prediction for row with id 6070 : Label 1. Oral not found in label2int mapping.
+	Error parsing prediction for row with id 6121 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6189 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6232 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6235 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6246 : Label 1. Oral not found in label2int mapping.
+	Error parsing prediction for row with id 6377 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6436 : Label 1. Oral not found in label2int mapping.
+	Error parsing prediction for row with id 6558 : Could not parse prediction: 0.3 mg/kg ketamine was administered to the subjects. The subjects were tested in a selective attention task. The results showed that ketamine did not alter selective attention task performance of the subjects, but did reduce processing negativity and the P300 amplitude (both in general and to deviant stimuli in particular), enhanced the N100 amplitude to deviant stimuli, and did not effect mismatch negativity. Ketamine induces some of the attentional deficits in healthy subjects that are observed in schizophrenics, suggesting that reduced glutamatergic activity in the brain may be involved in some of the
+	Error parsing prediction for row with id 6645 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6979 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7210 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7318 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 7621 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8140 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8247 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8636 : Label 1
+    "Oral" not found in label2int mapping.
+	Error parsing prediction for row with id 8923 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9140 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9198 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9374 : Label 1
+    "Oral" not found in label2int mapping.
+	Error parsing prediction for row with id 9419 : Label 1. Oral not found in label2int mapping.
+	Error parsing prediction for row with id 9496 : Label 1. Intravenous not found in label2int mapping.
+	Error parsing prediction for row with id 9521 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9578 : Could not parse prediction: 1
+Parsing predictions in file few_shot/application_form/application_form_1shot_selected_Llama-2-13b-chat-hf_27-09-27.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_1shot_selected_Meta-Llama-3-8B-Instruct_22-09-22.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_5shot_selected_gpt-4o-mini_09-09-09.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_5shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_1shot_selected_Llama-3.1-8B-Instruct_22-09-22.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_5shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_1shot_selected_Med-LLaMA3-8B_01-09-01.csv for task Application Form
+	Error parsing prediction for row with id 56 : Prediction text is empty or NaN.
+Parsing predictions in file few_shot/application_form/application_form_1shot_selected_MeLLaMA-13B-chat_27-09-27.csv for task Application Form
+	Error parsing prediction for row with id 56 : Expecting value: line 9 column 22 (char 151)
+	Error parsing prediction for row with id 7903 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 8457 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 9339 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7451 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 1037 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 1451 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 4639 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 5231 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6072 : Expecting value: line 2 column 12 (char 13)
+	Error parsing prediction for row with id 7258 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7455 : Could not parse prediction: [/INST]
+
+[/INST]
+	Error parsing prediction for row with id 7941 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 9340 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 9452 : Could not parse prediction: [/INST]
+
+[/INST]
+	Error parsing prediction for row with id 127 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 165 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 394 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 531 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 717 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 1255 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 1455 : Label INPUT not found in label2int mapping.
+	Error parsing prediction for row with id 1891 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 1961 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 2112 : Could not parse prediction: [/INST]
+
+[/INST]
+	Error parsing prediction for row with id 3353 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 3662 : 'INPUT'
+	Error parsing prediction for row with id 4094 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 4653 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 4682 : 'INPUT'
+	Error parsing prediction for row with id 5317 : Could not parse prediction: [/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+	Error parsing prediction for row with id 5812 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 5918 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6070 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6115 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6189 : Could not parse prediction: [/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+	Error parsing prediction for row with id 6209 : Label INPUT not found in label2int mapping.
+	Error parsing prediction for row with id 6232 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6246 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6377 : Could not parse prediction: [/INST]
+
+[/INST]
+	Error parsing prediction for row with id 6436 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6645 : 'INPUT'
+	Error parsing prediction for row with id 7055 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7210 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7318 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7816 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 9140 : Could not parse prediction: [/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+	Error parsing prediction for row with id 9163 : Could not parse prediction: [/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+	Error parsing prediction for row with id 9578 : Could not parse prediction: [/INST]
+Parsing predictions in file few_shot/application_form/application_form_3shot_selected_medgemma-27b-text-it_02-11-02.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_5shot_selected_medgemma-27b-text-it_02-11-02.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_3shot_selected_gemma-3-27b-it_02-11-02.csv for task Application Form
+Parsing predictions in file few_shot/application_form/application_form_1shot_selected_gemma-3-27b-it_02-11-02.csv for task Application Form

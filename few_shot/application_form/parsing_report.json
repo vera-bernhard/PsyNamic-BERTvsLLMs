@@ -90,5 +90,21 @@
     "few_shot/application_form/application_form_1shot_selected_MeLLaMA-13B-chat_27-09-27.csv": {
         "nr_faulty_parsable": 5,
         "nr_non_parsable": 49
+    },
+    "few_shot/application_form/application_form_3shot_selected_medgemma-27b-text-it_02-11-02.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
+    },
+    "few_shot/application_form/application_form_5shot_selected_medgemma-27b-text-it_02-11-02.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
+    },
+    "few_shot/application_form/application_form_3shot_selected_gemma-3-27b-it_02-11-02.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
+    },
+    "few_shot/application_form/application_form_1shot_selected_gemma-3-27b-it_02-11-02.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
     }
 }

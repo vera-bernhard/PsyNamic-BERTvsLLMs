@@ -90,5 +90,21 @@
     "few_shot/number_of_participants/number_of_participants_5shot_selected_Med-LLaMA3-8B_08-09-08.csv": {
         "nr_faulty_parsable": 88,
         "nr_non_parsable": 8
+    },
+    "few_shot/number_of_participants/number_of_participants_3shot_selected_medgemma-27b-text-it_02-11-02.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
+    },
+    "few_shot/number_of_participants/number_of_participants_5shot_selected_medgemma-27b-text-it_02-11-02.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
+    },
+    "few_shot/number_of_participants/number_of_participants_3shot_selected_gemma-3-27b-it_02-11-02.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
+    },
+    "few_shot/number_of_participants/number_of_participants_1shot_selected_gemma-3-27b-it_02-11-02.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
     }
 }

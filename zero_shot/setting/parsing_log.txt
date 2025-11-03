@@ -12,3 +12,4 @@ Parsing predictions in file zero_shot/setting/setting_Llama-2-70b-chat-hf_28-09-
 Parsing predictions in file zero_shot/setting/setting_MeLLaMA-13B-chat_26-09-26.csv for task Setting
 Parsing predictions in file zero_shot/setting/setting_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Setting
 Parsing predictions in file zero_shot/setting/setting_medgemma-27b-text-it_09-10-09.csv for task Setting
+Parsing predictions in file zero_shot/setting/setting_gemma-3-27b-it_02-11-02.csv for task Setting

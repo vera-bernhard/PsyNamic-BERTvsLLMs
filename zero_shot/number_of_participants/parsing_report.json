@@ -42,5 +42,9 @@
     "zero_shot/number_of_participants/number_of_participants_medgemma-27b-text-it_09-10-09.csv": {
         "nr_faulty_parsable": 80,
         "nr_non_parsable": 5
+    },
+    "zero_shot/number_of_participants/number_of_participants_gemma-3-27b-it_02-11-02.csv": {
+        "nr_faulty_parsable": 38,
+        "nr_non_parsable": 2
     }
 }

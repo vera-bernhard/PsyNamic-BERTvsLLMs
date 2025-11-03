@@ -226,3 +226,235 @@ Parsing predictions in file few_shot/outcomes/outcomes_5shot_selected_Llama-3.1-
 Parsing predictions in file few_shot/outcomes/outcomes_1shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Outcomes
 Parsing predictions in file few_shot/outcomes/outcomes_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv for task Outcomes
 Parsing predictions in file few_shot/outcomes/outcomes_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_1shot_selected_Med-LLaMA3-8B_22-09-22.csv for task Outcomes
+	Error parsing prediction for row with id 6403 : Label 1. Acute dosing day performance as assessed by the digit symbol substitution task. 2. Acute cognition not found in label2int mapping.
+	Error parsing prediction for row with id 8611 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4428 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5919 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2419 : '1. Suicidality from baseline to 60 minutes, 180 minutes, one day, three days and one week after one intranasal ketamine administration compared to placebo, as measured with'
+	Error parsing prediction for row with id 6093 : Label 1. The ability to drive a car not found in label2int mapping.
+	Error parsing prediction for row with id 8041 : Label 1. The ability to drive a car not found in label2int mapping.
+Parsing predictions in file few_shot/outcomes/outcomes_1shot_selected_gpt-4o-mini_09-09-09.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_1shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_1shot_selected_medgemma-27b-text-it_09-10-09.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_3shot_selected_gpt-4o-mini_09-09-09.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_3shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_1shot_selected_MeLLaMA-70B-chat_29-09-29.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_1shot_selected_Llama-2-13b-chat-hf_27-09-27.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_1shot_selected_Llama-3.1-8B-Instruct_22-09-22.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_3shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Outcomes
+	Error parsing prediction for row with id 4916 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5380 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8345 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1738 : Label 1. The ability to drive a car not found in label2int mapping.
+	Error parsing prediction for row with id 1829 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2358 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5759 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6403 : Label 1. The ability to drive a car not found in label2int mapping.
+	Error parsing prediction for row with id 6591 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7368 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7442 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8320 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8611 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9044 : Could not parse prediction: 1
+	Error parsing prediction for row with id 221 : Could not parse prediction: 1
+	Error parsing prediction for row with id 260 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1083 : Label 1. The ability to drive a car not found in label2int mapping.
+	Error parsing prediction for row with id 1347 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1451 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1884 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2099 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2373 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2395 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2863 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3012 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4428 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4641 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5246 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5919 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7050 : Could not parse prediction: 1
+	Error parsing prediction for row with id 94 : Label 1. The ability to drive a car not found in label2int mapping.
+	Error parsing prediction for row with id 514 : Label 1
+    "The ability to drive a car" not found in label2int mapping.
+	Error parsing prediction for row with id 558 : Could not parse prediction: 1
+	Error parsing prediction for row with id 814 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1052 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1216 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1418 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1439 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1455 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1864 : Label 1
+    "The ability to drive a car" not found in label2int mapping.
+	Error parsing prediction for row with id 1874 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1950 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1981 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2419 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2431 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2822 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3340 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3635 : Label 1
+    "The ability to drive a car" not found in label2int mapping.
+	Error parsing prediction for row with id 3662 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3733 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3769 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3799 : Label 1
+    "The ability to drive a car" not found in label2int mapping.
+	Error parsing prediction for row with id 4291 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4451 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4567 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4653 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4658 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4915 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5012 : Label 1. The ability to drive a car not found in label2int mapping.
+	Error parsing prediction for row with id 5680 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5723 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5894 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5918 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5928 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6021 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6035 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6093 : Label 1. The ability to drive a car not found in label2int mapping.
+	Error parsing prediction for row with id 6189 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6258 : Label 1. The ability to drive a car not found in label2int mapping.
+	Error parsing prediction for row with id 6427 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6677 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6837 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6903 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7055 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7210 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7214 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7278 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7474 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7621 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7816 : Label 1. The ability to drive a car not found in label2int mapping.
+	Error parsing prediction for row with id 7897 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8041 : Label 1
+    "The ability to drive a car" not found in label2int mapping.
+	Error parsing prediction for row with id 8372 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8586 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8868 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8905 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8923 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9419 : Could not parse prediction: 1
+Parsing predictions in file few_shot/outcomes/outcomes_1shot_selected_Meta-Llama-3-8B-Instruct_22-09-22.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_3shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_5shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Outcomes
+	Error parsing prediction for row with id 2483 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4916 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5380 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8345 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1738 : Label 1. The ability to drive a car not found in label2int mapping.
+	Error parsing prediction for row with id 1829 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2358 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5759 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6403 : Label 1. The ability to drive a car not found in label2int mapping.
+	Error parsing prediction for row with id 6591 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7442 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8320 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8611 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9044 : Could not parse prediction: 1
+	Error parsing prediction for row with id 221 : Could not parse prediction: 1
+	Error parsing prediction for row with id 260 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1083 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1347 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1451 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1884 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2099 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2373 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2395 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2863 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3012 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3649 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4428 : Label 1
+    "The ability to drive a car" not found in label2int mapping.
+	Error parsing prediction for row with id 4641 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5246 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5919 : Label 1
+    "The ability to drive a car" not found in label2int mapping.
+	Error parsing prediction for row with id 7050 : Could not parse prediction: 1
+	Error parsing prediction for row with id 94 : Could not parse prediction: 1
+	Error parsing prediction for row with id 514 : Label 1
+    "The ability to drive a car" not found in label2int mapping.
+	Error parsing prediction for row with id 558 : Could not parse prediction: 1
+	Error parsing prediction for row with id 814 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1052 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1216 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1418 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1439 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1455 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1864 : Label 1
+    "The ability to drive a car" not found in label2int mapping.
+	Error parsing prediction for row with id 1874 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1950 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1963 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1981 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2419 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2431 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2822 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3340 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3635 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3662 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3733 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3769 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3799 : Label 1
+    "The ability to drive a car" not found in label2int mapping.
+	Error parsing prediction for row with id 4291 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4451 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4567 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4653 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4658 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 4915 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5012 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5317 : Could not parse prediction: 0
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 5680 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5723 : Label 1
+    "The ability to drive a car" not found in label2int mapping.
+	Error parsing prediction for row with id 5894 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5918 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5928 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6021 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 6035 : Label 1
+    "The ability to drive a car" not found in label2int mapping.
+	Error parsing prediction for row with id 6093 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6189 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6258 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6427 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6677 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6837 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6903 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7055 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7210 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7214 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7278 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7474 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7621 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7816 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7897 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8041 : Label 1
+    "The ability to drive a car" not found in label2int mapping.
+	Error parsing prediction for row with id 8372 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8586 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8868 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8905 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8923 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9419 : Could not parse prediction: 1
+Parsing predictions in file few_shot/outcomes/outcomes_5shot_selected_gpt-4o-mini_09-09-09.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_1shot_selected_MeLLaMA-13B-chat_27-09-27.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_1shot_selected_Llama-2-70b-chat-hf_29-09-29.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_5shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_5shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_1shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_3shot_selected_medgemma-27b-text-it_02-11-02.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_5shot_selected_medgemma-27b-text-it_02-11-02.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_1shot_selected_gemma-3-27b-it_02-11-02.csv for task Outcomes
+Parsing predictions in file few_shot/outcomes/outcomes_3shot_selected_gemma-3-27b-it_02-11-02.csv for task Outcomes

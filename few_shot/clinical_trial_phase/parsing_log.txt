@@ -194,3 +194,203 @@ Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_3
 Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Clinical Trial Phase
 Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_3shot_selected_gpt-4o-mini_09-09-09.csv for task Clinical Trial Phase
 Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_1shot_selected_Llama-2-13b-chat-hf_27-09-27.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_5shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_5shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Clinical Trial Phase
+	Error parsing prediction for row with id 777 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8889 : Could not parse prediction: 1
+	Error parsing prediction for row with id 941 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6171 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6449 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8611 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6952 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8870 : Could not parse prediction: 1
+	Error parsing prediction for row with id 161 : Could not parse prediction: 1
+	Error parsing prediction for row with id 221 : Could not parse prediction: 1
+	Error parsing prediction for row with id 260 : Could not parse prediction: 1
+	Error parsing prediction for row with id 691 : Could not parse prediction: 1
+	Error parsing prediction for row with id 933 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2398 : Could not parse prediction: 1. Subject must be a man or woman, 18 to 64 years of age, inclusive. 2. Subject must meet Diagnostic and Statistical Manual of Mental Disorders (5th edition) (DSM‐5) diagnostic criteria for MDD, without psychotic features, based upon clinical assessment and confirmed by the MINI. 3. Subjects must have current suicidal ideation with intent, confirmed by a “Yes” response to Question B3 [Think (even momentarily) about harming or of hurting or of injuring yourself
+	Error parsing prediction for row with id 2497 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4367 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5213 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5246 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5346 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5873 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6003 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6247 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7113 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7258 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9596 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9612 : Could not parse prediction: 1
+	Error parsing prediction for row with id 121 : Could not parse prediction: 1
+	Error parsing prediction for row with id 218 : Could not parse prediction: 1
+	Error parsing prediction for row with id 394 : Could not parse prediction: 1
+	Error parsing prediction for row with id 594 : Could not parse prediction: 1
+	Error parsing prediction for row with id 640 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1228 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1369 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1483 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1513 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 1749 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1787 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2382 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2957 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3095 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3152 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3182 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3189 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3638 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3909 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4064 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4094 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4424 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4884 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5012 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 5025 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5164 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5177 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5597 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5618 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5644 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6035 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6115 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6121 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6258 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6374 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6450 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6723 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7083 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7318 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 7364 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7460 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7980 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8031 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8140 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8294 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8586 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8767 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9113 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9151 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9446 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9578 : Could not parse prediction: 1
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_1shot_selected_Llama-2-70b-chat-hf_29-09-29.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_1shot_selected_Med-LLaMA3-8B_01-09-01.csv for task Clinical Trial Phase
+	Error parsing prediction for row with id 2398 : list index out of range
+	Error parsing prediction for row with id 2497 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1483 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2382 : list index out of range
+	Error parsing prediction for row with id 4635 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5545 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5618 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6035 : Could not parse prediction: 0
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_5shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_1shot_selected_Llama-3.1-8B-Instruct_22-09-22.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_1shot_selected_Meta-Llama-3-8B-Instruct_22-09-22.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_3shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_1shot_selected_MeLLaMA-70B-chat_29-09-29.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_1shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_1shot_selected_MeLLaMA-13B-chat_27-09-27.csv for task Clinical Trial Phase
+	Error parsing prediction for row with id 8611 : Could not parse prediction: [/SYS]
+	Error parsing prediction for row with id 8870 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 691 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 9340 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 121 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 394 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 1513 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 2957 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 3189 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 5164 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 5545 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 5597 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 5618 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6028 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6115 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6268 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6374 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6450 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6723 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7083 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7318 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 8140 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 8307 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 9151 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 9578 : Could not parse prediction: [/INST]
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_1shot_selected_medgemma-27b-text-it_09-10-09.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_1shot_selected_gpt-4o-mini_09-09-09.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_3shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_5shot_selected_gpt-4o-mini_09-09-09.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_1shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_3shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Clinical Trial Phase
+	Error parsing prediction for row with id 777 : Could not parse prediction: 1
+	Error parsing prediction for row with id 941 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6449 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 8611 : Could not parse prediction: 0
+	Error parsing prediction for row with id 161 : Could not parse prediction: 1
+	Error parsing prediction for row with id 691 : Could not parse prediction: 1
+	Error parsing prediction for row with id 933 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2398 : Could not parse prediction: 1. Subject must be a man or woman, 18 to 64 years of age, inclusive. 2. Subject must meet Diagnostic and Statistical Manual of Mental Disorders (5th edition) (DSM‐5) diagnostic criteria for MDD, without psychotic features, based upon clinical assessment and confirmed by the MINI. 3. Subjects must have current suicidal ideation with intent, confirmed by a “Yes” response to Question B3 [Think (even momentarily) about harming or of hurting or of injuring yourself
+	Error parsing prediction for row with id 3205 : Could not parse prediction: 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 6247 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7258 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9596 : Could not parse prediction: 1
+	Error parsing prediction for row with id 121 : Could not parse prediction: 1
+	Error parsing prediction for row with id 218 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 394 : Could not parse prediction: 1
+	Error parsing prediction for row with id 594 : Could not parse prediction: 1
+	Error parsing prediction for row with id 640 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 1513 : Could not parse prediction: 0
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 2382 : list index out of range
+	Error parsing prediction for row with id 3095 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3189 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3909 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4424 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4635 : Could not parse prediction: 0
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 4884 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5012 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 5025 : Could not parse prediction: 0
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 5164 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 5644 : Label 1
+    "Phase 1" not found in label2int mapping.
+	Error parsing prediction for row with id 6035 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6115 : Label 1. Phase 1 not found in label2int mapping.
+	Error parsing prediction for row with id 6450 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7318 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 7460 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8031 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8140 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8586 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9446 : Could not parse prediction: 1
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_3shot_selected_gpt-4o-mini_09-09-09.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_1shot_selected_Llama-2-13b-chat-hf_27-09-27.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_3shot_selected_medgemma-27b-text-it_02-11-02.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_5shot_selected_medgemma-27b-text-it_02-11-02.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_1shot_selected_gemma-3-27b-it_02-11-02.csv for task Clinical Trial Phase
+Parsing predictions in file few_shot/clinical_trial_phase/clinical_trial_phase_3shot_selected_gemma-3-27b-it_02-11-02.csv for task Clinical Trial Phase

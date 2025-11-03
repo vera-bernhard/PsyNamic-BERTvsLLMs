@@ -34,3 +34,4 @@ Parsing predictions in file zero_shot/data_collection/data_collection_MeLLaMA-70
 Parsing predictions in file zero_shot/data_collection/data_collection_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Data Collection
 Parsing predictions in file zero_shot/data_collection/data_collection_Meta-Llama-3-8B-Instruct_06-09-06.csv for task Data Collection
 Parsing predictions in file zero_shot/data_collection/data_collection_medgemma-27b-text-it_09-10-09.csv for task Data Collection
+Parsing predictions in file zero_shot/data_collection/data_collection_gemma-3-27b-it_02-11-02.csv for task Data Collection

@@ -227,3 +227,236 @@ Parsing predictions in file few_shot/study_type/study_type_1shot_selected_sft_ll
 	Error parsing prediction for row with id 7077 : Label Randomized-controlled trial not found in label2int mapping.
 Parsing predictions in file few_shot/study_type/study_type_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Study Type
 Parsing predictions in file few_shot/study_type/study_type_5shot_selected_gpt-4o-mini_09-09-09.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_5shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_3shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_gpt-4o-mini_09-09-09.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_Llama-2-13b-chat-hf_26-09-26.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_3shot_selected_gpt-4o-mini_09-09-09.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_Med-LLaMA3-8B_22-09-22.csv for task Study Type
+	Error parsing prediction for row with id 941 : Could not parse prediction: 0
+	Error parsing prediction for row with id 161 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 691 : Label 1
+    "Randomized-controlled trial (RCT)" not found in label2int mapping.
+	Error parsing prediction for row with id 3205 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	Error parsing prediction for row with id 3927 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5221 : Label 0
+    "Randomized-controlled trial (RCT)" not found in label2int mapping.
+	Error parsing prediction for row with id 394 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2150 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2380 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 4326 : Label 1
+    "Randomized-controlled trial (RCT)" not found in label2int mapping.
+	Error parsing prediction for row with id 6436 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 8030 : Could not parse prediction: 1
+Parsing predictions in file few_shot/study_type/study_type_5shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_MeLLaMA-13B-chat_27-09-27.csv for task Study Type
+	Error parsing prediction for row with id 56 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7903 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 8457 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 135 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 2425 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 1731 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 2637 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 394 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 1443 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 1791 : invalid literal for int() with base 10: '1\n\nINPUT'
+	Error parsing prediction for row with id 2380 : Could not parse prediction: [/SYS]
+	Error parsing prediction for row with id 3257 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 3662 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 5641 : Label INPUT not found in label2int mapping.
+	Error parsing prediction for row with id 6115 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6436 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6446 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7077 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7537 : invalid literal for int() with base 10: '1\n\nINPUT'
+	Error parsing prediction for row with id 8029 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 9113 : list index out of range
+Parsing predictions in file few_shot/study_type/study_type_3shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_3shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Study Type
+	Error parsing prediction for row with id 6103 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8606 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 8889 : Could not parse prediction: 1
+	Error parsing prediction for row with id 56 : Could not parse prediction: 1
+	Error parsing prediction for row with id 748 : Could not parse prediction: 0
+	Error parsing prediction for row with id 941 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2153 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7425 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 7903 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8457 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 2425 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7451 : Could not parse prediction: 1
+	Error parsing prediction for row with id 161 : Could not parse prediction: 1
+	Error parsing prediction for row with id 422 : Could not parse prediction: 1
+	Error parsing prediction for row with id 691 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1037 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1264 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1731 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2033 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 2227 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3205 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3927 : Could not parse prediction: 1. Change in the magnitude of negative and positive valence adjectives in the autobiographical memory task measured using a self‐reported questionnaire on day ‐1 and 1 day after ketamine/placebo treatment; 2. Brain activation measured using functional magnetic resonance in a network of areas related to autobiographical memories, including the medial prefrontal cortex and associated networks during the autobiographical memory task 1 day after ketamine/placebo treatment 3. Accuracy measured using a computer‐based task of facial expression recognition (FERT) on ‐1 day, and up to 2 hours after ketamine/placebo treatment; 4. Reaction time measured using a computer‐
+	Error parsing prediction for row with id 4367 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 4420 : Label 1
+    "Randomized-controlled trial (RCT)" not found in label2int mapping.
+	Error parsing prediction for row with id 4922 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5221 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5873 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 6194 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 8319 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 9472 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 9596 : Could not parse prediction: 1
+	Error parsing prediction for row with id 394 : Could not parse prediction: 0
+	Error parsing prediction for row with id 514 : Could not parse prediction: 1
+	Error parsing prediction for row with id 612 : Could not parse prediction: 1
+	Error parsing prediction for row with id 640 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 1054 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1439 : '0.5mg/kg ketamine, 0.2mg/kg ketamine, or normal saline. Depressive symptoms were measured using the 17-item Hamilton Depression Rating Scale (HDRS) at baseline and after treatment. Cognitive function was evaluated using working memory and go-no-go tasks at baseline. RESULTS'
+	Error parsing prediction for row with id 1443 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1511 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 1765 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1918 : Could not parse prediction: 1. Randomized-controlled trial (RCT) 0. Cohort study 0. Real-world study 0. Study protocol 0. Systematic review/meta-analysis 0. Qualitative Study 0. Case report 0. Case series 0. Other 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 1990 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 2053 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2105 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 2150 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2176 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 2207 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2301 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2380 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 2912 : Could not parse prediction: 1. Describe noribogaine as a potential non‐addictive, nonopioid treatment for opioid dependence. 2. Examine the utility of a predefined dosing algorithm to avoid pronounced QTc prolongation. 3. Recognize the importance/challenge of conducting controlled clinical trials in the opioid‐dependents.
+	Error parsing prediction for row with id 3149 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 3152 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 3257 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3637 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 3661 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 3662 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 3899 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4326 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 4424 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4841 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 5641 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 5698 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5717 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 6035 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6115 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 6302 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6366 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6436 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 6446 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 7077 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 7713 : Could not parse prediction: 0
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 8029 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 8030 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8089 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8798 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8836 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9113 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 9163 : Could not parse prediction: 0
+
+***FINAL INPUT TO CLASSIFY***
+Parsing predictions in file few_shot/study_type/study_type_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_Llama-3.1-8B-Instruct_22-09-22.csv for task Study Type
+	Error parsing prediction for row with id 5641 : Label Randomized-controlled trial not found in label2int mapping.
+Parsing predictions in file few_shot/study_type/study_type_5shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Study Type
+	Error parsing prediction for row with id 6103 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8889 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 56 : Could not parse prediction: 1
+	Error parsing prediction for row with id 748 : Could not parse prediction: 1
+	Error parsing prediction for row with id 941 : Label 1
+    "Randomized-controlled trial (RCT)" not found in label2int mapping.
+	Error parsing prediction for row with id 7425 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7903 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8457 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 135 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 2425 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 161 : Could not parse prediction: 1
+	Error parsing prediction for row with id 422 : Could not parse prediction: 1
+	Error parsing prediction for row with id 691 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1264 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1731 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1884 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3205 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3927 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 4367 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4420 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4922 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5221 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5873 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6194 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 8319 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 394 : Could not parse prediction: 0
+	Error parsing prediction for row with id 514 : Could not parse prediction: 0
+	Error parsing prediction for row with id 612 : Label 1
+    "Randomized-controlled trial (RCT)" not found in label2int mapping.
+	Error parsing prediction for row with id 640 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1439 : '0.5mg/kg ketamine, 0.2mg/kg ketamine, or normal saline. Depressive symptoms were measured using the 17-item Hamilton Depression Rating Scale (HDRS) at baseline and after treatment. Cognitive function was evaluated using working memory and go-no-go tasks at baseline. RESULTS'
+	Error parsing prediction for row with id 1443 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1918 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 1990 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 2053 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2105 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 2301 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2380 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 2539 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2912 : Could not parse prediction: 1. Describe noribogaine as a potential non‐addictive, nonopioid treatment for opioid dependence. 2. Examine the utility of a predefined dosing algorithm to avoid pronounced QTc prolongation. 3. Recognize the importance/challenge of conducting controlled clinical trials in the opioid‐dependents.
+	Error parsing prediction for row with id 3257 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3283 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3637 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 3661 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4064 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4326 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 4424 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4711 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4841 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5641 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5698 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6035 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6115 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 6366 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6436 : Label 1. Randomized-controlled trial (RCT) not found in label2int mapping.
+	Error parsing prediction for row with id 6446 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7055 : '0.2 mg/kg of psilocybin orally on 2 different test days. Participants underwent magnetic resonance imaging at 3 time points between administration and peak effects'
+	Error parsing prediction for row with id 7077 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7126 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7713 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8798 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8836 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8923 : Could not parse prediction: 1
+Parsing predictions in file few_shot/study_type/study_type_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_Llama-2-13b-chat-hf_27-09-27.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_Meta-Llama-3-8B-Instruct_22-09-22.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_Llama-2-70b-chat-hf_29-09-29.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_MeLLaMA-70B-chat_29-09-29.csv for task Study Type
+	Error parsing prediction for row with id 2425 : Could not parse prediction: ### Real-world study
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Study Type
+	Error parsing prediction for row with id 8457 : Label Randomized-controlled trial not found in label2int mapping.
+	Error parsing prediction for row with id 9596 : Label Randomized-controlled trial not found in label2int mapping.
+	Error parsing prediction for row with id 7077 : Label Randomized-controlled trial not found in label2int mapping.
+Parsing predictions in file few_shot/study_type/study_type_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_5shot_selected_gpt-4o-mini_09-09-09.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_medgemma-27b-text-it_02-11-02.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_5shot_selected_medgemma-27b-text-it_02-11-02.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_3shot_selected_medgemma-27b-text-it_02-11-02.csv for task Study Type
+Parsing predictions in file few_shot/study_type/study_type_1shot_selected_gemma-3-27b-it_02-11-02.csv for task Study Type

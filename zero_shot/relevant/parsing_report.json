@@ -38,5 +38,13 @@
     "zero_shot/relevant/relevant_sft_llama3_8b_instruction_tuned_29-09-29.csv": {
         "nr_faulty_parsable": 149,
         "nr_non_parsable": 0
+    },
+    "zero_shot/relevant/relevant_medgemma-27b-text-it_02-11-02.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
+    },
+    "zero_shot/relevant/relevant_gemma-3-27b-it_02-11-02.csv": {
+        "nr_faulty_parsable": 12,
+        "nr_non_parsable": 1
     }
 }

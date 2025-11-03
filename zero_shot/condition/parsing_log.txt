@@ -78,3 +78,4 @@ Parsing predictions in file zero_shot/condition/condition_Llama-2-13b-chat-hf_27
 	Error parsing prediction for row with id 1964 : invalid literal for int() with base 10: 'bipolar disorder'
 Parsing predictions in file zero_shot/condition/condition_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Condition
 Parsing predictions in file zero_shot/condition/condition_medgemma-27b-text-it_09-10-09.csv for task Condition
+Parsing predictions in file zero_shot/condition/condition_gemma-3-27b-it_02-11-02.csv for task Condition

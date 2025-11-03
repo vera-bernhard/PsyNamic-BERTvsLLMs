@@ -274,3 +274,283 @@ Parsing predictions in file few_shot/data_collection/data_collection_1shot_selec
 Parsing predictions in file few_shot/data_collection/data_collection_1shot_selected_Llama-2-13b-chat-hf_27-09-27.csv for task Data Collection
 	Error parsing prediction for row with id 3631 : list index out of range
 	Error parsing prediction for row with id 2396 : list index out of range
+Parsing predictions in file few_shot/data_collection/data_collection_1shot_selected_medgemma-27b-text-it_09-10-09.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_1shot_selected_MeLLaMA-13B-chat_27-09-27.csv for task Data Collection
+	Error parsing prediction for row with id 1939 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 1316 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 1874 : Could not parse prediction: [/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+	Error parsing prediction for row with id 6200 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 4848 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 3592 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 497 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 3480 : Could not parse prediction: [/INST]
+
+[/INST]
+	Error parsing prediction for row with id 8711 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 5317 : Could not parse prediction: [/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+	Error parsing prediction for row with id 8087 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 719 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 8029 : Could not parse prediction: [/INST]
+
+[/INST]
+	Error parsing prediction for row with id 5139 : Could not parse prediction: [/INST]
+
+[/INST]
+	Error parsing prediction for row with id 2929 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 9566 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 2031 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7970 : Could not parse prediction: [/INST]
+
+[/INST]
+	Error parsing prediction for row with id 1351 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 5688 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7077 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 3597 : Could not parse prediction: [/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+	Error parsing prediction for row with id 1631 : Could not parse prediction: [/INST]
+
+[/INST]
+	Error parsing prediction for row with id 5556 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7083 : Could not parse prediction: [/INST]
+
+[/INST]
+	Error parsing prediction for row with id 3533 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 3631 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 176 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 2301 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 2490 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 4982 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 2408 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 1958 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 8613 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6234 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6021 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 8345 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7210 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 1829 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 4971 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 6855 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 9452 : Could not parse prediction: [/INST]
+Parsing predictions in file few_shot/data_collection/data_collection_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_5shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_1shot_selected_Llama-3.1-8B-Instruct_22-09-22.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_5shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Data Collection
+	Error parsing prediction for row with id 5628 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3492 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1316 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3719 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6200 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4848 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4292 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1286 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3592 : Could not parse prediction: 1
+	Error parsing prediction for row with id 497 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4579 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8711 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5317 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4165 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5901 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8087 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2861 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2419 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8029 : Could not parse prediction: 1
+	Error parsing prediction for row with id 814 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5139 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6292 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2929 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5047 : Could not parse prediction: 1
+	Error parsing prediction for row with id 892 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6679 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6173 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2117 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2031 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3635 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7970 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1351 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7588 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5688 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7077 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7945 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3597 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6160 : Could not parse prediction: 0
+	Error parsing prediction for row with id 4988 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5556 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7083 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8470 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6085 : Could not parse prediction: 1
+	Error parsing prediction for row with id 793 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3631 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3632 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3662 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2301 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1770 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3340 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2490 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4982 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9419 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2408 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5525 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6021 : Could not parse prediction: 1
+	Error parsing prediction for row with id 394 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8945 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8868 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8345 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1647 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7210 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3175 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1829 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8870 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6855 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2396 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8101 : Could not parse prediction: 1
+Parsing predictions in file few_shot/data_collection/data_collection_3shot_selected_gpt-4o-mini_09-09-09.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_1shot_selected_Med-LLaMA3-8B_22-09-22.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_5shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_1shot_selected_MeLLaMA-70B-chat_29-09-29.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_3shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_1shot_selected_Meta-Llama-3-8B-Instruct_22-09-22.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_3shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Data Collection
+	Error parsing prediction for row with id 1787 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5628 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3492 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1316 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3719 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8810 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1874 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6200 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4292 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3592 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4579 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4165 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5901 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8087 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2861 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2419 : Label 1. Prospective not found in label2int mapping.
+	Error parsing prediction for row with id 6292 : Could not parse prediction: 1
+	Error parsing prediction for row with id 892 : Label 1. Prospective not found in label2int mapping.
+	Error parsing prediction for row with id 6679 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6173 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2031 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3635 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7970 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1351 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7588 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7945 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3597 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4988 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5556 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8470 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6085 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3631 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3632 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3662 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2301 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2490 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4982 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9419 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2408 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5525 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6021 : Label 1. Prospective not found in label2int mapping.
+	Error parsing prediction for row with id 8945 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8868 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3175 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2396 : Label 1. Prospective not found in label2int mapping.
+Parsing predictions in file few_shot/data_collection/data_collection_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_3shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_1shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_1shot_selected_gpt-4o-mini_09-09-09.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_5shot_selected_gpt-4o-mini_09-09-09.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_1shot_selected_Llama-2-70b-chat-hf_29-09-29.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_1shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_1shot_selected_Llama-2-13b-chat-hf_27-09-27.csv for task Data Collection
+	Error parsing prediction for row with id 3631 : list index out of range
+	Error parsing prediction for row with id 2396 : list index out of range
+Parsing predictions in file few_shot/data_collection/data_collection_5shot_selected_medgemma-27b-text-it_02-11-02.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_3shot_selected_medgemma-27b-text-it_02-11-02.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_3shot_selected_gemma-3-27b-it_02-11-02.csv for task Data Collection
+Parsing predictions in file few_shot/data_collection/data_collection_1shot_selected_gemma-3-27b-it_02-11-02.csv for task Data Collection

@@ -226,3 +226,235 @@ Parsing predictions in file few_shot/setting/setting_1shot_selected_MeLLaMA-13B-
 	Error parsing prediction for row with id 7816 : Could not parse prediction: [/INST]
 Parsing predictions in file few_shot/setting/setting_1shot_selected_medgemma-27b-text-it_09-10-09.csv for task Setting
 Parsing predictions in file few_shot/setting/setting_5shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_1shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_3shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_3shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Setting
+	Error parsing prediction for row with id 777 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5705 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8345 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2482 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6171 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6954 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8611 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5679 : Could not parse prediction: 1
+	Error parsing prediction for row with id 161 : Could not parse prediction: 1
+	Error parsing prediction for row with id 691 : Could not parse prediction: 0
+	Error parsing prediction for row with id 692 : Could not parse prediction: 0
+	Error parsing prediction for row with id 763 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2385 : Could not parse prediction: 1. Men and women at the age between 18 to 65 years, with dextromanual dominance, t.j. scores 100 in Edinburgh Handedness Inventory (EHI) 2. Patients have to answer DSM IV [60] criteria for the major depressive episode, without psychotic symptoms, on the clinical investigation basis, by Mini international neuropsychiatry interview (M.I.N.I., Czech version 5.0.0.) ‐ structured interview for psychiatric disorders on axis I based on DSM‐ IV 3. Input
+	Error parsing prediction for row with id 3927 : '1. Change in the magnitude of negative and positive valence adjectives in the autobiographical memory task measured using a self‐reported questionnaire on day ‐1 and 1 day after ketamine/placebo treatment; 2. Brain activation measured using functional magnetic resonance in a network of areas related to autobiographical memories, including the medial prefrontal cortex and associated networks during the autobiographical memory task 1 day after ketamine/placebo treatment SECONDARY OUTCOME'
+	Error parsing prediction for row with id 4096 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5919 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6096 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8062 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9340 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9596 : Could not parse prediction: 1
+	Error parsing prediction for row with id 167 : Could not parse prediction: 1. Change in the Hamilton Rating Scale for Depression (GRID‐HAMD) from baseline[ Baseline and 6 weeks from baseline] 2. Change in GRID‐HAMD from baseline to week 10[ Baseline and 1‐month followup visit (week 10)] 3. Change in cognitive function, assessed using the trailmaking test, from baseline to visits 1B, 2B, 3B, 4B, and 5B[ Baseline, visit 1B (week
+	Error parsing prediction for row with id 531 : Could not parse prediction: 1
+	Error parsing prediction for row with id 718 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1447 : Could not parse prediction: 0
+	Error parsing prediction for row with id 2150 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2207 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2301 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2396 : Label 1. Clinical not found in label2int mapping.
+	Error parsing prediction for row with id 4326 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4884 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5012 : Could not parse prediction: 0
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 5644 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6121 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6629 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7002 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7653 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8636 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8972 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8987 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9084 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9140 : Could not parse prediction: 1
+Parsing predictions in file few_shot/setting/setting_1shot_selected_Meta-Llama-3-8B-Instruct_22-09-22.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_1shot_selected_Llama-2-70b-chat-hf_29-09-29.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_1shot_selected_Med-LLaMA3-8B_22-09-22.csv for task Setting
+	Error parsing prediction for row with id 8345 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8889 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2153 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2482 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6954 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8611 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 5679 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 161 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 691 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 763 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1037 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1884 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2048 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3653 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3927 : '1. Change in the magnitude of negative and positive valence adjectives in the autobiographical memory task measured using a self‐reported questionnaire on day ‐1 and 1 day after ketamine/placebo treatment; 2. Brain activation measured using functional magnetic resonance in a network of areas related to autobiographical memories, including the medial prefrontal cortex and associated networks during the autobiographical memory task 1 day after ketamine/placebo treatment SECONDARY OUTCOME'
+	Error parsing prediction for row with id 5919 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9340 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9596 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 167 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 170 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 531 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 624 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 718 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1109 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1447 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1850 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2207 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2301 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2396 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2929 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 2956 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3283 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3285 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 3637 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4658 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4884 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4885 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6121 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6374 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7621 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 7653 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8221 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8636 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8972 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 8987 : Prediction text is empty or NaN.
+Parsing predictions in file few_shot/setting/setting_1shot_selected_Llama-2-13b-chat-hf_27-09-27.csv for task Setting
+	Error parsing prediction for row with id 167 : list index out of range
+	Error parsing prediction for row with id 2396 : list index out of range
+Parsing predictions in file few_shot/setting/setting_5shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Setting
+	Error parsing prediction for row with id 777 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4916 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5705 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8345 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8889 : Could not parse prediction: 1
+	Error parsing prediction for row with id 254 : Could not parse prediction: 1
+	Error parsing prediction for row with id 748 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1254 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1829 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2482 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6171 : Could not parse prediction: 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	Error parsing prediction for row with id 6563 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6954 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8611 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5679 : Label 1
+    "Clinical" not found in label2int mapping.
+	Error parsing prediction for row with id 161 : Could not parse prediction: 1
+	Error parsing prediction for row with id 691 : Could not parse prediction: 1
+	Error parsing prediction for row with id 692 : Could not parse prediction: 1
+	Error parsing prediction for row with id 763 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1804 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1884 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2048 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2385 : Could not parse prediction: 1. Men and women at the age between 18 to 65 years, with dextromanual dominance, t.j. scores 100 in Edinburgh Handedness Inventory (EHI) 2. Patients have to answer DSM IV [60] criteria for the major depressive episode, without psychotic symptoms, on the clinical investigation basis, by Mini international neuropsychiatry interview (M.I.N.I., Czech version 5.0.0.) ‐ structured interview for psychiatric disorders on axis I based on DSM‐ IV 3. Input
+	Error parsing prediction for row with id 3927 : '1. Change in the magnitude of negative and positive valence adjectives in the autobiographical memory task measured using a self‐reported questionnaire on day ‐1 and 1 day after ketamine/placebo treatment; 2. Brain activation measured using functional magnetic resonance in a network of areas related to autobiographical memories, including the medial prefrontal cortex and associated networks during the autobiographical memory task 1 day after ketamine/placebo treatment SECONDARY OUTCOME'
+	Error parsing prediction for row with id 4096 : Label 1
+    "Clinical" not found in label2int mapping.
+	Error parsing prediction for row with id 5919 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6096 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7538 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8062 : Could not parse prediction: 1
+	Error parsing prediction for row with id 167 : Label 1. Clinical not found in label2int mapping.
+	Error parsing prediction for row with id 531 : Could not parse prediction: 1
+	Error parsing prediction for row with id 624 : Could not parse prediction: 1
+	Error parsing prediction for row with id 718 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1054 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1109 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1447 : Label 0.5 mg/kg not found in label2int mapping.
+	Error parsing prediction for row with id 2150 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2207 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2301 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2396 : Label 1. Clinical not found in label2int mapping.
+	Error parsing prediction for row with id 2956 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3283 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3285 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3637 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4326 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4506 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4530 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4658 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4708 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4884 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4885 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5012 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5644 : Label 1
+    "Clinical" not found in label2int mapping.
+	Error parsing prediction for row with id 6121 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6361 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6374 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6629 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6979 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7002 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7545 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7621 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7653 : Label 1
+    "Clinical" not found in label2int mapping.
+	Error parsing prediction for row with id 7816 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8031 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8636 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8810 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8972 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8987 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9084 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9140 : Could not parse prediction: 1
+Parsing predictions in file few_shot/setting/setting_3shot_selected_gpt-4o-mini_09-09-09.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_1shot_selected_Llama-3.1-8B-Instruct_22-09-22.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_1shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_1shot_selected_gpt-4o-mini_09-09-09.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_5shot_selected_gpt-4o-mini_09-09-09.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_3shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_1shot_selected_MeLLaMA-70B-chat_29-09-29.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_5shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_1shot_selected_MeLLaMA-13B-chat_27-09-27.csv for task Setting
+	Error parsing prediction for row with id 718 : Could not parse prediction: [/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+
+[/INST]
+	Error parsing prediction for row with id 5644 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 7816 : Could not parse prediction: [/INST]
+Parsing predictions in file few_shot/setting/setting_1shot_selected_medgemma-27b-text-it_09-10-09.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_5shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_3shot_selected_medgemma-27b-text-it_02-11-02.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_5shot_selected_medgemma-27b-text-it_02-11-02.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_1shot_selected_gemma-3-27b-it_02-11-02.csv for task Setting
+Parsing predictions in file few_shot/setting/setting_3shot_selected_gemma-3-27b-it_02-11-02.csv for task Setting

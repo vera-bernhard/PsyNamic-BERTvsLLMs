@@ -90,5 +90,21 @@
     "few_shot/clinical_trial_phase/clinical_trial_phase_1shot_selected_Llama-2-13b-chat-hf_27-09-27.csv": {
         "nr_faulty_parsable": 0,
         "nr_non_parsable": 0
+    },
+    "few_shot/clinical_trial_phase/clinical_trial_phase_3shot_selected_medgemma-27b-text-it_02-11-02.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
+    },
+    "few_shot/clinical_trial_phase/clinical_trial_phase_5shot_selected_medgemma-27b-text-it_02-11-02.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
+    },
+    "few_shot/clinical_trial_phase/clinical_trial_phase_1shot_selected_gemma-3-27b-it_02-11-02.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
+    },
+    "few_shot/clinical_trial_phase/clinical_trial_phase_3shot_selected_gemma-3-27b-it_02-11-02.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
     }
 }

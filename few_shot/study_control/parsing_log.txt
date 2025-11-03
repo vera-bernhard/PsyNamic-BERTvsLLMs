@@ -85,3 +85,94 @@ Parsing predictions in file few_shot/study_control/study_control_5shot_selected_
 	Error parsing prediction for row with id 8030 : Could not parse prediction: 1
 Parsing predictions in file few_shot/study_control/study_control_1shot_selected_medgemma-27b-text-it_09-10-09.csv for task Study Control
 Parsing predictions in file few_shot/study_control/study_control_5shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_1shot_selected_MeLLaMA-13B-chat_27-09-27.csv for task Study Control
+	Error parsing prediction for row with id 6952 : Could not parse prediction: [/INST]
+	Error parsing prediction for row with id 4633 : Could not parse prediction: [/INST]
+Parsing predictions in file few_shot/study_control/study_control_1shot_selected_Llama-3.1-8B-Instruct_22-09-22.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_1shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_1shot_selected_Llama-2-13b-chat-hf_27-09-27.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_3shot_selected_gpt-4o-mini_09-09-09.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_5shot_selected_gpt-4o-mini_09-09-09.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_1shot_selected_Llama-2-70b-chat-hf_29-09-29.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_3shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Study Control
+	Error parsing prediction for row with id 128 : Could not parse prediction: 1
+	Error parsing prediction for row with id 941 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5789 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6954 : Could not parse prediction: 1
+	Error parsing prediction for row with id 161 : Could not parse prediction: 1
+	Error parsing prediction for row with id 933 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2385 : Could not parse prediction: 1. Men and women at the age between 18 to 65 years, with dextromanual dominance, t.j. scores 100 in Edinburgh Handedness Inventory (EHI) 2. Patients have to answer DSM IV [60] criteria for the major depressive episode, without psychotic symptoms, on the clinical investigation basis, by Mini international neuropsychiatry interview (M.I.N.I., Czech version 5.0.0.) ‐ structured interview for psychiatric disorders on axis I based
+	Error parsing prediction for row with id 2497 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4356 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4428 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4633 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5628 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5919 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6643 : Label 1. Placebo not found in label2int mapping.
+	Error parsing prediction for row with id 7822 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8062 : Could not parse prediction: 1
+	Error parsing prediction for row with id 594 : Could not parse prediction: 1
+	Error parsing prediction for row with id 718 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1554 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1874 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2053 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2419 : Label 1. Placebo not found in label2int mapping.
+	Error parsing prediction for row with id 3008 : Label 1. Placebo not found in label2int mapping.
+	Error parsing prediction for row with id 3060 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3237 : Label 1
+    "Placebo" not found in label2int mapping.
+	Error parsing prediction for row with id 4094 : Label 1. Placebo not found in label2int mapping.
+	Error parsing prediction for row with id 4634 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4653 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4684 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5025 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5177 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5997 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6093 : Label 1. Placebo not found in label2int mapping.
+	Error parsing prediction for row with id 6325 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6599 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7002 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7460 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8030 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9521 : Could not parse prediction: 0
+Parsing predictions in file few_shot/study_control/study_control_1shot_selected_Meta-Llama-3-8B-Instruct_22-09-22.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_5shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_1shot_selected_Med-LLaMA3-8B_22-09-22.csv for task Study Control
+	Error parsing prediction for row with id 2385 : Label 1. Placebo not found in label2int mapping.
+	Error parsing prediction for row with id 4428 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 4633 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 1903 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 6093 : Prediction text is empty or NaN.
+	Error parsing prediction for row with id 9521 : Could not parse prediction: 0
+Parsing predictions in file few_shot/study_control/study_control_3shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_1shot_selected_gpt-4o-mini_09-09-09.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_1shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_3shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_1shot_selected_MeLLaMA-70B-chat_29-09-29.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_5shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Study Control
+	Error parsing prediction for row with id 5705 : Could not parse prediction: 1
+	Error parsing prediction for row with id 128 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2385 : Label 1. Placebo not found in label2int mapping.
+	Error parsing prediction for row with id 4428 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5628 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5919 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3008 : Label 1. Placebo not found in label2int mapping.
+	Error parsing prediction for row with id 3060 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4070 : Label 1. Placebo not found in label2int mapping.
+	Error parsing prediction for row with id 4634 : Label 1. Placebo not found in label2int mapping.
+	Error parsing prediction for row with id 4653 : Label 1. Placebo not found in label2int mapping.
+	Error parsing prediction for row with id 5177 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6093 : Label 1. Placebo not found in label2int mapping.
+	Error parsing prediction for row with id 6599 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7379 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8030 : Could not parse prediction: 1
+Parsing predictions in file few_shot/study_control/study_control_1shot_selected_medgemma-27b-text-it_09-10-09.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_5shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_3shot_selected_medgemma-27b-text-it_02-11-02.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_5shot_selected_medgemma-27b-text-it_02-11-02.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_3shot_selected_gemma-3-27b-it_02-11-02.csv for task Study Control
+Parsing predictions in file few_shot/study_control/study_control_1shot_selected_gemma-3-27b-it_02-11-02.csv for task Study Control

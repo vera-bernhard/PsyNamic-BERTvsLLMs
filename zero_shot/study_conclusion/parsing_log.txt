@@ -11,3 +11,5 @@ Parsing predictions in file zero_shot/study_conclusion/study_conclusion_gpt-4o-2
 Parsing predictions in file zero_shot/study_conclusion/study_conclusion_Meta-Llama-3-8B-Instruct_06-09-06.csv for task Study Conclusion
 Parsing predictions in file zero_shot/study_conclusion/study_conclusion_Llama-3.1-8B-Instruct_06-09-06.csv for task Study Conclusion
 Parsing predictions in file zero_shot/study_conclusion/study_conclusion_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Study Conclusion
+Parsing predictions in file zero_shot/study_conclusion/study_conclusion_medgemma-27b-text-it_02-11-02.csv for task Study Conclusion
+Parsing predictions in file zero_shot/study_conclusion/study_conclusion_gemma-3-27b-it_02-11-02.csv for task Study Conclusion

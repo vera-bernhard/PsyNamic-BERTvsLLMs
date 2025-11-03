@@ -117,3 +117,11 @@ Parsing predictions in file zero_shot/relevant/relevant_Meta-Llama-3-8B-Instruct
 Parsing predictions in file zero_shot/relevant/relevant_gpt-4o-mini_09-09-09.csv for task Relevant
 Parsing predictions in file zero_shot/relevant/relevant_gpt-4o-2024-08-06_09-09-09.csv for task Relevant
 Parsing predictions in file zero_shot/relevant/relevant_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Relevant
+Parsing predictions in file zero_shot/relevant/relevant_medgemma-27b-text-it_02-11-02.csv for task Relevant
+Parsing predictions in file zero_shot/relevant/relevant_gemma-3-27b-it_02-11-02.csv for task Relevant
+	Error parsing prediction for row with id 2974 : Could not parse prediction: ```json
+{
+    "irrelevant": "animal-only studies",
+    "relevant": ""
+}
+```

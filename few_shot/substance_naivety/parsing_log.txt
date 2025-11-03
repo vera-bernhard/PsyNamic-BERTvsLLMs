@@ -134,3 +134,143 @@ Parsing predictions in file few_shot/substance_naivety/substance_naivety_3shot_s
 Parsing predictions in file few_shot/substance_naivety/substance_naivety_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Substance Naivety
 Parsing predictions in file few_shot/substance_naivety/substance_naivety_1shot_selected_Meta-Llama-3-8B-Instruct_22-09-22.csv for task Substance Naivety
 Parsing predictions in file few_shot/substance_naivety/substance_naivety_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_3shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_1shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_5shot_selected_gpt-4o-2024-08-06_09-09-09.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_3shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Substance Naivety
+	Error parsing prediction for row with id 1441 : Could not parse prediction: 0.5 mg/kg ketamine infusion exhibited the optimal antidepressant effect (p = 0.002); in the moderate treatment refractoriness group, the 0.5 mg/kg ketamine infusion achieved the strongest antidepressant effect (p = 0.006); however, in the high treatment refractoriness group, the trajectory of depressive symptoms did not differ between treatments (p = 0.325). In future clinical practice, ketamine dose may be adjusted according
+	Error parsing prediction for row with id 8345 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8889 : Could not parse prediction: 1
+	Error parsing prediction for row with id 56 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5679 : Could not parse prediction: 0
+	Error parsing prediction for row with id 691 : Could not parse prediction: 0
+	Error parsing prediction for row with id 892 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5919 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6058 : Could not parse prediction: 0
+	Error parsing prediction for row with id 6643 : Could not parse prediction: 1
+	Error parsing prediction for row with id 121 : Could not parse prediction: 0
+	Error parsing prediction for row with id 165 : Could not parse prediction: 0
+	Error parsing prediction for row with id 640 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1439 : Could not parse prediction: 0
+	Error parsing prediction for row with id 1918 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2419 : Could not parse prediction: 0
+	Error parsing prediction for row with id 3637 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4530 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4653 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4684 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5012 : Could not parse prediction: 0
+	Error parsing prediction for row with id 5644 : Could not parse prediction: 0
+1
+0
+0
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 7337 : Could not parse prediction: 0
+	Error parsing prediction for row with id 8030 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9521 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9578 : Could not parse prediction: 0
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_1shot_selected_MeLLaMA-13B-chat_27-09-27.csv for task Substance Naivety
+	Error parsing prediction for row with id 56 : Label TRIAL_ID not found in label2int mapping.
+	Error parsing prediction for row with id 9578 : Could not parse prediction: [/INST]
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_1shot_selected_gpt-4o-mini_09-09-09.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_1shot_selected_Llama-3.1-8B-Instruct_22-09-22.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_5shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_5shot_selected_Med-LLaMA3-8B_08-09-08.csv for task Substance Naivety
+	Error parsing prediction for row with id 8345 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8889 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9175 : Could not parse prediction: 1
+	Error parsing prediction for row with id 56 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5738 : Could not parse prediction: 1
+1
+0
+0
+0
+	Error parsing prediction for row with id 8662 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5679 : Label 1
+    "Substance-Na\u00efve Participants" not found in label2int mapping.
+	Error parsing prediction for row with id 8870 : Could not parse prediction: 1
+	Error parsing prediction for row with id 691 : Could not parse prediction: 1
+	Error parsing prediction for row with id 892 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1650 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2227 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5071 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5213 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5346 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5919 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6058 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6643 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7113 : Could not parse prediction: 1
+1
+0
+0
+0
+	Error parsing prediction for row with id 8918 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9452 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9596 : Could not parse prediction: 1
+	Error parsing prediction for row with id 121 : Could not parse prediction: 1
+	Error parsing prediction for row with id 165 : Could not parse prediction: 1
+	Error parsing prediction for row with id 531 : Could not parse prediction: 1
+	Error parsing prediction for row with id 624 : Could not parse prediction: 1
+	Error parsing prediction for row with id 640 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1054 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1439 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1903 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1918 : Could not parse prediction: 1
+	Error parsing prediction for row with id 1981 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2419 : Could not parse prediction: 1
+	Error parsing prediction for row with id 2539 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3095 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3149 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 3353 : Could not parse prediction: 1
+	Error parsing prediction for row with id 3637 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4070 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4103 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4530 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4640 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4653 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4658 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4684 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4711 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4761 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4786 : Could not parse prediction: 1
+	Error parsing prediction for row with id 4932 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5012 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5080 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5177 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5644 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5698 : Could not parse prediction: 1
+	Error parsing prediction for row with id 5717 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6010 : Could not parse prediction: 1
+	Error parsing prediction for row with id 6648 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7318 : Could not parse prediction: 1
+
+***FINAL INPUT TO CLASSIFY***
+	Error parsing prediction for row with id 7337 : Could not parse prediction: 0
+	Error parsing prediction for row with id 7364 : Could not parse prediction: 1
+	Error parsing prediction for row with id 7942 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8030 : Could not parse prediction: 1
+	Error parsing prediction for row with id 8910 : list index out of range
+	Error parsing prediction for row with id 9113 : Could not parse prediction: 1
+	Error parsing prediction for row with id 9521 : Could not parse prediction: 0
+	Error parsing prediction for row with id 9578 : Could not parse prediction: 1
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_5shot_selected_gpt-4o-mini_09-09-09.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_1shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_1shot_selected_Llama-2-70b-chat-hf_29-09-29.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_1shot_selected_MeLLaMA-70B-chat_29-09-29.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_5shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_3shot_selected_gpt-4o-mini_09-09-09.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_1shot_selected_Llama-2-13b-chat-hf_27-09-27.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_1shot_selected_medgemma-27b-text-it_09-10-09.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_1shot_selected_Med-LLaMA3-8B_22-09-22.csv for task Substance Naivety
+	Error parsing prediction for row with id 5041 : Could not parse prediction: 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_5shot_selected_Meta-Llama-3-8B-Instruct_08-09-08.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_3shot_selected_sft_llama3_8b_instruction_tuned_29-09-29.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_3shot_selected_Llama-3.1-8B-Instruct_08-09-08.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_1shot_selected_Meta-Llama-3-8B-Instruct_22-09-22.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_3shot_selected_Meta-Llama-3-8B-Instruct_07-09-07.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_3shot_selected_medgemma-27b-text-it_02-11-02.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_5shot_selected_medgemma-27b-text-it_02-11-02.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_1shot_selected_gemma-3-27b-it_02-11-02.csv for task Substance Naivety
+Parsing predictions in file few_shot/substance_naivety/substance_naivety_3shot_selected_gemma-3-27b-it_02-11-02.csv for task Substance Naivety
