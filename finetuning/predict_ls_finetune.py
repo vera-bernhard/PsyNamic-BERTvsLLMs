@@ -143,6 +143,7 @@ out_df = pd.DataFrame({
     "id": df_test["id"].tolist() if "id" in df_test.columns else list(range(len(df_test))),
     "tokens": df_test["tokens"].apply(str).tolist(),
     "pred_labels": [str(p) for p in pred_labels],
+    "ner_tags": df_test["ner_tags"].tolist(),
 })
 
 os.makedirs(args.model_dir, exist_ok=True)
