@@ -1,4 +1,4 @@
-from plots.plots import make_performance_plot, make_performance_box_plot, make_performance_spider_plot, make_simple_performance_plot
+from plots.plots import make_performance_plot, make_performance_box_plot, make_performance_spider_plot, make_simple_performance_plot, make_zero_shot_scatter_plot
 from evaluation.evaluate import get_performance_report, evaluate_ner_bio, evaluate_ner_extraction, bootstrap_metrics
 from zero_shot.predict_zero_shot import parse_class_predictions, parse_ner_predictions
 import numpy as np
@@ -156,8 +156,10 @@ def overall_class_performance(tasks: list[str], prediction_dir: str, metric: str
             if 'bert' in model_name.lower():
                 model_name = 'bert-baseline'
             score = data['metrics'].get(metric, [None])[0]
+            ci_lower = data['metrics'][metric][1][0]
+            ci_upper = data['metrics'][metric][1][1]
             rows.append(
-                {'model': model_name, 'task': task, 'performance': score})
+                {'model': model_name, 'task': task, 'performance': score, 'ci_lower': ci_lower, 'ci_upper': ci_upper})
     df = pd.DataFrame(rows)
     return df
 
@@ -201,7 +203,7 @@ def plot_performance_report(task: str, performance_report: str):
     plot_path = os.path.join(
         PREDICTION_DIR, task.lower().replace(' ', '_'), "performance_plot.png")
     # Make performance plot
-    make_performance_plot(performance_data, plot_path,
+    make_performance_plot(performance_data, task, plot_path,
                           metrics_col='metrics')
 
 
@@ -265,7 +267,7 @@ def evaluate_all_class_tasks(tasks: list[str], prediction_dir: str, reevaluate: 
         # Step 4: Make performance plot
         plot_path = os.path.join(
             prediction_dir, task.lower().replace(' ', '_'), "performance_plot.png")
-        make_performance_plot(performance_reports, plot_path,
+        make_performance_plot(performance_reports, task, plot_path,
                               metrics_col='metrics')
 
 # TODO: not sure if here is the right place for this function
@@ -360,6 +362,8 @@ def main():
                               save_path='zero_shot/overall_performance_boxplot.png')
     make_performance_spider_plot(df_performance, 'Zero-Shot Performance Across Tasks',
                                  save_path='zero_shot/overall_performance_spiderplot.png')
+    make_zero_shot_scatter_plot(df_performance, title='Zero-Shot Performance Across Tasks',
+                                 save_path='zero_shot/overall_performance_scatterplot.png')
     averaged_performance = df_performance.groupby(
         'model')['performance'].mean().reset_index()
     make_simple_performance_plot(
@@ -371,7 +375,7 @@ def main():
         PREDICTION_DIR, ['f1 overall - strict', 'f1 overall - partial', 'f1_entity_type'])
     print(df_ner_performance)
     make_performance_plot(
-        df_ner_performance, save_path='zero_shot/ner/overall_ner_performance.png')
+        df_ner_performance, 'NER', save_path='zero_shot/ner/overall_ner_performance.png')
 
 
 if __name__ == "__main__":
