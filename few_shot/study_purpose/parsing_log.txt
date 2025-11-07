@@ -294,3 +294,4 @@ Parsing predictions in file few_shot/study_purpose/study_purpose_3shot_selected_
 Parsing predictions in file few_shot/study_purpose/study_purpose_5shot_selected_medgemma-27b-text-it_02-11-02.csv for task Study Purpose
 Parsing predictions in file few_shot/study_purpose/study_purpose_1shot_selected_gemma-3-27b-it_02-11-02.csv for task Study Purpose
 Parsing predictions in file few_shot/study_purpose/study_purpose_3shot_selected_gemma-3-27b-it_02-11-02.csv for task Study Purpose
+Parsing predictions in file few_shot/study_purpose/study_purpose_5shot_selected_gemma-3-27b-it_06-11-06.csv for task Study Purpose

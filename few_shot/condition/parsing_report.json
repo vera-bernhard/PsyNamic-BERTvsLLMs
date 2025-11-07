@@ -106,5 +106,9 @@
     "few_shot/condition/condition_1shot_selected_gemma-3-27b-it_02-11-02.csv": {
         "nr_faulty_parsable": 0,
         "nr_non_parsable": 0
+    },
+    "few_shot/condition/condition_5shot_selected_gemma-3-27b-it_06-11-06.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
     }
 }

@@ -188,7 +188,7 @@ def evaluate_ner_extraction(
 
     num_samples = len(list_pred)
     results = {}
-
+    
     for col in ["entity", "entity_type"]:
         tp = sum(metrics_sample[f"{col}_tp"])
         fp = sum(metrics_sample[f"{col}_fp"])
@@ -229,16 +229,50 @@ def evaluate_ner_bio(pred: list[list[str]], true: list[list[str]]) -> dict[str, 
     true = [[renaming.get(label, label) for label in seq] for seq in true]
 
     evaluator = Evaluator(true=true, pred=pred, tags=['APP', 'DOS'], loader='list')
-    results, resultsagg, _, _ = evaluator.evaluate()
+    results = evaluator.evaluate()
     r = {
-        'f1 overall - strict': results['strict']['f1'],
-        'f1 overall - partial': results['partial']['f1'],
-        'f1 APP - strict': resultsagg['APP']['strict']['f1'],
-        'f1 APP - partial': resultsagg['APP']['partial']['f1'],
-        'f1 DOS - strict': resultsagg['DOS']['strict']['f1'],
-        'f1 DOS - partial': resultsagg['DOS']['partial']['f1'],
+        'f1 overall - strict': results['overall']['strict'].f1,
+        'f1 overall - partial': results['overall']['partial'].f1,
+        'precision overall - strict': results['overall']['strict'].precision,
+        'precision overall - partial': results['overall']['partial'].precision,
+        'recall overall - strict': results['overall']['strict'].recall,
+        'recall overall - partial': results['overall']['partial'].recall,
+        'f1 APP - strict': results['entities']['APP']['strict'].f1,
+        'f1 APP - partial': results['entities']['APP']['partial'].f1,
+        'f1 DOS - strict': results['entities']['DOS']['strict'].f1,
+        'f1 DOS - partial': results['entities']['DOS']['partial'].f1,
+        'precision APP - strict': results['entities']['APP']['strict'].precision,
+        'precision APP - partial': results['entities']['APP']['partial'].precision,
+        'precision DOS - strict': results['entities']['DOS']['strict'].precision,
+        'precision DOS - partial': results['entities']['DOS']['partial'].precision,
+        'recall APP - strict': results['entities']['APP']['strict'].recall,
+        'recall APP - partial': results['entities']['APP']['partial'].recall,
+        'recall DOS - strict': results['entities']['DOS']['strict'].recall,
+        'recall DOS - partial': results['entities']['DOS']['partial'].recall,
     }
 
+    return r
+
+def ner_error_analysis(pred: list[list[str]], true: list[list[str]]) -> dict[str, int]:
+    renaming = {
+        'I-Application area': 'I-APP',
+        'B-Application area': 'B-APP',
+        'I-Dosage': 'I-DOS',
+        'B-Dosage': 'B-DOS',
+        'O': 'O'
+    }
+    pred = [[renaming.get(label, label) for label in seq] for seq in pred]
+    true = [[renaming.get(label, label) for label in seq] for seq in true]
+
+    evaluator = Evaluator(true=true, pred=pred, tags=['APP', 'DOS'], loader='list')
+    result = evaluator.evaluate()
+    r = {
+        'correct': result['overall']['strict'].correct,
+        'incorrect': result['overall']['strict'].incorrect,
+        'partial': result['overall']['strict'].partial,
+        'spurious': result['overall']['strict'].spurious,
+        'missed': result['overall']['strict'].missed
+    }
     return r
 
 

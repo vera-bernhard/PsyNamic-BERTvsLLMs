@@ -1,5 +1,5 @@
-from plots.plots import make_performance_plot, make_performance_box_plot, make_performance_spider_plot, make_simple_performance_plot, make_zero_shot_scatter_plot
-from evaluation.evaluate import get_performance_report, evaluate_ner_bio, evaluate_ner_extraction, bootstrap_metrics
+from plots.plots import make_performance_plot, make_performance_box_plot, make_performance_spider_plot, make_simple_performance_plot, make_zero_shot_scatter_plot, make_ner_zero_shot_bar_plot, make_ner_error_analysis_plot
+from evaluation.evaluate import get_performance_report, evaluate_ner_bio, evaluate_ner_extraction, bootstrap_metrics, ner_error_analysis
 from zero_shot.predict_zero_shot import parse_class_predictions, parse_ner_predictions
 import numpy as np
 import pandas as pd
@@ -106,6 +106,13 @@ def add_bert_performance_data(task: str, performance_data_path: str):
                 "upper": ci_upper
             }
             performance_data[model][metric] = score_data
+        
+        # add error analysis
+        ner_error_analysis_path = os.path.join(bert_path, 'ner_error_analysis.json')
+        with open(ner_error_analysis_path, "r") as f:
+            ner_error_analysis = json.load(f)
+        if model in ner_error_analysis:
+            performance_data[model]['errors'] = ner_error_analysis[model]
 
     else:
         for metric in ['f1', 'accuracy', 'precision', 'recall']:
@@ -160,32 +167,6 @@ def overall_class_performance(tasks: list[str], prediction_dir: str, metric: str
             ci_upper = data['metrics'][metric][1][1]
             rows.append(
                 {'model': model_name, 'task': task, 'performance': score, 'ci_lower': ci_lower, 'ci_upper': ci_upper})
-    df = pd.DataFrame(rows)
-    return df
-
-
-def overall_ner_performance(prediction_dir: str, metrics: list[str] = None) -> pd.DataFrame:
-    rows = []
-    prediction_path = os.path.join(
-        prediction_dir, 'ner', 'performance_reports.json')
-    if not os.path.exists(prediction_path):
-        return pd.DataFrame(rows)
-    with open(prediction_path, "r") as f:
-        performance_data = json.load(f)
-    for model, data in performance_data.items():
-        model_name = model.split('_')[0]
-        if 'bert' in model_name.lower():
-            model_name = 'bert-baseline'
-        for metric in metrics:
-            score = data.get(metric, None)
-            rows.append(
-                {
-                    'metric': metric,
-                    'model': model_name,
-                    'mean': score['mean'],
-                    'ci_lower': score['lower'],
-                    'ci_upper': score['upper']
-                })
     df = pd.DataFrame(rows)
     return df
 
@@ -285,7 +266,7 @@ def add_tokens_nertags(bioner_path: str):
     df_bioner.to_csv(bioner_path, index=False, encoding='utf-8')
 
 
-def parse_all_ner_predictions(prediction_dir: str):
+def parse_all_ner_predictions(prediction_dir: str, reparse: bool = False):
     log_file_path = os.path.join(prediction_dir, 'ner', 'parsing_log.txt')
     log_file = open(log_file_path, "a")
 
@@ -298,7 +279,7 @@ def parse_all_ner_predictions(prediction_dir: str):
             add_tokens_nertags(file)
         if 'entities' not in df.columns:
             add_entities(file)
-        parse_ner_predictions(file, reparse=False, log_file=log_file)
+        parse_ner_predictions(file, reparse=reparse, log_file=log_file)
     log_file.close()
 
 
@@ -313,7 +294,7 @@ def get_ner_predictions_and_labels(file: str, pred_col='pred_labels', pred_entit
     return predictions_bio, predictions_entities, labels_bio, labels_entities
 
 
-def evaluate_all_ner(prediction_dir: str):
+def evaluate_all_ner(prediction_dir: str, reevaluate: bool = False):
     ner_files = get_all_prediction_files(prediction_dir, 'ner')
     performance_reports_path = os.path.join(
         prediction_dir, 'ner', 'performance_reports.json'
@@ -327,7 +308,7 @@ def evaluate_all_ner(prediction_dir: str):
 
     for ner_file in tqdm(ner_files):
         model = parse_file_name(ner_file, "model")
-        if model in performance_reports:
+        if model in performance_reports and not reevaluate:
             print(f"Skipping evaluation for {model} as it is already evaluated.")
             continue
 
@@ -337,12 +318,44 @@ def evaluate_all_ner(prediction_dir: str):
         r = bootstrap_metrics(evaluate_ner_extraction,
                               pred_entities, true_entities)
         r_bio = bootstrap_metrics(evaluate_ner_bio, pred_bio, true_bio)
-
+        error_analysis = ner_error_analysis(pred_bio, true_bio)
         performance_reports[model] = {**r, **r_bio}
+        performance_reports[model]['errors'] = error_analysis
 
     with open(performance_reports_path, "w") as f:
         json.dump(performance_reports, f, indent=4)
 
+def overall_ner_performance(prediction_dir: str) -> tuple[pd.DataFrame, pd.DataFrame]:
+    rows = []
+    error_rows = []
+    prediction_path = os.path.join(
+        prediction_dir, 'ner', 'performance_reports.json')
+    if not os.path.exists(prediction_path):
+        return pd.DataFrame(rows)
+    with open(prediction_path, "r") as f:
+        performance_data = json.load(f)
+    for model, data in performance_data.items():
+        model_name = model.split('_')[0]
+        # skip data "errors"
+        for metric, score_data in data.items():
+            if metric == 'errors':
+                for error_type, error_count in score_data.items():
+                    error_rows.append(
+                        {'model': model_name, 'error_type': error_type, 'count': error_count})
+                continue
+            rows.append(
+                {
+                    'metric': metric,
+                    'model': model_name,
+                    'mean': score_data['mean'],
+                    'ci_lower': score_data['lower'],
+                    'ci_upper': score_data['upper']
+                })
+
+    df = pd.DataFrame(rows)
+    df_errors = pd.DataFrame(error_rows)
+
+    return df, df_errors
 
 def main():
 
@@ -353,8 +366,20 @@ def main():
     evaluate_all_class_tasks(TASKS, PREDICTION_DIR)
 
     # Parse & evaluate NER predictions
-    parse_all_ner_predictions(PREDICTION_DIR)
-    evaluate_all_ner(PREDICTION_DIR)
+    parse_all_ner_predictions(PREDICTION_DIR, reparse=False)
+    evaluate_all_ner(PREDICTION_DIR, reevaluate=False)
+    add_bert_performance_data('ner', os.path.join(
+        PREDICTION_DIR, 'ner', 'performance_reports.json'))
+    ner_df, ner_df_errors = overall_ner_performance(
+        PREDICTION_DIR)
+    make_ner_zero_shot_bar_plot(ner_df, title='Zero-Shot NER Performance',
+                                 save_path='zero_shot/ner/overall_ner_performance_barplot.png')
+    make_ner_zero_shot_bar_plot(ner_df, title='Zero-Shot NER Performance', save_path='zero_shot/ner/overall_ner_performance_barplot_f1_precision_recall.png',
+                                 metrics= ['f1 overall - strict','f1 overall - partial', 'f1_entity_type', 
+                                           'precision overall - strict',  'precision overall - partial', 'precision_entity_type',
+                                           'recall overall - strict', 'recall overall - partial', 'recall_entity_type'])
+    make_ner_error_analysis_plot(ner_df_errors, title='Zero-Shot NER - Error Analysis',
+                                 save_path='zero_shot/ner/overall_ner_error_analysis.png')
 
     df_performance = overall_class_performance(TASKS, PREDICTION_DIR)
     # print(df_performance)

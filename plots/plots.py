@@ -9,6 +9,7 @@ from matplotlib.axes import Axes
 import spacy
 import numpy as np
 import math
+from collections import defaultdict
 
 BERT_PRED = '/home/vera/Documents/Uni/Master/Master_Thesis2.0/PsyNamic-Scale/bert_baseline/predictions'
 
@@ -29,7 +30,7 @@ sns.set(style="whitegrid")
 # }
 
 # Based on seaborn colorblind palette
-color_map = {
+model_color_map = {
     # 'tuned': '#de8f05',
     'Llama-3.1-8B-Instruct': '#ece133',
     'Meta-Llama-3-8B-Instruct': '#d55e00',
@@ -43,6 +44,19 @@ color_map = {
     'gpt-4o-2024-08-06': '#029e73',
     'gpt-4o-mini': '#87f5cb',
     'bert-baseline': '#949494',
+    'Llama-3.1-8B-Instruct-IFT': "#ca9161"
+}
+
+metric_color_map = {
+    'F1 BIO - Strict': '#0173b2',
+    'F1 BIO - Partial': '#66add9',
+    'F1 Strict': "#02548a",
+    'Precision BIO - Strict': '#029e73',
+    'Precision BIO - Partial': "#5ec4a3",
+    'Precision Strict': "#027a59",
+    'Recall BIO - Strict': '#d55e00',
+    'Recall BIO - Partial': "#f29b64",
+    'Recall Strict': "#a44500"
 }
 
 texture_map = {
@@ -108,12 +122,12 @@ def make_performance_plot(data: dict, task: str, save_path: str = None, metrics_
     default_palette = sns.color_palette("tab10")
     model_colors = {}
     for i, m in enumerate(unique_models):
-        model_colors[m] = color_map.get(
+        model_colors[m] = model_color_map.get(
             m, default_palette[i % len(default_palette)])
     # special-case bert
     for m in unique_models:
         if 'bert' in m.lower():
-            model_colors[m] = color_map['bert-baseline']
+            model_colors[m] = model_color_map['bert-baseline']
 
     metrics = df_metrics['metric'].unique()
     num_metrics = len(metrics)
@@ -122,7 +136,8 @@ def make_performance_plot(data: dict, task: str, save_path: str = None, metrics_
     fig, axes = plt.subplots(
         1, num_metrics, figsize=(fig_width, 7), sharey=True)
     plt.subplots_adjust(wspace=0.15)
-    plt.suptitle(f"Zero-Shot Comparison for {task}", fontsize=16, fontweight='semibold', y=0.98)
+    plt.suptitle(
+        f"Zero-Shot Comparison for {task}", fontsize=16, fontweight='semibold', y=0.98)
 
     if num_metrics == 1:
         axes = [axes]
@@ -201,7 +216,7 @@ def make_simple_performance_plot(data: pd.DataFrame, save_path: str = None) -> N
         by='performance', ascending=False).reset_index(drop=True)
 
     unique_models = df['model'].unique()
-    model_colors = {model: color_map.get(model, sns.color_palette("tab10")[i % 10])
+    model_colors = {model: model_color_map.get(model, sns.color_palette("tab10")[i % 10])
                     for i, model in enumerate(unique_models)}
 
     fig, ax = plt.subplots(figsize=(8, 6))
@@ -248,7 +263,7 @@ def make_simple_performance_plot(data: pd.DataFrame, save_path: str = None) -> N
 
 def make_zero_shot_scatter_plot(data: pd.DataFrame, title: str, save_path: str = None) -> None:
     """ x axis tasks, y axis performance, x axis grouped by model with dots with error bars next to each other."""
-    plt.figure(figsize=(12, 6))
+    plt.figure(figsize=(12, 8))
     ax = plt.gca()
 
     # determine task order and model order (respect global model_order first)
@@ -280,13 +295,15 @@ def make_zero_shot_scatter_plot(data: pd.DataFrame, title: str, save_path: str =
         ys = subset['performance'].values
         ci_l = subset['ci_lower'].values
         ci_u = subset['ci_upper'].values
-        color = color_map.get(model, sns.color_palette("tab10")[i % 10])
+        color = model_color_map.get(model, sns.color_palette("tab10")[i % 10])
         marker = 'o'
-        ax.scatter(xs, ys, label=model, color=color, s=100, zorder=3, marker=marker)
+        ax.scatter(xs, ys, label=model, color=color,
+                   s=100, zorder=3, marker=marker)
         # error bars per-point
         yerr_lower = ys - ci_l
         yerr_upper = ci_u - ys
-        ax.errorbar(xs, ys, yerr=[yerr_lower, yerr_upper], fmt='none', color=color, capsize=5, zorder=2)
+        ax.errorbar(xs, ys, yerr=[yerr_lower, yerr_upper],
+                    fmt='none', color=color, capsize=5, zorder=2)
 
     # formatting
     ax.set_xticks(x_positions)
@@ -307,7 +324,6 @@ def make_zero_shot_scatter_plot(data: pd.DataFrame, title: str, save_path: str =
         plt.close()
     else:
         plt.show()
-    
 
 
 def make_few_shot_performance_plot(data: dict, task: str, save_path: str = None, metric: str = "f1-weighted") -> None:
@@ -337,15 +353,23 @@ def make_few_shot_performance_plot(data: dict, task: str, save_path: str = None,
         for condition in sorted_conditions:
             results = conditions[condition]
             if "metrics" not in results or metric not in results["metrics"]:
-                continue
-            mean, (ci_low, ci_high) = results["metrics"][metric]
-            rows.append({
-                'model': model,
-                'condition': condition,
-                'mean': float(mean),
-                'ci_lower': float(ci_low),
-                'ci_upper': float(ci_high)
-            })
+                rows.append({
+                    'model': model,
+                    'condition': condition,
+                    'mean': results[metric]['mean'],
+                    'ci_lower': results[metric]['lower'],
+                    'ci_upper': results[metric]['upper']
+                })
+
+            else:
+                mean, (ci_low, ci_high) = results["metrics"][metric]
+                rows.append({
+                    'model': model,
+                    'condition': condition,
+                    'mean': float(mean),
+                    'ci_lower': float(ci_low),
+                    'ci_upper': float(ci_high)
+                })
     df = pd.DataFrame(rows)
     # remove any models which are not in model order
     df = df[df['model'].isin(model_order)]
@@ -524,14 +548,14 @@ def make_performance_box_plot(data: pd.DataFrame, title: str, save_path: str = N
     df['model'] = pd.Categorical(
         df['model'], categories=ordered_models, ordered=True)
 
-    plt.figure(figsize=(12, 6))
+    plt.figure(figsize=(6, 6))
     box = sns.boxplot(
         data=df,
         x="model",
         y="performance",
         showfliers=True,
         order=ordered_models,
-        palette=[color_map.get(model, "#cccccc") for model in ordered_models]
+        palette=[model_color_map.get(model, "#cccccc") for model in ordered_models]
     )
     sns.stripplot(
         data=df,
@@ -545,7 +569,7 @@ def make_performance_box_plot(data: pd.DataFrame, title: str, save_path: str = N
     )
     plt.xticks(rotation=45, ha="right")
     plt.title(title)
-    plt.ylabel("Performance")
+    plt.ylabel("F1-Weighted")
     plt.xlabel("Model")
     plt.tight_layout()
     if save_path:
@@ -573,13 +597,13 @@ def make_performance_spider_plot(data: pd.DataFrame, title: str, save_path: str 
     for model, row in df_pivot.iterrows():
         values = row.tolist()
         values += values[:1]
-        color = color_map.get(model, sns.color_palette(
+        color = model_color_map.get(model, sns.color_palette(
             "tab10")[ordered_models.index(model) % 10])
         linestyle = '--' if model in texture_map else '-'
         ax.plot(angles, values, label=model, color=color,
                 linestyle=linestyle, linewidth=2)
         ax.fill(angles, values, alpha=0.1, color=color)
-    
+
     for i, task in enumerate(tasks):
         task_values = df_pivot[task]
         max_value = task_values.max()
@@ -588,11 +612,11 @@ def make_performance_spider_plot(data: pd.DataFrame, title: str, save_path: str 
 
         offset = 0.05
         ax.text(
-            angle, 
-            max_value + offset, 
+            angle,
+            max_value + offset,
             f"{max_value:.2f}",       # Zahl mit 2 Nachkommastellen
-            fontsize=9, 
-            ha='center', 
+            fontsize=9,
+            ha='center',
             va='bottom',
         )
 
@@ -728,7 +752,8 @@ def make_few_shot_trend_plot(data: pd.DataFrame, title: str, save_path: str = No
 
     # Add overall title and adjust layout so title doesn't overlap subplots
     if title:
-        g.fig.suptitle(title, fontsize=16, fontweight='semibold', color="#222222", y=0.98)
+        g.fig.suptitle(title, fontsize=16, fontweight='semibold',
+                       color="#222222", y=0.98)
         g.fig.tight_layout(rect=[0, 0, 1, 0.95])
     else:
         g.fig.tight_layout()
@@ -758,10 +783,9 @@ def make_few_shot_delta_plot(data: pd.DataFrame, title: str, save_path: str = No
                    'Med-LLaMA3-8B']  # , 'gemma-3-27b-it']
     data = data[~data['model'].isin(skip_models)]
     tasks = data['task'].unique().tolist()
+    data = data[data['task'].isin(tasks)]
     models = data['model'].unique().tolist()
     models = [m for m in model_order if m in models]
-
-    data = data[data['task'].isin(tasks)]
     data = data[data['model'].isin(models)]
 
     # Calculate relative percentage improvements compared to zero-shot and then normalize
@@ -788,6 +812,10 @@ def make_few_shot_delta_plot(data: pd.DataFrame, title: str, save_path: str = No
     # add color column based on positive/negative improvement
     data['color'] = data[metric].apply(lambda x: 'green' if x > 0 else 'red')
 
+    models = data['model'].unique().tolist()
+    models = [m for m in model_order if m in models]
+
+
     data['model'] = pd.Categorical(
         data['model'], categories=models, ordered=True)
     data['condition'] = pd.Categorical(
@@ -812,10 +840,20 @@ def make_few_shot_delta_plot(data: pd.DataFrame, title: str, save_path: str = No
                     dodge=False, palette={"green": "green", "red": "red"})
 
     # Remove numbers and spans
-    for ax in g.axes.flat:
-        for spine in ["left", "right", "top", "bottom"]:
-            ax.spines[spine].set_visible(False)
-        ax.tick_params(axis="y", which="both", left=False, labelleft=False)
+    for row_idx, row_axes in enumerate(g.axes):
+        for col_idx, ax in enumerate(row_axes):
+            # Clean up unnecessary spines
+            for spine in ["right", "top"]:
+                ax.spines[spine].set_visible(False)
+
+            # Only show y-axis ticks and labels on the first column
+            if col_idx == 0:
+                ax.tick_params(axis="y", which="both", left=True, labelleft=True)
+                ax.spines["left"].set_visible(True)
+                ax.set_ylabel("")
+            else:
+                ax.tick_params(axis="y", which="both", left=False, labelleft=False)
+                ax.spines["left"].set_visible(False)
 
     axes = np.array(g.axes)
 
@@ -831,14 +869,15 @@ def make_few_shot_delta_plot(data: pd.DataFrame, title: str, save_path: str = No
         label.set_rotation_mode('anchor')
 
     # # Task names to the left
-    max_task_len = max((len(str(t)) for t in tasks), default=0)
-    labelpad_left = 35 + max(0, (max_task_len - 10) * 3)
-    for row_idx, task_name in enumerate(tasks):
-        left_ax = axes[row_idx, 0]
-        left_ax.set_ylabel(task_name, rotation=0,
-                           labelpad=labelpad_left, va='center')
-        for cond in range(1, len(models)):
-            axes[row_idx, cond].set_ylabel("Δ F1")
+    if len(tasks) > 1:
+        max_task_len = max((len(str(t)) for t in tasks), default=0)
+        labelpad_left = 35 + max(0, (max_task_len - 10) * 3)
+        for row_idx, task_name in enumerate(tasks):
+            left_ax = axes[row_idx, 0]
+            left_ax.set_ylabel(task_name, rotation=0,
+                            labelpad=labelpad_left, va='center')
+            for cond in range(1, len(models)):
+                axes[row_idx, cond].set_ylabel("Δ F1")
 
     # Remove any subtitles/titles inside each subplot and the legend
     for ax in axes.flatten():
@@ -848,7 +887,8 @@ def make_few_shot_delta_plot(data: pd.DataFrame, title: str, save_path: str = No
 
     # Add overall title if provided and adjust layout
     if title:
-        g.fig.suptitle(title, fontsize=16, fontweight='semibold', color="#222222", y=0.98)
+        g.fig.suptitle(title, fontsize=16, fontweight='semibold',
+                       color="#222222", y=0.98)
         g.fig.tight_layout(rect=[0, 0, 1, 0.95])
     else:
         g.fig.tight_layout()
@@ -1004,7 +1044,7 @@ def make_few_shot_parallel_plot(
             marker='.',
             ax=ax,
             hue_order=models,
-            palette=color_map,
+            palette=model_color_map,
             linewidth=1.5,
         )
 
@@ -1021,7 +1061,7 @@ def make_few_shot_parallel_plot(
         if len(bert_value) > 0:
             ax.axhline(
                 y=bert_value[0],
-                color=color_map.get('bert-baseline', 'gray'),
+                color=model_color_map.get('bert-baseline', 'gray'),
                 linestyle='--',
                 linewidth=1.5,
                 label='bert-baseline'
@@ -1061,10 +1101,10 @@ def make_few_shot_parallel_plot(
                 x=x,
                 y=y,
                 s=100,
-                color=color_map.get(model, 'black'),
+                color=model_color_map.get(model, 'black'),
                 marker=rank_marker_map[rank],
                 zorder=10,
-                edgecolor=color_map.get(model, 'black')
+                edgecolor=model_color_map.get(model, 'black')
             )
             new_pos = (x,  y + 0.05)
 
@@ -1084,7 +1124,7 @@ def make_few_shot_parallel_plot(
 
     handles_lines = [
         plt.Line2D([0, 1], [0, 0],
-                   color=color_map.get(model, 'gray'),
+                   color=model_color_map.get(model, 'gray'),
                    linestyle='--' if model in texture_map else '-',
                    linewidth=2)
         for model in models + ['bert-baseline']
@@ -1114,7 +1154,8 @@ def make_few_shot_parallel_plot(
     for j in range(i + 1, len(axes)):
         fig.delaxes(axes[j])
 
-    fig.suptitle(title, fontsize=16, fontweight='semibold', color="#222222", y=0.98)
+    fig.suptitle(title, fontsize=16, fontweight='semibold',
+                 color="#222222", y=0.98)
     fig.tight_layout()
 
     if save_path:
@@ -1122,8 +1163,541 @@ def make_few_shot_parallel_plot(
         plt.close(fig)
     else:
         plt.show()
+
+
+def make_ner_zero_shot_bar_plot(
+        data: pd.DataFrame,
+        title: str,
+        save_path: str = None,
+        metrics: list[str] = ["f1 overall - strict", "f1 overall - partial", "f1_entity_type"]
+):
+    """ y axis metric, x axis models, metric grouped per model with error bars."""
+    # filter according to metrics
+    data = data[data['metric'].isin(metrics)]
+    rename_metrics = {
+        "f1_entity_type": "F1 Strict",
+        "f1 overall - strict": "F1 BIO - Strict",
+        "f1 overall - partial": "F1 BIO - Partial",
+        "precision overall - partial": "Precision BIO - Partial",
+        "precision overall - strict": "Precision BIO - Strict",
+        "precision_entity_type": "Precision Strict",
+        "recall overall - partial": "Recall BIO - Partial",
+        "recall overall - strict": "Recall BIO - Strict",
+        "recall_entity_type": "Recall Strict",
+    }
+
+    # Ensure we only keep models present in the global model_order and preserve that order
+    df = data.copy()
+    # rename metrics for better display
+    df['metric'] = df['metric'].replace(rename_metrics)
+    ordered_models = [m for m in model_order +
+                      ['biomedbert-abstract'] if m in df['model'].unique()]
+    # reorder data accordingly
+    df['model'] = pd.Categorical(
+        df['model'], categories=ordered_models, ordered=True)
+    df = df.sort_values(['model', 'metric']).reset_index(drop=True)
+    hue_order = [rename_metrics.get(m, m) for m in metrics]
+    
+    # make width dependent on number of metrics
+    n_metrics = len(hue_order)
+    plt.figure(figsize=(n_metrics * 2, 6))
+    # make color pallette based on metric_color_map
+    ax = sns.barplot(
+        data=df,
+        x="model",
+        y="mean",
+        hue="metric",
+        palette=[metric_color_map.get(m, 'gray') for m in hue_order],
+        order=ordered_models,
+        hue_order=hue_order,
+        dodge=True,
+    )
+
+    # iterate containers together with hue names so we can place CI errorbars aligned to bars
+    for container, metric in zip(ax.containers, hue_order):
+        metric_df = df[df['metric'] == metric].set_index('model')
+        for i, bar in enumerate(container):
+            model = ordered_models[i]
+            row = metric_df.loc[model]
+            x = bar.get_x() + bar.get_width() / 2
+            y = bar.get_height()
+            yerr_lower = float(row['mean']) - float(row['ci_lower'])
+            yerr_upper = float(row['ci_upper']) - float(row['mean'])
+            ax.errorbar(x, y, yerr=[[yerr_lower], [yerr_upper]],
+                        fmt='none', color='black', capsize=2)
+
+            # text at bottom of bar with mean value
+            # ax.text(
+            #         x, 0.02,s
+            #         f"{float(row['mean']):.2f}",
+            #         ha="center", va="center",
+            #         color="black",
+            #         fontsize=8, rotation=90, rotation_mode='anchor'
+            #     )
+    # set legend header to Metric
+    handles = [plt.Rectangle((0, 0), 1, 1, color=color)
+               for color in [metric_color_map.get(m, 'gray') for m in hue_order]]
+    labels = [rename_metrics.get(m, m) for m in hue_order]
+    ax.legend(handles, labels, title="Metric", loc="upper left",
+              ncol=3, bbox_to_anchor=(0.01, 0.99))
+    plt.title(title)
+    plt.xlabel("Model")
+    plt.ylabel("F1 Score")
+    # set y limit 0-1
+    ax.set(ylim=(0, 1))
+    ax.set_xticks(range(len(ordered_models)))
+    ax.set_xticklabels(ordered_models, rotation=45, ha="right")
+    plt.tight_layout()
+    if save_path:
+        plt.savefig(save_path, bbox_inches='tight')
+        plt.close()
+    else:
         plt.show()
 
+
+def make_ner_error_analysis_plot(data: pd.DataFrame, title: str, save_path: str = None):
+    """Make a stacked bar plot showing error types per model for NER."""
+    sns.set_style("darkgrid")
+
+    # Remove correct errors
+    data = data[data['error_type'] != 'correct'].copy()
+    data['error_type'] = data['error_type'].str.capitalize()
+
+    # Fixed error types and colors
+    error_types = ['Incorrect', 'Partial', 'Spurious', 'Missed']  # extend if needed
+    color_palette = sns.color_palette("colorblind", n_colors=len(error_types))
+    error_color_map = dict(zip(error_types, color_palette))
+
+    # Model order
+    all_models = data['model'].unique()
+    ordered_models = [m for m in model_order + ['biomedbert-abstract'] if m in all_models]
+
+    plt.figure(figsize=(12, 6))
+    bottoms = defaultdict(float)
+    width = 0.8  # total width for stacked bars
+
+    for error in error_types:
+        # Select subset for this error type, reindex to keep consistent order
+        subset = data[data["error_type"] == error].set_index("model").reindex(ordered_models).fillna(0)
+        counts = subset["count"].values
+
+        plt.bar(
+            ordered_models,
+            counts,
+            bottom=[bottoms[m] for m in ordered_models],
+            color=error_color_map[error],
+            width=width,
+            label=error,
+            edgecolor='white',  # subtle separation
+        )
+
+        # update stacking
+        for m, c in zip(ordered_models, counts):
+            bottoms[m] += c
+
+        # add count labels on each segment
+        for i, (m, c) in enumerate(zip(ordered_models, counts)):
+            if c > 0:
+                plt.text(
+                    i,
+                    bottoms[m] - c / 2,
+                    str(int(c)),
+                    ha="center",
+                    va="center",
+                    fontsize=9,
+                    color="black"
+                )
+
+    # Styling like few-shot variant
+    ax = plt.gca()
+    for spine in ["top", "right"]:
+        ax.spines[spine].set_visible(False)
+    ax.grid(axis="y", linestyle="--", alpha=0.5)
+    
+    plt.xticks(rotation=45, ha="right")
+    plt.xlabel("Model")
+    plt.ylabel("Number of Errors (# Entities)")
+    plt.title(title, fontsize=14, fontweight="semibold")
+    plt.legend(title="Error Type", bbox_to_anchor=(1.02, 1), loc="upper left", title_fontsize="small")
+    plt.tight_layout()
+
+    if save_path:
+        plt.savefig(save_path, bbox_inches="tight")
+        plt.close()
+    else:
+        plt.show()
+
+def make_ner_few_shot_error_analysis_plot(data: pd.DataFrame, title: str, save_path: str = None):
+    data = data[data["error_type"] != "correct"].copy()
+    data["error_type"] = data["error_type"].str.capitalize()
+
+    # Map conditions to consistent labels and order
+    cond_rename_map = {
+        "zero_shot": "0",
+        "selected_1shot": "1",
+        "selected_3shot": "3",
+        "selected_5shot": "5"
+    }
+    data["condition"] = data["condition"].replace(cond_rename_map)
+    condition_order = ["0", "1", "3", "5"]
+
+    # Fixed error type order and colors
+    error_types = ["Incorrect", "Partial", "Spurious", "Missed"]  # extend if you have more types
+    sns_palette = sns.color_palette("colorblind", n_colors=len(error_types))
+    error_color_map = dict(zip(error_types, sns_palette))
+
+    all_models = data["model"].unique().tolist()
+    ordered_models = [m for m in model_order + ['biomedbert-abstract'] if m in all_models]
+
+    plt.figure(figsize=(12, 7))
+    width = 0.18  # bar width per condition
+    x_positions = np.arange(len(ordered_models))
+
+    for c_idx, cond in enumerate(condition_order):
+        cond_data = data[data["condition"] == cond]
+        bottoms = defaultdict(float)
+        offset = (c_idx - (len(condition_order) - 1) / 2) * width
+
+        for error in error_types:
+            subset = cond_data[cond_data["error_type"] == error].set_index("model").reindex(ordered_models).fillna(0)
+            counts = subset["count"].values
+            plt.bar(
+                x_positions + offset,
+                counts,
+                bottom=[bottoms[m] for m in ordered_models],
+                color=error_color_map[error],
+                width=width,
+                label=error if c_idx == 0 else None,  # label once for legend
+                alpha=0.9,
+                linewidth=0.5,
+            )
+
+            # for i, (m, c) in enumerate(zip(ordered_models, counts)):
+            #     if c > 0:
+            #         plt.text(
+            #             i + offset,
+            #             bottoms[m] + c/2 - c,  # middle of this segment
+            #             str(int(c)),
+            #             ha="center",
+            #             va="center",
+            #             fontsize=9,
+            #             color="black"
+            #         )
+
+            # update stacking
+            for m, c in zip(ordered_models, counts):
+                bottoms[m] += c
+
+        # Add condition labels below bars
+        for i, model in enumerate(ordered_models):
+            plt.gca().text(
+                i + offset,
+                -0.5,  # slightly below x-axis
+                cond,
+                ha="center",
+                va="top",
+                fontsize=9,
+            )
+
+    plt.xticks(x_positions, ordered_models, rotation=45, ha="right")
+    plt.xlabel("Model")
+    plt.ylabel("Number of Errors (# Entities)")
+    plt.title(title, fontsize=14, fontweight="semibold")
+    plt.legend(title="Error Type", bbox_to_anchor=(1.02, 1), loc="upper left", title_fontsize="small")
+    plt.grid(axis="y", linestyle="--", alpha=0.5)
+    plt.tight_layout()
+
+    if save_path:
+        plt.savefig(save_path, bbox_inches="tight")
+        plt.close()
+    else:
+        plt.show()
+
+def make_ner_few_shot_parallel_plot(data: pd.DataFrame, title: str, save_path: str= None, metrics: list[str] = ["f1 overall - strict", "precision overall - strict", "recall overall - strict"]):
+    """ Plot few-shot NER performance across models and conditions with error bars."""
+    sns.set_style("darkgrid")
+    df = data.copy()
+    df['model'] = df['model'].apply(lambda x: 'bert-baseline' if 'bert' in x.lower() else x)
+
+    rename_map = {
+        'zero_shot': '0', 
+        'selected_1shot': '1', 
+        'selected_3shot': '3', 
+        'selected_5shot': '5',
+    }
+    df['condition'] = df['condition'].replace(rename_map)
+    metric_rename_map = {'f1 overall - strict': 'F1 BIO - strict',
+        'precision overall - strict': 'Precision BIO - strict',
+        'recall overall - strict': 'Recall BIO - strict'}
+    # rename columns according to rename_map
+    df = df.rename(columns=metric_rename_map)
+    metrics = [metric_rename_map[m] for m in metrics]
+    
+    condition_order = ['0', '1', '3', '5']
+
+
+    bert_df = df[(df['model'] == 'bert-baseline') & (df['condition'] == '0')]
+    bert_metrics = {metric: bert_df[metric].iloc[0] for metric in metrics}
+
+    df = df[~df['model'].isin(['tuned', 'bert-baseline'])]
+    
+    # Establish model and condition order for plotting
+    models = [m for m in model_order if m in df['model'].unique()]
+    df['model'] = pd.Categorical(df['model'], categories=models, ordered=True)
+    df['condition'] = pd.Categorical(df['condition'], categories=condition_order, ordered=True)
+    df = df.sort_values(['model', 'condition'])
+
+    # Layout: roughly square grid
+    ncols = len(metrics)
+    fig, axes = plt.subplots(nrows=1, ncols=ncols, figsize=(5 * ncols, 4), sharey=False)
+    axes = np.array(axes).flatten()
+
+    for i, metric in enumerate(metrics):
+        ax = axes[i]
+        # Plot the main lines
+        sns.lineplot(
+            data=df,
+            x='condition',
+            y=metric,
+            hue='model',
+            marker='.',
+            ax=ax,
+            hue_order=models,
+            palette=model_color_map,
+            linewidth=1.5,
+        )
+
+        # Apply linestyles according to texture_map
+        for line, model in zip(ax.get_lines(), models):
+            if model in texture_map:
+                line.set_linestyle('--')
+            else:
+                line.set_linestyle('-')
+
+        # Add bert-baseline as a horizontal reference line        
+        ax.axhline(
+            y=bert_metrics[metric],
+            color=model_color_map.get('bert-baseline', 'gray'),
+            linestyle='--',
+            linewidth=1.5,
+            label='bert-baseline'
+        )
+        ax.set_ylim(0, 1)
+        # set y label to metric
+        ax.set_ylabel(metric)
+        ax.set_xlabel("")
+        ax.legend().remove()
+
+    rank_marker_map = {1: '*', 2: '^', 3: 'v'}
+
+    for i, metric in enumerate(metrics):
+        ax = axes[i]
+        rank_df = pd.concat([
+            df[['model', 'condition', metric]],
+            bert_df[['model', 'condition', metric]] if metric in bert_metrics else pd.DataFrame()
+        ]).dropna(subset=[metric])
+
+        top3 = rank_df.nlargest(3, metric)
+        previous_pos = [(0, 0)]
+        for rank, (_, row) in enumerate(top3.iterrows(), start=1):
+            x = condition_order.index(row['condition'])
+            y = row[metric]
+            model = row['model']
+
+            ax.scatter(
+                x=x,
+                y=y,
+                s=100,
+                color=model_color_map.get(model, 'black'),
+                marker=rank_marker_map[rank],
+                zorder=10,
+                edgecolor=model_color_map.get(model, 'black')
+            )
+            new_pos = (x,  y + 0.05)
+
+            # if the new position (x any y) is too close to the previous, put number below
+            for prev in previous_pos:
+                if abs(new_pos[0] - prev[0]) < 0.5 and abs(new_pos[1] - prev[1]) < 0.5:
+                    new_pos = (x, y - 0.12)
+
+            ax.text(
+                new_pos[0], new_pos[1],
+                f"{y:.2f}",
+                ha='center',
+                color='black',
+                fontsize=10,
+            )
+            previous_pos.append(new_pos)
+
+    handles_lines = [
+        plt.Line2D([0, 1], [0, 0],
+                   color=model_color_map.get(model, 'gray'),
+                   linestyle='--' if model in texture_map else '-',
+                   linewidth=2)
+        for model in models + ['bert-baseline']
+    ]
+    labels_lines = models + ['bert-baseline']
+
+    handles_markers = [
+        plt.Line2D([0], [0], color='white', marker=rank_marker_map[rank],
+                   markeredgecolor='black', markersize=10, linestyle='None')
+        for rank in [1, 2, 3]
+    ]
+    labels_markers = ['1st', '2nd', '3rd']
+    # place legend centered below the plot, spread into 4 columns
+    fig.legend(
+        handles=handles_lines + handles_markers,
+        labels=labels_lines + labels_markers,
+        title="Models & Top Ranking",
+        loc='lower center',
+        bbox_to_anchor=(0.5, -0.35),
+        ncol=4,
+        handlelength=2.5,
+        columnspacing=1.0,
+    )
+
+    # Remove empty axes if any
+    for j in range(i + 1, len(axes)):
+        fig.delaxes(axes[j])
+
+    fig.suptitle(title, fontsize=16, fontweight='semibold',
+                 color="#222222", y=0.98)
+    fig.tight_layout()
+
+    if save_path:
+        fig.savefig(save_path, bbox_inches='tight')
+        plt.close(fig)
+    else:
+        plt.show()
+
+
+def make_ift_class_performance_plot(data: pd.DataFrame, best_model: pd.DataFrame):
+    """Vertical bar plots per task in a fixed grid (4 columns x 5 rows).
+    Each subplot: x = model (vertical bars), y = f1-weighted.
+    Best-model condition is annotated inside the corresponding bar.
+    """
+    combined = pd.concat([
+        data.assign(source="IFT/Baseline"),
+        best_model.assign(source="Best")
+    ], ignore_index=True)
+
+    tasks = sorted(combined["task"].unique())
+    n_tasks = len(tasks)
+
+    # fixed grid 4 cols x 5 rows
+    ncols = 5
+    nrows = 4
+    fig, axes = plt.subplots(nrows=nrows, ncols=ncols,
+                             figsize=(5 * ncols, 4 * nrows),
+                             sharey=False)
+    axes = axes.flatten()
+
+    default_palette = sns.color_palette("tab10")
+    for i, task in enumerate(tasks):
+        ax = axes[i]
+        subset = combined[combined["task"] == task].copy()
+
+        # determine an ordered model list that respects global model_order first
+        unique_models = list(subset['model'].unique())
+
+        # prepare palette for the models in this subset
+        palette = [model_color_map.get(m, default_palette[idx % len(default_palette)])
+                   for idx, m in enumerate(unique_models)]
+        best_model_name = best_model[best_model['task'] == task]['model'].iloc[0] if not best_model[best_model['task'] == task].empty else None
+        fixed_order = [
+            'bert-baseline',
+            'Llama-3.1-8B-Instruct-IFT',
+            'Llama-3.1-8B-Instruct'
+        ]
+        plot_order = []
+        if best_model_name:
+            plot_order.append(best_model_name)
+        # Add the rest, ensuring no duplicates and that they exist in the subset
+        for model in fixed_order:
+            if model != best_model_name and model in subset['model'].values:
+                plot_order.append(model)
+        
+
+
+        # vertical barplot: x=model, y=f1-weighted
+        sns.barplot(
+            data=subset,
+            x="model",
+            y="f1-weighted",
+            order=plot_order,
+            palette=palette,
+            ax=ax,
+            errorbar=None,
+        )
+
+        # rotate x labels for readability
+        ax.set_xticklabels(unique_models, rotation=45, ha="right", fontsize=9)
+
+        # annotate numeric F1 values above each bar and optionally the condition inside best bars
+        metric_by_model = subset.set_index('model')['f1-weighted'].to_dict()
+        best_subset = best_model[best_model["task"] == task]
+
+        # iterate over bars (patches) which correspond to ordered_models
+        for idx, patch in enumerate(ax.patches):
+            model = plot_order[idx]
+            value = float(metric_by_model.get(model, 0.0))
+            x_center = patch.get_x() + patch.get_width() / 2
+            y_top = patch.get_height()
+
+            # numeric label above bar
+            ax.text(x_center, y_top + 0.01, f"{value:.2f}",
+                    ha="center", va="bottom", fontsize=9, color="black")
+
+        # annotate the condition for best models inside their bars (centered)
+        for _, bm in best_subset.iterrows():
+            mname = bm["model"]
+            if mname in plot_order:
+                idx_model = plot_order.index(mname)
+                # try to get corresponding patch
+                try:
+                    patch = ax.patches[idx_model]
+                except IndexError:
+                    continue
+                x_center = patch.get_x() + patch.get_width() / 2
+                y_center = patch.get_height() / 2
+                cond_text = str(bm.get("condition", "")).replace("selected_", "").replace("_", "-")
+                # choose text color for contrast
+                text_color = "white" if patch.get_height() > 0.5 else "black"
+                ax.text(x_center, y_center, cond_text,
+                        ha="center", va="center",
+                        color=text_color, fontsize=9, fontweight="bold")
+
+        ax.set_title(task.replace("_", " ").title(), fontsize=12)
+        ax.set_xlabel("")
+        # remove x axis ticker
+        ax.set_xticks([])
+        ax.set_ylabel("")
+        ax.set_ylim(0, 1)
+        ax.grid(axis="y", linestyle="--", alpha=0.4)
+
+    # Remove any extra (unused) axes
+    for j in range(n_tasks, len(axes)):
+        fig.delaxes(axes[j])
+
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.94, bottom=0.06)
+    fig.suptitle("IFT Class-wise Model Performance (with Best Models)", fontsize=16, fontweight="bold")
+
+    # Legend for present models (preserve order as appeared in combined)
+    present_models = []
+    for m in model_order:
+        if m in combined['model'].unique():
+            present_models.append(m)
+    # add any remaining models that are not in model_order
+    present_models += [m for m in combined['model'].unique() if m not in present_models]
+
+    handles = [plt.Rectangle((0, 0), 1, 1, color=model_color_map.get(m, '#cccccc')) for m in present_models]
+    fig.legend(handles, present_models, title="Model", loc="lower center", ncol=min(6, len(present_models)))
+
+    plt.show()
+
+
+  
 
 if __name__ == "__main__":
     # data = [[1, 0, 1, 0, 1],

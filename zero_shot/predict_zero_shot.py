@@ -689,6 +689,7 @@ def main():
     ]
     big_models = [
         "/data/vebern/ma-models/MeLLaMA-70B-chat",
+        "meta-llama/Llama-2-70b-chat-hf",
     ]
 
     fine_tuned_models = [

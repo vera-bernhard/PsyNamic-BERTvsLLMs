@@ -9,7 +9,7 @@ from sklearn.metrics import (
     accuracy_score, f1_score, precision_score, recall_score, precision_recall_curve)
 import math
 
-from evaluation.evaluate import evaluate_ner_extraction, evaluate_ner_bio, bootstrap_metrics
+from evaluation.evaluate import evaluate_ner_extraction, evaluate_ner_bio, bootstrap_metrics, ner_error_analysis
 from evaluation.evaluate_zero_shot import get_ner_predictions_and_labels
 
 
@@ -537,6 +537,7 @@ def get_best_class_scores(directory: str, metric: str = 'F1', best_strategy: str
 
 def collect_ner_metrics(prediction_dir: str) -> None:
     model_performance = []
+    model_error_analysis = {}
     for filename in os.listdir(prediction_dir):
         if filename.endswith("formatted.csv"):
             model = filename.split("_")[0]
@@ -548,6 +549,7 @@ def collect_ner_metrics(prediction_dir: str) -> None:
             r = bootstrap_metrics(evaluate_ner_extraction,
                               pred_entities, true_entities)
             r_bio = bootstrap_metrics(evaluate_ner_bio, pred_bio, true_bio)
+            e = ner_error_analysis(pred_bio, true_bio)
             # merge two dicts
             r.update(r_bio)
             for metric in r:
@@ -558,9 +560,12 @@ def collect_ner_metrics(prediction_dir: str) -> None:
                     "CI Lower": r[metric]['lower'],
                     "CI Upper": r[metric]['upper'],
                 })
+            model_error_analysis[model] = e
     df = pd.DataFrame(model_performance)
     # write into parents directory
     df.to_csv(os.path.join(os.path.dirname(prediction_dir), "ner_performance.csv"), index=False)
+    with open(os.path.join(os.path.dirname(prediction_dir), "ner_error_analysis.json"), "w") as f:
+        json.dump(model_error_analysis, f, indent=4)
 
 
 def main():
