@@ -110,41 +110,29 @@ pred_ids = np.argmax(pred_logits, axis=-1)
 
 # map predictions back to word-level labels using tokenizer.word_ids per example
 pred_labels = []
-for i, example in enumerate(df_test["tokens"].tolist()):
-    # re-tokenize single example to get word_ids
-    enc = tokenizer(
-        example,
-        is_split_into_words=True,
-        truncation=True,
-        max_length=args.max_length,
-    )
-    word_ids = enc.word_ids()
+for i in range(len(tokenized_test)):
+    word_ids = tokenized_test[i].word_ids()
     preds = []
-    for pid, wid in zip(pred_ids[i], word_ids):
-        if wid is None:
-            continue
-        # collect only first token of each word: detect word boundary by change in wid
-        # we will track previous wid
-        # but simpler: only append when the current token is first token of word
-        # detect first token: previous wid != wid
-        pass
-    # implement first-token selection properly
     prev_wid = None
     for pid, wid in zip(pred_ids[i], word_ids):
         if wid is None:
-            prev_wid = None
             continue
         if wid != prev_wid:
             preds.append(id2label[int(pid)])
         prev_wid = wid
     pred_labels.append(preds)
 
+    gold_len = len(df_test["tokens"][i])
+    if gold_len != len(preds):
+       print(f"Row {i} has mismatched lengths: gold({gold_len}) vs pred({len(preds)})")
+
 out_df = pd.DataFrame({
-    "id": df_test["id"].tolist() if "id" in df_test.columns else list(range(len(df_test))),
+    "id": df_test["id"].tolist(),
     "tokens": df_test["tokens"].apply(str).tolist(),
     "pred_labels": [str(p) for p in pred_labels],
     "ner_tags": df_test["ner_tags"].tolist(),
 })
+
 
 os.makedirs(args.model_dir, exist_ok=True)
 out_path = os.path.join(args.model_dir, "test_predictions.csv")
