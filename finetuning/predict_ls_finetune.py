@@ -13,7 +13,7 @@ from transformers import (
     set_seed,
 )
 from billm import LlamaForTokenClassification
-from peft import PeftModel
+from peft import PeftModel, PeftConfig
 from evaluation.evaluate import evaluate_ner_bio  # not used but keeps parity
 # disable wandb integration during prediction
 os.environ["WANDB_MODE"] = "offline"
@@ -37,7 +37,7 @@ label2id = {v: k for k, v in int_to_label.items()}
 id2label = {k: v for k, v in int_to_label.items()}
 
 # load test csv (same loader as in ls_fine_tune.py)
-df_test = pd.read_csv(os.path.join(args.data_dir, "test.csv"))
+df_test = pd.read_csv(os.path.join(args.data_dir, "val.csv"))
 df_test["tokens"] = df_test["tokens"].apply(eval)
 
 print("Loading tokenizer...")
@@ -47,16 +47,20 @@ if tokenizer.pad_token is None:
 
 # load model: try full model first, then try PEFT adapter on top of base
 # 1) try loading full model from model_dir
+peft_config = PeftConfig.from_pretrained(args.model_dir)
 
 base = LlamaForTokenClassification.from_pretrained(
-    args.model_name_or_path,
+    peft_config.base_model_name_or_path,
     num_labels=len(label2id),
     id2label={k: v for k, v in id2label.items()},
     label2id=label2id,
     low_cpu_mem_usage=False,
 )
-model = PeftModel.from_pretrained(base, args.model_dir, is_trainable=False)
-print("Loaded base model and PEFT adapter from", args.model_dir)
+test_text = "This is a test input"
+inputs = tokenizer(test_text, return_tensors="pt") 
+model = PeftModel.from_pretrained(base, args.model_dir)
+model = model.merge_and_unload()
+print(model.peft_config)
 
 model.to(device)
 model.eval()
@@ -92,7 +96,8 @@ for i, row in df_test.iterrows():
     df_test.at[i, "pred_labels"] = str(preds)
     df_test.at[i, "bert_tokens"] = str(bert_tokens)
     df_test.at[i, "bert_ner_tags"] = str([id2label[int(pid)] for pid in pred_ids])
+    df_test.at[i, "word_ids"] = str(word_ids)
 
     
-out_path = os.path.join(args.model_dir, "test_predictions.csv")
+out_path = os.path.join(args.model_dir, "val_predictions.csv")
 df_test.to_csv(out_path, index=False)
