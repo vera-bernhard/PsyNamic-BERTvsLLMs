@@ -37,7 +37,7 @@ label2id = {v: k for k, v in int_to_label.items()}
 id2label = {k: v for k, v in int_to_label.items()}
 
 # load test csv (same loader as in ls_fine_tune.py)
-df_test = pd.read_csv(os.path.join(args.data_dir, "val.csv"))
+df_test = pd.read_csv(os.path.join(args.data_dir, "test.csv"))
 df_test["tokens"] = df_test["tokens"].apply(eval)
 
 print("Loading tokenizer...")
@@ -99,5 +99,5 @@ for i, row in df_test.iterrows():
     df_test.at[i, "word_ids"] = str(word_ids)
 
     
-out_path = os.path.join(args.model_dir, "val_predictions.csv")
+out_path = os.path.join(args.model_dir, "test_predictions.csv")
 df_test.to_csv(out_path, index=False)
