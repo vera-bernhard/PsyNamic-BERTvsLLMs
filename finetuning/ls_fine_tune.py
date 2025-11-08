@@ -1,6 +1,7 @@
 import argparse
 import json
 import pandas as pd
+from ast import literal_eval
 from datasets import Dataset, DatasetDict
 from transformers import (
     AutoTokenizer,
@@ -18,7 +19,7 @@ import os
 from huggingface_hub import login
 from dotenv import load_dotenv
 import torch
-from evaluation.evaluate import evaluate_ner_bio
+from nervaluate import Evaluator
 
 
 
@@ -47,12 +48,12 @@ parser.add_argument("--epochs", type=int, default=5)
 parser.add_argument("--batch_size", type=int, default=4)
 parser.add_argument("--learning_rate", type=float, default=1e-4)
 parser.add_argument("--weight_decay", type=float, default=0.01)
-parser.add_argument("--max_length", type=int, default=800)
+parser.add_argument("--max_length", type=int, default=1200)
 parser.add_argument("--lora_r", type=int, default=32)
 parser.add_argument("--lora_alpha", type=int, default=32)
 parser.add_argument("--lora_dropout", type=float, default=0.1)
 parser.add_argument("--output_dir", type=str,
-                    default=os.path.join(os.path.dirname(__file__), "lst_llama3_8b"))
+                    default=os.path.join(os.path.dirname(__file__), "lst_llama3_8b_2.0"))
 
 args = parser.parse_args()
 
@@ -72,6 +73,7 @@ def load_split(split_name):
     df = pd.read_csv(f"{args.data_dir}/{split_name}.csv")
     df["tokens"] = df["tokens"].apply(eval)
     df["ner_tags"] = df["ner_tags"].apply(eval)
+    df = df.drop(columns=["bert_tokens", "word_ids", "bert_ner_tags"], errors='ignore')
     return Dataset.from_pandas(df)
 
 
@@ -126,8 +128,10 @@ def tokenize_and_align_labels(examples):
     )
 
     labels = []
+    word_ids_all = []
     for i, label in enumerate(examples["ner_tags"]):
         word_ids = tokenized_inputs.word_ids(batch_index=i)
+        word_ids_all.append(word_ids)
         previous_word_idx = None
         label_ids = []
         for word_idx in word_ids:
@@ -141,10 +145,28 @@ def tokenize_and_align_labels(examples):
         labels.append(label_ids)
 
     tokenized_inputs["labels"] = labels
+    tokenized_inputs["word_ids"] = word_ids_all
     return tokenized_inputs
 
 
 tokenized_ds = ds.map(tokenize_and_align_labels, batched=True)
+# some stats on whole long the dataset tokenized labels
+print("Tokenized dataset label lengths stats:")
+all_label_lengths = []
+for i in range(len(tokenized_ds["train"])):
+    all_label_lengths.append(len(tokenized_ds["train"][i]["labels"]))
+print(f"Average length: {np.mean(all_label_lengths)}")
+print(f"Max length: {np.max(all_label_lengths)}")
+print(f"Min length: {np.min(all_label_lengths)}")
+
+# for test too
+all_label_lengths_test = []
+for i in range(len(tokenized_ds["test"])):
+    all_label_lengths_test.append(len(tokenized_ds["test"][i]["labels"]))
+print(f"Average length: {np.mean(all_label_lengths_test)}")
+print(f"Max length: {np.max(all_label_lengths_test)}")
+print(f"Min length: {np.min(all_label_lengths_test)}")
+
 data_collator = DataCollatorForTokenClassification(tokenizer=tokenizer)
 
 # Look at some tokenized labels to check for invalid values
@@ -166,7 +188,15 @@ def compute_metrics(p):
         for pred_row, label_row in zip(predictions, labels)
     ]
 
-    return evaluate_ner_bio(true_predictions, true_labels)
+    # Based on nervaluate 0.2.0 because that is only supported with Python 3.9
+    evaluator = Evaluator(true=true_labels, pred=true_predictions, tags=['Application area', 'Dosage'], loader='list')
+    results, resultsagg, _, _ = evaluator.evaluate()
+    r = {
+        'f1 overall - strict': results['strict']['f1'],
+        'f1 overall - partial': results['partial']['f1'],
+    }
+
+    return r
 
 
 training_args = TrainingArguments(
@@ -177,8 +207,6 @@ training_args = TrainingArguments(
     num_train_epochs=args.epochs,
     weight_decay=args.weight_decay,
     evaluation_strategy="epoch",
-    # eval_strategy="steps",
-    # eval_steps=20,
     save_strategy="epoch",
     # save_strategy="steps",
     # save_steps=20,
@@ -202,37 +230,50 @@ trainer = Trainer(
 
 print("Starting fine-tuning...")
 trainer.train()
-
-
 os.makedirs(args.output_dir, exist_ok=True)
 
 # save best model
 print("Saving best model...")
+print("Best model checkpoint:", trainer.state.best_model_checkpoint)
+
 trainer.save_model(args.output_dir)
 
 print("Evaluating best model and predicting on test set...")
 pred_output = trainer.predict(tokenized_ds["test"])
-metrics = pred_output.metrics
-# save metrics to a json file
-with open(f"{args.output_dir}/test_metrics.json", "w") as f:
-    json.dump(metrics, f)
+pred_logits = pred_output.predictions
+pred_ids = np.argmax(pred_logits, axis=-1)
 
-predictions = np.argmax(pred_output.predictions, axis=2)
-test_labels = pred_output.label_ids
+pred_labels = []
+for i in range(len(tokenized_ds["test"])):
+    word_ids = tokenized_ds["test"][i]['word_ids']
+    preds = []
+    prev_wid = None
+    for pid, wid in zip(pred_ids[i], word_ids):
+        if wid is None:
+            continue
+        if wid != prev_wid:
+            preds.append(id2label[int(pid)])
+        prev_wid = wid
+    pred_labels.append(preds)
 
+# original tokens
 test_tokens = ds["test"]["tokens"]
-test_ids = ds["test"]["id"] if "id" in ds["test"].column_names else list(range(len(test_tokens)))
-pred_labels = [
-    [id2label[p] for (p, l) in zip(pred_row, label_row) if l != -100]
-    for pred_row, label_row in zip(predictions, test_labels)
-]
+test_ids = ds["test"]["id"]
+text = ds["test"]["text"]
+ner_tags = ds["test"]["ner_tags"]
+
+# Check if ner_tags length matches pred_labels length
+for i in range(len(ner_tags)):
+    if len(ner_tags[i]) != len(pred_labels[i]):
+        print(f"Example {i} has mismatched lengths: gold({len(ner_tags[i])}) vs pred({len(pred_labels[i])})")
 
 df_pred = pd.DataFrame({
     "id": test_ids,
-    "tokens": [str(toks) for toks in test_tokens],
-    "pred_labels": [str(labels) for labels in pred_labels],
+    "tokens": test_tokens,
+    "pred_labels": pred_labels,
+    "text": text,
+    "ner_tags": ner_tags
 })
 df_pred.to_csv(f"{args.output_dir}/test_predictions.csv", index=False)
-print(f"Predictions saved to {args.output_dir}/test_predictions.csv")
 
 wandb.finish()
