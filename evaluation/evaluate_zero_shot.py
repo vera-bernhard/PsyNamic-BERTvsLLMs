@@ -362,12 +362,12 @@ def main():
     PREDICTION_DIR = 'zero_shot'
 
     # Parse & evaluate class predictions
-    parse_all_class_predictions(TASKS, PREDICTION_DIR)
-    evaluate_all_class_tasks(TASKS, PREDICTION_DIR)
+    # parse_all_class_predictions(TASKS, PREDICTION_DIR)
+    # evaluate_all_class_tasks(TASKS, PREDICTION_DIR)
 
-    # Parse & evaluate NER predictions
-    parse_all_ner_predictions(PREDICTION_DIR, reparse=False)
-    evaluate_all_ner(PREDICTION_DIR, reevaluate=False)
+    # # Parse & evaluate NER predictions
+    # parse_all_ner_predictions(PREDICTION_DIR, reparse=False)
+    # evaluate_all_ner(PREDICTION_DIR, reevaluate=False)
     add_bert_performance_data('ner', os.path.join(
         PREDICTION_DIR, 'ner', 'performance_reports.json'))
     ner_df, ner_df_errors = overall_ner_performance(
@@ -382,7 +382,6 @@ def main():
                                  save_path='zero_shot/ner/overall_ner_error_analysis.png')
 
     df_performance = overall_class_performance(TASKS, PREDICTION_DIR)
-    # print(df_performance)
     make_performance_box_plot(df_performance, 'Zero-Shot Performance Across Tasks',
                               save_path='zero_shot/overall_performance_boxplot.png')
     make_performance_spider_plot(df_performance, 'Zero-Shot Performance Across Tasks',
@@ -393,15 +392,6 @@ def main():
         'model')['performance'].mean().reset_index()
     make_simple_performance_plot(
         averaged_performance, 'zero_shot/overall_performance.png')
-
-    add_bert_performance_data('ner', os.path.join(
-        PREDICTION_DIR, 'ner', 'performance_reports.json'))
-    df_ner_performance = overall_ner_performance(
-        PREDICTION_DIR, ['f1 overall - strict', 'f1 overall - partial', 'f1_entity_type'])
-    print(df_ner_performance)
-    make_performance_plot(
-        df_ner_performance, 'NER', save_path='zero_shot/ner/overall_ner_performance.png')
-
 
 if __name__ == "__main__":
     main()
