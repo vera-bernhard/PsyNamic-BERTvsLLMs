@@ -142,7 +142,7 @@ def abstract_length_distribution(task: str):
     ax.legend(title="Split")
     plt.tight_layout()
     save_path = os.path.join(PLOT_DIR, f"{task_lower}_abstract_length_distribution.png")
-    plt.savefig(save_path, bbox_inches='tight')
+    plt.savefig(save_path, bbox_inches='tight', dpi=300)
     plt.close(fig)
 
 
@@ -158,13 +158,13 @@ def overall_length_distribution(task: str = 'ner_bio'):
     # report 90th percentile of lengths
     lengths = [len(tokens) for tokens in all_texts]
     p90 = np.percentile(lengths, 90)
-    print(f"Overall NER Abstract Length 90th Percentile: {p90}")
+    print(f"Overall NER Titel+Abstract Length 90th Percentile: {p90}")
     fig, ax = plt.subplots(figsize=(10, 6))
-    plot_length_histogram(all_texts, title="Overall NER Abstract Length Distribution", ax=ax)
-    ax.set_title("Overall NER Abstract Length Distribution")
+    plot_length_histogram(all_texts, title='', ax=ax)
+    ax.set_title("Overall Titel+Abstract Length Distribution")
     plt.tight_layout()
     save_path = os.path.join(PLOT_DIR, "ner_overall_length_distribution.png")
-    plt.savefig(save_path, bbox_inches='tight')
+    plt.savefig(save_path, bbox_inches='tight', dpi=300)
     plt.close(fig)
 
 
@@ -272,7 +272,7 @@ def plot_ner_tag_distribution(ner_bio_tags: list[list[str]], title: str, save_na
     ax.grid(axis='y')
     plt.tight_layout()
     save_path = os.path.join(PLOT_DIR, save_name)
-    plt.savefig(save_path, bbox_inches='tight')
+    plt.savefig(save_path, bbox_inches='tight', dpi=300)
     plt.close(fig)
 
 
@@ -323,5 +323,5 @@ if __name__ == "__main__":
     # Overall NER analysis
     plot_ner_tag_distribution(overall_ner_data, "NER BIO Tag Distribution - Overall", "ner_overall_bio_tag_distribution.png")
     print("Overall NER stats:", get_ner_stats(overall_ner_data))
-    overall_length_distribution('application_form')
+    overall_length_distribution('ner_bio')
     check_ner_duplicates()
