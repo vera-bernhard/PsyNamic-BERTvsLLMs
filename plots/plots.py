@@ -250,6 +250,7 @@ def make_simple_performance_plot(data: pd.DataFrame, save_path: str = None) -> N
         data=df,
         palette=[model_colors[model] for model in df['model']],
         ax=ax,
+        hue="model",
         errorbar=None,
         orient="h"
     )
@@ -488,22 +489,20 @@ def plot_label_distribution(
     labels_encoded: Union[list[list[int]], list[int]],
     id2label: dict,
     title: str,
-    ax: Axes = None
+    ax: plt.Axes = None,
+    save_path: str = None
 ) -> None:
-    """Plot the distribution of labels in a dataset. Labels encoded are either one-hot encoded (list of lists) or single-label encoded (list of integers).
-    """
-    # Flatten labels for multilabel one-hot, or use directly for single-label id encoding
+    """Plot the distribution of labels in a dataset. Labels encoded are either one-hot encoded (list of lists) or single-label encoded (list of integers)."""
+
     if isinstance(labels_encoded[0], list):
         flat_labels = []
         for sublist in labels_encoded:
-            flat_labels.extend(
-                [i for i, val in enumerate(sublist) if val == 1])
+            flat_labels.extend([i for i, val in enumerate(sublist) if val == 1])
     else:
         flat_labels = labels_encoded
 
     all_label_ids = sorted(id2label.keys())
-    label_counts = pd.Series(flat_labels).value_counts().reindex(
-        all_label_ids, fill_value=0)
+    label_counts = pd.Series(flat_labels).value_counts().reindex(all_label_ids, fill_value=0)
     label_names = [id2label[i] for i in all_label_ids]
 
     fig = None
@@ -513,28 +512,35 @@ def plot_label_distribution(
     sns.barplot(
         x=label_names,
         y=label_counts.values,
+        palette=sns.color_palette("colorblind", n_colors=len(label_names)),
+        ax=ax,
         hue=label_names,
-        ax=ax
+        legend=False
     )
-    ax.yaxis.set_major_locator(mticker.MaxNLocator(integer=True))
+
+    ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True))
     for p in ax.patches:
+        x = p.get_x() + p.get_width() / 2.0
+        y = p.get_y() + p.get_height() / 2.0
         ax.annotate(f'{int(p.get_height())}',
-                    (p.get_x() + p.get_width() / 2., p.get_height()),
-                    ha='center', va='bottom', fontsize=10, color='black')
+                    (x, y),
+                    ha='center', va='center', fontsize=10, color='black', clip_on=False)
 
     ax.set_title(title)
-    ax.set_xlabel("Labels")
+    ax.set_xlabel("")
     ax.set_ylabel("Count")
-    plt.xticks(rotation=45)
+    ax.tick_params(axis='x', rotation=45)
 
     if fig is not None:
-        plt.show()
-
+        if save_path:
+            plt.savefig(save_path, bbox_inches='tight')
+            plt.close()
+        else:
+            plt.show()
 
 def plot_length_histogram(data: list[str], title: str, ax: Axes = None, label: str = None, stats_pos: float = 0.95) -> None:
     """Plot a histogram of the lengths of strings in the data, with mean and min/max annotated."""
-    nlp = spacy.load("en_core_web_sm")
-    lengths = [len(nlp(item)) for item in data]
+    lengths = [len(item) for item in data]
 
     mean_length = int(np.mean(lengths))
     min_length = int(np.min(lengths))
@@ -551,7 +557,10 @@ def plot_length_histogram(data: list[str], title: str, ax: Axes = None, label: s
         ax.set_title(title)
 
     # Add a text box with stats for each split, offset vertically
-    stats_text = f"{label} stats:\nMean: {mean_length}\nMin: {min_length}\nMax: {max_length}"
+    if label:
+        stats_text = f"{label} stats:\nMean: {mean_length}\nMin: {min_length}\nMax: {max_length}"
+    else:
+        stats_text = f"Mean: {mean_length}\nMin: {min_length}\nMax: {max_length}"
     ax.text(0.98, stats_pos, stats_text, transform=ax.transAxes,
             fontsize=12, verticalalignment='top', horizontalalignment='right',
             bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="gray", alpha=0.7))
