@@ -651,7 +651,7 @@ def main():
             few_shot_strategy=args.few_shot_strategy,
             skip_with_other_date=args.skip_with_other_date,
         )
-    elif args.task == "ner":
+    elif args.task.lower() == "ner":
         make_ner_predictions(
             model_name=args.model,
             batch_size=args.batch_size,
