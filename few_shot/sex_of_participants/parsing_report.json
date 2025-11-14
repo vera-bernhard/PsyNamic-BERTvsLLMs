@@ -106,5 +106,9 @@
     "few_shot/sex_of_participants/sex_of_participants_5shot_selected_gemma-3-27b-it_06-11-06.csv": {
         "nr_faulty_parsable": 0,
         "nr_non_parsable": 0
+    },
+    "few_shot/sex_of_participants/sex_of_participants_3shot_selected_gemma-3-27b-it_14-11-14.csv": {
+        "nr_faulty_parsable": 0,
+        "nr_non_parsable": 0
     }
 }

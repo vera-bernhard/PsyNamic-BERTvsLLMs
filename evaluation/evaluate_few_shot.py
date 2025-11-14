@@ -232,18 +232,18 @@ def evaluate_all_ner_tasks(prediction_dir: str, reevaluate: bool = False):
 
 def main():
     PREDICTION_DIR = 'few_shot'
-    # parse_all_class_predictions(TASKS, PREDICTION_DIR, reparse=False)
-    # evaluate_all_class_tasks(TASKS, PREDICTION_DIR, reevaluate=False)
+    parse_all_class_predictions(TASKS, PREDICTION_DIR, reparse=False)
+    evaluate_all_class_tasks(TASKS, PREDICTION_DIR, reevaluate=False)
 
-    # parse_all_ner_predictions(PREDICTION_DIR, reparse=False)
-    # evaluate_all_ner_tasks(PREDICTION_DIR, reevaluate=False)
+    parse_all_ner_predictions(PREDICTION_DIR, reparse=False)
+    evaluate_all_ner_tasks(PREDICTION_DIR, reevaluate=False)
     all_ner, all_error = overall_ner_performance(PREDICTION_DIR)
     make_ner_few_shot_parallel_plot(all_ner, 'In-context Learning Performance across Models and Conditions', 'few_shot/overall_ner_parallel_plot.png')
     all_ner['task'] = 'NER'
-    # make_few_shot_delta_plot(all_ner, 'Relative Improvement Δ F1 BIO - strict for 1-, 3-, 5-shot over Zero-Shot for NER',
-    #                          'few_shot/overall_ner_relative_delta_plot.png', metric = 'f1 overall - strict')
-    # make_ner_few_shot_error_analysis_plot(all_error, title='In-context Learning NER - Error Analysis',
-    #                              save_path='few_shot/overall_ner_error_analysis.png')
+    make_few_shot_delta_plot(all_ner, 'Relative Improvement Δ F1 BIO - strict for 1-, 3-, 5-shot over Zero-Shot for NER',
+                             'few_shot/overall_ner_relative_delta_plot.png', metric = 'f1 overall - strict')
+    make_ner_few_shot_error_analysis_plot(all_error, title='In-context Learning NER - Error Analysis',
+                                 save_path='few_shot/overall_ner_error_analysis.png')
     # Make parallel plot for subtasks
     all_ner_filtered = all_ner[all_ner['metric'].str.startswith('f1') & all_ner['metric'].str.endswith('strict')]
     all_ner_filtered['task'] = all_ner_filtered['metric'].apply(lambda x: 'Overall' if 'overall' in x else ('Dosage' if 'DOS' in x else 'Application'))
@@ -254,14 +254,14 @@ def main():
     all_class = overall_class_performance(TASKS, PREDICTION_DIR)
     # make_few_shot_box_plot(all_class, 'few_shot/overall_class_performance_box_plot.png',
     # #                      metric='f1-weighted')
-    # make_few_shot_trend_plot(all_class, 'F1 Score for 0-, 1-, 3-, 5-shot over All Classification Tasks',
-    #                          'few_shot/overall_class_trend_plot_sharedy.png')
-    # make_few_shot_trend_plot(all_class, 'F1 Score for 0-, 1-, 3-, 5-shot over All Classification Tasks',
-    #                          'few_shot/overall_class_trend_plot.png', sharey=False)
-    # make_few_shot_delta_plot(all_class, 'Relative Improvement Δ F1 for 1-, 3-, 5-shot over Zero-Shot for All Classification Tasks',
-    #                          'few_shot/overall_class_relative_delta_plot.png')
-    # make_few_shot_avg_plot(all_class, 'Average Performance over All Classification Tasks',
-    #                         'few_shot/overall_class_average_performance_plot.png')
+    make_few_shot_trend_plot(all_class, 'F1 Score for 0-, 1-, 3-, 5-shot over All Classification Tasks',
+                             'few_shot/overall_class_trend_plot_sharedy.png')
+    make_few_shot_trend_plot(all_class, 'F1 Score for 0-, 1-, 3-, 5-shot over All Classification Tasks',
+                             'few_shot/overall_class_trend_plot.png', sharey=False)
+    make_few_shot_delta_plot(all_class, 'Relative Improvement Δ F1 for 1-, 3-, 5-shot over Zero-Shot for All Classification Tasks',
+                             'few_shot/overall_class_relative_delta_plot.png')
+    make_few_shot_avg_plot(all_class, 'Average Performance over All Classification Tasks',
+                            'few_shot/overall_class_average_performance_plot.png')
     make_few_shot_parallel_plot(
          all_class, 'In-context Learning Performance across Models and Conditions for All Classification Tasks', 'few_shot/overall_class_parallel_plot.png')
 
