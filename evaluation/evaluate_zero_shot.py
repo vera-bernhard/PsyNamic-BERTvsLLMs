@@ -372,21 +372,21 @@ def main():
         PREDICTION_DIR, 'ner', 'performance_reports.json'))
     ner_df, ner_df_errors = overall_ner_performance(
         PREDICTION_DIR)
-    make_ner_zero_shot_bar_plot(ner_df, title='Zero-Shot NER Performance',
+    make_ner_zero_shot_bar_plot(ner_df, title='Zero-shot NER Performance',
                                  save_path='zero_shot/ner/overall_ner_performance_barplot.png')
-    make_ner_zero_shot_bar_plot(ner_df, title='Zero-Shot NER Performance', save_path='zero_shot/ner/overall_ner_performance_barplot_f1_precision_recall.png',
+    make_ner_zero_shot_bar_plot(ner_df, title='Zero-shot NER Performance', save_path='zero_shot/ner/overall_ner_performance_barplot_f1_precision_recall.png',
                                  metrics= ['f1 overall - strict','f1 overall - partial', 'f1_entity_type', 
                                            'precision overall - strict',  'precision overall - partial', 'precision_entity_type',
                                            'recall overall - strict', 'recall overall - partial', 'recall_entity_type'])
-    make_ner_error_analysis_plot(ner_df_errors, title='Zero-Shot NER - Error Analysis',
+    make_ner_error_analysis_plot(ner_df_errors, title='Zero-shot NER - Error Analysis',
                                  save_path='zero_shot/ner/overall_ner_error_analysis.png')
 
     df_performance = overall_class_performance(TASKS, PREDICTION_DIR)
-    make_performance_box_plot(df_performance, 'Zero-Shot Performance Across Tasks',
+    make_performance_box_plot(df_performance, 'Zero-shot Performance Across Classification Tasks',
                               save_path='zero_shot/overall_performance_boxplot.png')
-    make_performance_spider_plot(df_performance, 'Zero-Shot Performance Across Tasks',
+    make_performance_spider_plot(df_performance, 'Zero-shot Performance Across Classification Tasks',
                                  save_path='zero_shot/overall_performance_spiderplot.png')
-    make_zero_shot_scatter_plot(df_performance, title='Zero-Shot Performance Across Tasks',
+    make_zero_shot_scatter_plot(df_performance, title='Zero-shot Performance Across Classification Tasks',
                                  save_path='zero_shot/overall_performance_scatterplot.png')
     averaged_performance = df_performance.groupby(
         'model')['performance'].mean().reset_index()
