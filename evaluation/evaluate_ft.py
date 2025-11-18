@@ -1,7 +1,7 @@
 from evaluation.evaluate_zero_shot import TASKS
 from evaluate_zero_shot import get_ner_predictions_and_labels
 from parsing import add_entities
-from plots.plots import make_ift_class_performance_plot, make_ner_error_analysis_plot
+from plots.plots import make_ift_performance_plot, make_ner_error_analysis_plot
 from evaluate import evaluate_ner_bio, bootstrap_metrics, ner_error_analysis, evaluate_ner_extraction
 from evaluate_few_shot import overall_class_performance, overall_ner_performance
 import sys
@@ -228,16 +228,22 @@ def main():
     OUTPUT_DIR = 'finetuning'
     LST_DIR = 'finetuning/lst_llama3_8b_2.0/'
     # evaluate_lst(LST_DIR)
-    # all_ift, best_models = overall_ift_performance(
-    #     PRED_DIRS, metric='f1-weighted')
-    # make_ift_class_performance_plot(all_ift, best_models, title='Best ICL Model vs. IFT Model vs. BERT Baseline',
-    #                                 save_path=os.path.join(OUTPUT_DIR, 'ift_class_performance.png'))
+    all_ift, best_models = overall_ift_performance(
+        PRED_DIRS, metric='f1-weighted')
+    make_ift_performance_plot(all_ift, best_models, title='Best ICL Model vs. IFT Model vs. BERT Baseline',
+                                    save_path=os.path.join(OUTPUT_DIR, 'ift_class_performance.png'))
     all_ift_ner, best_model_ner, error_data = overall_ift_ner_performance(
         PRED_DIRS, LST_DIR,  metric='f1 overall - strict')
-    # make_ift_class_performance_plot(all_ift_ner, best_model_ner, title='Best ICL Model vs. IFT Model vs. LST  Model vs. BERT Baseline',
-    #                                 save_path=os.path.join(OUTPUT_DIR, 'ift_ner_performance.png'), metric='f1 overall - strict')
+    make_ift_performance_plot(all_ift_ner, best_model_ner, title='Best ICL Model vs. IFT Model vs. LST  Model vs. BERT Baseline',
+                                    save_path=os.path.join(OUTPUT_DIR, 'ift_ner_performance.png'), metric='f1 overall - strict')
     make_ner_error_analysis_plot(error_data, 'BEST ICL vs. IFT vs. LST vs. BERT Baseline NER Error Analysis',
                                 save_path=os.path.join(OUTPUT_DIR, 'ift_ner_error_analysis.png'))
+    
+    all_ift_ner, best_model_ner, error_data = overall_ift_ner_performance(
+        PRED_DIRS, LST_DIR,  metric='f1_overall')
+    make_ift_performance_plot(all_ift_ner, best_model_ner, title='Best ICL Model vs. IFT Model vs. LST  Model vs. BERT Baseline',
+                                    save_path=os.path.join(OUTPUT_DIR, 'ift_ner_performance_f1_overall.png'), metric='f1_overall')  
+    
 
 if __name__ == "__main__":
     main()

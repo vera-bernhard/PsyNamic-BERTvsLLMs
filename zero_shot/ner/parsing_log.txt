@@ -3889,3 +3889,75 @@ The file zero_shot/ner/ner_Meta-Llama-3-8B-Instruct_06-09-06.csv already contain
 Processing file: zero_shot/ner/ner_gpt-4o-mini_22-07-22.csv
 Parsing predictions in file zero_shot/ner/ner_gpt-4o-mini_22-07-22.csv for NER
 The file zero_shot/ner/ner_gpt-4o-mini_22-07-22.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_Med-LLaMA3-8B_30-08-30.csv
+Parsing predictions in file zero_shot/ner/ner_Med-LLaMA3-8B_30-08-30.csv for NER
+The file zero_shot/ner/ner_Med-LLaMA3-8B_30-08-30.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_Llama-3.1-8B-Instruct_06-09-06.csv
+Parsing predictions in file zero_shot/ner/ner_Llama-3.1-8B-Instruct_06-09-06.csv for NER
+The file zero_shot/ner/ner_Llama-3.1-8B-Instruct_06-09-06.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_medgemma-27b-text-it_09-10-09.csv
+Parsing predictions in file zero_shot/ner/ner_medgemma-27b-text-it_09-10-09.csv for NER
+The file zero_shot/ner/ner_medgemma-27b-text-it_09-10-09.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_sft_llama3_8b_instruction_tuned_29-09-29.csv
+Parsing predictions in file zero_shot/ner/ner_sft_llama3_8b_instruction_tuned_29-09-29.csv for NER
+The file zero_shot/ner/ner_sft_llama3_8b_instruction_tuned_29-09-29.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_Llama-2-70b-chat-hf_28-09-28.csv
+Parsing predictions in file zero_shot/ner/ner_Llama-2-70b-chat-hf_28-09-28.csv for NER
+The file zero_shot/ner/ner_Llama-2-70b-chat-hf_28-09-28.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_Llama-2-13b-chat-hf_27-09-27.csv
+Parsing predictions in file zero_shot/ner/ner_Llama-2-13b-chat-hf_27-09-27.csv for NER
+The file zero_shot/ner/ner_Llama-2-13b-chat-hf_27-09-27.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_gemma-3-27b-it_02-11-02.csv
+Parsing predictions in file zero_shot/ner/ner_gemma-3-27b-it_02-11-02.csv for NER
+The file zero_shot/ner/ner_gemma-3-27b-it_02-11-02.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_MeLLaMA-70B-chat_27-09-27.csv
+Parsing predictions in file zero_shot/ner/ner_MeLLaMA-70B-chat_27-09-27.csv for NER
+The file zero_shot/ner/ner_MeLLaMA-70B-chat_27-09-27.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_MeLLaMA-13B-chat_27-09-27.csv
+Parsing predictions in file zero_shot/ner/ner_MeLLaMA-13B-chat_27-09-27.csv for NER
+The file zero_shot/ner/ner_MeLLaMA-13B-chat_27-09-27.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_gpt-4o-2024-08-06_22-07-22.csv
+Parsing predictions in file zero_shot/ner/ner_gpt-4o-2024-08-06_22-07-22.csv for NER
+The file zero_shot/ner/ner_gpt-4o-2024-08-06_22-07-22.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_Meta-Llama-3-8B-Instruct_06-09-06.csv
+Parsing predictions in file zero_shot/ner/ner_Meta-Llama-3-8B-Instruct_06-09-06.csv for NER
+The file zero_shot/ner/ner_Meta-Llama-3-8B-Instruct_06-09-06.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_gpt-4o-mini_22-07-22.csv
+Parsing predictions in file zero_shot/ner/ner_gpt-4o-mini_22-07-22.csv for NER
+The file zero_shot/ner/ner_gpt-4o-mini_22-07-22.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_Med-LLaMA3-8B_30-08-30.csv
+Parsing predictions in file zero_shot/ner/ner_Med-LLaMA3-8B_30-08-30.csv for NER
+The file zero_shot/ner/ner_Med-LLaMA3-8B_30-08-30.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_Llama-3.1-8B-Instruct_06-09-06.csv
+Parsing predictions in file zero_shot/ner/ner_Llama-3.1-8B-Instruct_06-09-06.csv for NER
+The file zero_shot/ner/ner_Llama-3.1-8B-Instruct_06-09-06.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_medgemma-27b-text-it_09-10-09.csv
+Parsing predictions in file zero_shot/ner/ner_medgemma-27b-text-it_09-10-09.csv for NER
+The file zero_shot/ner/ner_medgemma-27b-text-it_09-10-09.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_sft_llama3_8b_instruction_tuned_29-09-29.csv
+Parsing predictions in file zero_shot/ner/ner_sft_llama3_8b_instruction_tuned_29-09-29.csv for NER
+The file zero_shot/ner/ner_sft_llama3_8b_instruction_tuned_29-09-29.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_Llama-2-70b-chat-hf_28-09-28.csv
+Parsing predictions in file zero_shot/ner/ner_Llama-2-70b-chat-hf_28-09-28.csv for NER
+The file zero_shot/ner/ner_Llama-2-70b-chat-hf_28-09-28.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_Llama-2-13b-chat-hf_27-09-27.csv
+Parsing predictions in file zero_shot/ner/ner_Llama-2-13b-chat-hf_27-09-27.csv for NER
+The file zero_shot/ner/ner_Llama-2-13b-chat-hf_27-09-27.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_gemma-3-27b-it_02-11-02.csv
+Parsing predictions in file zero_shot/ner/ner_gemma-3-27b-it_02-11-02.csv for NER
+The file zero_shot/ner/ner_gemma-3-27b-it_02-11-02.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_MeLLaMA-70B-chat_27-09-27.csv
+Parsing predictions in file zero_shot/ner/ner_MeLLaMA-70B-chat_27-09-27.csv for NER
+The file zero_shot/ner/ner_MeLLaMA-70B-chat_27-09-27.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_MeLLaMA-13B-chat_27-09-27.csv
+Parsing predictions in file zero_shot/ner/ner_MeLLaMA-13B-chat_27-09-27.csv for NER
+The file zero_shot/ner/ner_MeLLaMA-13B-chat_27-09-27.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_gpt-4o-2024-08-06_22-07-22.csv
+Parsing predictions in file zero_shot/ner/ner_gpt-4o-2024-08-06_22-07-22.csv for NER
+The file zero_shot/ner/ner_gpt-4o-2024-08-06_22-07-22.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_Meta-Llama-3-8B-Instruct_06-09-06.csv
+Parsing predictions in file zero_shot/ner/ner_Meta-Llama-3-8B-Instruct_06-09-06.csv for NER
+The file zero_shot/ner/ner_Meta-Llama-3-8B-Instruct_06-09-06.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.
+Processing file: zero_shot/ner/ner_gpt-4o-mini_22-07-22.csv
+Parsing predictions in file zero_shot/ner/ner_gpt-4o-mini_22-07-22.csv for NER
+The file zero_shot/ner/ner_gpt-4o-mini_22-07-22.csv already contains the columns 'pred_labels' and 'entities'. Skipping parsing.

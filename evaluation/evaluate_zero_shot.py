@@ -83,10 +83,10 @@ def add_bert_performance_data(task: str, performance_data_path: str):
         
         # get model with highest f1 overall - strict, metric == 'f1 overall - strict'
         best_row_overall_strict = df[df['Metric'] == 'f1 overall - strict'].sort_values(by='Score', ascending=False).iloc[0]
-        best_row_entity_type = df[df['Metric'] == 'f1_entity_type'].sort_values(by='Score', ascending=False).iloc[0]
+        best_row_entity_type = df[df['Metric'] == 'f1_overall'].sort_values(by='Score', ascending=False).iloc[0]
         # Check if it is the same model
         if best_row_overall_strict['Model'] != best_row_entity_type['Model']:
-            print("Warning: Different models have the best scores for 'f1 overall - strict' and 'f1_entity_type'. Using the model with the best 'f1 overall - strict'.")
+            print("Warning: Different models have the best scores for 'f1 overall - strict' and 'f1_overall'. Using the model with the best 'f1 overall - strict'.")
         model = best_row_overall_strict['Model']
 
         # add all metrics to the performance data
@@ -322,6 +322,17 @@ def evaluate_all_ner(prediction_dir: str, reevaluate: bool = False):
         performance_reports[model] = {**r, **r_bio}
         performance_reports[model]['errors'] = error_analysis
 
+        # count the number of samples where there were no entities in true label, but entities were predicted
+        nr_empty_with_pred = 0
+        nr_empty_without_pred = 0
+        for p, t in zip(pred_entities, true_entities):
+            if len(t) == 0 and len(p) > 0:
+                nr_empty_with_pred += 1
+            if len(t) == 0 and len(p) == 0:
+                nr_empty_without_pred += 1
+        performance_reports[model]['nr_empty_with_pred'] = nr_empty_with_pred
+        performance_reports[model]['nr_empty_without_pred'] = nr_empty_without_pred
+
     with open(performance_reports_path, "w") as f:
         json.dump(performance_reports, f, indent=4)
 
@@ -342,6 +353,8 @@ def overall_ner_performance(prediction_dir: str) -> tuple[pd.DataFrame, pd.DataF
                 for error_type, error_count in score_data.items():
                     error_rows.append(
                         {'model': model_name, 'error_type': error_type, 'count': error_count})
+                continue
+            elif metric in ['nr_empty_with_pred', 'nr_empty_without_pred']:
                 continue
             rows.append(
                 {
@@ -367,7 +380,7 @@ def main():
 
     # # Parse & evaluate NER predictions
     # parse_all_ner_predictions(PREDICTION_DIR, reparse=False)
-    # evaluate_all_ner(PREDICTION_DIR, reevaluate=False)
+    evaluate_all_ner(PREDICTION_DIR, reevaluate=True)
     add_bert_performance_data('ner', os.path.join(
         PREDICTION_DIR, 'ner', 'performance_reports.json'))
     ner_df, ner_df_errors = overall_ner_performance(
@@ -375,9 +388,9 @@ def main():
     make_ner_zero_shot_bar_plot(ner_df, title='Zero-shot NER Performance',
                                  save_path='zero_shot/ner/overall_ner_performance_barplot.png')
     make_ner_zero_shot_bar_plot(ner_df, title='Zero-shot NER Performance', save_path='zero_shot/ner/overall_ner_performance_barplot_f1_precision_recall.png',
-                                 metrics= ['f1 overall - strict','f1 overall - partial', 'f1_entity_type', 
-                                           'precision overall - strict',  'precision overall - partial', 'precision_entity_type',
-                                           'recall overall - strict', 'recall overall - partial', 'recall_entity_type'])
+                                 metrics= ['f1 overall - strict','f1 overall - partial', 'f1_overall', 
+                                           'precision overall - strict',  'precision overall - partial', 'precision_overall',
+                                           'recall overall - strict', 'recall overall - partial', 'recall_overall'])
     make_ner_error_analysis_plot(ner_df_errors, title='Zero-shot NER - Error Analysis',
                                  save_path='zero_shot/ner/overall_ner_error_analysis.png')
 

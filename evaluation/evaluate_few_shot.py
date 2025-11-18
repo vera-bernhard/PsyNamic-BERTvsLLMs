@@ -86,16 +86,10 @@ def overall_ner_performance(prediction_dir: str) -> pd.DataFrame:
         for condition, metrics in conditions.items():
             # Loop over metrics for this model-condition pair
             for metric_name, metric_values in metrics.items():
-                if metric_name.lower() != 'errors':
-                    all_data.append({
-                            'model': model,
-                            'condition': condition,
-                            'metric': metric_name,
-                            'mean': metric_values.get('mean'),
-                            'lower': metric_values.get('lower'),
-                            'upper': metric_values.get('upper')
-                        })
-                else:
+               
+                if metric_name.startswith('nr'):
+                    continue
+                elif metric_name == 'errors':
                     # Handle errors
                     for error_type, error_count in metric_values.items():
                         error_data.append({
@@ -103,6 +97,15 @@ def overall_ner_performance(prediction_dir: str) -> pd.DataFrame:
                             'condition': condition,
                             'error_type': error_type,
                             'count': error_count
+                        })
+                else:
+                    all_data.append({
+                            'model': model,
+                            'condition': condition,
+                            'metric': metric_name,
+                            'mean': metric_values.get('mean'),
+                            'lower': metric_values.get('lower'),
+                            'upper': metric_values.get('upper')
                         })
     df = pd.DataFrame(all_data)
     error_df = pd.DataFrame(error_data)
@@ -214,6 +217,16 @@ def evaluate_all_ner_tasks(prediction_dir: str, reevaluate: bool = False):
         performance_reports[model][condition] = {**r, **r_bio}
         performance_reports[model][condition]['errors'] = error_analysis
 
+        nr_empty_with_pred = 0
+        nr_empty_without_pred = 0
+        for p, t in zip(pred_entities, true_entities):
+            if len(t) == 0 and len(p) > 0:
+                nr_empty_with_pred += 1
+            if len(t) == 0 and len(p) == 0:
+                nr_empty_without_pred += 1
+        performance_reports[model][condition]['nr_empty_with_pred'] = nr_empty_with_pred
+        performance_reports[model][condition]['nr_empty_without_pred'] = nr_empty_without_pred
+
     # Add zero-shot performance data for comparison
     zero_shot_data = get_zero_shot_performance_data('ner')
     for model in zero_shot_data:
@@ -232,25 +245,30 @@ def evaluate_all_ner_tasks(prediction_dir: str, reevaluate: bool = False):
 
 def main():
     PREDICTION_DIR = 'few_shot'
-    parse_all_class_predictions(TASKS, PREDICTION_DIR, reparse=False)
-    evaluate_all_class_tasks(TASKS, PREDICTION_DIR, reevaluate=False)
+    # parse_all_class_predictions(TASKS, PREDICTION_DIR, reparse=False)
+    # evaluate_all_class_tasks(TASKS, PREDICTION_DIR, reevaluate=False)
 
-    parse_all_ner_predictions(PREDICTION_DIR, reparse=False)
-    evaluate_all_ner_tasks(PREDICTION_DIR, reevaluate=False)
+    # parse_all_ner_predictions(PREDICTION_DIR, reparse=False)
+    evaluate_all_ner_tasks(PREDICTION_DIR, reevaluate=True)
     all_ner, all_error = overall_ner_performance(PREDICTION_DIR)
+    
     make_ner_few_shot_parallel_plot(all_ner, 'In-context Learning Performance across Models and Conditions', 'few_shot/overall_ner_parallel_plot.png')
+    make_ner_few_shot_parallel_plot(
+         all_ner, 'In-context Learning Performance across Models and Conditions for NER', 'few_shot/overall_ner_parallel_plot_f1_overall.png', metrics=['f1 overall - strict', 'f1_overall'])
+   
     all_ner['task'] = 'NER'
     make_few_shot_delta_plot(all_ner, 'Relative Improvement Δ F1 BIO - strict for 1-, 3-, 5-shot over Zero-Shot for NER',
                              'few_shot/overall_ner_relative_delta_plot.png', metric = 'f1 overall - strict')
+    make_few_shot_delta_plot(all_ner, 'Relative Improvement Δ F1 BIO - strict for 1-, 3-, 5-shot over Zero-Shot for NER',
+                             'few_shot/overall_ner_relative_delta_plot_f1_overall.png', metric = 'f1_overall')
     make_ner_few_shot_error_analysis_plot(all_error, title='In-context Learning NER - Error Analysis',
                                  save_path='few_shot/overall_ner_error_analysis.png')
     # Make parallel plot for subtasks
-    all_ner_filtered = all_ner[all_ner['metric'].str.startswith('f1') & all_ner['metric'].str.endswith('strict')]
-    all_ner_filtered['task'] = all_ner_filtered['metric'].apply(lambda x: 'Overall' if 'overall' in x else ('Dosage' if 'DOS' in x else 'Application'))
-    all_ner_filtered['metric'] = 'F1 BIO - strict'
-    make_few_shot_parallel_plot(
-         all_ner_filtered, 'In-context Learning Performance across Models and Conditions for Named Entity Types', 'few_shot/overall_ner_subtasks_parallel_plot.png', metric='F1 BIO - strict')
-
+    # all_ner_filtered = all_ner[all_ner['metric'].str.startswith('f1') & all_ner['metric'].str.endswith('strict')]
+    # all_ner_filtered['task'] = all_ner_filtered['metric'].apply(lambda x: 'Overall' if 'overall' in x else ('Dosage' if 'DOS' in x else 'Application'))
+    # all_ner_filtered['metric'] = 'F1 BIO - strict'
+    # make_few_shot_parallel_plot(
+    #      all_ner_filtered, 'In-context Learning Performance across Models and Conditions for Named Entity Types', 'few_shot/overall_ner_subtasks_parallel_plot.png', metric='F1 BIO - strict')
     all_class = overall_class_performance(TASKS, PREDICTION_DIR)
     # make_few_shot_box_plot(all_class, 'few_shot/overall_class_performance_box_plot.png',
     # #                      metric='f1-weighted')

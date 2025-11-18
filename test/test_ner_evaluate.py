@@ -9,43 +9,23 @@ class TestNEREvaluation(unittest.TestCase):
         preds = [[('Major Depressive Disorder', 'application-area')]]
         labels = [[('Major Depressive Disorder', 'application-area')]]
         results = evaluate_ner_extraction(preds, labels)
-        self.assertEqual(results['accuracy_entity'], 1.0)
-        self.assertEqual(results['accuracy_entity_type'], 1.0)
-        self.assertEqual(results['f1_entity'], 1.0)
-        self.assertEqual(results['f1_entity_type'], 1.0)
+        self.assertEqual(results['accuracy_overall'], 1.0)
+        self.assertEqual(results['f1_overall'], 1.0)
 
     def test_evaluate_ner_extraction_partial_match(self):
         preds  = [[('Major Depressive Disorder', 'application-area')]]
         labels = [[('Major Depressive Disorder', 'application-area'), ('MDD', 'application-area')]]
         results = evaluate_ner_extraction(preds, labels)
-        self.assertEqual(results['accuracy_entity'], 0)
-        self.assertEqual(results['accuracy_entity_type'], 0)
-        self.assertEqual(results['precision_entity'], 1.0)
-        self.assertEqual(results['precision_entity_type'], 1.0)
-        self.assertEqual(results['recall_entity'], 0.5)
-        self.assertEqual(results['recall_entity_type'], 0.5)
-        self.assertAlmostEqual(results['f1_entity'], 0.6666, places=1)
-        self.assertAlmostEqual(results['f1_entity_type'], 0.6666, places=1)
+        self.assertEqual(results['accuracy_overall'], 0)
+        self.assertEqual(results['precision_overall'], 1.0)
+        self.assertEqual(results['recall_overall'], 0.5)
+        self.assertAlmostEqual(results['f1_overall'], 0.6666, places=1)
 
     def test_evaluate_ner_extraction_no_match(self):
         preds = [[('Major Depressive Disorder', 'application-area')]]
         labels = [[('PTSD', 'application-area')]]
         results = evaluate_ner_extraction(preds, labels)
-        self.assertEqual(results['accuracy_entity'], 0)
-        self.assertEqual(results['accuracy_entity_type'], 0)
-        self.assertEqual(results['precision_entity'], 0)
-        self.assertEqual(results['recall_entity'], 0)
-        self.assertEqual(results['f1_entity'], 0)
-
-    def test_evaluate_ner_extraction_entity_type(self):
-        preds = [[('Major Depressive Disorder', 'application-area')]]
-        labels = [[('Major Depressive Disorder', 'dosage')]]
-        results = evaluate_ner_extraction(preds, labels)
-        self.assertEqual(results['accuracy_entity'], 1.0)
-        self.assertEqual(results['accuracy_entity_type'], 0)
-        self.assertEqual(results['precision_entity'], 1.0)
-        self.assertEqual(results['recall_entity'], 1.0)
-        self.assertEqual(results['f1_entity'], 1.0)
+        self.assertEqual(results['accuracy_overall'], 0)
 
     def test_evaluate_ner_extraction_types(self):
         pred = [[('Major Depressive Disorder', 'application-area'), ('PTSD', 'application-area'), ('3 weeks', 'dosage'), ('5 mg/kg', 'dosage')]]
@@ -59,9 +39,13 @@ class TestNEREvaluation(unittest.TestCase):
         self.assertEqual(results['recall_dosage'], 1.0)
         self.assertAlmostEqual(results['f1_dosage'], 0.6667, places=2)
 
-        self.assertEqual(results['precision_entity'], 0.75)
-        self.assertEqual(results['recall_entity'], 1.0)
-        self.assertAlmostEqual(results['f1_entity'], 0.8571, places=2)
+    def test_evaluate_ner_extraction_duplicate_predictions(self):
+        pred = [[('Major Depressive Disorder', 'application-area'), ('Major Depressive Disorder', 'application-area')]]
+        true = [[('Major Depressive Disorder', 'application-area')]]
+        results = evaluate_ner_extraction(pred, true)
+        self.assertEqual(results['precision_application-area'], 1.0)
+        self.assertEqual(results['recall_application-area'], 1.0)
+        self.assertAlmostEqual(results['f1_application-area'], 1.0, places=2)
 
 
     def test_evaluate_ner_bio_basic(self):

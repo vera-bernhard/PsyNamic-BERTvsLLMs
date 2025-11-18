@@ -115,106 +115,101 @@ def get_performance_report(col_tru: str, col_pred: str, df: pd.DataFrame) -> dic
     return report
 
 
+
 def evaluate_ner_extraction(
     list_pred: list[list[tuple[str, str]]],
     list_label: list[list[tuple[str, str]]]
 ) -> dict[str, float]:
     """
-    Evaluate NER predictions against true annotations, using tuple-based inputs.
-    Micro averaged, computes aggregated TP/FP/FN, accuracy defined as = correct predictions/all_predictions (correct == entities match exactly)
-    Based on BRIDGE paper
-    Args:
-        list_pred: List of samples, each sample is a list of (entity, type) tuples.
-        list_label: Same structure as list_pred, but true labels.
-
-    Returns:
-        dict with overall and type-specific accuracy, precision, recall, and f1
-        for both entity (ignoring type) and entity_type (entity+type).
-    """
-
-    metrics_sample = {
-        "entity_tp": [], "entity_fp": [], "entity_fn": [],
-        "entity_type_tp": [], "entity_type_fp": [], "entity_type_fn": [],
-        "entity_correct_samples": [], "entity_type_correct_samples": []
-    }
-
-    per_type_counts = defaultdict(lambda: {"tp": 0, "fp": 0, "fn": 0})
-
-    for pred, true in zip(list_pred, list_label):
-        pred_entity = Counter([ent for ent, _ in pred])
-        true_entity = Counter([ent for ent, _ in true])
-
-        pred_entity_type = Counter(pred)
-        true_entity_type = Counter(true)
-
-        # Entity-level (ignore type)
-        tp_entity = sum((pred_entity & true_entity).values())
-        fp_entity = sum((pred_entity - true_entity).values())
-        fn_entity = sum((true_entity - pred_entity).values())
-
-        entity_correct = 1 if pred_entity == true_entity else 0
-
-        # Entity+Type level (strict)
-        tp_entity_type = sum((pred_entity_type & true_entity_type).values())
-        fp_entity_type = sum((pred_entity_type - true_entity_type).values())
-        fn_entity_type = sum((true_entity_type - pred_entity_type).values())
-
-        entity_type_correct = 1 if pred_entity_type == true_entity_type else 0
-
-        pred_types = Counter([typ for _, typ in pred])
-        true_types = Counter([typ for _, typ in true])
-
-        all_types = set(true_types.keys())
-        for t in all_types:
-            pred_t = Counter([ent for ent, typ in pred if typ == t])
-            true_t = Counter([ent for ent, typ in true if typ == t])
-
-            tp_t = sum((pred_t & true_t).values())
-            fp_t = sum((pred_t - true_t).values())
-            fn_t = sum((true_t - pred_t).values())
-
-            per_type_counts[t]["tp"] += tp_t
-            per_type_counts[t]["fp"] += fp_t
-            per_type_counts[t]["fn"] += fn_t
-
-        metrics_sample["entity_tp"].append(tp_entity)
-        metrics_sample["entity_fp"].append(fp_entity)
-        metrics_sample["entity_fn"].append(fn_entity)
-        metrics_sample["entity_type_tp"].append(tp_entity_type)
-        metrics_sample["entity_type_fp"].append(fp_entity_type)
-        metrics_sample["entity_type_fn"].append(fn_entity_type)
-        metrics_sample["entity_correct_samples"].append(entity_correct)
-        metrics_sample["entity_type_correct_samples"].append(entity_type_correct)
-
-    num_samples = len(list_pred)
-    results = {}
+    Evaluate NER with exact (entity, type) matches.
     
-    for col in ["entity", "entity_type"]:
-        tp = sum(metrics_sample[f"{col}_tp"])
-        fp = sum(metrics_sample[f"{col}_fp"])
-        fn = sum(metrics_sample[f"{col}_fn"])
-        correct = sum(metrics_sample[f"{col}_correct_samples"])
-
-        accuracy = correct / num_samples if num_samples > 0 else 0
+    Returns a flat dictionary with:
+    - overall metrics: f1_overall, precision_overall, recall_overall, accuracy_overall
+    - per-type metrics: f1_<type>, precision_<type>, recall_<type>, accuracy_<type>
+    """
+    
+    n_samples = len(list_pred)
+    
+    # Overall counts
+    overall_tp = 0
+    overall_fp = 0
+    overall_fn = 0
+    overall_correct_samples = 0  # for accuracy
+    
+    # Per-type counts
+    type_counts = defaultdict(lambda: {"tp":0, "fp":0, "fn":0, "correct_samples":0})
+    
+    for pred_sample, label_sample in zip(list_pred, list_label):
+        pred_set = set(pred_sample)
+        label_set = set(label_sample)
+        
+        # Overall TP/FP/FN
+        tp = len(pred_set & label_set)
+        fp = len(pred_set - label_set)
+        fn = len(label_set - pred_set)
+        overall_tp += tp
+        overall_fp += fp
+        overall_fn += fn
+        
+        # Overall accuracy: sample is correct if pred_set == label_set
+        if pred_set == label_set:
+            overall_correct_samples += 1
+        
+        # Per-type counts
+        label_by_type = defaultdict(set)
+        pred_by_type = defaultdict(set)
+        
+        for entity, ent_type in label_set:
+            label_by_type[ent_type].add((entity, ent_type))
+        for entity, ent_type in pred_set:
+            pred_by_type[ent_type].add((entity, ent_type))
+        
+        all_types = set(label_by_type.keys()).union(pred_by_type.keys())
+        for ent_type in all_types:
+            pred_entities = pred_by_type.get(ent_type, set())
+            label_entities = label_by_type.get(ent_type, set())
+            
+            tp_type = len(pred_entities & label_entities)
+            fp_type = len(pred_entities - label_entities)
+            fn_type = len(label_entities - pred_entities)
+            
+            type_counts[ent_type]["tp"] += tp_type
+            type_counts[ent_type]["fp"] += fp_type
+            type_counts[ent_type]["fn"] += fn_type
+            
+            # Accuracy per type: sample is correct for this type if pred_entities == label_entities
+            if pred_entities == label_entities:
+                type_counts[ent_type]["correct_samples"] += 1
+    
+    precision_overall = overall_tp / (overall_tp + overall_fp) if (overall_tp + overall_fp) > 0 else 0
+    recall_overall = overall_tp / (overall_tp + overall_fn) if (overall_tp + overall_fn) > 0 else 0
+    f1_overall = 2 * precision_overall * recall_overall / (precision_overall + recall_overall) if (precision_overall + recall_overall) > 0 else 0
+    accuracy_overall = overall_correct_samples / n_samples if n_samples > 0 else 0
+    
+    result = {
+        "f1_overall": f1_overall,
+        "precision_overall": precision_overall,
+        "recall_overall": recall_overall,
+        "accuracy_overall": accuracy_overall
+    }
+    
+    for ent_type, counts in type_counts.items():
+        tp = counts["tp"]
+        fp = counts["fp"]
+        fn = counts["fn"]
+        correct_samples = counts["correct_samples"]
+        
         precision = tp / (tp + fp) if (tp + fp) > 0 else 0
         recall = tp / (tp + fn) if (tp + fn) > 0 else 0
-        f1 = (2 * precision * recall / (precision + recall)) if (precision + recall) > 0 else 0
+        f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
+        accuracy = correct_samples / n_samples if n_samples > 0 else 0
+        
+        result[f"f1_{ent_type}"] = f1
+        result[f"precision_{ent_type}"] = precision
+        result[f"recall_{ent_type}"] = recall
+        result[f"accuracy_{ent_type}"] = accuracy
 
-        results[f"accuracy_{col}"] = accuracy
-        results[f"precision_{col}"] = precision
-        results[f"recall_{col}"] = recall
-        results[f"f1_{col}"] = f1
-
-    for typ, vals in per_type_counts.items():
-        tp, fp, fn = vals["tp"], vals["fp"], vals["fn"]
-        precision = tp / (tp + fp) if (tp + fp) > 0 else 0
-        recall = tp / (tp + fn) if (tp + fn) > 0 else 0
-        f1 = (2 * precision * recall / (precision + recall)) if (precision + recall) > 0 else 0
-        results[f"precision_{typ}"] = precision
-        results[f"recall_{typ}"] = recall
-        results[f"f1_{typ}"] = f1
-
-    return results
+    return result
 
 
 def evaluate_ner_bio(pred: list[list[str]], true: list[list[str]]) -> dict[str, float]:

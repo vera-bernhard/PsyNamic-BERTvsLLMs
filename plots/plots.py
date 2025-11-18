@@ -110,9 +110,9 @@ METRIC_RENAME_MAP = {
     "f1 overall - partial": "F1 BIO - Partial",
     "precision overall - partial": "Precision BIO - Partial",
     "recall overall - partial": "Recall BIO - Partial",
-    "f1_entity_type": "F1 Strict",
-    "precision_entity_type": "Precision Strict",
-    "recall_entity_type": "Recall Strict",
+    "f1_overall": "F1 Strict",
+    "precision_overall": "Precision Strict",
+    "recall_overall": "Recall Strict",
 }
 
 
@@ -160,7 +160,7 @@ def make_performance_plot(data: dict, task: str, save_path: str = None, metrics_
         1, num_metrics, figsize=(fig_width, 7), sharey=True)
     plt.subplots_adjust(wspace=0.15)
     plt.suptitle(
-        f"Zero-Shot Comparison for {task}", fontsize=16, fontweight='semibold', y=0.98)
+        f"Zero-Shot Comparison for {task}", y=0.98)
 
     if num_metrics == 1:
         axes = [axes]
@@ -785,8 +785,7 @@ def make_few_shot_trend_plot(data: pd.DataFrame, title: str, save_path: str = No
 
     # Add overall title and adjust layout so title doesn't overlap subplots
     if title:
-        g.fig.suptitle(title, fontsize=16, fontweight='semibold',
-                       color="#222222", y=0.98)
+        g.fig.suptitle(title, y=0.98)
         g.fig.tight_layout(rect=[0, 0, 1, 0.95])
     else:
         g.fig.tight_layout()
@@ -862,11 +861,22 @@ def make_few_shot_delta_plot(data: pd.DataFrame, title: str, save_path: str = No
         row="task",
         sharey=True,
         sharex=True,
+        aspect=0.5 if len(tasks) == 1 else 0.7,
         # height=A4_height / nrows,
         # aspect=(A4_width / ncols) / (A4_height / nrows)
     )
     g.map_dataframe(sns.barplot, x="condition", y=metric, hue="color",
                     dodge=False, palette={"green": "green", "red": "red"})
+
+    for ax in g.axes.flat:
+        for patch in ax.patches:
+            height = patch.get_height()
+            if height == 0:
+                continue
+            x = patch.get_x() + patch.get_width() / 2
+            y = height + 0.01 if height >= 0 else height - 0.01
+            va = 'bottom' if height >= 0 else 'top'
+            ax.text(x, y, f'{height:.2f}', ha='center', va=va, fontsize=7, rotation=90)
 
     # Remove numbers and spans
     for row_idx, row_axes in enumerate(g.axes):
@@ -907,20 +917,18 @@ def make_few_shot_delta_plot(data: pd.DataFrame, title: str, save_path: str = No
                                labelpad=labelpad_left, va='center')
             for cond in range(1, len(models)):
                 axes[row_idx, cond].set_ylabel("Δ F1")
-
-    # Remove any subtitles/titles inside each subplot and the legend
-    for ax in axes.flatten():
-        ax.set_title("")
-        for txt in list(ax.texts):
-            ax.texts.remove(txt)
-
+    g.set_titles("")
     # Add overall title if provided and adjust layout
     if title:
-        g.fig.suptitle(title, fontsize=16, fontweight='semibold',
-                       color="#222222", y=0.98)
+        if len(tasks) == 1:
+            g.fig.suptitle(title, y=0.85)
+        else: 
+            g.fig.suptitle(title, y=0.95)
         g.fig.tight_layout(rect=[0, 0, 1, 0.95])
+        if len(tasks) == 1:# single row, adjust left to avoid clipping
+            g.fig.subplots_adjust(left=0.3)
     else:
-        g.fig.tight_layout()
+        g.fig.tight_layout(rect=[0, 0, 1, 0.95])
 
     if save_path:
         g.fig.savefig(save_path, bbox_inches='tight')
@@ -1170,8 +1178,7 @@ def make_few_shot_parallel_plot(data: pd.DataFrame, title: str, save_path: str =
     for j in range(i + 1, len(axes)):
         fig.delaxes(axes[j])
 
-    fig.suptitle(title, fontsize=16, fontweight='semibold',
-                 color="#222222", y=0.98)
+    fig.suptitle(title, y=0.98)
     fig.tight_layout()
 
     if save_path:
@@ -1186,9 +1193,10 @@ def make_ner_zero_shot_bar_plot(
         title: str,
         save_path: str = None,
         metrics: list[str] = ["f1 overall - strict",
-                              "f1 overall - partial", "f1_entity_type"]
+                              "f1 overall - partial", "f1_overall"]
 ):
     """ y axis metric, x axis models, metric grouped per model with error bars."""
+    sns.set_style("darkgrid")
     # filter according to metrics
     data = data[data['metric'].isin(metrics)]
 
@@ -1247,7 +1255,7 @@ def make_ner_zero_shot_bar_plot(
               ncol=3, bbox_to_anchor=(0.01, 0.99))
     plt.title(title)
     plt.xlabel("Model")
-    plt.ylabel("F1 Score")
+    plt.ylabel("Metric")
     # set y limit 0-1
     ax.set(ylim=(0, 1))
     ax.set_xticks(range(len(ordered_models)))
@@ -1265,15 +1273,11 @@ def make_ner_error_analysis_plot(data: pd.DataFrame, title: str, save_path: str 
     sns.set_style("darkgrid")
 
     # Remove correct errors
-    data = data[data['error_type'] != 'correct'].copy()
     data['error_type'] = data['error_type'].str.capitalize()
-
-    # If there is a condition column and the value is not Nan, append to model
-
 
     # Fixed error types and colors
     error_types = ['Incorrect', 'Partial',
-                   'Spurious', 'Missed']  # extend if needed
+                   'Spurious', 'Missed', 'Correct']  # extend if needed
     color_palette = sns.color_palette("colorblind", n_colors=len(error_types))
     error_color_map = dict(zip(error_types, color_palette))
 
@@ -1340,7 +1344,7 @@ def make_ner_error_analysis_plot(data: pd.DataFrame, title: str, save_path: str 
     plt.xticks(rotation=45, ha="right")
     plt.xlabel("Model")
     plt.ylabel("Number of Errors (# Entities)")
-    plt.title(title, fontsize=14, fontweight="semibold")
+    plt.title(title)
     plt.legend(title="Error Type", bbox_to_anchor=(1.02, 1),
                loc="upper left", title_fontsize="small")
     plt.tight_layout()
@@ -1356,12 +1360,11 @@ def make_ner_few_shot_error_analysis_plot(data: pd.DataFrame, title: str, save_p
     """ y axis: number of errors, x axis: models, grouped by condition, stacked by error type."""
     sns.set_style("darkgrid")
 
-    data = data[data["error_type"] != "correct"].copy()
     data["error_type"] = data["error_type"].str.capitalize()
     data["condition"] = data["condition"].replace(COND_RENAME_MAP_SHORT)
 
     # Fixed error type order and colors
-    error_order = ["Incorrect", "Partial", "Spurious", "Missed"]
+    error_order = ["Incorrect", "Partial", "Spurious", "Missed", "Correct"]
     sns_palette = sns.color_palette("colorblind", n_colors=len(error_order))
     error_color_map = dict(zip(error_order, sns_palette))
 
@@ -1393,17 +1396,20 @@ def make_ner_few_shot_error_analysis_plot(data: pd.DataFrame, title: str, save_p
                 linewidth=0.5,
             )
 
-            # for i, (m, c) in enumerate(zip(ordered_models, counts)):
-            #     if c > 0:
-            #         plt.text(
-            #             i + offset,
-            #             bottoms[m] + c/2 - c,  # middle of this segment
-            #             str(int(c)),
-            #             ha="center",
-            #             va="center",
-            #             fontsize=9,
-            #             color="black"
-            #         )
+            for i, (m, c) in enumerate(zip(ordered_models, counts)):
+                if c > 0:
+                    base = bottoms[m]      # the bottom before adding c
+                    y_pos = base + c / 2   # midpoint of this segment
+                    
+                    plt.text(
+                        i + offset,
+                        y_pos,
+                        str(int(c)),
+                        ha="center",
+                        va="center",
+                        fontsize=9,
+                        color="black"
+                    )
 
             # update stacking
             for m, c in zip(ordered_models, counts):
@@ -1423,7 +1429,7 @@ def make_ner_few_shot_error_analysis_plot(data: pd.DataFrame, title: str, save_p
     plt.xticks(x_positions, ordered_models, rotation=45, ha="right")
     plt.xlabel("Model")
     plt.ylabel("Number of Errors (# Entities)")
-    plt.title(title, fontsize=14, fontweight="semibold")
+    plt.title(title)
     plt.legend(title="Error Type", bbox_to_anchor=(1.02, 1),
                loc="upper left", title_fontsize="small")
     plt.grid(axis="y", linestyle="--", alpha=0.5)
@@ -1459,8 +1465,7 @@ def make_ner_few_shot_parallel_plot(data: pd.DataFrame, title: str, save_path: s
     models = [m for m in MODEL_ORDER if m in df['model'].unique()]
     df['model'] = pd.Categorical(df['model'], categories=models, ordered=True)
     df['condition'] = pd.Categorical(
-        df['condition'], categories=COND_ORDER_SHORT, ordered=True)
-
+    df['condition'], categories=COND_ORDER_SHORT, ordered=True)
     # Layout: roughly square grid
     ncols = len(metrics)
     fig, axes = plt.subplots(nrows=1, ncols=ncols,
@@ -1576,8 +1581,7 @@ def make_ner_few_shot_parallel_plot(data: pd.DataFrame, title: str, save_path: s
     for j in range(i + 1, len(axes)):
         fig.delaxes(axes[j])
 
-    fig.suptitle(title, fontsize=16, fontweight='semibold',
-                 color="#222222", y=0.98)
+    fig.suptitle(title, y=0.98)
     fig.tight_layout()
 
     if save_path:
@@ -1587,7 +1591,7 @@ def make_ner_few_shot_parallel_plot(data: pd.DataFrame, title: str, save_path: s
         plt.show()
 
 
-def make_ift_class_performance_plot(
+def make_ift_performance_plot(
     data: pd.DataFrame,
     best_model: pd.DataFrame,
     title: str,
@@ -1598,7 +1602,7 @@ def make_ift_class_performance_plot(
     Vertical bar plots per task in a grid layout.
     Each subplot: x = model (vertical bars), y = metric.
     """
-
+    sns.set_style("darkgrid")
     # Combine data and mark sources
     combined = pd.concat(
         [data.assign(source="IFT/Baseline"), best_model.assign(source="Best")],
@@ -1735,9 +1739,9 @@ def make_ift_class_performance_plot(
     plt.tight_layout()
     plt.subplots_adjust(top=0.94, bottom=0.06)
     if len(tasks) <= 4:
-        fig.suptitle(title, fontsize=16, fontweight="bold", y=1.05)
+        fig.suptitle(title, y=1.05)
     else:
-        fig.suptitle(title, fontsize=16, fontweight="bold")
+        fig.suptitle(title)
 
     best_models = best_model['model'].unique().tolist()
     fine_tuned_models = fixed_order[1:]
