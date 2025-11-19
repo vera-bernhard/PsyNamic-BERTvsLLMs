@@ -10,6 +10,8 @@ import spacy
 import numpy as np
 import math
 from collections import defaultdict
+from scipy.stats import t
+
 
 BERT_PRED = '/home/vera/Documents/Uni/Master/Master_Thesis2.0/PsyNamic-Scale/bert_baseline/predictions'
 
@@ -368,6 +370,7 @@ def make_few_shot_performance_plot(data: dict, task: str, save_path: str = None,
         ...
     }
     """
+    sns.set_style("darkgrid")
 
     rows = []
     for model, conditions in data.items():
@@ -395,65 +398,78 @@ def make_few_shot_performance_plot(data: dict, task: str, save_path: str = None,
                     'ci_upper': float(ci_high)
                 })
     df = pd.DataFrame(rows)
-    # remove any models which are not in model order
-    df = df[df['model'].isin(MODEL_ORDER)]
+    # Remove any models that don't have 1-shot
+    models_with_1shot = df.loc[df['condition'] == 'selected_1shot', 'model'].unique()
+    df = df[df['model'].isin(models_with_1shot)| df['model'].str.contains('bert', case=False)]  
+    # remove any models which are not in model order or don't have a selected_1shot results, but keep bert
+    df = df[df['model'].isin(MODEL_ORDER) | df['model'].str.contains('bert', case=False)]
+    bert_model = df[df['model'].str.contains('bert', case=False)]['model'].unique()
 
-    # Set up colors for conditions (keep order consistent)
-    unique_conditions = [
-        c for c in condition_order if c in df['condition'].unique()]
-    # Add any other conditions not in the order list
-    unique_conditions += [c for c in df['condition'].unique()
-                          if c not in unique_conditions]
-    palette = sns.color_palette("tab10", len(unique_conditions))
-    condition_colors = dict(zip(unique_conditions, palette))
+    # rename conditions for better display
+    df['condition'] = df['condition'].map(COND_RENAME_MAP).fillna(df['condition'])
+    # order conditions
+    df['condition'] = pd.Categorical(df['condition'], 
+                                     categories=COND_ORDER,
+                                     ordered=True)
+
+    palette = sns.color_palette("tab10", len(df['condition'].cat.categories))
 
     # Make sure models are ordered according to model_order
+    models = [m for m in MODEL_ORDER if m in df['model'].values] + bert_model.tolist()
     df['model'] = pd.Categorical(df['model'],
-                                 categories=MODEL_ORDER,
+                                 categories=models,
                                  ordered=True)
     # Make chart wider (increased figsize)
-    fig, ax = plt.subplots(figsize=(28, 7))  # wider plot
+    fig, ax = plt.subplots(figsize=(28, 7))
 
-    # Grouped barplot: x=model, hue=condition
     barplot = sns.barplot(
         x="model",
         y="mean",
         hue="condition",
         data=df,
-        palette=condition_colors,
+        palette=palette,
         ax=ax,
         errorbar=None,
         dodge=True,
-        hue_order=unique_conditions
+        hue_order=COND_ORDER
     )
 
     ax.set(ylim=(0, 1))
-    ax.set_ylabel(metric.replace("-", " ").capitalize())
+    ax.set_ylabel(METRIC_RENAME_MAP.get(metric, metric.replace("-", " ").capitalize()))
     ax.set_xlabel("Model")
     ax.set_title(f"In-context Learning Comparison for {task}")
     ax.set_xticklabels(ax.get_xticklabels(), rotation=30, ha="right")
 
     # Add error bars and mean labels, and CI values
-    for container, condition in zip(ax.containers, unique_conditions):
-        for bar, (_, row) in zip(container, df[df['condition'] == condition].iterrows()):
+    for container, condition in zip(ax.containers, COND_ORDER):
+        # get all rows
+        rows = df[df['condition'] == condition]
+        # order them by model to match bar order
+        rows = rows.sort_values(by="model")
+        for bar, (_, row) in zip(container, rows.iterrows()):
             yerr_lower = row["mean"] - row["ci_lower"]
             yerr_upper = row["ci_upper"] - row["mean"]
             x = bar.get_x() + bar.get_width() / 2
             y = bar.get_height()
+            offset = 0.02
             ax.errorbar(x, y, yerr=[[yerr_lower], [yerr_upper]],
                         fmt='none', color='black', capsize=5)
             # Mean value
-            ax.text(x, 0.02, f"{row['mean']:.3f}", ha="center",
-                    va="bottom", color="black", fontsize=10)
-            # CI lower
-            # ax.text(x, row["ci_lower"] - 0.03,
-            #         f"{row['ci_lower']:.3f}", ha="center", va="bottom", color="black", fontsize=8)
-            # CI upper
-            # ax.text(x, row["ci_upper"] + 0.01,
-            #         f"{row['ci_upper']:.3f}", ha="center", va="bottom", color="black", fontsize=8)
+            ax.text(x, 0.02, f"{row['mean']:.2f}", ha="center",
+                    va="bottom", color="black", fontsize=8)
+
+            # CI lower label: slightly below the lower CI bound
+            ax.text(x, row["ci_lower"] - 2 * offset, f"{row['ci_lower']:.2f}",
+                    ha="center", va="bottom", fontsize=8,)
+
+            # CI upper label: slightly above the upper CI bound
+            ax.text(x, row["ci_upper"] + offset, f"{row['ci_upper']:.2f}",
+                    ha="center", va="bottom", fontsize=8)
+
     # Single legend for conditions
+    condition_colors = dict(zip(df['condition'].cat.categories, palette))
     handles = [plt.Rectangle((0, 0), 1, 1, color=color)
-               for cond, color in condition_colors.items()]
+               for color in condition_colors.values()]
     labels = list(condition_colors.keys())
     ax.legend(handles, labels, title="Condition", loc="upper left",
               bbox_to_anchor=(1.02, 1), title_fontsize="small")
@@ -841,6 +857,8 @@ def make_few_shot_delta_plot(data: pd.DataFrame, title: str, save_path: str = No
                         baseline[metric].values[0]
                     data.loc[current.index, metric] = improvement
 
+    
+
     # remove all zero-shot rows as they are now baselines
     data = data[data['condition'] != '0']
     # add color column based on positive/negative improvement
@@ -936,6 +954,135 @@ def make_few_shot_delta_plot(data: pd.DataFrame, title: str, save_path: str = No
     else:
         plt.show()
 
+
+def make_few_shot_delta_task_averaged_plot(data, title, save_path=None, metric="f1-weighted"): 
+    data = data.copy()
+    data['model'] = data['model'].apply(lambda x: 'bert-baseline' if 'bert' in x.lower() else x)
+    data['condition'] = data['condition'].replace(COND_RENAME_MAP_SHORT)
+    # Filter metric and remove irrelevant models
+    skip_models = ['tuned', 'bert-baseline']
+    data = data[~data['model'].isin(skip_models)]
+    data = data[data['metric'] == metric].copy()
+    data = data.rename(columns={'mean': metric})
+
+    # Remove models without 1-shot results
+    # remove medllama
+    # data = data[~data['model'].str.contains('med-llama', case=False)]
+    models_with_1shot = data[data['condition'] == '1']['model'].unique().tolist()
+    data = data[data['model'].isin(models_with_1shot)]
+
+    # Sorting
+    tasks = sorted(data['task'].unique().tolist())
+    models = data['model'].unique().tolist()
+    models = [m for m in MODEL_ORDER if m in models]
+    data = data[data['model'].isin(models)]
+
+    # Calculate relative improvements vs zero-shot
+    for model in models:
+        for task in tasks:
+            baseline = data[(data['model']==model) & (data['task']==task) & (data['condition']=='0')]
+            for cond in COND_ORDER_SHORT[1:]:
+                current = data[(data['model']==model) & (data['task']==task) & (data['condition']==cond)]
+                if not baseline.empty and not current.empty:
+                    improvement = current[metric].values[0] - baseline[metric].values[0]
+                    data.loc[current.index, metric] = improvement
+
+    # Remove zero-shot rows
+    data = data[data['condition'] != '0']
+
+
+    agg = (
+        data.groupby(["model", "condition"])
+            .agg(
+                mean_delta=(metric, "mean"),
+                std_delta=(metric, "std"),
+                n_tasks=(metric, "count")
+            )
+            .reset_index()
+    )
+
+    # t-based 95% CI
+    agg['t_val'] = agg['n_tasks'].apply(lambda n: t.ppf(0.975, df=n-1))
+    agg['ci95'] = agg['t_val'] * agg['std_delta'] / np.sqrt(agg['n_tasks'])
+    agg["color"] = np.where(agg["mean_delta"] > 0, "green", "red")
+    agg["model"] = pd.Categorical(agg["model"], categories=models, ordered=True)
+    agg["condition"] = pd.Categorical(agg["condition"], categories=COND_ORDER_SHORT[1:], ordered=True)
+
+    sns.set_style("darkgrid")
+    n_models = len(models)
+    nr_cols = 6
+    nr_rows = 2
+    fig, axes = plt.subplots(nr_rows, nr_cols, sharey=True, figsize=(12, 4*nr_rows), constrained_layout=True)
+    if n_models == 1:
+        axes = [axes]  # make it iterable
+    axes = axes.flatten()
+    for ax, model in zip(axes, models):
+        sub = agg[agg["model"] == model]
+        sub = sub.set_index("condition").reindex(COND_ORDER_SHORT[1:]).reset_index()
+        xs = np.arange(len(sub))
+        heights = sub["mean_delta"].fillna(0).values
+        errors = sub["ci95"].fillna(0).values
+        colors = sub["color"].fillna("grey").values
+        ax.bar(xs, heights, color=colors)
+
+        # Only draw error bars where values exist
+        valid = ~sub["mean_delta"].isna().values
+        ax.errorbar(xs[valid], heights[valid], yerr=errors[valid],
+                    color='black', fmt='none', capsize=2)
+
+        # X-axis labels
+        ax.set_xticks(xs)
+        ax.set_xticklabels(sub["condition"].values, ha='right')
+        ax.set_xlabel(model, rotation=30, ha='right', va='top')
+        offset = 0.01
+        # for x, y in zip(xs, heights):
+        #     # place label relative to x-axis
+        #     y_text = y + offset if y >= 0 else y - offset
+        #     va = 'bottom' if y >= 0 else 'top'
+        #     ax.text(x, y_text, f"{y:.2f}", ha='center', va=va, fontsize=8)
+        #     # add text to error bars
+        #     ax.text(x, y_text + (errors[x] + offset if y >= 0 else -errors[x] - offset), f"±{errors[x]:.2f}", ha='center', va=va, fontsize=8)
+
+        # Labels
+        ax.set_xlabel(model)
+        ax.spines["top"].set_visible(False)
+        ax.spines["right"].set_visible(False)
+    
+        # sub_raw = data[(data["model"] == model)]
+        # for i, cond in enumerate(COND_ORDER_SHORT[1:]):
+        #     vals = sub_raw[sub_raw["condition"] == cond][metric].values
+
+        #     if len(vals) == 0:
+        #         continue
+
+        #     # Jitter so points don’t overlap perfectly
+        #     jitter = np.random.uniform(-0.04, 0.04, size=len(vals))
+
+        #     # Color by sign
+        #     colors_pts = ["green" if v >= 0 else "red" for v in vals]
+
+        #     ax.scatter(
+        #         np.full_like(vals, i) + jitter,  # x positions
+        #         vals,                            # y values
+        #         s=6,                            # dot size
+        #         color=colors_pts,
+        #         alpha=0.5,
+        #         zorder=5
+        #     )
+    axes[0].set_ylabel(f"Δ {metric}")
+    # set y limits,0.1 and -0-3
+    axes[0].set_ylim(-0.2, 0.2)
+    # remove empty subplots
+    for i in range(n_models, len(axes)):
+        fig.delaxes(axes[i])
+
+    fig.suptitle(title)
+
+    if save_path:
+        fig.savefig(save_path, bbox_inches='tight')
+        plt.close(fig)
+    else:
+        plt.show()
 
 def make_few_shot_avg_plot(data: pd.DataFrame, title: str, save_path: str = None, metric: str = "f1-weighted"):
     """ x axis: model, y axis: average performance across tasks, grouped by condition with error bars"""
@@ -1137,7 +1284,7 @@ def make_few_shot_parallel_plot(data: pd.DataFrame, title: str, save_path: str =
     handles_lines = [
         plt.Line2D([0, 1], [0, 0],
                    color=MODEL_COLOR_MAP.get(model, 'gray'),
-                   linestyle='--' if model in TEXTURE_MAP else '-',
+                   linestyle='--' if model in TEXTURE_MAP or model=='bert-baseline' else '-',
                    linewidth=2)
         for model in models + ['bert-baseline']
     ]
@@ -1724,8 +1871,8 @@ def make_ift_performance_plot(
             ha="center", va="center",
             color='black', fontsize=9, fontweight="bold"
         )
-
-        ax.set_title(task.replace("_", " ").title(), fontsize=12)
+        if len(tasks) > 1:
+            ax.set_title(task.replace("_", " ").title(), fontsize=12)
         ax.set_xlabel("")
         ax.set_xticks([])
         ax.set_ylabel("")
@@ -1761,6 +1908,10 @@ def make_ift_performance_plot(
             handles, present_models, title="Model",
             loc='center right', bbox_to_anchor=(1.5, 0.5), ncol=1
         )
+
+    # add y label to each row
+    for row in range(nrows):
+        axes[row * ncols].set_ylabel(METRIC_RENAME_MAP.get(metric, metric))
 
     if save_path:
         fig.savefig(save_path, bbox_inches='tight')
