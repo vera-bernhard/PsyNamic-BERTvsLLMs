@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 """
-Filename: predic_zero_shot.py
-Description: ...
+Filename: icl_predict.py
+Description: Script to make in-context learning predictions using various language models for classification and NER tasks.
 Author: Vera Bernhard
 """
+
 import os
 import re
 import json
@@ -61,8 +61,8 @@ def set_seed(seed: int = 42):
 
 
 TASKS = [
-    "Condition", "Data Collection", "Data Type", "Number of Participants", "Age of Participants", "Application Form", "Clinical Trial Phase",  "Outcomes", "Regimen", "Setting", "Study Control", "Study Purpose", "Substance Naivety", "Substances", "Sex of Participants", "Study Conclusion","Study Type",
-    #"Relevant", 
+    "Condition", "Data Collection", "Data Type", "Number of Participants", "Age of Participants", "Application Form", "Clinical Trial Phase",  "Outcomes", "Regimen", "Setting", "Study Control", "Study Purpose", "Substance Naivety", "Substances", "Sex of Participants", "Study Conclusion", "Study Type",
+    # "Relevant",
 ]
 
 # TODO: Move it somewhere else so that it is not always called
@@ -79,8 +79,7 @@ SEED = 42
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
-
-#TODO: Make it more generic; ugly asking if 'llama' or 'gemma' in model name
+# TODO: Make it more generic; ugly asking if 'llama' or 'gemma' in model name
 class HFChatModel():
     def __init__(self, model_name: str, use_gpu: bool = True, system_prompt: str = '', use_quant: bool = False):
         print("CUDA_VISIBLE_DEVICES:", os.environ.get("CUDA_VISIBLE_DEVICES"))
@@ -253,7 +252,8 @@ class HFChatModel():
             self.max_new_tokens = max(max_tokens_per_prompt)
             print(f"Max new tokens for NER batch: {self.max_new_tokens}")
 
-        max_position_embeddings = getattr(self.model.config, "max_position_embeddings", 131072) 
+        max_position_embeddings = getattr(
+            self.model.config, "max_position_embeddings", 131072)
         # Tokenize all prompts together (padding to max length in batch)
         inputs = self.tokenizer(
             prompts_with_template,
@@ -334,7 +334,7 @@ def make_class_predictions(
 ) -> None:
     if 'llama' in model_name.lower() or 'gemma' in model_name.lower():
         model = HFChatModel(model_name=model_name,
-                           system_prompt=system_role_class)
+                            system_prompt=system_role_class)
     else:
         model = None
 
@@ -463,7 +463,7 @@ def make_ner_predictions(
 
     if 'llama' in model_name.lower() or 'gemma' in model_name.lower():
         model = HFChatModel(model_name=model_name,
-                           system_prompt=system_role_ner)
+                            system_prompt=system_role_ner)
         model.set_task(task)
 
     df = pd.read_csv(file)
@@ -549,11 +549,8 @@ def parse_class_predictions(pred_file: str, task: str, reparse: bool = False, lo
     # Parse model name from the file name --> model name before date dd-mm-dd.csv
     model = os.path.basename(pred_file).split('_')[-2]
 
-    # add new column 'pred_labels' containing the one-hot encoded labels
     nr_non_parsable = 0
     nr_faulty_parsable = 0
-    # change dtype of labels column to string
-    # add nan
     df['pred_labels'] = None
     df['labels'] = df['labels'].astype(str)
     for i, row in df.iterrows():
@@ -669,66 +666,22 @@ def main():
             skip_with_other_date=args.skip_with_other_date,
         )
 
-
-    
-    uzh_models = [
-        # "/data/vebern/ma-models/MeLLaMA-13B-chat",
-        # "/data/vebern/ma-models/MeLLaMA-70B-chat",
-    ]
     models = [
-        # "gpt-4o-mini",
-        # "gpt-4o-2024-08-06",
-        # 'meta-llama/Llama-2-13b-chat-hf',
-        # 'YBXL/Med-LLaMA3-8B',
-        # '/storage/homefs/vb25l522/me-llama/MeLLaMA-13B-chat',
-        # 'meta-llama/Meta-Llama-3-8B-Instruct',
-        # "meta-llama/Llama-3.1-8B-Instruct",
+        "gpt-4o-mini",
+        "gpt-4o-2024-08-06",
+        'meta-llama/Llama-2-13b-chat-hf',
+        'YBXL/Med-LLaMA3-8B',
+        'meta-llama/Meta-Llama-3-8B-Instruct',
+        "meta-llama/Llama-3.1-8B-Instruct",
         "google/medgemma-27b-text-it",
-        # 'google/gemma-3-27b-it'
-        
-    ]
-    big_models = [
-        "/data/vebern/ma-models/MeLLaMA-70B-chat",
-        "meta-llama/Llama-2-70b-chat-hf",
+        'google/gemma-3-27b-it',
+        "meta-llama/Llama-2-70b-chat-hf"
     ]
 
     fine_tuned_models = [
         "/home/vebern/data/PsyNamic-Scale/finetuning/sft_llama3_8b_instruction_tuned"
     ]
 
-    # Zero-Shot: Classification
-    # for model_name in models:
-    #     make_ner_predictions(model_name=model_name,
-    #                     batch_size=8, few_shot=0, skip_with_other_date=True)
-    #     make_class_predictions(
-    #         tasks=TASKS, model_name=model_name, batch_size=8, few_shot=0, skip_with_other_date=True)
-
-
-    # # Few-Shot: Classification & NER
-    # for i in [1, 3, 5]:
-    #     for model_name in models:
-    #         make_class_predictions(
-    #             tasks=TASKS, model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
-
-    #         make_ner_predictions(
-    #             model_name=model_name, batch_size=8, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
-
-    # Zero-Shot: Fine-tuned
-    # for model_name in fine_tuned_models:
-    #     make_ner_predictions(model_name=model_name,
-    #                     batch_size=1, few_shot=0, skip_with_other_date=True)
-    #     make_class_predictions(
-    #         tasks=TASKS, model_name=model_name, batch_size=8, few_shot=0, skip_with_other_date=True)
-
-
-    # Few-Shot: Classification & NER
-    # for i in [1]:
-    #     for model_name in big_models:
-    #         make_class_predictions(
-    #             tasks=TASKS, model_name=model_name, batch_size=4, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
-
-    #         make_ner_predictions(
-    #             model_name=model_name, batch_size=4, few_shot=i, few_shot_strategy='selected', skip_with_other_date=True)
 
 if __name__ == "__main__":
     main()

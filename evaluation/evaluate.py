@@ -3,7 +3,7 @@
 
 """
 Filename: evaluate.py
-Description: ...
+Description: Evaluation metrics with confidence intervals and NER evaluation functions.
 Author: Vera Bernhard
 """
 
@@ -11,13 +11,10 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, confusion_matrix
 from confidenceinterval.bootstrap import bootstrap_ci
-from joblib import Parallel, delayed
-from collections import Counter
 from nervaluate import Evaluator
 from collections import defaultdict
 import random
 from typing import Callable
-
 
 
 # STRIDE-Lab
@@ -103,17 +100,11 @@ def get_performance_report(col_tru: str, col_pred: str, df: pd.DataFrame) -> dic
 
     metrics = get_metrics_ci(y_true, y_pred)
 
-    # # Confusion matrix
-    # conf_matrix = confusion_matrix(y_true, y_pred)
-
     report = {
         "metrics": metrics,
-        # "confusion_matrix": conf_matrix.tolist(),
-        # "nr_empty_tru": nr_empty_tru,
     }
 
     return report
-
 
 
 def evaluate_ner_extraction(
@@ -122,27 +113,31 @@ def evaluate_ner_extraction(
 ) -> dict[str, float]:
     """
     Evaluate NER with exact (entity, type) matches.
-    
+
+    Based on: https://github.com/YLab-Open/BRIDGE/blob/564bc1a9848262939dc47676a882e63a0b9548f0/metric/extraction.py#L4
+    Wu et al. 2025
+
     Returns a flat dictionary with:
     - overall metrics: f1_overall, precision_overall, recall_overall, accuracy_overall
     - per-type metrics: f1_<type>, precision_<type>, recall_<type>, accuracy_<type>
     """
-    
+
     n_samples = len(list_pred)
-    
+
     # Overall counts
     overall_tp = 0
     overall_fp = 0
     overall_fn = 0
     overall_correct_samples = 0  # for accuracy
-    
+
     # Per-type counts
-    type_counts = defaultdict(lambda: {"tp":0, "fp":0, "fn":0, "correct_samples":0})
-    
+    type_counts = defaultdict(
+        lambda: {"tp": 0, "fp": 0, "fn": 0, "correct_samples": 0})
+
     for pred_sample, label_sample in zip(list_pred, list_label):
         pred_set = set(pred_sample)
         label_set = set(label_sample)
-        
+
         # Overall TP/FP/FN
         tp = len(pred_set & label_set)
         fp = len(pred_set - label_set)
@@ -150,60 +145,65 @@ def evaluate_ner_extraction(
         overall_tp += tp
         overall_fp += fp
         overall_fn += fn
-        
+
         # Overall accuracy: sample is correct if pred_set == label_set
         if pred_set == label_set:
             overall_correct_samples += 1
-        
+
         # Per-type counts
         label_by_type = defaultdict(set)
         pred_by_type = defaultdict(set)
-        
+
         for entity, ent_type in label_set:
             label_by_type[ent_type].add((entity, ent_type))
         for entity, ent_type in pred_set:
             pred_by_type[ent_type].add((entity, ent_type))
-        
+
         all_types = set(label_by_type.keys()).union(pred_by_type.keys())
         for ent_type in all_types:
             pred_entities = pred_by_type.get(ent_type, set())
             label_entities = label_by_type.get(ent_type, set())
-            
+
             tp_type = len(pred_entities & label_entities)
             fp_type = len(pred_entities - label_entities)
             fn_type = len(label_entities - pred_entities)
-            
+
             type_counts[ent_type]["tp"] += tp_type
             type_counts[ent_type]["fp"] += fp_type
             type_counts[ent_type]["fn"] += fn_type
-            
+
             # Accuracy per type: sample is correct for this type if pred_entities == label_entities
             if pred_entities == label_entities:
                 type_counts[ent_type]["correct_samples"] += 1
-    
-    precision_overall = overall_tp / (overall_tp + overall_fp) if (overall_tp + overall_fp) > 0 else 0
-    recall_overall = overall_tp / (overall_tp + overall_fn) if (overall_tp + overall_fn) > 0 else 0
-    f1_overall = 2 * precision_overall * recall_overall / (precision_overall + recall_overall) if (precision_overall + recall_overall) > 0 else 0
+
+    precision_overall = overall_tp / \
+        (overall_tp + overall_fp) if (overall_tp + overall_fp) > 0 else 0
+    recall_overall = overall_tp / \
+        (overall_tp + overall_fn) if (overall_tp + overall_fn) > 0 else 0
+    f1_overall = 2 * precision_overall * recall_overall / \
+        (precision_overall + recall_overall) if (precision_overall +
+                                                 recall_overall) > 0 else 0
     accuracy_overall = overall_correct_samples / n_samples if n_samples > 0 else 0
-    
+
     result = {
         "f1_overall": f1_overall,
         "precision_overall": precision_overall,
         "recall_overall": recall_overall,
         "accuracy_overall": accuracy_overall
     }
-    
+
     for ent_type, counts in type_counts.items():
         tp = counts["tp"]
         fp = counts["fp"]
         fn = counts["fn"]
         correct_samples = counts["correct_samples"]
-        
+
         precision = tp / (tp + fp) if (tp + fp) > 0 else 0
         recall = tp / (tp + fn) if (tp + fn) > 0 else 0
-        f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
+        f1 = 2 * precision * recall / \
+            (precision + recall) if (precision + recall) > 0 else 0
         accuracy = correct_samples / n_samples if n_samples > 0 else 0
-        
+
         result[f"f1_{ent_type}"] = f1
         result[f"precision_{ent_type}"] = precision
         result[f"recall_{ent_type}"] = recall
@@ -223,7 +223,8 @@ def evaluate_ner_bio(pred: list[list[str]], true: list[list[str]]) -> dict[str, 
     pred = [[renaming.get(label, label) for label in seq] for seq in pred]
     true = [[renaming.get(label, label) for label in seq] for seq in true]
 
-    evaluator = Evaluator(true=true, pred=pred, tags=['APP', 'DOS'], loader='list')
+    evaluator = Evaluator(true=true, pred=pred, tags=[
+                          'APP', 'DOS'], loader='list')
     results = evaluator.evaluate()
     r = {
         'f1 overall - strict': results['overall']['strict'].f1,
@@ -248,6 +249,7 @@ def evaluate_ner_bio(pred: list[list[str]], true: list[list[str]]) -> dict[str, 
 
     return r
 
+
 def ner_error_analysis(pred: list[list[str]], true: list[list[str]]) -> dict[str, int]:
     renaming = {
         'I-Application area': 'I-APP',
@@ -259,7 +261,8 @@ def ner_error_analysis(pred: list[list[str]], true: list[list[str]]) -> dict[str
     pred = [[renaming.get(label, label) for label in seq] for seq in pred]
     true = [[renaming.get(label, label) for label in seq] for seq in true]
 
-    evaluator = Evaluator(true=true, pred=pred, tags=['APP', 'DOS'], loader='list')
+    evaluator = Evaluator(true=true, pred=pred, tags=[
+                          'APP', 'DOS'], loader='list')
     result = evaluator.evaluate()
     r = {
         'correct': result['overall']['strict'].correct,

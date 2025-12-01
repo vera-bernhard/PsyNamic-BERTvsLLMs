@@ -1,3 +1,10 @@
+"""
+Filename: ift_predict.py
+Description: Script to fine-tune language models using instruction fine-tuning with PEFT and SFTTrainer.
+Author: Vera Bernhard
+"""
+
+
 # based on:
 # https://huggingface.co/docs/trl/sft_trainer
 # https://www.datacamp.com/tutorial/llama3-fine-tuning-locally?dc_referrer=https%3A%2F%2Fwww.google.com%2F
@@ -87,7 +94,8 @@ def build_instruction_finetune_dataset(
                     {"role": "user", "content": prompt},
                     {"role": "assistant", "content": output},
                 ]
-                flattened = tokenizer.apply_chat_template(messages, tokenize=False)
+                flattened = tokenizer.apply_chat_template(
+                    messages, tokenize=False)
                 dataset.append({"text": flattened})
 
         else:
@@ -106,22 +114,27 @@ def build_instruction_finetune_dataset(
                     system_prompt = system_role_class
 
                 options = get_class_options(task)
-                output_json = build_json_labels(row["labels"], int2label, options)
+                output_json = build_json_labels(
+                    row["labels"], int2label, options)
 
                 messages = [
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": prompt},
                     {"role": "assistant", "content": output_json},
                 ]
-                flattened = tokenizer.apply_chat_template(messages, tokenize=False)
+                flattened = tokenizer.apply_chat_template(
+                    messages, tokenize=False)
                 dataset.append({"text": flattened})
 
     random.shuffle(dataset)
     return dataset
 
 
-
 def sft_peft(model_name: str, data_file: str, output_dir: str, resume_from_checkpoint: Optional[str] = None):
+    """
+    Fine-tune a language model using SFTTrainer and PEFT QLoRA.
+    """
+
     os.makedirs(output_dir, exist_ok=True)
     tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
     if tokenizer.pad_token is None:
@@ -168,7 +181,7 @@ def sft_peft(model_name: str, data_file: str, output_dir: str, resume_from_check
         gradient_accumulation_steps=4,
         learning_rate=1e-4,
         num_train_epochs=3,
-        logging_steps=100,        
+        logging_steps=100,
         save_strategy="epoch",
         eval_steps=100,
         seed=SEED,
@@ -183,7 +196,7 @@ def sft_peft(model_name: str, data_file: str, output_dir: str, resume_from_check
     trainer = SFTTrainer(
         model=model,
         train_dataset=train_dataset,
-        #tokenizer=tokenizer,
+        # tokenizer=tokenizer,
         peft_config=lora_config,
         args=training_args,
     )
@@ -197,6 +210,7 @@ def sft_peft(model_name: str, data_file: str, output_dir: str, resume_from_check
 
     wandb.finish()
 
+
 if __name__ == "__main__":
     model = "meta-llama/Llama-3.1-8B-Instruct"
 
@@ -208,11 +222,11 @@ if __name__ == "__main__":
         split="train",
     )
 
-    # # Save dataset to jsonl file
-    # output_path = './finetuning/instruction_tune_dataset_train.jsonl'
-    # with open(output_path, 'w') as f:
-    #     for example in dataset:
-    #         f.write(json.dumps(example) + '\n')
+    # Save dataset to jsonl file
+    output_path = './finetuning/instruction_tune_dataset_train.jsonl'
+    with open(output_path, 'w') as f:
+        for example in dataset:
+            f.write(json.dumps(example) + '\n')
 
     output_dir = './finetuning/sft_llama3_8b_instruction_tuned'
     data_file = './finetuning/instruction_tune_dataset_train.jsonl'

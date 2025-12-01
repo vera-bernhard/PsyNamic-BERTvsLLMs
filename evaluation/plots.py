@@ -15,19 +15,6 @@ import matplotlib.patches as mpatches
 
 BERT_PRED = '/home/vera/Documents/Uni/Master/Master_Thesis2.0/PsyNamic-Scale/bert_baseline/predictions'
 
-# color_map = {
-#     'gpt-4o-2024-08-06': '#17a583',
-#     'gpt-4o-mini': '#48c9b0',
-#     'bert-baseline': '#7f7f7f',
-#     'tuned': '#ff7f00',
-#     'Llama-3.1-8B-Instruct': '#fdbf6f',
-#     'Meta-Llama-3-8B-Instruct': '#fb9a99',
-#     'Med-LLaMA3-8B': '#e31a1c',
-#     'MeLLaMA-70B-chat': '#1f78b4',
-#     'MeLLaMA-13B-chat': '#33a02c',
-#     'Llama-2-70b-chat-hf': '#a6cee3',
-#     'Llama-2-13b-chat-hf': '#b2df8a',
-# }
 
 # Based on seaborn colorblind palette
 MODEL_COLOR_MAP = {

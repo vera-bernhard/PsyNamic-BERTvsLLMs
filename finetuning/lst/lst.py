@@ -1,3 +1,12 @@
+"""
+Filename: lst.py
+Description: Script to label-supervised fine-tune language models for named entity recognition using billm.
+Author: Vera Bernhard
+"""
+
+# based on: https://github.com/WhereIsAI/BiLLM/blob/main/examples/billm_ner.py
+
+
 import argparse
 import json
 import pandas as pd
@@ -36,9 +45,6 @@ torch.cuda.manual_seed_all(SEED)
 torch.backends.cudnn.deterministic = True
 np.random.seed(SEED)
 set_seed(SEED)
-
-# based on: https://github.com/WhereIsAI/BiLLM/blob/main/examples/billm_ner.py
-
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--model_name_or_path", type=str,
@@ -159,7 +165,6 @@ print(f"Average length: {np.mean(all_label_lengths)}")
 print(f"Max length: {np.max(all_label_lengths)}")
 print(f"Min length: {np.min(all_label_lengths)}")
 
-# for test too
 all_label_lengths_test = []
 for i in range(len(tokenized_ds["test"])):
     all_label_lengths_test.append(len(tokenized_ds["test"][i]["labels"]))
@@ -243,6 +248,7 @@ pred_output = trainer.predict(tokenized_ds["test"])
 pred_logits = pred_output.predictions
 pred_ids = np.argmax(pred_logits, axis=-1)
 
+# Convert subword-level predictions to token-level predictions
 pred_labels = []
 for i in range(len(tokenized_ds["test"])):
     word_ids = tokenized_ds["test"][i]['word_ids']
@@ -256,7 +262,7 @@ for i in range(len(tokenized_ds["test"])):
         prev_wid = wid
     pred_labels.append(preds)
 
-# original tokens
+# Save predictions to CSV
 test_tokens = ds["test"]["tokens"]
 test_ids = ds["test"]["id"]
 text = ds["test"]["text"]
