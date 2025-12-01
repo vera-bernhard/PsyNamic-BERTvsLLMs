@@ -27,4 +27,4 @@ This repository contains the code and data for the Master’s thesis by Vera Ber
 - **Hugging Face Transformers** – model loading, inference, and training
 - **PEFT** – parameter-efficient fine-tuning methods
 - **TRL** – training large language models with instruction tuning
-- **[BiLLM](https://github.com/WhereIsAI/BiLLM)** – biomedical LLM evaluation framework
+- **[BiLLM](https://github.com/WhereIsAI/BiLLM)** – converting LLMs from uni-directional to bidirectional for classification tasks 
