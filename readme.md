@@ -6,10 +6,7 @@
 **Institution:** University of Zurich, Switzerland
 ---
 
-## Repository Overview
-
-This repository contains the code and data for the Master’s thesis  
-**“Can LLMs Beat BERT in Biomedical Information Extraction? Evaluating Prompting and Fine-Tuning Strategies for NER and Classification”** by Vera Bernhard.
+This repository contains the code and data for the Master’s thesis by Vera Bernhard.
 
 ### Structure
 
