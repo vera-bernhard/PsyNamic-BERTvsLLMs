@@ -11,11 +11,9 @@ import numpy as np
 import math
 from collections import defaultdict
 from scipy.stats import t
-
+import matplotlib.patches as mpatches
 
 BERT_PRED = '/home/vera/Documents/Uni/Master/Master_Thesis2.0/PsyNamic-Scale/bert_baseline/predictions'
-
-sns.set(style="whitegrid")
 
 # color_map = {
 #     'gpt-4o-2024-08-06': '#17a583',
@@ -833,6 +831,7 @@ def make_few_shot_delta_plot(data: pd.DataFrame, title: str, save_path: str = No
 
     # Sorting
     tasks = sorted(data['task'].unique().tolist())
+    data['task'] = pd.Categorical(data['task'], categories=tasks, ordered=True)
     models = data['model'].unique().tolist()
     models = [m for m in MODEL_ORDER if m in models]
     data = data[data['model'].isin(models)]
@@ -944,7 +943,7 @@ def make_few_shot_delta_plot(data: pd.DataFrame, title: str, save_path: str = No
             g.fig.suptitle(title, y=0.95)
         g.fig.tight_layout(rect=[0, 0, 1, 0.95])
         if len(tasks) == 1:# single row, adjust left to avoid clipping
-            g.fig.subplots_adjust(left=0.3)
+            g.fig.subplots_adjust(left=0.35)
     else:
         g.fig.tight_layout(rect=[0, 0, 1, 0.95])
 
@@ -1423,8 +1422,7 @@ def make_ner_error_analysis_plot(data: pd.DataFrame, title: str, save_path: str 
     data['error_type'] = data['error_type'].str.capitalize()
 
     # Fixed error types and colors
-    error_types = ['Incorrect', 'Partial',
-                   'Spurious', 'Missed', 'Correct']  # extend if needed
+    error_types = ['Correct', 'Spurious', 'Missed', 'Incorrect']  # extend if needed
     color_palette = sns.color_palette("colorblind", n_colors=len(error_types))
     error_color_map = dict(zip(error_types, color_palette))
 
@@ -1444,6 +1442,12 @@ def make_ner_error_analysis_plot(data: pd.DataFrame, title: str, save_path: str 
                 # ordered_models is a Python list, so use list comprehension to replace entries
                 ordered_models = [new_name if m == old_name else m for m in ordered_models]
 
+    # for fine-tuned models, make sure Llama-3.1-8B-Instruct appears after all fine-tuned models
+    if 'Llama-3.1-8B-Instruct-LST' in ordered_models:
+        ordered_models.remove('Llama-3.1-8B-Instruct')
+        # inject after LST model
+        idx = ordered_models.index('Llama-3.1-8B-Instruct-LST') + 1
+        ordered_models.insert(idx, 'Llama-3.1-8B-Instruct')
 
     plt.figure(figsize=(12, 6))
     bottoms = defaultdict(float)
@@ -1511,7 +1515,7 @@ def make_ner_few_shot_error_analysis_plot(data: pd.DataFrame, title: str, save_p
     data["condition"] = data["condition"].replace(COND_RENAME_MAP_SHORT)
 
     # Fixed error type order and colors
-    error_order = ["Incorrect", "Partial", "Spurious", "Missed", "Correct"]
+    error_order = ["Incorrect", "Spurious", "Missed", "Correct"]
     sns_palette = sns.color_palette("colorblind", n_colors=len(error_order))
     error_color_map = dict(zip(error_order, sns_palette))
 
@@ -1919,6 +1923,199 @@ def make_ift_performance_plot(
     else:
         plt.show()
 
+def ift_box_plot(ift_df: pd.DataFrame, title: str, save_path: str = None):
+    # rename all models in best_df to 'Best ICL'
+    sns.set_style("darkgrid")
+
+    model_order = ['gpt-4o-2024-08-06', 'Llama-3.1-8B-Instruct-IFT', 'Llama-3.1-8B-Instruct', 'bert-baseline']
+    ift_df['model'] = pd.Categorical(
+        ift_df['model'], categories=model_order, ordered=True)
+
+    plt.figure(figsize=(5, 4))
+    ax = sns.boxplot(
+        data=ift_df,
+        x='model',
+        y='f1-weighted',
+        order=model_order,
+        palette=[MODEL_COLOR_MAP.get(m, 'white') for m in model_order],
+        hue='model',
+    )
+    # add performance scatter points, on topt
+    sns.stripplot(
+        data=ift_df,
+        x="model",
+        y="f1-weighted",
+        color="black",
+        size=3,
+        alpha=0.6,
+        jitter=True,
+    )
+
+    # rotate x-axis
+    ax.set_xticklabels(model_order, rotation=25, ha="right", fontsize=10)
+    ax.set_title(title, pad=12)
+    plt.xlabel("Model")
+    plt.ylabel("f1-weighted")
+    plt.ylim(0, 1)
+
+    if save_path:
+        plt.savefig(save_path, bbox_inches='tight', dpi=300)
+        plt.close()
+    else:
+        plt.show()
+
+def size_plot(data: pd.DataFrame, title: str, save_path: str = None):
+    """
+    Scatter plot with:
+        x-axis = model_size (ordered numerically)
+        y-axis = metric (performance)
+        color = model
+        marker shape = condition
+    """
+    sns.set_style("darkgrid")
+
+    model_order = [
+        'bert-baseline',
+        'Meta-Llama-3-8B-Instruct',
+        'Med-LLaMA3-8B',
+        'Llama-3.1-8B-Instruct',
+#         'Llama-3.1-8B-Instruct-IFT',
+        'Llama-2-13b-chat-hf',
+        'MeLLaMA-13B-chat',
+        'gemma-3-27b-it',
+        'medgemma-27b-text-it',
+        'gpt-4o-mini',
+        'Llama-2-70b-chat-hf',
+        'MeLLaMA-70B-chat',
+        'gpt-4o-2024-08-06',
+    ]
+
+    condition_order = [
+        'zero-shot',
+        'few-shot',
+        'fine-tuned',
+    ]
+
+    # Keep only models in our desired order and ensure model is categorical
+    data_sorted = data[data["model"].isin(model_order)].copy()
+    data_sorted["model"] = pd.Categorical(data_sorted["model"], categories=model_order, ordered=True)
+    data_sorted = data_sorted.sort_values("model")
+
+    # enforce condition order and make categorical so hue respects order
+    data_sorted["condition"] = pd.Categorical(data_sorted["condition"],
+                                             categories=condition_order,
+                                             ordered=True)
+
+    plt.figure(figsize=(10, 6))
+
+    ax = sns.boxplot(
+        data=data_sorted,
+        x="model",
+        y="metric",
+        hue="condition",
+        hue_order=condition_order,
+    )
+
+    plt.title(title)
+    plt.xlabel("Model Size (B parameters)")
+    plt.ylabel("Metric")
+
+    # Prepare model_size labels in the same order as plotted models
+    df_model_only = data_sorted.drop_duplicates(subset=["model", "model_size"]).set_index("model")
+    models_present = [m for m in model_order if m in df_model_only.index]
+    sizes = df_model_only.reindex(models_present)["model_size"].tolist()
+
+    ax.legend(title="Condition", bbox_to_anchor=(1.02, 1), loc="upper left")
+
+    model_labels = [
+        r"$\mathrm{bert\text{-}baseline\ (}\mathbf{0.11B}\mathrm{)}$",
+        r"$\mathrm{Meta\text{-}Llama\text{-}3\text{-}8B\text{-}Instruct\ (}\mathbf{8B}\mathrm{)}$",
+        r"$\mathrm{Med\text{-}LLaMA3\text{-}8B\ (}\mathbf{8B}\mathrm{)}$",
+        r"$\mathrm{Llama\text{-}3.1\text{-}8B\text{-}Instruct\ (}\mathbf{8B}\mathrm{)}$",
+        r"$\mathrm{Llama\text{-}2\text{-}13b\text{-}chat\text{-}hf\ (}\mathbf{13B}\mathrm{)}$",
+        r"$\mathrm{MeLLaMA\text{-}13B\text{-}chat\ (}\mathbf{13B}\mathrm{)}$",
+        r"$\mathrm{gemma\text{-}3\text{-}27b\text{-}it\ (}\mathbf{27B}\mathrm{)}$",
+        r"$\mathrm{medgemma\text{-}27b\text{-}text\text{-}it\ (}\mathbf{27B}\mathrm{)}$",
+        r"$\mathrm{gpt\text{-}4o\text{-}mini\ (}\mathbf{\sim30B}\mathrm{)}$",
+        r"$\mathrm{Llama\text{-}2\text{-}70b\text{-}chat\text{-}hf\ (}\mathbf{70B}\mathrm{)}$",
+        r"$\mathrm{MeLLaMA\text{-}70B\text{-}chat\ (}\mathbf{70B}\mathrm{)}$",
+        r"$\mathrm{gpt\text{-}4o\text{-}2024\text{-}08\text{-}06\ (}\mathbf{\sim200B}\mathrm{)}$",
+    ]
+    ax.set_xticks(range(len(model_labels)))
+    ax.set_xticklabels(model_labels, rotation=45, ha="right")
+
+
+    plt.tight_layout()
+
+    if save_path:
+        plt.savefig(save_path, dpi=300)
+    else:
+        plt.show()
+
+
+def medical_vs_general_plot(data: pd.DataFrame, title: str, save_path: str = None):
+    """
+    Compare medical vs general models using seaborn boxplots.
+    Each condition gets its own subplot.
+    Medical models are hatched and have a legend.
+    Colors come from MODEL_COLOR_MAP.
+    """
+    sns.set_style("darkgrid")
+
+    model_pairs = [
+        ['Meta-Llama-3-8B-Instruct', 'Med-LLaMA3-8B'],
+        ['Llama-2-13b-chat-hf', 'MeLLaMA-13B-chat'],
+        ['Llama-2-70b-chat-hf', 'MeLLaMA-70B-chat'],
+        ['gemma-3-27b-it', 'medgemma-27b-text-it'],
+    ]
+
+    conditions = ['zero-shot', 'few-shot']
+    fig, axes = plt.subplots(1, len(conditions), figsize=(10, 5), sharey=True)
+    if len(conditions) == 1:
+        axes = [axes]
+
+    for ax, condition in zip(axes, conditions):
+        data_cond = data[data['condition'] == condition].copy()
+
+        # Flatten model_pairs for ordering
+        flat_models = [m for pair in model_pairs for m in pair]
+        data_cond['model'] = pd.Categorical(data_cond['model'], categories=flat_models, ordered=True)
+
+        # Plot seaborn boxplot
+        sns.boxplot(
+            data=data_cond,
+            x='model',
+            y='metric',
+            ax=ax,
+            palette=MODEL_COLOR_MAP,
+            dodge=False
+        )
+
+        # Add hatching for medical models
+        for i, patch in enumerate(ax.patches):
+            model_name = flat_models[i % len(flat_models)]
+            if model_name in TEXTURE_MAP:
+                patch.set_hatch('//')
+                patch.set_edgecolor('white')
+                patch.set_linewidth(1.5)
+
+        ax.set_xticklabels(flat_models, rotation=45, ha='right')
+        ax.set_title(condition.title())
+        ax.set_xlabel("Model")
+        ax.set_ylabel("Metric")
+
+    # Add a custom legend for medical models
+    general_patch = mpatches.Patch(facecolor='white', edgecolor='black', label='General Model')
+    medical_patch = mpatches.Patch(facecolor='black', edgecolor='white', hatch='//', label='Medical Model')
+    fig.legend(handles=[general_patch, medical_patch], loc='upper right')
+
+    fig.suptitle(title)
+    plt.tight_layout(rect=[0, 0, 1, 0.95])
+
+    if save_path:
+        plt.savefig(save_path, dpi=300)
+    else:
+        plt.show()
 
 if __name__ == "__main__":
     # data = [[1, 0, 1, 0, 1],

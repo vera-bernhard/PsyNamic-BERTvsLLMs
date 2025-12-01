@@ -375,11 +375,11 @@ def main():
     PREDICTION_DIR = 'zero_shot'
 
     # Parse & evaluate class predictions
-    # parse_all_class_predictions(TASKS, PREDICTION_DIR)
-    # evaluate_all_class_tasks(TASKS, PREDICTION_DIR)
+    parse_all_class_predictions(TASKS, PREDICTION_DIR)
+    evaluate_all_class_tasks(TASKS, PREDICTION_DIR)
 
-    # # Parse & evaluate NER predictions
-    # parse_all_ner_predictions(PREDICTION_DIR, reparse=False)
+    # Parse & evaluate NER predictions
+    parse_all_ner_predictions(PREDICTION_DIR, reparse=False)
     evaluate_all_ner(PREDICTION_DIR, reevaluate=True)
     add_bert_performance_data('ner', os.path.join(
         PREDICTION_DIR, 'ner', 'performance_reports.json'))

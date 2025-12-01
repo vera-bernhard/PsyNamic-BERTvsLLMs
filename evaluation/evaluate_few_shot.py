@@ -8,7 +8,7 @@ import pandas as pd
 from tqdm import tqdm
 
 from evaluation.evaluate import bootstrap_metrics, evaluate_ner_bio, evaluate_ner_extraction, ner_error_analysis
-from plots.plots import make_few_shot_performance_plot, make_few_shot_box_plot, make_few_shot_trend_plot, make_few_shot_delta_plot, make_few_shot_avg_plot, make_few_shot_parallel_plot, make_ner_few_shot_parallel_plot, make_ner_few_shot_error_analysis_plot
+from plots.plots import make_few_shot_performance_plot, make_few_shot_box_plot, make_few_shot_trend_plot, make_few_shot_delta_plot, make_few_shot_avg_plot, make_few_shot_parallel_plot, make_ner_few_shot_parallel_plot, make_ner_few_shot_error_analysis_plot, make_few_shot_delta_task_averaged_plot
 from evaluation.evaluate_zero_shot import (
     add_bert_performance_data,
     get_all_prediction_files,
@@ -173,11 +173,16 @@ def evaluate_all_class_tasks(tasks: list[str], prediction_dir: str, reevaluate: 
         zero_shot_data = get_zero_shot_performance_data(task)
 
         for model in zero_shot_data:
-            if model in performance_reports:
+            if model in performance_reports :
                 performance_reports[model]['zero_shot'] = {}
                 performance_reports[model]['zero_shot']['metrics'] = zero_shot_data[model].get(
                     'metrics', {})
-
+            elif 'bert' in model.lower():
+                performance_reports[model] = {}
+                performance_reports[model]['zero_shot'] = {}
+                performance_reports[model]['zero_shot']['metrics'] = zero_shot_data[model].get(
+                    'metrics', {})
+                
         # Step 4: Make performance plot
         plot_path = os.path.join(
             prediction_dir, task.lower().replace(' ', '_'), "performance_plot.png")
@@ -239,39 +244,45 @@ def evaluate_all_ner_tasks(prediction_dir: str, reevaluate: bool = False):
         json.dump(performance_reports, f, indent=4)
         
     
-    make_few_shot_performance_plot(performance_reports, 'Named Entity Recognition', os.path.join(
+    make_few_shot_performance_plot(performance_reports, 'NER', os.path.join(
         prediction_dir, 'ner', "ner_performance_plot.png"), metric='f1 overall - strict')
+
+    make_few_shot_performance_plot(performance_reports, 'NER', os.path.join(
+        prediction_dir, 'ner', "ner_performance_plot_f1_overall.png"), metric='f1_overall')
 
 
 def main():
     PREDICTION_DIR = 'few_shot'
-    # parse_all_class_predictions(TASKS, PREDICTION_DIR, reparse=False)
-    # evaluate_all_class_tasks(TASKS, PREDICTION_DIR, reevaluate=False)
+    parse_all_class_predictions(TASKS, PREDICTION_DIR, reparse=False)
+    evaluate_all_class_tasks(TASKS, PREDICTION_DIR, reevaluate=False)
 
-    # parse_all_ner_predictions(PREDICTION_DIR, reparse=False)
-    evaluate_all_ner_tasks(PREDICTION_DIR, reevaluate=True)
+    parse_all_ner_predictions(PREDICTION_DIR, reparse=False)
+    evaluate_all_ner_tasks(PREDICTION_DIR, reevaluate=False)
     all_ner, all_error = overall_ner_performance(PREDICTION_DIR)
     
-    make_ner_few_shot_parallel_plot(all_ner, 'In-context Learning Performance across Models and Conditions', 'few_shot/overall_ner_parallel_plot.png')
+    make_ner_few_shot_parallel_plot(all_ner, 'In-context Learning Performance across Models for NER', 'few_shot/overall_ner_parallel_plot.png')
     make_ner_few_shot_parallel_plot(
          all_ner, 'In-context Learning Performance across Models and Conditions for NER', 'few_shot/overall_ner_parallel_plot_f1_overall.png', metrics=['f1 overall - strict', 'f1_overall'])
    
     all_ner['task'] = 'NER'
     make_few_shot_delta_plot(all_ner, 'Relative Improvement Δ F1 BIO - strict for 1-, 3-, 5-shot over Zero-Shot for NER',
                              'few_shot/overall_ner_relative_delta_plot.png', metric = 'f1 overall - strict')
-    make_few_shot_delta_plot(all_ner, 'Relative Improvement Δ F1 BIO - strict for 1-, 3-, 5-shot over Zero-Shot for NER',
+    make_few_shot_delta_plot(all_ner, 'Relative Improvement Δ F1 strict for 1-, 3-, 5-shot over Zero-Shot for NER',
                              'few_shot/overall_ner_relative_delta_plot_f1_overall.png', metric = 'f1_overall')
     make_ner_few_shot_error_analysis_plot(all_error, title='In-context Learning NER - Error Analysis',
-                                 save_path='few_shot/overall_ner_error_analysis.png')
+                                  save_path='few_shot/overall_ner_error_analysis.png')
     # Make parallel plot for subtasks
-    # all_ner_filtered = all_ner[all_ner['metric'].str.startswith('f1') & all_ner['metric'].str.endswith('strict')]
-    # all_ner_filtered['task'] = all_ner_filtered['metric'].apply(lambda x: 'Overall' if 'overall' in x else ('Dosage' if 'DOS' in x else 'Application'))
-    # all_ner_filtered['metric'] = 'F1 BIO - strict'
-    # make_few_shot_parallel_plot(
-    #      all_ner_filtered, 'In-context Learning Performance across Models and Conditions for Named Entity Types', 'few_shot/overall_ner_subtasks_parallel_plot.png', metric='F1 BIO - strict')
+    all_ner_filtered = all_ner[all_ner['metric'].str.startswith('f1') & all_ner['metric'].str.endswith('strict')]
+    all_ner_filtered['task'] = all_ner_filtered['metric'].apply(lambda x: 'Overall' if 'overall' in x else ('Dosage' if 'DOS' in x else 'Application'))
+    all_ner_filtered['metric'] = 'F1 BIO - strict'
+    make_few_shot_parallel_plot(
+         all_ner_filtered, 'In-context Learning Performance across Models and Conditions for Named Entity Types', 'few_shot/overall_ner_subtasks_parallel_plot.png', metric='F1 BIO - strict')
     all_class = overall_class_performance(TASKS, PREDICTION_DIR)
-    # make_few_shot_box_plot(all_class, 'few_shot/overall_class_performance_box_plot.png',
-    # #                      metric='f1-weighted')
+    make_few_shot_box_plot(all_class, 'few_shot/overall_class_performance_box_plot.png',
+                          metric='f1-weighted')
+    make_few_shot_delta_task_averaged_plot(all_class, 'Averaged Improvement Δ F1 for 1-, 3-, 5-shot over Zero-Shot',
+                             'few_shot/overall_class_task_averaged_relative_delta_plot.png')
+
     make_few_shot_trend_plot(all_class, 'F1 Score for 0-, 1-, 3-, 5-shot over All Classification Tasks',
                              'few_shot/overall_class_trend_plot_sharedy.png')
     make_few_shot_trend_plot(all_class, 'F1 Score for 0-, 1-, 3-, 5-shot over All Classification Tasks',
@@ -281,8 +292,9 @@ def main():
     make_few_shot_avg_plot(all_class, 'Average Performance over All Classification Tasks',
                             'few_shot/overall_class_average_performance_plot.png')
     make_few_shot_parallel_plot(
-         all_class, 'In-context Learning Performance across Models and Conditions for All Classification Tasks', 'few_shot/overall_class_parallel_plot.png')
+         all_class, 'In-context Learning Performance across Models for All Classification Tasks', 'few_shot/overall_class_parallel_plot.png')
 
+    all_class
 
 if __name__ == "__main__":
     main()
