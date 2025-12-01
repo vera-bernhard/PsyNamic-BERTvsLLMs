@@ -1,5 +1,5 @@
 import unittest
-from evaluation.parsing import parse_class_prediction, parse_ner_prediction
+from evaluation.postprocessing import parse_class_prediction, parse_ner_prediction
 from prompts.build_prompts import get_label2int
 
 

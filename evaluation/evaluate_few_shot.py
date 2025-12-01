@@ -8,7 +8,7 @@ import pandas as pd
 from tqdm import tqdm
 
 from evaluation.evaluate import bootstrap_metrics, evaluate_ner_bio, evaluate_ner_extraction, ner_error_analysis
-from plots.plots import make_few_shot_performance_plot, make_few_shot_box_plot, make_few_shot_trend_plot, make_few_shot_delta_plot, make_few_shot_avg_plot, make_few_shot_parallel_plot, make_ner_few_shot_parallel_plot, make_ner_few_shot_error_analysis_plot, make_few_shot_delta_task_averaged_plot
+from evaluation.plots import make_few_shot_performance_plot, make_few_shot_box_plot, make_few_shot_trend_plot, make_few_shot_delta_plot, make_few_shot_avg_plot, make_few_shot_parallel_plot, make_ner_few_shot_parallel_plot, make_ner_few_shot_error_analysis_plot, make_few_shot_delta_task_averaged_plot
 from evaluation.evaluate_zero_shot import (
     add_bert_performance_data,
     get_all_prediction_files,

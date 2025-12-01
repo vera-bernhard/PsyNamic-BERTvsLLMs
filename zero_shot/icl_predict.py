@@ -22,7 +22,7 @@ from typing import TextIO
 from dotenv import load_dotenv
 from huggingface_hub import login
 from openai import OpenAI
-from evaluation.parsing import parse_file_name
+from evaluation.postprocessing import parse_file_name
 
 from transformers import (
     AutoModelForCausalLM,
@@ -42,7 +42,7 @@ from prompts.build_prompts import (
     is_multilabel,
 )
 
-from evaluation.parsing import (
+from evaluation.postprocessing import (
     parse_class_prediction,
     parse_ner_prediction,
     parse_ner_prediction_entities,

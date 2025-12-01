@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import json
 import os
-from plots.plots import plot_label_distribution, plot_length_histogram
+from evaluation.plots import plot_label_distribution, plot_length_histogram
 import numpy as np
 import pandas as pd
 from typing import Union

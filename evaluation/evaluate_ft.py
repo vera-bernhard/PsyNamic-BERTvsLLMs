@@ -1,7 +1,7 @@
 from evaluation.evaluate_zero_shot import TASKS
 from evaluate_zero_shot import get_ner_predictions_and_labels
-from parsing import add_entities
-from plots.plots import make_ift_performance_plot, make_ner_error_analysis_plot, size_plot, medical_vs_general_plot, ift_box_plot
+from evaluation.postprocessing import add_entities
+from evaluation.plots import make_ift_performance_plot, make_ner_error_analysis_plot, size_plot, medical_vs_general_plot, ift_box_plot
 from evaluate import evaluate_ner_bio, bootstrap_metrics, ner_error_analysis, evaluate_ner_extraction
 from evaluate_few_shot import overall_class_performance, overall_ner_performance
 import sys

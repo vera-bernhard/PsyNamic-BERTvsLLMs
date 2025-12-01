@@ -29,7 +29,7 @@ from prompts.build_prompts import (
     markup_entities
 )
 
-from zero_shot.predict_zero_shot import TASKS
+from zero_shot.icl_predict import TASKS
 
 SEED = 42
 # set seeds

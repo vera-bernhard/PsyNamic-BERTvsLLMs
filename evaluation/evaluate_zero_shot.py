@@ -1,6 +1,6 @@
-from plots.plots import make_performance_plot, make_performance_box_plot, make_performance_spider_plot, make_simple_performance_plot, make_zero_shot_scatter_plot, make_ner_zero_shot_bar_plot, make_ner_error_analysis_plot
+from evaluation.plots import make_performance_plot, make_performance_box_plot, make_performance_spider_plot, make_simple_performance_plot, make_zero_shot_scatter_plot, make_ner_zero_shot_bar_plot, make_ner_error_analysis_plot
 from evaluation.evaluate import get_performance_report, evaluate_ner_bio, evaluate_ner_extraction, bootstrap_metrics, ner_error_analysis
-from zero_shot.predict_zero_shot import parse_class_predictions, parse_ner_predictions
+from zero_shot.icl_predict import parse_class_predictions, parse_ner_predictions
 import numpy as np
 import pandas as pd
 import json
@@ -8,7 +8,7 @@ import sys
 import os
 from prompts.build_prompts import get_label2int
 from tqdm import tqdm
-from evaluation.parsing import parse_file_name, add_entities
+from evaluation.postprocessing import parse_file_name, add_entities
 import ast
 
 
