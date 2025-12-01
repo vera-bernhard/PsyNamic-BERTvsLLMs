@@ -1,9 +1,9 @@
-# Can LLMs Beat BERT in Biomedical Information Extraction?  
-## Evaluating Prompting and Fine-Tuning Strategies for NER and Classification
+# Can LLMs Beat BERT in Biomedical Information Extraction?  Evaluating Prompting and Fine-Tuning Strategies for NER and Classification
 
 **Author:** Vera Bernhard  
 **Date:** December 2025  
 **Institution:** University of Zurich, Switzerland
+
 ---
 
 This repository contains the code and data for the Master’s thesis by Vera Bernhard.
@@ -27,5 +27,4 @@ This repository contains the code and data for the Master’s thesis by Vera Ber
 - **Hugging Face Transformers** – model loading, inference, and training
 - **PEFT** – parameter-efficient fine-tuning methods
 - **TRL** – training large language models with instruction tuning
-- **BiLLM** – converting LLMs from uni-directional to bidirectional for classification tasks  
-  https://github.com/WhereIsAI/BiLLM
+- **[BiLLM](https://github.com/WhereIsAI/BiLLM)** – biomedical LLM evaluation framework
