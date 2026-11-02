@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 
 from evaluation.evaluate import evaluate_ner_extraction, evaluate_ner_bio, bootstrap_metrics, ner_error_analysis
-from evaluation.evaluate_zero_shot import get_ner_predictions_and_labels
+from evaluation.evaluate_zero_shot import get_ner_predictions_and_labels, select_best_model
 
 
 TASKS = [
@@ -99,7 +99,7 @@ def get_best_class_scores(directory: str, selection_directory: str, metric: str 
                     "Available strategies: 'F1, 'Accuracy', 'Precision', 'Recall' or 'cur' (for current metric)")
             elif best_strategy == 'cur':
                 best_strategy = metric
-            best_model_name = val_df.loc[val_df[best_strategy].idxmax(), 'Model']
+            best_model_name = select_best_model(val_df, task_name, best_strategy)
             best_model = df[df['Model'] == best_model_name].iloc[0]
 
             # Store relevant data

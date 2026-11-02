@@ -69,6 +69,37 @@ def evaluate_predictions(file_path: str, task: str, remove_empty: bool = False) 
     return performance_dict
 
 
+# Choices made for ties, so each tie is only asked once per run and all functions use the same model
+TIE_CHOICES = {}
+
+
+def select_best_model(performance: pd.DataFrame, task: str, score_col: str) -> str:
+    """ Returns the model with the highest score_col (on the validation split). If several models share the
+        highest score, asks which one to use.
+    """
+    best_models = performance[performance[score_col] == performance[score_col].max()]
+    models = list(best_models['Model'])
+    if len(models) == 1:
+        return models[0]
+
+    key = (task, score_col, tuple(sorted(models)))
+    if key not in TIE_CHOICES:
+        print(f"\nMultiple models have the highest {score_col} for task: {task}")
+        for idx, model in enumerate(models, start=1):
+            print(f"{idx}: {model} ({score_col}: {best_models[score_col].iloc[idx - 1]:.4f})")
+        while True:
+            try:
+                choice = int(input(f"Select a model for {task} (1-{len(models)}): "))
+                if 1 <= choice <= len(models):
+                    break
+                print("Invalid choice. Please enter a number from the list.")
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+        TIE_CHOICES[key] = models[choice - 1]
+        print(f"Selected {TIE_CHOICES[key]} for {task} (tie on {score_col}: {models})")
+    return TIE_CHOICES[key]
+
+
 def add_bert_performance_data(task: str, performance_data_path: str):
     with open(performance_data_path, "r") as f:
         performance_data = json.load(f)
@@ -84,12 +115,14 @@ def add_bert_performance_data(task: str, performance_data_path: str):
         val_df = pd.read_csv(os.path.join(bert_path, 'ner_performance_val.csv'))
 
         # get model with highest f1 overall - strict, metric == 'f1 overall - strict'
-        best_row_overall_strict = val_df[val_df['Metric'] == 'f1 overall - strict'].sort_values(by='Score', ascending=False).iloc[0]
-        best_row_entity_type = val_df[val_df['Metric'] == 'f1_overall'].sort_values(by='Score', ascending=False).iloc[0]
+        best_overall_strict = select_best_model(
+            val_df[val_df['Metric'] == 'f1 overall - strict'], 'ner (f1 overall - strict)', 'Score')
+        best_entity_type = select_best_model(
+            val_df[val_df['Metric'] == 'f1_overall'], 'ner (f1_overall)', 'Score')
         # Check if it is the same model
-        if best_row_overall_strict['Model'] != best_row_entity_type['Model']:
+        if best_overall_strict != best_entity_type:
             print("Warning: Different models have the best scores for 'f1 overall - strict' and 'f1_overall'. Using the model with the best 'f1 overall - strict'.")
-        model = best_row_overall_strict['Model']
+        model = best_overall_strict
 
         # add all metrics to the performance data
         # collect all unique
