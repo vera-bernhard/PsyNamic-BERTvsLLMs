@@ -23,8 +23,8 @@ MODEL_COLORS = {
 
 
 # Written for MA
-def plot_best_class_scores(directory: str, metric: str = 'F1', best_strategy: str = 'F1') -> None:
-    df_tasks = get_best_class_scores(directory, metric, best_strategy)
+def plot_best_class_scores(directory: str, selection_directory: str, metric: str = 'F1', best_strategy: str = 'F1') -> None:
+    df_tasks = get_best_class_scores(directory, selection_directory, metric, best_strategy)
     # Plot
     fig, ax = plt.subplots(figsize=(10, 6))
 
@@ -78,7 +78,10 @@ def plot_best_class_scores(directory: str, metric: str = 'F1', best_strategy: st
 
 
 # Written for MA
-def get_best_class_scores(directory: str, metric: str = 'F1', best_strategy: str = 'F1') -> pd.DataFrame:
+def get_best_class_scores(directory: str, selection_directory: str, metric: str = 'F1', best_strategy: str = 'F1') -> pd.DataFrame:
+    """ directory: test performance files, selection_directory: validation performance files (same file names).
+        The model is selected on the validation split, the reported scores are its test scores.
+    """
     task_data = []
 
     # Iterate through CSV files in the directory
@@ -89,13 +92,15 @@ def get_best_class_scores(directory: str, metric: str = 'F1', best_strategy: str
 
             # Load CSV
             df = pd.read_csv(os.path.join(directory, filename))
+            val_df = pd.read_csv(os.path.join(selection_directory, filename))
 
             if best_strategy not in df.columns and best_strategy != 'cur':
                 raise ValueError(
                     "Available strategies: 'F1, 'Accuracy', 'Precision', 'Recall' or 'cur' (for current metric)")
             elif best_strategy == 'cur':
                 best_strategy = metric
-            best_model = df.loc[df[best_strategy].idxmax()]
+            best_model_name = val_df.loc[val_df[best_strategy].idxmax(), 'Model']
+            best_model = df[df['Model'] == best_model_name].iloc[0]
 
             # Store relevant data
             task_data.append({
@@ -114,7 +119,8 @@ def get_best_class_scores(directory: str, metric: str = 'F1', best_strategy: str
     return df_tasks
 
 
-def collect_ner_metrics(prediction_dir: str) -> None:
+def collect_ner_metrics(prediction_dir: str, suffix: str = '') -> None:
+    """ suffix: '' for the test predictions, '_val' for the validation predictions (ner_performance_val.csv) """
     model_performance = []
     model_error_analysis = {}
     for filename in os.listdir(prediction_dir):
@@ -142,23 +148,25 @@ def collect_ner_metrics(prediction_dir: str) -> None:
             model_error_analysis[model] = e
     df = pd.DataFrame(model_performance)
     # write into parents directory
-    df.to_csv(os.path.join(os.path.dirname(prediction_dir), "ner_performance.csv"), index=False)
-    with open(os.path.join(os.path.dirname(prediction_dir), "ner_error_analysis.json"), "w") as f:
+    df.to_csv(os.path.join(os.path.dirname(prediction_dir), f"ner_performance{suffix}.csv"), index=False)
+    with open(os.path.join(os.path.dirname(prediction_dir), f"ner_error_analysis{suffix}.json"), "w") as f:
         json.dump(model_error_analysis, f, indent=4)
 
 
 def main():
     dir = 'model_performance'
-    get_best_class_scores(dir, metric='F1').to_csv(
+    val_dir = 'model_performance_val'
+    get_best_class_scores(dir, val_dir, metric='F1').to_csv(
         os.path.join(os.path.dirname(dir), 'best_f1_scores_class.csv'), index=False)
-    get_best_class_scores(dir, metric='Accuracy').to_csv(
+    get_best_class_scores(dir, val_dir, metric='Accuracy').to_csv(
         os.path.join(os.path.dirname(dir), 'best_accuracy_scores_class.csv'), index=False)
-    get_best_class_scores(dir, metric='Precision').to_csv(
+    get_best_class_scores(dir, val_dir, metric='Precision').to_csv(
         os.path.join(os.path.dirname(dir), 'best_precision_scores_class.csv'), index=False)
-    get_best_class_scores(dir, metric='Recall').to_csv(
+    get_best_class_scores(dir, val_dir, metric='Recall').to_csv(
         os.path.join(os.path.dirname(dir), 'best_recall_scores_class.csv'), index=False)
 
-    collect_ner_metrics('bert_baseline/predictions')    
+    collect_ner_metrics('bert_baseline/predictions')
+    collect_ner_metrics('bert_baseline/predictions_val', suffix='_val')
 
 if __name__ == "__main__":
     main()

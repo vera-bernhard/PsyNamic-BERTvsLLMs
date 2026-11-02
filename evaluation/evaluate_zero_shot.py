@@ -80,10 +80,12 @@ def add_bert_performance_data(task: str, performance_data_path: str):
         # read ner_performance.csv
         file_path = 'ner_performance.csv'
         df = pd.read_csv(os.path.join(bert_path, file_path))
-        
+        # the model is selected on the validation split (ner_performance_val.csv), the test scores are reported
+        val_df = pd.read_csv(os.path.join(bert_path, 'ner_performance_val.csv'))
+
         # get model with highest f1 overall - strict, metric == 'f1 overall - strict'
-        best_row_overall_strict = df[df['Metric'] == 'f1 overall - strict'].sort_values(by='Score', ascending=False).iloc[0]
-        best_row_entity_type = df[df['Metric'] == 'f1_overall'].sort_values(by='Score', ascending=False).iloc[0]
+        best_row_overall_strict = val_df[val_df['Metric'] == 'f1 overall - strict'].sort_values(by='Score', ascending=False).iloc[0]
+        best_row_entity_type = val_df[val_df['Metric'] == 'f1_overall'].sort_values(by='Score', ascending=False).iloc[0]
         # Check if it is the same model
         if best_row_overall_strict['Model'] != best_row_entity_type['Model']:
             print("Warning: Different models have the best scores for 'f1 overall - strict' and 'f1_overall'. Using the model with the best 'f1 overall - strict'.")
