@@ -1,0 +1,37 @@
+{
+    "biolinkbert": {
+        "correct": 209,
+        "incorrect": 21,
+        "partial": 0,
+        "spurious": 67,
+        "missed": 19
+    },
+    "clinicalbert": {
+        "correct": 184,
+        "incorrect": 27,
+        "partial": 0,
+        "spurious": 50,
+        "missed": 38
+    },
+    "scibert": {
+        "correct": 203,
+        "incorrect": 23,
+        "partial": 0,
+        "spurious": 49,
+        "missed": 23
+    },
+    "biobert": {
+        "correct": 197,
+        "incorrect": 32,
+        "partial": 0,
+        "spurious": 83,
+        "missed": 20
+    },
+    "biomedbert-abstract": {
+        "correct": 220,
+        "incorrect": 14,
+        "partial": 0,
+        "spurious": 121,
+        "missed": 15
+    }
+}
