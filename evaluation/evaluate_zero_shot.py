@@ -105,7 +105,7 @@ def add_bert_performance_data(task: str, performance_data_path: str):
         performance_data = json.load(f)
 
     bert_data = {}
-    bert_path = '/home/vera/Documents/Uni/Master/Master_Thesis2.0/PsyNamic-Scale/bert_baseline'
+    bert_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'bert_baseline')
     model = None
     if 'ner' in task.lower():
         # read ner_performance.csv
